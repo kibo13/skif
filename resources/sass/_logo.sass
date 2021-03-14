@@ -1,0 +1,35 @@
+.logo 
+  user-select: none
+
+  &-icon 
+    margin: 0 5px
+
+    &--sm 
+      width: 32px
+
+    &--md 
+      width: 64px
+
+  &-title 
+    position: relative
+    width: 100%
+    text-align: center
+  
+    &::before 
+        content: 'мебельного производства'
+        position: absolute
+        top: 20px
+        left: 0
+        width: 100%
+        font-size: $text-base
+
+  &-auth 
+    position: absolute
+    top: -110px
+    left: 0
+    width: 100%
+
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
