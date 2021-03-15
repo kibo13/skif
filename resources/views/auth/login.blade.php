@@ -1,13 +1,14 @@
 @extends('auth.layouts.master') @section('content')
 <div class="auth-wrapper">
   <div class="auth-form">
-    <div class="logo logo-auth">
+    <div class="auth-logo logo">
       <img
         class="logo-icon logo-icon--md"
         src="{{ asset('images/logo.png') }}"
         alt="logo"
       />
-      <h5 class="logo-title">ИС "СКИФ"</h5>
+      <h5 class="logo-title">Информационная система</h5>
+      <p class="logo-text">мебельного цеха предприятия</p>
     </div>
 
     <h5 class="mb-3 text-center text-uppercase">Авторизация</h5>

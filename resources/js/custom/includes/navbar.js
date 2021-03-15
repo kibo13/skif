@@ -1,8 +1,12 @@
 $(document).ready(function () {
 
   // sidebar collapse 
-  $('#sidebarCollapse').on('click', function () {
-    $('#sidebar').toggleClass('active');
+  $('#sidebarToggler').on('click', function () {
+    $('#sidebar').toggleClass('sidebar-active');
+    $(this).toggleClass('active');
+  });
+
+  $('#navbarToggler').on('click', function () {
     $(this).toggleClass('active');
   });
 

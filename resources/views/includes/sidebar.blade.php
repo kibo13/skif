@@ -1,53 +1,45 @@
-<nav id="sidebar">
+<nav id="sidebar" class="sidebar">
+  <!-- START Logo -->
   <div class="sidebar-header">
-    <h3>Bootstrap Sidebar</h3>
-    <strong>BS</strong>
+    <div class="sidebar-logo logo">
+      <img
+        class="logo-icon logo-icon--sm"
+        src="{{ asset('images/logo.png') }}"
+        alt="logo"
+      />
+      <h5 class="sidebar-logo__title">Информационная система</h5>
+    </div>
+    <p class="sidebar-header__title">ИС МЦП</p>
   </div>
+  <!-- END Logo -->
 
-  <ul class="list-unstyled components">
-    <li class="active">
-      <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-        <i class="glyphicon glyphicon-home"></i>
-        Home
-      </a>
-      <ul class="collapse list-unstyled" id="homeSubmenu">
-        <li><a href="#">Home 1</a></li>
-        <li><a href="#">Home 2</a></li>
-        <li><a href="#">Home 3</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#">
-        <i class="glyphicon glyphicon-briefcase"></i>
-        About
-      </a>
-      <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
-        <i class="glyphicon glyphicon-duplicate"></i>
-        Pages
-      </a>
-      <ul class="collapse list-unstyled" id="pageSubmenu">
-        <li><a href="#">Page 1</a></li>
-        <li><a href="#">Page 2</a></li>
-        <li><a href="#">Page 3</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#">
-        <i class="glyphicon glyphicon-link"></i>
-        Portfolio
+  <!-- START Links -->
+  <ul class="sidebar-list">
+    <li class="sidebar-item">
+      <a class="sidebar-link" href="">
+        @include('includes.icons.home') Главная
       </a>
     </li>
-    <li>
-      <a href="#">
-        <i class="glyphicon glyphicon-paperclip"></i>
-        FAQ
+    <li class="sidebar-item">
+      <a class="sidebar-link" href="">
+        @include('includes.icons.user-group') Сотрудники
       </a>
     </li>
-    <li>
-      <a href="#">
-        <i class="glyphicon glyphicon-send"></i>
-        Contact
+    <li class="sidebar-item">
+      <a class="sidebar-link" href="">
+        @include('includes.icons.database') Клиенты
+      </a>
+    </li>
+    <li class="sidebar-item">
+      <a class="sidebar-link" href="">
+        @include('includes.icons.bookmark-alt') Мебель
+      </a>
+    </li>
+    <li class="sidebar-item">
+      <a class="sidebar-link" href="">
+        @include('includes.icons.document-report') Отчеты
       </a>
     </li>
   </ul>
+  <!-- END Links -->
 </nav>

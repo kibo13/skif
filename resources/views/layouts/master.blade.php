@@ -7,7 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    <title>ИС "Скиф" мебельного производства</title>
+    <title>
+      ИС формирования и исполнения заказов мебельного цеха предприятия
+    </title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" />
