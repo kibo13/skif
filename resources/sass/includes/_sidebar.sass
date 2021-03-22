@@ -55,9 +55,21 @@
     margin: 0
     overflow: hidden
   
-  &-item 
+  li
     display: flex
     border-bottom: 1px solid $gray
+
+    &:hover,
+    &:focus,
+    &:active
+      background: $dark
+      .sidebar-link 
+        color: $light
+
+  .active 
+    background: $dark
+    .sidebar-link 
+      color: $light
 
   &-link 
     padding: 10px
@@ -71,10 +83,6 @@
       width: 18px
       height: 16px
   
-  &-link:hover 
-    color: #fff
-    background: #444141
-
 @media (max-width: $breakpoint-md)
   .sidebar 
     min-width: 80px

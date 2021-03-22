@@ -19,11 +19,11 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav d-flex justify-content-end w-100">
-        <li>
+        <!-- <li>
           <a class="nav-link" href="#"> Пользователи </a>
-        </li>
+        </li> -->
 
-        <li class="nav-item dropdown mr-2">
+        <!-- <li class="nav-item dropdown mr-2">
           <a
             id="navbarDropdown"
             class="nav-link dropdown-toggle pr-3"
@@ -51,7 +51,7 @@
 
             <a class="dropdown-item" href="#"> Неисправности </a>
           </div>
-        </li>
+        </li> -->
 
         <li class="nav-item dropdown">
           <a

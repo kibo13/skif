@@ -10005,7 +10005,7 @@ h3 {
 body {
   background: #f8fafc;
   font-family: "Nunito", sans-serif;
-  color: #2E2E2E;
+  color: #424242;
 }
 
 ul,
@@ -10015,7 +10015,7 @@ li {
 
 a {
   text-decoration: none !important;
-  color: #2E2E2E;
+  color: #424242;
   transition: all 0.3s;
 }
 
@@ -10056,16 +10056,15 @@ a {
 .navbar {
   padding: 15px 10px;
   margin-bottom: 40px;
-  background: #fff;
   border: none;
   border-radius: 0;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 3px rgba(66, 66, 66, 0.25);
 }
 .navbar-btn, .navbar-toggler {
   padding: 0 5px;
   width: 40px;
   height: 40px;
-  background: #f5f5f5;
+  background: rgba(224, 224, 224, 0.5);
   border: none;
   box-shadow: none;
   outline: none !important;
@@ -10076,7 +10075,7 @@ a {
   display: block;
   width: 80%;
   height: 2px;
-  background: #555;
+  background: #424242;
   transition: all 0.3s;
   transition-delay: 0.1s;
 }
@@ -10173,9 +10172,21 @@ a {
   margin: 0;
   overflow: hidden;
 }
-.sidebar-item {
+.sidebar li {
   display: flex;
   border-bottom: 1px solid #e0e0e0;
+}
+.sidebar li:hover, .sidebar li:focus, .sidebar li:active {
+  background: #424242;
+}
+.sidebar li:hover .sidebar-link, .sidebar li:focus .sidebar-link, .sidebar li:active .sidebar-link {
+  color: #f8fafc;
+}
+.sidebar .active {
+  background: #424242;
+}
+.sidebar .active .sidebar-link {
+  color: #f8fafc;
 }
 .sidebar-link {
   padding: 10px;
@@ -10189,10 +10200,6 @@ a {
   margin: 0 5px;
   width: 18px;
   height: 16px;
-}
-.sidebar-link:hover {
-  color: #fff;
-  background: #444141;
 }
 
 @media (max-width: 768px) {

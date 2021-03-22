@@ -15,13 +15,13 @@
 
   <!-- START Links -->
   <ul class="sidebar-list">
-    <li class="sidebar-item">
-      <a class="sidebar-link" href="">
+    <li @sbactive('home*')>
+      <a class="sidebar-link" href="{{ route('home') }}" >
         @include('includes.icons.home') Главная
       </a>
     </li>
-    <li class="sidebar-item">
-      <a class="sidebar-link" href="">
+    <li @sbactive('user*')>
+      <a class="sidebar-link" href="{{ route('users.index') }}">
         @include('includes.icons.user-group') Сотрудники
       </a>
     </li>
