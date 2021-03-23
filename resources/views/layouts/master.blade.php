@@ -23,10 +23,20 @@
   <body>
     <div id="app" class="wrapper">
       @include('includes.sidebar')
-      <div id="content" class="content">
-        @include('includes.navbar') @yield('content')
+      <main class="main">
+        <div id="content" class="content">
+          <!-- Navbar -->
+          @include('includes.navbar')
+          <!-- Content -->
+          @yield('content')
+          <!-- Footer -->
+        </div>
         @include('includes.footer')
-      </div>
+      </main>
     </div>
+
+    <!-- START modal-destroy -->
+    @include('includes.modals.destroy')
+    <!-- END modal-destroy -->
   </body>
 </html>

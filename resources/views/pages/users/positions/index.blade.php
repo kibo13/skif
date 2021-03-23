@@ -1,6 +1,6 @@
 @extends('layouts.master') @section('content')
-<div id="position-index" class="bk-page overflow-hidden pt-4 py-2">
-  <h2 class="mb-0">Должности</h2>
+<section id="position-index" class="section">
+  <h2 class="mb-3">Должности</h2>
 
   <div class="py-2 mb-1">
     <a href="{{ route('positions.create') }}" class="btn btn-outline-primary">
@@ -64,5 +64,5 @@
       </tbody>
     </table>
   </div>
-</div>
+</section>
 @endsection

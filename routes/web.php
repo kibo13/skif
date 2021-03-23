@@ -8,7 +8,7 @@ use App\Http\Controllers\PositionController;
 
 Auth::routes([
     'login' => true,
-    'register' => true,
+    'register' => false,
     'reset' => false,
     'verify' => false,
     'confirm' => false,

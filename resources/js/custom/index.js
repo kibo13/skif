@@ -3,8 +3,8 @@
 
 // includes 
 require('./includes/navbar');
-// require('./includes/modal');
-// require('./includes/datatable');
+require('./includes/modal');
+require('./includes/datatable');
 
 // pages 
 // require('./pages/user');

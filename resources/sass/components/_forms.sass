@@ -1,0 +1,95 @@
+.bk-form 
+		&__wrap 
+			position: relative
+			margin-bottom: 15px
+			padding: 20px 20px 15px
+			border-radius: 4px 
+			border: 1px solid $gray
+
+			&::before 
+				content: attr(data-info)
+				padding: 0 5px
+				position: absolute
+				left: 10px
+				top: -10px
+				font-size: $text-base
+				font-weight: bold
+				background: $light
+
+		&__group 
+			padding: 0 !important
+			display: flex
+			align-items: center
+			justify-content: flex-start
+
+		&__label
+			margin-bottom: 2px
+			font-size: $text-base
+
+			&--checkbox 
+				cursor: pointer
+				user-select: none
+		
+		&__input 
+			padding: 0 10px 
+			height: 30px
+			font-size: $text-base
+			border-radius: 0
+
+			&::placeholder 
+				font-size: $text-base
+
+		&__num,
+		&__phw,
+		&__pcw
+			width: 70px
+		
+		&__tp,
+		&__home
+			width: 90px
+		
+		&__btn
+			width: 80px
+
+			&--link
+				width: 100%
+		
+		&__time 
+			width: 110px	
+		
+		&__datepicker
+			position: relative
+			width: 155px
+			display: flex
+			flex-direction: column
+			
+			&--field 
+				padding-left: 10px !important
+				height: 100%
+				background: transparent
+				outline: none 
+				border: 1px solid $gray
+				z-index: 4
+
+			&--text 
+				position: absolute
+				top: -5px
+				left: 10px
+				line-height: $text-xs
+				background: $light
+				user-select: none
+				z-index: 5
+
+		&__address
+			width: 160px
+
+		&__date,
+		&__street,
+		&__plot 
+			width: 170px
+
+		&__select
+			width: 250px
+		
+
+

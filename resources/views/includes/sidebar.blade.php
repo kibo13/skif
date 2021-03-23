@@ -25,6 +25,11 @@
         @include('includes.icons.user-group') Сотрудники
       </a>
     </li>
+    <li @sbactive('position*')>
+      <a class="sidebar-link" href="{{ route('positions.index') }}">
+        @include('includes.icons.database') Должности
+      </a>
+    </li>
     <li class="sidebar-item">
       <a class="sidebar-link" href="">
         @include('includes.icons.database') Клиенты

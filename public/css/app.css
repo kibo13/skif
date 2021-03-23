@@ -10024,11 +10024,21 @@ a {
   align-items: stretch;
 }
 
-.content {
-  padding: 20px;
+.main {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   min-height: 100vh;
+}
+
+.content {
+  padding: 20px 20px 0;
   transition: all 0.3s;
+}
+
+.section {
+  padding-top: 20px;
+  overflow: hidden;
 }
 
 .logo {
@@ -10055,7 +10065,6 @@ a {
 
 .navbar {
   padding: 15px 10px;
-  margin-bottom: 40px;
   border: none;
   border-radius: 0;
   box-shadow: 1px 1px 3px rgba(66, 66, 66, 0.25);
@@ -10260,4 +10269,279 @@ a {
   .auth-wrapper {
     width: 90%;
   }
+}
+.bk-btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bk-btn::after {
+  content: attr(data-tip);
+  position: absolute;
+  top: -20px;
+  left: -40px;
+  padding: 0 5px;
+  text-align: center;
+  font-size: 12px;
+  color: #424242;
+  background: #ffffff;
+  box-shadow: 0 0 2px;
+  border-radius: 4px;
+  visibility: hidden;
+}
+.bk-btn:hover::after {
+  visibility: visible;
+}
+.bk-btn-crud {
+  width: 25px;
+  height: 25px;
+}
+.bk-btn-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.bk-btn-link {
+  z-index: 5;
+}
+.bk-btn-icon {
+  z-index: 4;
+}
+.bk-btn-icon--size {
+  width: 15px;
+  height: 15px;
+  color: #ffffff;
+}
+.bk-btn-confirm {
+  width: 50px;
+}
+.bk-btn-triangle {
+  width: 20px;
+  height: 20px;
+}
+.bk-btn-triangle::after {
+  top: -15px;
+  left: -60px;
+}
+.bk-btn-triangle--up, .bk-btn-triangle--down {
+  position: absolute;
+}
+.bk-btn-triangle--up {
+  bottom: 6px;
+  border: 6px solid transparent;
+  border-bottom: 8px solid #5bc0de;
+}
+.bk-btn-triangle--down {
+  top: 6px;
+  border: 6px solid transparent;
+  border-top: 8px solid #5bc0de;
+}
+
+.bk-table th,
+.bk-table td {
+  padding: 5px 10px !important;
+}
+
+.dataTables_length label {
+  display: flex;
+  font-size: 0;
+}
+.dataTables_length select {
+  padding: 5px 7px;
+  width: 100%;
+  height: 35px;
+  font-size: 14px;
+  font-size: 14px;
+  color: #495057;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  outline: none;
+}
+.dataTables_filter label {
+  display: flex;
+  font-size: 0;
+}
+.dataTables_filter input {
+  margin: 0 !important;
+  padding: 5px 10px;
+  width: 100%;
+  height: 35px;
+  font-size: 14px;
+  color: #495057;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  outline: none;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  color: #007BFE !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:focus {
+  cursor: default;
+  color: #007BFE !important;
+  background: transparent !important;
+  border: 1px solid #dee2e6 !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  color: #ffffff !important;
+  background: #007BFE !important;
+  border: 1px solid #007BFE !important;
+  outline: none !important;
+}
+.dataTables_wrapper .dataTables_paginate .previous,
+.dataTables_wrapper .dataTables_paginate .next {
+  font-size: 0 !important;
+}
+.dataTables_paginate {
+  margin-top: 5px;
+  overflow: hidden;
+}
+.dataTables_paginate .paginate_button {
+  position: relative !important;
+  padding: 0 !important;
+  width: 30px !important;
+  height: 30px !important;
+  text-align: center !important;
+  font-size: 12px !important;
+  line-height: 30px;
+  background: #ffffff;
+  border: 1px solid #dee2e6 !important;
+  overflow: hidden;
+}
+.dataTables_paginate .paginate_button:hover, .dataTables_paginate .paginate_button:active, .dataTables_paginate .paginate_button:focus {
+  background: #007BFE !important;
+  border: 1px solid #007BFE !important;
+}
+.dataTables_paginate .previous::after,
+.dataTables_paginate .next::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+}
+.dataTables_paginate .previous::after {
+  content: "‹";
+}
+.dataTables_paginate .next::after {
+  content: "›";
+}
+
+.table .th,
+.table .td {
+  border-top: none !important;
+}
+.table-bordered {
+  border: none !important;
+}
+.table-bordered td,
+.table-bordered th {
+  border: 0.1px solid #e9ecef !important;
+}
+.table .dataTable.no-footer {
+  border-bottom: 1px solid transparent !important;
+}
+
+.bk-form__wrap {
+  position: relative;
+  margin-bottom: 15px;
+  padding: 20px 20px 15px;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+.bk-form__wrap::before {
+  content: attr(data-info);
+  padding: 0 5px;
+  position: absolute;
+  left: 10px;
+  top: -10px;
+  font-size: 14px;
+  font-weight: bold;
+  background: #f8fafc;
+}
+.bk-form__group {
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.bk-form__label {
+  margin-bottom: 2px;
+  font-size: 14px;
+}
+.bk-form__label--checkbox {
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.bk-form__input {
+  padding: 0 10px;
+  height: 30px;
+  font-size: 14px;
+  border-radius: 0;
+}
+.bk-form__input::-moz-placeholder {
+  font-size: 14px;
+}
+.bk-form__input:-ms-input-placeholder {
+  font-size: 14px;
+}
+.bk-form__input::placeholder {
+  font-size: 14px;
+}
+.bk-form__num, .bk-form__phw, .bk-form__pcw {
+  width: 70px;
+}
+.bk-form__tp, .bk-form__home {
+  width: 90px;
+}
+.bk-form__btn {
+  width: 80px;
+}
+.bk-form__btn--link {
+  width: 100%;
+}
+.bk-form__time {
+  width: 110px;
+}
+.bk-form__datepicker {
+  position: relative;
+  width: 155px;
+  display: flex;
+  flex-direction: column;
+}
+.bk-form__datepicker--field {
+  padding-left: 10px !important;
+  height: 100%;
+  background: transparent;
+  outline: none;
+  border: 1px solid #e0e0e0;
+  z-index: 4;
+}
+.bk-form__datepicker--text {
+  position: absolute;
+  top: -5px;
+  left: 10px;
+  line-height: 10px;
+  background: #f8fafc;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  z-index: 5;
+}
+.bk-form__address {
+  width: 160px;
+}
+.bk-form__date, .bk-form__street, .bk-form__plot {
+  width: 170px;
+}
+.bk-form__select {
+  width: 250px;
 }

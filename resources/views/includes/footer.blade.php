@@ -1,6 +1,6 @@
-<footer class="footer">
+<footer class="footer mt-auto">
   <a href="{{ route('home') }}">
-    © ИС "Скиф" мебельного производства
+    © ИС мебельного цеха предприятия
     <?php echo date('Y'); ?>
   </a>
 </footer>
