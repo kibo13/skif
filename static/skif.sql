@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 23/03/2021 02:05:35
+ Date: 25/03/2021 01:04:53
 */
 
 SET NAMES utf8mb4;
@@ -75,14 +75,20 @@ CREATE TABLE `positions`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of positions
 -- ----------------------------
-INSERT INTO `positions` VALUES (1, 'Должность №1', NULL, NULL);
-INSERT INTO `positions` VALUES (2, 'Должность №2', NULL, NULL);
-INSERT INTO `positions` VALUES (3, 'Должность №3', NULL, NULL);
+INSERT INTO `positions` VALUES (1, 'Генеральный директор', NULL, '2021-03-24 19:36:27');
+INSERT INTO `positions` VALUES (3, 'Заместитель генерального директора', NULL, '2021-03-24 19:36:57');
+INSERT INTO `positions` VALUES (4, 'Главный бухгалтер', '2021-03-24 19:37:06', '2021-03-24 19:37:06');
+INSERT INTO `positions` VALUES (5, 'Бухгалтер', '2021-03-24 19:37:14', '2021-03-24 19:37:14');
+INSERT INTO `positions` VALUES (6, 'Главный специалист', '2021-03-24 19:37:26', '2021-03-24 19:37:26');
+INSERT INTO `positions` VALUES (7, 'Ведущий специалист', '2021-03-24 19:37:35', '2021-03-24 19:37:35');
+INSERT INTO `positions` VALUES (8, 'Специалист', '2021-03-24 19:37:47', '2021-03-24 19:37:47');
+INSERT INTO `positions` VALUES (9, 'Менеджер', '2021-03-24 19:37:57', '2021-03-24 19:37:57');
+INSERT INTO `positions` VALUES (10, 'Секретарь', '2021-03-24 19:38:05', '2021-03-24 19:38:05');
 
 -- ----------------------------
 -- Table structure for roles
