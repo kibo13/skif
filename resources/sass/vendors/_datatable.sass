@@ -1,0 +1,136 @@
+// custom options table 
+.bk-table 
+	th, 
+	td
+		padding: 5px 10px !important
+	th
+		cursor: pointer !important
+	.no-sort 
+		cursor: default !important
+
+// START general options jquery-datatables  
+.dataTables
+	// general options length 
+	&_length
+		label 
+			display: flex
+			font-size: 0
+		select
+			padding: 5px 7px
+			width: 100%
+			height: 35px
+			font-size: $text-base
+			font-size: $text-base
+			color: #495057
+			background-color: #ffffff
+			border: 1px solid $gray
+			outline: none 
+			
+	// general options filter 
+	&_filter 
+		label 
+			display: flex
+			font-size: 0
+		input 
+			margin: 0 !important
+			padding: 5px 10px
+			width: 100%
+			height: 35px
+			font-size: $text-base
+			color: #495057
+			background-color: #ffffff
+			border: 1px solid $gray
+			outline: none
+
+	// general options pagination
+	&_wrapper .dataTables_paginate .paginate_button 
+		color: #007BFE !important
+	&_wrapper .dataTables_paginate .paginate_button.disabled,
+	&_wrapper .dataTables_paginate .paginate_button.disabled:hover,
+	&_wrapper .dataTables_paginate .paginate_button.disabled:focus
+		cursor: default
+		color: #007BFE !important
+		background: transparent !important
+		border: 1px solid #dee2e6 !important
+	&_wrapper .dataTables_paginate .paginate_button.current,
+	&_wrapper .dataTables_paginate .paginate_button.current:hover
+		color: #ffffff !important
+		background: #007BFE !important
+		border: 1px solid #007BFE !important
+		outline: none !important
+	&_wrapper .dataTables_paginate 
+		.previous,
+		.next 
+			font-size: 0 !important
+	&_paginate 
+		margin-top: 5px
+		overflow: hidden
+		.paginate_button
+			position: relative !important
+			padding: 0 !important
+			width: 30px !important
+			height: 30px !important
+			text-align: center !important
+			font-size: $text-sm !important
+			line-height: 30px
+			background: #ffffff
+			border: 1px solid #dee2e6 !important
+			overflow: hidden
+			&:hover,
+			&:active,
+			&:focus 
+				background: #007BFE !important
+				border: 1px solid #007BFE !important
+		.previous::after,
+		.next::after 
+			content: ''
+			position: absolute
+			top: 0
+			left: 0
+			width: 100%
+			height: 100%
+			font-size: $text-md
+		.previous::after 
+			content: '‹'
+		.next::after 
+			content: '›'
+
+table.dataTable thead
+	.sorting 
+		background-image: url('/icons/datatable/sort_both.png') 
+		background-repeat: no-repeat
+		background-position: center right
+	.sorting_asc
+		background-image: url('/icons/datatable/sort_asc.png') 
+		background-repeat: no-repeat
+		background-position: center right
+	.sorting_desc
+		background-image: url('/icons/datatable/sort_desc.png') 
+		background-repeat: no-repeat
+		background-position: center right	
+	.sorting_asc_disabled
+		background-image: url('/icons/datatable/sort_asc_disabled.png') 
+		background-repeat: no-repeat
+		background-position: center right	
+	.sorting_desc_disabled
+		background-image: url('/icons/datatable/sort_desc_disabled.png') 
+		background-repeat: no-repeat
+		background-position: center right		
+
+// general options datatable  
+.table 
+	.th,
+	.td 
+		border-top: none !important
+
+	&-bordered 
+		border: none !important
+
+		td, 
+		th 
+			border: .1px solid #e9ecef !important
+
+	.dataTable.no-footer 
+		border-bottom: 1px solid transparent !important
+
+// END general options jquery-datatables 

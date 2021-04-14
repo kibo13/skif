@@ -23,7 +23,7 @@
   <body>
     <div id="app" class="auth">
       <main>@yield('content')</main>
-      @include('includes.footer')
+      @include('partials.footer')
     </div>
   </body>
 </html>

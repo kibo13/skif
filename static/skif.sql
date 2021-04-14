@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 25/03/2021 01:04:53
+ Date: 15/04/2021 00:27:51
 */
 
 SET NAMES utf8mb4;
@@ -72,23 +72,21 @@ DROP TABLE IF EXISTS `positions`;
 CREATE TABLE `positions`  (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `salary` double NOT NULL DEFAULT 0,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of positions
 -- ----------------------------
-INSERT INTO `positions` VALUES (1, 'Генеральный директор', NULL, '2021-03-24 19:36:27');
-INSERT INTO `positions` VALUES (3, 'Заместитель генерального директора', NULL, '2021-03-24 19:36:57');
-INSERT INTO `positions` VALUES (4, 'Главный бухгалтер', '2021-03-24 19:37:06', '2021-03-24 19:37:06');
-INSERT INTO `positions` VALUES (5, 'Бухгалтер', '2021-03-24 19:37:14', '2021-03-24 19:37:14');
-INSERT INTO `positions` VALUES (6, 'Главный специалист', '2021-03-24 19:37:26', '2021-03-24 19:37:26');
-INSERT INTO `positions` VALUES (7, 'Ведущий специалист', '2021-03-24 19:37:35', '2021-03-24 19:37:35');
-INSERT INTO `positions` VALUES (8, 'Специалист', '2021-03-24 19:37:47', '2021-03-24 19:37:47');
-INSERT INTO `positions` VALUES (9, 'Менеджер', '2021-03-24 19:37:57', '2021-03-24 19:37:57');
-INSERT INTO `positions` VALUES (10, 'Секретарь', '2021-03-24 19:38:05', '2021-03-24 19:38:05');
+INSERT INTO `positions` VALUES (1, 'Генеральный директор', 150000, NULL, '2021-04-14 15:29:44');
+INSERT INTO `positions` VALUES (5, 'Бухгалтер', 100000, '2021-03-24 19:37:14', '2021-04-14 15:53:21');
+INSERT INTO `positions` VALUES (6, 'Главный специалист', 75000, '2021-03-24 19:37:26', '2021-04-14 15:53:31');
+INSERT INTO `positions` VALUES (7, 'Ведущий специалист', 65000, '2021-03-24 19:37:35', '2021-04-14 15:53:40');
+INSERT INTO `positions` VALUES (8, 'Специалист', 55000, '2021-03-24 19:37:47', '2021-04-14 15:53:48');
+INSERT INTO `positions` VALUES (9, 'Менеджер', 45000, '2021-03-24 19:37:57', '2021-04-14 15:53:55');
 
 -- ----------------------------
 -- Table structure for roles
@@ -120,7 +118,6 @@ CREATE TABLE `users`  (
   `firstname` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `lastname` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `surname` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `salary` double NOT NULL DEFAULT 0,
   `role_id` bigint(20) UNSIGNED NOT NULL,
   `position_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -137,6 +134,6 @@ CREATE TABLE `users`  (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'Петров', 'Петр', 'Петрович', 19000, 2, 1, 'Петров', '$2y$10$D97rW6JurFRxoNwL.gXpHOATH525JzEWXMG7Cc4NRzwruW8wYgOoe', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `users` VALUES (1, 'Петров', 'Петр', 'Петрович', 2, 1, 'Петров', '$2y$10$D97rW6JurFRxoNwL.gXpHOATH525JzEWXMG7Cc4NRzwruW8wYgOoe', NULL, NULL, NULL, NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

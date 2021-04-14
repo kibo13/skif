@@ -22,21 +22,21 @@
   </head>
   <body>
     <div id="app" class="wrapper">
-      @include('includes.sidebar')
+      @include('partials.sidebar')
       <main class="main">
         <div id="content" class="content">
           <!-- Navbar -->
-          @include('includes.navbar')
+          @include('partials.navbar')
           <!-- Content -->
           @yield('content')
           <!-- Footer -->
         </div>
-        @include('includes.footer')
+        @include('partials.footer')
       </main>
     </div>
 
     <!-- START modal-destroy -->
-    @include('includes.modals.destroy')
+    @include('assets.modals.destroy')
     <!-- END modal-destroy -->
   </body>
 </html>

@@ -7,6 +7,7 @@ require('./includes/modal');
 require('./includes/datatable');
 
 // pages 
+require('./pages/position')
 // require('./pages/user');
 // require('./pages/plot');
 // require('./pages/statement');

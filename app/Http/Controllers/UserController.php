@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Position;
 // use App\Models\Permission;
 use Auth;
 
@@ -34,10 +35,10 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        // roles 
         $roles = Role::get();
+        $positions = Position::get();
         
-        return view('pages.users.form', compact('roles'));
+        return view('pages.users.form', compact('roles', 'positions'));
     }
 
     /**
@@ -76,12 +77,12 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        // roles 
         $roles = Role::get();
+        $positions = Position::get();
 
         return view(
             'pages.users.form', 
-            compact('roles', 'user'));
+            compact('roles', 'positions', 'user'));
     }
 
     /**

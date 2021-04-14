@@ -26,6 +26,7 @@
           required
           autofocus
           placeholder="Логин"
+          autocomplete="off"
         />
 
         @error('name')
@@ -43,6 +44,7 @@
           name="password"
           required
           placeholder="Пароль"
+          autocomplete="off"
         />
 
         @error('password')

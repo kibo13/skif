@@ -1,5 +1,7 @@
-@extends('layouts.master') @section('content')
-<section id="position-index" class="section">
+@extends('layouts.master')
+<!-- position-index -->
+@section('content')
+<section id="position-index" class="bk-page section">
   <h2 class="mb-3">Должности</h2>
 
   <div class="py-2 mb-1">
@@ -20,14 +22,16 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Должность</th>
+          <th scope="col">Оклад</th>
           <th scope="col" class="no-sort">Действие</th>
         </tr>
       </thead>
       <tbody>
         @foreach($positions as $key => $position)
         <tr>
-          <th scope="row">{{ $key+=1 }}</th>
+          <td scope="row">{{ $key+=1 }}</td>
           <td>{{ $position->name }}</td>
+          <td>{{ number_format($position->salary, 2) }}</td>
           <td>
             <div class="d-flex">
               <div
@@ -39,7 +43,7 @@
                   class="bk-btn-wrap bk-btn-link"
                 ></a>
                 <span class="bk-btn-wrap bk-btn-icon">
-                  @include('includes.icons.pen')
+                  @include('assets.icons.pen')
                 </span>
               </div>
 
@@ -54,7 +58,7 @@
                 >
                 </a>
                 <span class="bk-btn-wrap bk-btn-icon">
-                  @include('includes.icons.trash')
+                  @include('assets.icons.trash')
                 </span>
               </div>
             </div>

@@ -1,23 +1,25 @@
-// Fonts
+// fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
-// Bootstrap
+// bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-// Variables
+// general
 @import 'variables';
 @import 'base';
 @import 'logo';
+@import 'auth';
+@import 'buttons';
+@import 'forms';
 
-// includes
-@import 'includes/navbar';
-@import 'includes/sidebar';
-@import 'includes/footer';
+// vendors
+@import 'vendors/datatable';
 
-// modules
-@import 'modules/auth';
+// partials
+@import 'partials/navbar';
+@import 'partials/sidebar';
+@import 'partials/footer';
 
-// components
-@import 'components/buttons';
-@import 'components/table';
-@import 'components/forms';
+// pages
+@import 'pages/workers';
+@import 'pages/positions';

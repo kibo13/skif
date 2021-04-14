@@ -1,4 +1,6 @@
-@extends('layouts.master') @section('content')
+@extends('layouts.master')
+<!-- worker-index -->
+@section('content')
 <section id="worker-index" class="section">
   <h2 class="mb-3">Сотрудники</h2>
 
@@ -18,7 +20,6 @@
           <th scope="col">#</th>
           <th scope="col">Ф.И.О.</th>
           <th scope="col">Должность</th>
-          <th scope="col">Оклад</th>
           <th scope="col">Адрес</th>
           <th scope="col">Телефон</th>
           <th scope="col" class="no-sort">Действие</th>
@@ -27,10 +28,9 @@
       <tbody>
         @foreach($users as $key => $user)
         <tr>
-          <th scope="row">{{ $key+=1 }}</th>
+          <td scope="row">{{ $key+=1 }}</td>
           <td>{{ $user->firstname }}</td>
           <td>{{ $user->firstname }}</td>
-          <td>{{ $user->salary }}</td>
           <td>{{ $user->address }}</td>
           <td>{{ $user->phone }}</td>
           <td>
@@ -44,7 +44,7 @@
                   class="bk-btn-wrap bk-btn-link"
                 ></a>
                 <span class="bk-btn-wrap bk-btn-icon">
-                  @include('includes.icons.pen')
+                  @include('assets.icons.pen')
                 </span>
               </div>
 
@@ -59,7 +59,7 @@
                 >
                 </a>
                 <span class="bk-btn-wrap bk-btn-icon">
-                  @include('includes.icons.trash')
+                  @include('assets.icons.trash')
                 </span>
               </div>
             </div>

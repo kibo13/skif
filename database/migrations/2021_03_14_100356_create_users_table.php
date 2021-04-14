@@ -18,7 +18,6 @@ class CreateUsersTable extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('surname')->nullable();
-            $table->double('salary')->default(0);
             $table->bigInteger('role_id')->unsigned();
             $table->bigInteger('position_id')->unsigned();
             $table->string('name')->unique();
