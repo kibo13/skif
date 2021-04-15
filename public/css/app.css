@@ -10235,6 +10235,9 @@ a {
 .bk-form__input::placeholder {
   font-size: 14px;
 }
+.bk-form__alert {
+  font-size: 11px;
+}
 
 @media screen and (max-width: 640px) {
   .bk-form__field-50, .bk-form__field-100, .bk-form__field-200, .bk-form__field-250, .bk-form__field-300 {
