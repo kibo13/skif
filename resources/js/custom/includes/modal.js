@@ -13,6 +13,10 @@ $(document).ready(function () {
         $('#bk-delete-form').attr('action', '/positions/' + data_id);
         break;
 
+      case 'worker':
+        $('#bk-delete-form').attr('action', '/users/' + data_id);
+        break;
+
       default:
         break;
 

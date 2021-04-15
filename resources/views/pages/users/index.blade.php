@@ -1,7 +1,7 @@
 @extends('layouts.master')
 <!-- worker-index -->
 @section('content')
-<section id="worker-index" class="section">
+<section id="worker-index" class="bk-page section">
   <h2 class="mb-3">Сотрудники</h2>
 
   <div class="py-2 mb-1">
@@ -28,9 +28,13 @@
       <tbody>
         @foreach($users as $key => $user)
         <tr>
-          <td scope="row">{{ $key+=1 }}</td>
-          <td>{{ $user->firstname }}</td>
-          <td>{{ $user->firstname }}</td>
+          <td>{{ $key+=1 }}</td>
+          <td>
+            {{ $user->lastname }}<br>
+						{{ $user->firstname }}<br>
+						{{ $user->surname }}
+          </td>
+          <td>{{ $user->position->name }}</td>
           <td>{{ $user->address }}</td>
           <td>{{ $user->phone }}</td>
           <td>

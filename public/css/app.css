@@ -10553,10 +10553,10 @@ table.dataTable thead .sorting_desc_disabled {
   font-size: 12px;
 }
 
-.worker-fio {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 10px;
+#worker-index .dataTables_length,
+#worker-index .dataTables_info,
+#worker-index .dataTables_paginate {
+  display: none !important;
 }
 
 #position-index .dataTables_length,
