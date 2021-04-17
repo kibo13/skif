@@ -30,8 +30,8 @@
         @include('assets.icons.database') Клиенты
       </a>
     </li>
-    <li class="sidebar-item">
-      <a class="sidebar-link" href="">
+    <li @sbactive('product*')>
+      <a class="sidebar-link" href="{{ route('products.index') }}">
         @include('assets.icons.bookmark-alt') Мебель
       </a>
     </li>

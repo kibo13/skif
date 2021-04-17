@@ -4,13 +4,9 @@
 // bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-// general
-@import 'variables';
-@import 'base';
-@import 'logo';
-@import 'auth';
-@import 'buttons';
-@import 'forms';
+// utils
+@import 'utils/variables';
+@import 'utils/base';
 
 // vendors
 @import 'vendors/datatable';
@@ -20,7 +16,16 @@
 @import 'partials/sidebar';
 @import 'partials/footer';
 
+// components
+@import 'components/logo';
+@import 'components/auth';
+@import 'components/forms';
+@import 'components/buttons';
+@import 'components/cards';
+
 // pages
 @import 'pages/workers';
 @import 'pages/positions';
 @import 'pages/users';
+@import 'pages/categories';
+@import 'pages/products';
