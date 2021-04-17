@@ -11,8 +11,8 @@ class Position extends Model
 
     protected $fillable = ['name', 'salary'];
 
-    public function users()
+    public function workers()
     {
-        return $this->hasMany('App\Models\User');
+        return $this->hasMany('App\Models\Worker');
     }
 }

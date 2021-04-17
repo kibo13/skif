@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
+use App\Models\Worker;
 use App\Models\User;
 use App\Models\Role;
-use App\Models\Position;
 // use App\Models\Permission;
 use Auth;
 
@@ -19,10 +19,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        // why 
-        $admin = Auth::user()->name;
-        
+    {       
         // users 
         $users = User::where('role_id', '!=', 1)->get();
         return view('pages.users.index', compact('users'));
@@ -38,10 +35,10 @@ class UserController extends Controller
         // roles 
         $roles = Role::where('slug', '!=', 'admin')->get();
 
-        // positions 
-        $positions = Position::get();
-        
-        return view('pages.users.form', compact('roles', 'positions'));
+        // workers 
+        $workers = Worker::where('slug', '>', 0)->get();
+
+        return view('pages.users.form', compact('roles', 'workers'));
     }
 
     /**
@@ -53,12 +50,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $user = User::create([
-            'firstname' => $request['firstname'],
-            'lastname' => $request['lastname'],
-            'surname' => $request['surname'],
-            'position_id' => $request['position_id'],
-            'address' => $request['address'],
-            'phone' => $request['phone'],
+            'worker_id' => $request['worker_id'],
             'name' => $request['name'],
             'role_id' => $request['role_id'],
             'password' => bcrypt($request['password'])
@@ -94,12 +86,12 @@ class UserController extends Controller
         // roles 
         $roles = Role::where('slug', '!=', 'admin')->get();
 
-        // positions 
-        $positions = Position::get();
+        // workers 
+        $workers = Worker::where('slug', '>', 0)->get();
 
         return view(
             'pages.users.form', 
-            compact('roles', 'positions', 'user'));
+            compact('roles', 'workers', 'user'));
     }
 
     /**
@@ -111,12 +103,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        $user->firstname = $request['firstname'];
-        $user->lastname = $request['lastname'];
-        $user->surname = $request['surname'];
-        $user->position_id = $request['position_id'];
-        $user->address = $request['address'];
-        $user->phone = $request['phone'];
+        $user->worker_id = $request['worker_id'];
         $user->name = $request['name'];
         $user->role_id = $request['role_id'];
         $request['password'] == null ?:

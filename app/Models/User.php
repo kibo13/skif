@@ -19,13 +19,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'password',
-        'role_id',
-        'position_id',
-        'firstname',
-        'lastname',
-        'surname',
-        'address',
-        'phone'
+        'worker_id',
+        'role_id'
     ];
 
     /**
@@ -52,8 +47,8 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Role');
     }
 
-    public function position()
+    public function worker()
     {
-        return $this->belongsTo('App\Models\Position');
+        return $this->belongsTo('App\Models\Worker');
     }
 }

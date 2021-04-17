@@ -43,10 +43,8 @@ class UserRequest extends FormRequest
                     'confirmed'
                 ],
 
-                'role_id' => ['required'],
-                'firstname' => ['required'],
-                'lastname' => ['required'],
-                'position_id' => ['required']
+                'worker_id' => ['required', 'unique:users'],
+                'role_id' => ['required']
             ];
         };  
 
@@ -68,10 +66,8 @@ class UserRequest extends FormRequest
                     'confirmed'
                 ],
 
-                'role_id' => ['required'],
-                'firstname' => ['required'],
-                'lastname' => ['required'],
-                'position_id' => ['required']
+                'worker_id' => ['required', Rule::unique('users')->ignore($this->route()->parameter('user')->id)],
+                'role_id' => ['required']
             ];
         };
 
@@ -89,9 +85,7 @@ class UserRequest extends FormRequest
             'name' => 'логин',
             'password' => 'пароль',
             'role_id' => 'роль',
-            'firstname' => 'имя',
-            'lastname' => 'фамилия',
-            'position_id' => 'должность'
+            'worker_id' => 'пользователь'
         ];
     }
 
@@ -102,7 +96,7 @@ class UserRequest extends FormRequest
             'max' => 'Максимальная длина поля :max символов',
             'min' => 'Минимальная длина поля :min символов',
             'confirmed' => 'Пароли не совпадают',
-            'unique' => 'Выбранный :attribute уже существует'
+            'unique' => 'Такой :attribute уже существует'
         ];
     }
 }

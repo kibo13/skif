@@ -4,47 +4,36 @@ $(document).ready(function () {
 
   if (worker_form) {
 
-    // selectors 
-    const role_sel = document.getElementById('role-select')
-    const position_sel = document.getElementById('position-select')
+    /* VALIDATION */
+    const validations = document.querySelectorAll('.bk-valid')
 
-    // fields 
-    const first_name = document.getElementById('firstname')
-    const last_name = document.getElementById('lastname')
-    const surname = document.getElementById('surname')
-    const phone = document.getElementById('phone')
-    const role = document.getElementById("user-slug")
+    for (let validation of validations) {
 
-    first_name.oninput = e => {
-      e.target.value = e.target.value.replace(/[^а-яё]/ig, '')
+      // validation for field 'phone'
+      if (validation.id == 'phone') {
+        validation.oninput = e => {
+          e.target.value = e.target.value.replace(/[^0-9+-]/g, '')
+        }
+      }
+
+      // validation for other fields 
+      else {
+        validation.oninput = e => {
+          e.target.value = e.target.value.replace(/[^а-яё]/ig, '')
+        }
+      }
     }
 
-    last_name.oninput = e => {
-      e.target.value = e.target.value.replace(/[^а-яё]/ig, '')
+    /* FIO */
+    const worker_save = document.getElementById('worker-save')
+    const fio = document.getElementById('fio')
+
+    worker_save.onclick = e => {
+      let F = document.getElementById('lastname').value.trim()
+      let I = document.getElementById('firstname').value.trim().substr(0, 1)
+      let O = document.getElementById('surname').value.trim().substr(0, 1)
+
+      fio.value = `${F} ${I}.${O}.`
     }
-
-    surname.oninput = e => {
-      e.target.value = e.target.value.replace(/[^а-яё]/ig, '')
-    }
-
-    phone.oninput = e => {
-      e.target.value = e.target.value.replace(/[^0-9+-]/g, '')
-    }
-
-    role_sel.onchange = e => {
-      let val = e.target.options[role_sel.selectedIndex].value;
-      let attr = e.target.options[role_sel.selectedIndex].dataset.slug;
-
-      role.value = val;
-    }
-
-    position_sel.onchange = e => {
-      let salary = e.target.options[position_sel.selectedIndex].dataset.salary;
-
-      // $('#position-salary').text(`Оклад = ${salary}`);
-    }
-
-
   }
-
-});
+})

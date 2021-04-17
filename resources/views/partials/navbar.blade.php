@@ -19,9 +19,11 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav d-flex justify-content-end w-100">
-        <!-- <li>
-          <a class="nav-link" href="#"> Пользователи </a>
-        </li> -->
+        <li @nbactive('user*')>
+          <a class="nav-link" href="{{ route('users.index') }}"> 
+            Пользователи 
+          </a>
+        </li>
 
         <!-- <li class="nav-item dropdown mr-2">
           <a
@@ -64,7 +66,7 @@
             aria-expanded="false"
             v-pre
           >
-            {{ Auth::user()->name }}
+            {{ Auth::user()->worker->fio }}
           </a>
 
           <div

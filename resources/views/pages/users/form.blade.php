@@ -1,9 +1,13 @@
 @extends('layouts.master')
-<!-- worker-form -->
+<!-- user-form -->
 @section('content')
-<section id="worker-form" class="section">
+<section id="user-form" class="section">
   <h2 class="mb-3">
-    @isset($user) Редактирование записи @else Добавление записи @endisset
+    @isset($user) 
+      Редактирование записи 
+    @else 
+      Добавление записи 
+    @endisset
   </h2>
   <form
     class="bk-form"
@@ -25,119 +29,61 @@
       <div class="bk-form__wrapper" data-info="Общие сведения">
         <div class="bk-form__block">
 
-          <!-- /.lastname -->
-          <h6 class="bk-form__title">Фамилия</h6>
-          <div class="bk-form__field-250 mb-2">
-            <input
-            class="form-control bk-form__input @error('lastname') is-invalid @enderror"
-              id="lastname"
-              type="text"
-              name="lastname"
-              value="@isset($user) {{ $user->lastname }} @endisset"
-              placeholder="Введите фамилию"
-            />
-
-            @error('lastname')
-            <span class="bk-form__alert invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-            </span>
-            @enderror
-          </div>
-
-          <!-- /.firstname -->
-          <h6 class="bk-form__title">Имя</h6>
-          <div class="bk-form__field-250 mb-2">
-            <input
-            class="form-control bk-form__input @error('firstname') is-invalid @enderror"
-              id="firstname"
-              type="text"
-              name="firstname"
-              value="@isset($user) {{ $user->firstname }} @endisset"
-              placeholder="Введите имя"
-            />
-
-            @error('firstname')
-            <span class="bk-form__alert invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-            </span>
-            @enderror
-          </div>
-
-          <!-- /.surname -->
-          <h6 class="bk-form__title">Отчество</h6>
-          <div class="bk-form__field-250 mb-2">
-            <input
-              class="form-control bk-form__input"
-              id="surname"
-              type="text"
-              name="surname"
-              value="@isset($user) {{ $user->surname }} @endisset"
-              placeholder="Введите отчетство"
-            />
-          </div>
-
-          <!-- /.position -->
+          <!-- /.worker -->
           <h6 class="bk-form__title">
-            Должность
+            Сотрудник
+            <small class="text-muted align-text-top" id="user-position">
+            @isset($user) 
+              {{ $user->worker->position->name }}
+            @endisset 
+            </small>
           </h6>
           <div class="bk-form__field-250 mb-2">
             <select
-            class="form-control bk-form__input @error('position_id') is-invalid @enderror"
-              id="position-select"
-              name="position_id"              
+              class="form-control bk-form__input @error('worker_id') is-invalid @enderror"
+              id="worker-select"
+              name="worker_id"   
+              @isset($user) 
+                disabled
+                tabindex="-1"
+              @endisset     
             >
-              <option disabled selected>Выберите должность</option>
-              @foreach($positions as $position)
+              <option disabled selected>Выберите сотрудника</option>
+              @foreach($workers as $worker)
               <option 
-                value="{{ $position->id }}" 
-                data-salary="{{ $position->salary }}" 
+                value="{{ $worker->id }}" 
+                data-position="{{ $worker->position->name }}"
+                data-fio="{{ $worker->fio }}"
                 @isset($user) 
-                  @if($user->position_id == $position->id) 
+                  @if($user->worker_id == $worker->id) 
                     selected 
                   @endif 
                 @endisset 
-              >
-                  {{ ucfirst($position->name) }}
+              >   
+                {{ $worker->fio }}
               </option>
               @endforeach
             </select>
 
-            @error('position_id')
+            @isset($user)
+            <input 
+              class="form-control bk-form__input"
+              type="hidden" 
+              name="worker_id" 
+              value="{{ $user->worker->id }}"
+            >
+						@endisset
+
+            @error('worker_id')
             <span class="bk-form__alert invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
             </span>
             @enderror
           </div>
 
-          <!-- /.address -->
-          <h6 class="bk-form__title">Адрес</h6>
-          <div class="bk-form__field-250 mb-2">
-            <input
-              class="form-control bk-form__input"
-              id="address"
-              type="text"
-              name="address"
-              value="@isset($user) {{ $user->address }} @endisset"
-              placeholder="Введите адрес"
-            />
-          </div>
-
-          <!-- /.phone -->
-          <h6 class="bk-form__title">Телефон</h6>
-          <div class="bk-form__field-250 mb-2">
-            <input
-              class="form-control bk-form__input"
-              id="phone"
-              type="text"
-              name="phone"
-              value="@isset($user) {{ $user->phone }} @endisset"
-              placeholder="Введите телефон"
-            />
-          </div>
-
           <!-- /.login -->
           <h6 class="bk-form__title">Логин</h6>
-          <div class="bk-form__field-250 mb-2">
+          <div class="bk-form__field-250 mb-2 bk-access" id="user-login">
             <input
               class="form-control bk-form__input @error('name') is-invalid @enderror"
               type="text"
@@ -145,6 +91,7 @@
               value="{{ old('name', isset($user) ? $user->name : null) }}"
               placeholder="Введите логин"
               autocomplete="off"
+              tabindex="-1"
             />
 
             @error('name')
@@ -152,6 +99,22 @@
               <strong>{{ $message }}</strong>
             </span>
             @enderror
+          </div>
+
+          <!-- /.access-to-login -->
+          <div class="d-flex my-1" style="user-select: none" >
+            <input
+              class="form-control bk-form__check"
+              id="access-login"
+              type="checkbox"
+              tabindex="-1"
+              @isset($user) 
+                disabled
+              @endisset     
+            />
+            <label class="bk-form__label" for="access-login">
+             редактировать логин
+            </label>
           </div>
 
           <!-- /.password -->
@@ -195,6 +158,10 @@
             <select
               class="form-control bk-form__input @error('role_id') is-invalid @enderror"
               id="role-select"
+              @isset($user) 
+                disabled
+                tabindex="-1"
+              @endisset  
             >
               <option disabled selected>Выберите роль</option>
               @foreach($roles as $role)

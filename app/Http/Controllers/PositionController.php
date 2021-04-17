@@ -15,7 +15,7 @@ class PositionController extends Controller
     public function index()
     {
         $positions = Position::get();
-        return view('pages.users.positions.index', compact('positions'));
+        return view('pages.positions.index', compact('positions'));
     }
 
     /**
@@ -25,7 +25,7 @@ class PositionController extends Controller
      */
     public function create()
     {
-        return view('pages.users.positions.form');
+        return view('pages.positions.form');
     }
 
     /**
@@ -59,7 +59,7 @@ class PositionController extends Controller
      */
     public function edit(Position $position)
     {
-        return view('pages.users.positions.form', compact('position'));
+        return view('pages.positions.form', compact('position'));
     }
 
     /**

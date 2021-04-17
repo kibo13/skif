@@ -20,8 +20,8 @@
         @include('assets.icons.home') Главная
       </a>
     </li>
-    <li @sbactive('user*')>
-      <a class="sidebar-link" href="{{ route('users.index') }}">
+    <li @sbactive('worker*')>
+      <a class="sidebar-link" href="{{ route('workers.index') }}">
         @include('assets.icons.user-group') Сотрудники
       </a>
     </li>

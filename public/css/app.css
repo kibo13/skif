@@ -10235,6 +10235,19 @@ a {
 .bk-form__input::placeholder {
   font-size: 14px;
 }
+.bk-form__check {
+  margin: 0 5px;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+.bk-form__label {
+  display: flex;
+  align-items: center;
+  height: 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
 .bk-form__alert {
   font-size: 11px;
 }
@@ -10563,4 +10576,24 @@ table.dataTable thead .sorting_desc_disabled {
 #position-index .dataTables_info,
 #position-index .dataTables_paginate {
   display: none !important;
+}
+
+#user-index .dataTables_length,
+#user-index .dataTables_info,
+#user-index .dataTables_paginate {
+  display: none !important;
+}
+
+.bk-access {
+  position: relative;
+}
+.bk-access::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(66, 66, 66, 0.15);
+  border-radius: 0.25rem;
 }
