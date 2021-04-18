@@ -10,7 +10,7 @@ require('./includes/datatable')
 require('./pages/position')
 require('./pages/worker')
 require('./pages/user')
-
+require('./pages/category')
 // require('./pages/plot');
 // require('./pages/statement');
 // require("./pages/log");

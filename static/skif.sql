@@ -11,11 +11,33 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 17/04/2021 16:23:26
+ Date: 19/04/2021 01:09:16
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for categories
+-- ----------------------------
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE `categories`  (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
+  `image` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of categories
+-- ----------------------------
+INSERT INTO `categories` VALUES (1, 'Корпусная мебель', NULL, 'К корпусной мебели относятся шкафы, комоды, стеллажи, горки, трюмо, тумбы, словом, предметы мебели, имеющие внутренний объём именно для хранения либо демонстрации вещей. Такая мебель может иметь вид отдельно стоящих предметов либо быть элементом модульной конструкции - стенка или составной шкаф.', 'categories/ahLnoDBc3m6u9yNuTf2TBQTFZu6Bq3qejxYFgorx.gif', '2021-04-18 19:38:59', '2021-04-18 19:38:59');
+INSERT INTO `categories` VALUES (2, 'Мягкая мебель', NULL, 'Эта мебельная группа предполагает чаще всего комплект, включающий диван, кресла, кровати и стулья. Основным свойством такой мебели является мягкость и комфорт.', 'categories/HsbE0kyfEvoioabyjgpXnop56X7EYETV23SKciwX.gif', '2021-04-18 19:52:36', '2021-04-18 19:52:36');
+INSERT INTO `categories` VALUES (4, 'Прочее', NULL, 'Столы представлены огромным разнообразием, изготовлены из различных материалов, выполнены в различных стилях, кроме того, современные модели отличаются дизайном, способом раскладывания. Столы делают из дерева, стекла, металла, пластика.', 'categories/fY7UcfhF90RS6ByqeS5mXxwnnGwq3KeJTp7wp8XP.gif', '2021-04-18 19:53:39', '2021-04-18 19:54:18');
 
 -- ----------------------------
 -- Table structure for migrations
@@ -26,7 +48,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -37,6 +59,7 @@ INSERT INTO `migrations` VALUES (3, '2021_04_16_184709_create_roles_table', 1);
 INSERT INTO `migrations` VALUES (4, '2021_04_16_184729_create_users_table', 1);
 INSERT INTO `migrations` VALUES (5, '2021_04_16_184749_create_permissions_table', 1);
 INSERT INTO `migrations` VALUES (6, '2021_04_16_184808_create_permission_user_table', 1);
+INSERT INTO `migrations` VALUES (8, '2021_04_17_163938_create_categories_table', 2);
 
 -- ----------------------------
 -- Table structure for permission_user

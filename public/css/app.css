@@ -10051,6 +10051,10 @@ a {
 .bk-table .no-sort {
   cursor: default !important;
 }
+.bk-table__img {
+  width: 100%;
+  height: auto;
+}
 
 .dataTables_length label {
   display: flex;
@@ -10449,6 +10453,9 @@ table.dataTable thead .sorting_desc_disabled {
 .bk-form__field-300 {
   width: 300px;
 }
+.bk-form__field-full {
+  width: 100%;
+}
 .bk-form__title {
   padding: 3px 0;
   margin-bottom: 6px;
@@ -10457,22 +10464,27 @@ table.dataTable thead .sorting_desc_disabled {
   font-weight: bold;
   border-bottom: 1px solid #ced4da;
 }
-.bk-form__input {
+.bk-form__input, .bk-form__text {
   padding: 0 10px;
   height: 30px;
   font-size: 14px;
 }
-.bk-form__input:focus {
+.bk-form__input:focus, .bk-form__text:focus {
   box-shadow: none;
 }
-.bk-form__input::-moz-placeholder {
+.bk-form__input::-moz-placeholder, .bk-form__text::-moz-placeholder {
   font-size: 14px;
 }
-.bk-form__input:-ms-input-placeholder {
+.bk-form__input:-ms-input-placeholder, .bk-form__text:-ms-input-placeholder {
   font-size: 14px;
 }
-.bk-form__input::placeholder {
+.bk-form__input::placeholder, .bk-form__text::placeholder {
   font-size: 14px;
+}
+.bk-form__text {
+  padding: 5px 10px;
+  height: 80px;
+  resize: none;
 }
 .bk-form__check {
   margin: 0 5px;
@@ -10572,10 +10584,16 @@ table.dataTable thead .sorting_desc_disabled {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, auto));
   grid-gap: 10px;
-  border: 1px dashed #3490dc;
 }
 .bk-list__item {
-  border: 1px dashed red;
+  text-align: center;
+}
+.bk-list__title {
+  font-size: 16px;
+  font-weight: bold;
+}
+.bk-list__text {
+  font-size: 14px;
 }
 
 #worker-index .dataTables_length,

@@ -22,8 +22,8 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Категория</th>
-          <th scope="col">Фото</th>
-          <th scope="col">Описание</th>
+          <th scope="col" class="no-sort">Изображение</th>
+          <th scope="col" class="no-sort">Описание</th>
           <th scope="col" class="no-sort">Действие</th>
         </tr>
       </thead>
@@ -32,7 +32,9 @@
         <tr>
           <td scope="row">{{ $key+=1 }}</td>
           <td>{{ $category->name }}</td>
-          <td>photo here</td>
+          <td>
+            <img class="bk-table__img" src="{{ Storage::url($category->image) }}" alt="{{ $category->name }}">
+          </td>
           <td>{{ $category->description }}</td>
           <td>
             <div class="d-flex">

@@ -3,7 +3,8 @@ $(document).ready(function () {
   const position_form = document.getElementById('position-form')
 
   if (position_form) {
-    // collections 
+
+    /* VALIDATION */
     const validations = document.querySelectorAll('.bk-valid')
 
     for (let validation of validations) {
