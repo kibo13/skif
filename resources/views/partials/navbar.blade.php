@@ -25,59 +25,43 @@
           </a>
         </li>
 
-        <!-- <li class="nav-item dropdown mr-2">
-          <a
-            id="navbarDropdown"
-            class="nav-link dropdown-toggle pr-3"
-            href="#"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            v-pre
-          >
+        <li class="nav-item dropdown">
+          <a 
+              class="nav-link dropdown-toggle pr-3" 
+              href="#"
+              data-toggle="dropdown"
+            >
             Информация
           </a>
 
-          <div
-            class="dropdown-menu dropdown-menu-right p-0"
-            aria-labelledby="navbarDropdown"
-          >
-            <a class="dropdown-item" href="#"> Отделы </a>
-
-            <a class="dropdown-item" href="#"> Участки </a>
-
-            <a class="dropdown-item" href="#"> Предприятия </a>
-
-            <a class="dropdown-item" href="#"> Адреса </a>
-
-            <a class="dropdown-item" href="#"> Неисправности </a>
+          <div class="dropdown-menu">
+            <a 
+                class="dropdown-item" 
+                href="{{ route('categories.index') }}"
+              >    
+                Категории 
+            </a>
+            <a class="dropdown-item" href="#"> Вид дерева </a>
+            <a class="dropdown-item" href="#"> Цвета </a>
+            <a class="dropdown-item" href="#"> Обшивка </a>
           </div>
-        </li> -->
+        </li> 
 
         <li class="nav-item dropdown">
           <a
-            id="navbarDropdown"
-            class="nav-link dropdown-toggle pr-3"
-            href="#"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            v-pre
-          >
+              class="nav-link dropdown-toggle pr-3"
+              href="#"
+              data-toggle="dropdown"
+            >
             {{ Auth::user()->worker->fio }}
           </a>
 
-          <div
-            class="dropdown-menu dropdown-menu-right p-0"
-            aria-labelledby="navbarDropdown"
-          >
+          <div class="dropdown-menu">
             <a
-              id="logout-link"
-              class="dropdown-item"
-              href="{{ route('logout') }}"
-            >
+                id="logout-link"
+                class="dropdown-item"
+                href="{{ route('logout') }}"
+              >
               Выйти
             </a>
 

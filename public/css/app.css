@@ -10222,6 +10222,21 @@ table.dataTable thead .sorting_desc_disabled {
   transform: none;
   opacity: 1;
 }
+.navbar .active {
+  font-weight: bold;
+}
+.navbar .dropdown-menu {
+  margin: 0;
+  padding: 0;
+  top: 90%;
+  right: 0;
+  left: auto;
+  min-width: 100px;
+}
+.navbar .dropdown-toggle::after {
+  margin-left: 0.2em;
+  vertical-align: 0.15em;
+}
 
 @media (max-width: 768px) {
   .navbar span:nth-child(1),

@@ -37,7 +37,23 @@
     margin: 5px auto
     transform: none
     opacity: 1
+  
+  .active 
+    font-weight: bold
+  
+  .dropdown-menu 
+    margin: 0
+    padding: 0
+    top: 90%
+    right: 0
+    left: auto
+    min-width: 100px
+  
+  .dropdown-toggle::after
+    margin-left: .2em
+    vertical-align: .15em
 
+  
 @media (max-width: $width-md)
   .navbar 
     span:nth-child(1),
