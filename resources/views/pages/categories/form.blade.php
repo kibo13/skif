@@ -50,15 +50,30 @@
 
           <!-- /.image -->
           <h6 class="bk-form__title">Изображение</h6>
-          <div class="bk-form__field-full">
-            @isset($category) {{ $category->image }} @endisset
-            <input 
-                class="form-control-file bk-form__file" 
+          <div class="bk-form__field-300">
+            <div class="bk-form__file">
+              <input
+                class="form-control bk-form__input"
+                id="upload-file"
+                name="note"
+                type="text"
+                value="@isset($category) {{ $category->note }} @endisset"
+                placeholder="Файл не выбран"
+              />
+
+              <button 
+                class="btn btn-primary bk-form__file--btn">
+                Загрузить
+              </button>
+
+              <input 
+                class="form-control-file bk-form__file--upload" 
                 id="image"
                 name="image"
                 type="file"
                 accept="image/*"
               >
+            </div>            
           </div>
         </div>
       </div>

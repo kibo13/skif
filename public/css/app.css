@@ -10486,6 +10486,28 @@ table.dataTable thead .sorting_desc_disabled {
   height: 80px;
   resize: none;
 }
+.bk-form__file {
+  position: relative;
+}
+.bk-form__file--btn {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 23px;
+  font-size: 12px;
+}
+.bk-form__file--upload {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
 .bk-form__check {
   margin: 0 5px;
   width: 15px;

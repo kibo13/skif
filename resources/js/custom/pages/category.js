@@ -5,24 +5,28 @@ $(document).ready(function () {
   if (category_form) {
 
     /* VALIDATION */
-    // const validations = document.querySelectorAll('.bk-valid')
+    const category = document.getElementById('name')
 
-    // for (let validation of validations) {
+    category.oninput = e => {
+      e.target.value = e.target.value.replace(/[^а-яё]/ig, '')
+    }
 
-    //   // validation for field 'salary'
-    //   if (validation.id == 'salary') {
-    //     validation.oninput = e => {
-    //       e.target.value = e.target.value.replace(/\D/g, '')
-    //     }
-    //   }
+    /* DISPLAY UPLOAD FILE */
+    const image = document.getElementById('image')
+    const upload_file = document.getElementById('upload-file')
 
-    //   // validation for other fields 
-    //   else {
-    //     validation.oninput = e => {
-    //       e.target.value = e.target.value.replace(/[^а-яё]/ig, '')
-    //     }
-    //   }
-    // }
+    image.onchange = e => {
+      let i;
 
+      if (e.target.value.lastIndexOf('\\')) {
+        i = e.target.value.lastIndexOf('\\') + 1;
+      }
+      else {
+        i = e.target.value.lastIndexOf('/') + 1;
+      }
+
+      upload_file.value = e.target.value.slice(i);
+
+    }
   }
 })
