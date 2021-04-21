@@ -12,14 +12,14 @@
 
   <table
       id="category-table"
-      class="bk-table table table-bordered table-hover table-responsive-sm"
+      class="bk-table table table-bordered table-hover table-responsive"
     >
     <thead class="thead-light">
       <tr>
         <th scope="col">#</th>
         <th scope="col">Категория</th>
         <th scope="col" class="no-sort">Изображение</th>
-        <th scope="col" class="no-sort">Описание</th>
+        <th scope="col" class="w-100 no-sort">Описание</th>
         <th scope="col" class="no-sort">Действие</th>
       </tr>
     </thead>

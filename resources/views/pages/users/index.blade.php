@@ -4,22 +4,22 @@
 <section id="user-index" class="bk-page section">
   <h2 class="mb-3">Пользователи</h2>
 
-  <div class="py-2 mb-1">
-    <a href="{{ route('users.create') }}" class="btn btn-outline-primary">
+  <div class="bk-group">
+    <a class="btn btn-outline-primary" href="{{ route('users.create') }}">
       Новая запись
     </a>
   </div>
 
   <table 
       id="user-table" 
-      class="bk-table table table-bordered table-hover table-responsive-sm"
+      class="bk-table table table-bordered table-hover table-responsive"
     >
     <thead class="thead-light">
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Сотрудник</th>
-        <th scope="col">Логин</th>
-        <th scope="col">Роль</th>
+        <th scope="col" class="w-50">Сотрудник</th>
+        <th scope="col" class="w-25">Логин</th>
+        <th scope="col" class="w-25">Роль</th>
         <th scope="col" class="no-sort">Действие</th>
       </tr>
     </thead>
@@ -33,9 +33,9 @@
         <td>
           <div class="d-flex">
             <div
-              class="bk-btn bk-btn-crud btn btn-warning mr-1"
-              data-tip="Редактировать"
-            >
+                class="bk-btn bk-btn-crud btn btn-warning mr-1"
+                data-tip="Редактировать"
+              >
               <a
                 href="{{ route('users.edit', $user) }}"
                 class="bk-btn-wrap bk-btn-link"
@@ -58,7 +58,7 @@
               <span class="bk-btn-wrap bk-btn-icon">
                 @include('assets.icons.trash')
               </span>
-            </div>
+            </div>            
           </div>
         </td>
       </tr>

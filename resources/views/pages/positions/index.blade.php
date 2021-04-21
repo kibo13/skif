@@ -4,25 +4,25 @@
 <section id="position-index" class="bk-page section">
   <h2 class="mb-3">Должности</h2>
 
-  <div class="py-2 mb-1">
-    <a href="{{ route('positions.create') }}" class="btn btn-outline-primary">
+  <div class="bk-group">
+    <a class="btn btn-outline-primary" href="{{ route('positions.create') }}">
       Новая запись
     </a>
-    <a href="{{ route('workers.index') }}" class="btn btn-outline-secondary">
+    <a class="btn btn-outline-secondary" href="{{ route('workers.index') }}">
       Сотрудники
     </a>
   </div>
 
   <table
       id="position-table"
-      class="bk-table table table-bordered table-hover table-responsive-sm"
+      class="bk-table table table-bordered table-hover table-responsive"
     >
     <thead class="thead-light">
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Должность</th>
-        <th scope="col">Оклад</th>
-        <th scope="col" class="no-sort">Действие</th>
+        <th scope="col" class="w-50">Должность</th>
+        <th scope="col" class="w-25">Оклад</th>
+        <th scope="col" class="w-25 no-sort">Действие</th>
       </tr>
     </thead>
     <tbody>

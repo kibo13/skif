@@ -101,6 +101,19 @@
 	&__alert 
 		font-size: 11px
 
+.bk-access
+	position: relative
+
+	&::before
+		content: ''
+		position: absolute
+		top: 0
+		right: 0
+		bottom: 0
+		left: 0
+		background: rgba($dark, .15)
+		border-radius: .25rem
+
 @media screen and ( max-width: $width-sm )
 	.bk-form 
 		&__field-50,

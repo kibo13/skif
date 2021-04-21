@@ -29,6 +29,14 @@ $(document).ready(function () {
         $('#bk-delete-form').attr('action', '/products/' + data_id);
         break;
 
+      case 'color':
+        $('#bk-delete-form').attr('action', '/colors/' + data_id);
+        break;
+
+      case 'material':
+        $('#bk-delete-form').attr('action', '/materials/' + data_id);
+        break;
+
       default:
         break;
 

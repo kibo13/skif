@@ -41,9 +41,12 @@
               >    
                 Категории 
             </a>
-            <a class="dropdown-item" href="#"> Вид дерева </a>
-            <a class="dropdown-item" href="#"> Цвета </a>
-            <a class="dropdown-item" href="#"> Обшивка </a>
+            <a 
+                class="dropdown-item" 
+                href="{{ route('materials.index') }}"
+              >    
+                Материалы 
+            </a>
           </div>
         </li> 
 

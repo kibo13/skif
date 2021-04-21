@@ -1,3 +1,12 @@
+.bk-group
+	margin: 10px 0
+	grid-gap: 5px
+
+@media screen and ( max-width: $width-sm )
+	.bk-group
+		display: grid	
+		grid-template-columns: repeat(auto-fill, minmax(150px, auto))
+	
 .bk-btn 
 	position: relative
 

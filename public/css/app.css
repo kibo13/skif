@@ -10056,29 +10056,37 @@ a {
   height: auto;
 }
 
-.dataTables_length label {
+.table-bordered {
+  border: none;
+}
+
+.dataTables_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+.dataTables_length, .dataTables_filter, .dataTables_info, .dataTables_paginate {
+  display: flex;
+  flex-basis: 50%;
+  font-size: 14px;
+}
+.dataTables_length, .dataTables_info {
+  justify-content: flex-start;
+}
+.dataTables_filter, .dataTables_paginate {
+  justify-content: flex-end;
+}
+.dataTables_info, .dataTables_paginate {
+  margin: 5px 0;
+}
+.dataTables_length label, .dataTables_filter label {
   display: flex;
   font-size: 0;
 }
-.dataTables_length select {
-  padding: 5px 7px;
-  width: 100%;
-  height: 35px;
-  font-size: 14px;
-  font-size: 14px;
-  color: #495057;
-  background-color: #ffffff;
-  border: 1px solid #ced4da;
-  outline: none;
-}
-.dataTables_filter label {
-  display: flex;
-  font-size: 0;
-}
+.dataTables_length select,
+.dataTables_length input, .dataTables_filter select,
 .dataTables_filter input {
-  margin: 0 !important;
   padding: 5px 10px;
-  width: 100%;
+  width: 200px;
   height: 35px;
   font-size: 14px;
   color: #495057;
@@ -10086,60 +10094,43 @@ a {
   border: 1px solid #ced4da;
   outline: none;
 }
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-  color: #007BFE !important;
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:focus {
-  cursor: default;
-  color: #007BFE !important;
-  background: transparent !important;
-  border: 1px solid #dee2e6 !important;
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-  color: #ffffff !important;
-  background: #007BFE !important;
-  border: 1px solid #007BFE !important;
-  outline: none !important;
-}
-.dataTables_wrapper .dataTables_paginate .previous,
-.dataTables_wrapper .dataTables_paginate .next {
-  font-size: 0 !important;
-}
+
 .dataTables_paginate {
-  margin-top: 5px;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  grid-gap: 3px;
 }
-.dataTables_paginate .paginate_button {
-  position: relative !important;
-  padding: 0 !important;
-  width: 30px !important;
-  height: 30px !important;
-  text-align: center !important;
-  font-size: 12px !important;
-  line-height: 30px;
-  background: #ffffff;
-  border: 1px solid #dee2e6 !important;
-  overflow: hidden;
+.dataTables_paginate span {
+  display: flex;
+  grid-gap: 3px;
 }
-.dataTables_paginate .paginate_button:hover, .dataTables_paginate .paginate_button:active, .dataTables_paginate .paginate_button:focus {
-  background: #007BFE !important;
-  border: 1px solid #007BFE !important;
+
+.paginate_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  color: #3490dc;
+  border: 1px solid #ced4da;
+  box-shadow: 0 0 1px;
+  cursor: pointer;
 }
-.dataTables_paginate .previous::after,
-.dataTables_paginate .next::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  font-size: 16px;
+.paginate_button:hover {
+  color: #f8fafc;
+  background: #3490dc;
 }
-.dataTables_paginate .previous::after {
-  content: "‹";
+.paginate_button.disabled:hover {
+  color: #3490dc;
+  background: transparent;
+  cursor: default;
 }
-.dataTables_paginate .next::after {
-  content: "›";
+.paginate_button.current {
+  color: #f8fafc;
+  background: #3490dc;
+}
+.paginate_button.current:hover {
+  cursor: default;
 }
 
 table.dataTable thead .sorting {
@@ -10168,21 +10159,23 @@ table.dataTable thead .sorting_desc_disabled {
   background-position: center right;
 }
 
-.table .th,
-.table .td {
-  border-top: none !important;
+@media screen and (max-width: 640px) {
+  .dataTables_wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .dataTables_length, .dataTables_filter, .dataTables_info, .dataTables_paginate {
+    flex-basis: 100%;
+    justify-content: center;
+  }
+  .dataTables_length label,
+.dataTables_length select,
+.dataTables_length input, .dataTables_filter label,
+.dataTables_filter select,
+.dataTables_filter input {
+    width: 100%;
+  }
 }
-.table-bordered {
-  border: none !important;
-}
-.table-bordered td,
-.table-bordered th {
-  border: 0.1px solid #e9ecef !important;
-}
-.table .dataTable.no-footer {
-  border-bottom: 1px solid transparent !important;
-}
-
 .navbar {
   padding: 15px 10px;
   border: none;
@@ -10540,9 +10533,34 @@ table.dataTable thead .sorting_desc_disabled {
   font-size: 11px;
 }
 
+.bk-access {
+  position: relative;
+}
+.bk-access::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(66, 66, 66, 0.15);
+  border-radius: 0.25rem;
+}
+
 @media screen and (max-width: 640px) {
   .bk-form__field-50, .bk-form__field-100, .bk-form__field-200, .bk-form__field-250, .bk-form__field-300 {
     width: 100%;
+  }
+}
+.bk-group {
+  margin: 10px 0;
+  grid-gap: 5px;
+}
+
+@media screen and (max-width: 640px) {
+  .bk-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, auto));
   }
 }
 .bk-btn {
@@ -10631,48 +10649,4 @@ table.dataTable thead .sorting_desc_disabled {
 }
 .bk-list__text {
   font-size: 14px;
-}
-
-#worker-index .dataTables_length,
-#worker-index .dataTables_info,
-#worker-index .dataTables_paginate {
-  display: none !important;
-}
-
-#position-index .dataTables_length,
-#position-index .dataTables_info,
-#position-index .dataTables_paginate {
-  display: none !important;
-}
-
-#user-index .dataTables_length,
-#user-index .dataTables_info,
-#user-index .dataTables_paginate {
-  display: none !important;
-}
-
-.bk-access {
-  position: relative;
-}
-.bk-access::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(66, 66, 66, 0.15);
-  border-radius: 0.25rem;
-}
-
-#category-index .dataTables_length,
-#category-index .dataTables_info,
-#category-index .dataTables_paginate {
-  display: none !important;
-}
-
-#product-index .dataTables_length,
-#product-index .dataTables_info,
-#product-index .dataTables_paginate {
-  display: none !important;
 }

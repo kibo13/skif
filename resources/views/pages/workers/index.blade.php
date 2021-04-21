@@ -1,30 +1,30 @@
 @extends('layouts.master')
 <!-- worker-index -->
 @section('content')
-<section id="worker-index" class="bk-page section">
+<section id="worker-index" class="bk-page section overflow-auto">
   <h2 class="mb-3">Сотрудники</h2>
 
-  <div class="py-2 mb-1">
-    <a href="{{ route('workers.create') }}" class="btn btn-outline-primary">
+  <div class="bk-group">
+    <a class="btn btn-outline-primary" href="{{ route('workers.create') }}">
       Новая запись
     </a>
-    <a href="{{ route('positions.index') }}" class="btn btn-outline-secondary">
+    <a class="btn btn-outline-secondary" href="{{ route('positions.index') }}">
       Должности
     </a>
   </div>
 
   <table 
       id="worker-table" 
-      class="bk-table table table-bordered table-hover table-responsive-sm"
+      class="bk-table table table-bordered table-hover table-responsive"
     >
     <thead class="thead-light">
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Ф.И.О.</th>
-        <th scope="col">Должность</th>
-        <th scope="col">Оклад</th>
-        <th scope="col" class="no-sort">Адрес</th>
-        <th scope="col" class="no-sort">Телефон</th>
+        <th scope="col" class="w-25">Ф.И.О.</th>
+        <th scope="col" class="w-25">Должность</th>
+        <th scope="col" class="w-25">Оклад</th>
+        <th scope="col" class="w-25 no-sort" style="min-width: 200px">Адрес</th>
+        <th scope="col" class="no-sort" style="min-width: 200px">Телефон</th>
         <th scope="col" class="no-sort">Действие</th>
       </tr>
     </thead>
@@ -44,9 +44,9 @@
         <td>
           <div class="d-flex">
             <div
-              class="bk-btn bk-btn-crud btn btn-warning mr-1"
-              data-tip="Редактировать"
-            >
+                class="bk-btn bk-btn-crud btn btn-warning mr-1"
+                data-tip="Редактировать"
+              >
               <a
                 href="{{ route('workers.edit', $worker) }}"
                 class="bk-btn-wrap bk-btn-link"
