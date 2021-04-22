@@ -9,10 +9,10 @@
       Новая запись
     </a>
     <a class="btn btn-outline-secondary" href="{{ route('colors.index') }}">
-      Каталог цветов
+      Вид древесины
     </a>
     <a class="btn btn-outline-secondary" href="{{ route('colors.index') }}">
-      Обивка
+      Каталог цветов
     </a>
   </div>
 

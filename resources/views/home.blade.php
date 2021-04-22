@@ -15,7 +15,7 @@
     <li class="card bk-list__item">
       <img 
         class="card-img-top" 
-        src="{{ Storage::url($category->image) }}" 
+        src="{{asset('images/' . $category->image)}}" 
         alt="{{ $category->name }}">
       <div class="card-body">
         <h5 class="card-title bk-list__title">{{ $category->name }}</h5>

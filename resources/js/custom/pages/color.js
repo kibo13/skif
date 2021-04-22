@@ -4,13 +4,6 @@ $(document).ready(function () {
 
   if (color_form) {
 
-    /* VALIDATION */
-    const color = document.getElementById('name')
-
-    color.oninput = e => {
-      e.target.value = e.target.value.replace(/[^а-яё]/ig, '')
-    }
-
     /* DISPLAY UPLOAD FILE */
     const image = document.getElementById('image')
     const upload_file = document.getElementById('upload-file')

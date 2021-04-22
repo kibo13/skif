@@ -47,6 +47,12 @@
               >    
                 Материалы 
             </a>
+            <a 
+                class="dropdown-item" 
+                href="#"
+              >    
+                Обивка 
+            </a>
           </div>
         </li> 
 

@@ -10650,3 +10650,50 @@ table.dataTable thead .sorting_desc_disabled {
 .bk-list__text {
   font-size: 14px;
 }
+
+.colors__list {
+  padding: 0;
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, auto));
+  grid-gap: 5px;
+}
+.colors__item {
+  position: relative;
+  display: flex;
+  height: 150px;
+  box-shadow: 0 0 4px;
+  cursor: pointer;
+  overflow: hidden;
+}
+.colors__item:hover .colors__crud {
+  transform: translateY(0);
+}
+.colors__img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.colors__title {
+  padding: 0 5px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+  background: rgba(248, 250, 252, 0.55);
+  border-radius: 2px;
+  box-shadow: 0 0 2px;
+}
+.colors__crud {
+  position: absolute;
+  bottom: 7px;
+  right: 7px;
+  display: grid;
+  grid-template-columns: 25px 25px;
+  grid-gap: 5px;
+  background: transparent;
+  transform: translateY(150%);
+  transition: all 0.3s;
+}

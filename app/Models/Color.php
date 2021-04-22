@@ -15,8 +15,8 @@ class Color extends Model
         'note'
     ];
 
-    // public function products()
-    // {
-    //     return $this->hasMany('App\Models\User');
-    // }
+    public function materials()
+    {
+        return $this->hasMany('App\Models\Material');
+    }
 }

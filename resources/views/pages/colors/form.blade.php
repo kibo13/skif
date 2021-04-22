@@ -32,14 +32,20 @@
           <h6 class="bk-form__title">Название цвета</h6>
           <div class="bk-form__field-300 mb-2">
             <input
-              class="form-control bk-form__input bk-valid"
+              class="form-control bk-form__input bk-valid @error('name') is-invalid @enderror"
               id="name"
               type="text"
               name="name"
               value="@isset($color) {{ $color->name }} @endisset"
               placeholder="Новый цвет"
-              required
+              autocomplete="off"
             />
+
+            @error('name')
+            <span class="bk-form__alert invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+            @enderror
           </div>
 
           <!-- /.image -->

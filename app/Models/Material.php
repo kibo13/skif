@@ -10,9 +10,18 @@ class Material extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 
-        'image',
-        'note',
-        'color_id'
+        'tree_id', 
+        'color_id',
+        'price'
     ];
+
+    public function tree()
+    {
+        return $this->hasOne('App\Models\Tree');
+    }
+
+    public function color()
+    {
+        return $this->hasOne('App\Models\Color');
+    }
 }

@@ -29,7 +29,10 @@
         <td scope="row">{{ $key+=1 }}</td>
         <td>{{ $category->name }}</td>
         <td>
-          <img class="bk-table__img" src="{{ Storage::url($category->image) }}" alt="{{ $category->name }}">
+          <img 
+            class="bk-table__img" 
+            src="{{asset('images/' . $category->image)}}" 
+            alt="{{ $category->name }}">
         </td>
         <td>{{ $category->description }}</td>
         <td>
