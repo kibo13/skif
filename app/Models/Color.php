@@ -17,6 +17,6 @@ class Color extends Model
 
     public function materials()
     {
-        return $this->hasMany('App\Models\Material');
+        return $this->belongsToMany('App\Models\Material');
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 <!-- position-form -->
 @section('content')
-<section id="position-form" class="section">
+<section id="position-form" class="valid-form section">
   <h2 class="mb-3">
     @isset($position) 
       Редактирование записи 
@@ -45,7 +45,7 @@
           <div class="bk-form__field-100">
             <input
               class="form-control bk-form__input bk-valid"
-              id="salary"
+              id="price"
               type="text"
               name="salary"
               value="@isset($position) {{ $position->salary }} @endisset"

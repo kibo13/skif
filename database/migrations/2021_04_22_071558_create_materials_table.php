@@ -16,7 +16,6 @@ class CreateMaterialsTable extends Migration
         Schema::create('materials', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('tree_id')->unsigned();
-            $table->bigInteger('color_id')->unsigned();
             $table->double('price')->default(0);
             $table->timestamps();
         });

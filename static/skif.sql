@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 23/04/2021 00:52:13
+ Date: 24/04/2021 03:55:43
 */
 
 SET NAMES utf8mb4;
@@ -31,14 +31,41 @@ CREATE TABLE `categories`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of categories
 -- ----------------------------
-INSERT INTO `categories` VALUES (1, 'Корпусная мебель', 'corps', 'К корпусной мебели относятся шкафы, комоды, стеллажи, горки, трюмо, тумбы, словом, предметы мебели, имеющие внутренний объём именно для хранения либо демонстрации вещей. Такая мебель может иметь вид отдельно стоящих предметов либо быть элементом модульной конструкции - стенка или составной шкаф.', 'categories/EzATfKAVudW4yxzZ6nmSBzJg1u0fQYtQLOpFXqbY.gif', 'corps.gif', '2021-04-18 19:38:59', '2021-04-21 21:11:18');
+INSERT INTO `categories` VALUES (1, 'Корпусная мебель', 'corps', 'К корпусной мебели относятся шкафы, комоды, стеллажи, горки, трюмо, тумбы, словом, предметы мебели, имеющие внутренний объём именно для хранения либо демонстрации вещей. Такая мебель может иметь вид отдельно стоящих предметов либо быть элементом модульной конструкции - стенка или составной шкаф.', 'categories/psm5rkRqcQrxbZ4pOQeRMct2GhOfTcC7fc3kfm2j.gif', 'corps.gif', '2021-04-18 19:38:59', '2021-04-23 20:13:58');
 INSERT INTO `categories` VALUES (2, 'Мягкая мебель', 'soft', 'Эта мебельная группа предполагает чаще всего комплект, включающий диван, кресла, кровати и стулья. Основным свойством такой мебели является мягкость и комфорт.', 'categories/k7kmfW9kxfn8XZTJ4aSjvUEMWuM8f4XJaEq2lqTm.gif', 'soft.gif', '2021-04-18 19:52:36', '2021-04-21 20:51:35');
 INSERT INTO `categories` VALUES (4, 'Прочее', 'other', 'Столы представлены огромным разнообразием, изготовлены из различных материалов, выполнены в различных стилях, кроме того, современные модели отличаются дизайном, способом раскладывания. Столы делают из дерева, стекла, металла, пластика.', 'categories/oBbNbb9tHEKP0yLzXTfy6LmAVxmQ49nOW7pUPqHf.gif', 'other.gif', '2021-04-18 19:53:39', '2021-04-21 20:51:43');
+
+-- ----------------------------
+-- Table structure for color_material
+-- ----------------------------
+DROP TABLE IF EXISTS `color_material`;
+CREATE TABLE `color_material`  (
+  `color_id` bigint(20) UNSIGNED NOT NULL,
+  `material_id` bigint(20) UNSIGNED NOT NULL,
+  INDEX `color_material_color_id_foreign`(`color_id`) USING BTREE,
+  INDEX `color_material_material_id_foreign`(`material_id`) USING BTREE,
+  CONSTRAINT `color_material_color_id_foreign` FOREIGN KEY (`color_id`) REFERENCES `colors` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+  CONSTRAINT `color_material_material_id_foreign` FOREIGN KEY (`material_id`) REFERENCES `materials` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of color_material
+-- ----------------------------
+INSERT INTO `color_material` VALUES (9, 3);
+INSERT INTO `color_material` VALUES (13, 3);
+INSERT INTO `color_material` VALUES (14, 3);
+INSERT INTO `color_material` VALUES (15, 3);
+INSERT INTO `color_material` VALUES (17, 3);
+INSERT INTO `color_material` VALUES (2, 2);
+INSERT INTO `color_material` VALUES (3, 2);
+INSERT INTO `color_material` VALUES (7, 2);
+INSERT INTO `color_material` VALUES (8, 2);
+INSERT INTO `color_material` VALUES (15, 2);
 
 -- ----------------------------
 -- Table structure for colors
@@ -53,7 +80,7 @@ CREATE TABLE `colors`  (
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `colors_name_unique`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of colors
@@ -84,12 +111,17 @@ DROP TABLE IF EXISTS `materials`;
 CREATE TABLE `materials`  (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `tree_id` bigint(20) UNSIGNED NOT NULL,
-  `color_id` bigint(20) UNSIGNED NOT NULL,
   `price` double NOT NULL DEFAULT 0,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of materials
+-- ----------------------------
+INSERT INTO `materials` VALUES (2, 1, 1700, '2021-04-23 21:55:10', '2021-04-23 21:55:10');
+INSERT INTO `materials` VALUES (3, 1, 1800, '2021-04-23 21:55:31', '2021-04-23 21:55:31');
 
 -- ----------------------------
 -- Table structure for migrations
@@ -100,7 +132,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -114,7 +146,8 @@ INSERT INTO `migrations` VALUES (6, '2021_04_16_184808_create_permission_user_ta
 INSERT INTO `migrations` VALUES (9, '2021_04_17_163938_create_categories_table', 2);
 INSERT INTO `migrations` VALUES (12, '2021_04_22_070021_create_colors_table', 3);
 INSERT INTO `migrations` VALUES (13, '2021_04_22_070031_create_trees_table', 3);
-INSERT INTO `migrations` VALUES (14, '2021_04_22_071558_create_materials_table', 3);
+INSERT INTO `migrations` VALUES (15, '2021_04_22_071558_create_materials_table', 4);
+INSERT INTO `migrations` VALUES (16, '2021_04_23_185221_create_color_material_table', 4);
 
 -- ----------------------------
 -- Table structure for permission_user
@@ -155,7 +188,7 @@ CREATE TABLE `positions`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of positions
@@ -198,7 +231,13 @@ CREATE TABLE `trees`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of trees
+-- ----------------------------
+INSERT INTO `trees` VALUES (1, 'ЛДСП', NULL, 'Ламинированная древесно-стружечная плита', '2021-04-23 18:17:33', '2021-04-23 18:20:29');
+INSERT INTO `trees` VALUES (5, 'МДФ', NULL, 'Древесноволокнистая плита средней плотности', '2021-04-23 18:22:38', '2021-04-23 18:22:38');
 
 -- ----------------------------
 -- Table structure for users

@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\TreeController;
 
 Auth::routes([
     'login' => true,
@@ -29,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('categories', CategoryController::class)->except(['show']);
     Route::resource('products', ProductController::class)->except(['show']);
     Route::resource('colors', ColorController::class)->except(['show']);
+    Route::resource('trees', TreeController::class)->except(['show']);
     Route::resource('materials', MaterialController::class)->except(['show']);
 
 

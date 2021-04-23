@@ -101,6 +101,56 @@
 	&__alert 
 		font-size: 11px
 
+// for group checkboxes 
+.bk-checks
+	margin: 0
+	padding: 0 5px 
+
+	display: grid
+	grid-template-columns: repeat(auto-fill, minmax(32px, auto))
+	grid-gap: 5px
+
+	&__item 
+		position: relative
+		display: flex
+		height: 32px
+		box-shadow: 0 0 2px
+		overflow: hidden
+
+	&__img 
+		width: 100%
+		object-fit: cover
+	
+	&__label 
+		position: absolute
+		top: 0
+		left: 0	
+		width: 100%
+		height: 100%
+		cursor: pointer
+
+	&__checkbox
+		position: absolute
+		top: 0
+		left: 0
+		opacity: 0
+
+		&:checked~
+			.bk-checks__label:before
+				content: '\2713'	
+				position: absolute
+				top: 0
+				left: 0
+				display: flex
+				align-items: center
+				justify-content: center
+				width: 100%
+				height: 100%
+				font-weight: bold
+				color: $light
+				background: rgba($dark, .35)
+				border: 2px solid $light
+
 .bk-access
 	position: relative
 

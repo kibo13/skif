@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Color;
+use App\Models\Tree;
 use App\Models\Material;
 use Illuminate\Http\Request;
 
@@ -26,8 +27,13 @@ class MaterialController extends Controller
      */
     public function create()
     {
+        // trees 
+        $trees = Tree::get();
+
+        // colors 
         $colors = Color::get();
-        return view('pages.materials.form', compact('colors'));
+
+        return view('pages.materials.form', compact('colors', 'trees'));
     }
 
     /**
@@ -38,7 +44,14 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $material = Material::create($request->all());
+
+        // colors 
+        if ($request->input('colors')) :
+            $material->colors()->attach($request->input('colors'));
+        endif;
+
+        return redirect()->route('materials.index');
     }
 
     /**
@@ -60,8 +73,13 @@ class MaterialController extends Controller
      */
     public function edit(Material $material)
     {
+        // trees 
+        $trees = Tree::get();
+
+        // colors 
         $colors = Color::get();
-        return view('pages.materials.form', compact('colors'));
+
+        return view('pages.materials.form', compact('material', 'colors', 'trees'));
     }
 
     /**
@@ -73,7 +91,18 @@ class MaterialController extends Controller
      */
     public function update(Request $request, Material $material)
     {
-        //
+        $material->update($request->all());
+
+        // addresses 
+        $material->colors()->detach();
+
+        if ($request->input('colors')) :
+            $material->colors()->attach($request->input('colors'));
+        endif;
+
+        $material->save();
+
+        return redirect()->route('materials.index');
     }
 
     /**
@@ -84,6 +113,10 @@ class MaterialController extends Controller
      */
     public function destroy(Material $material)
     {
-        //
+        // colors 
+        $material->colors()->detach();
+        $material->delete();
+
+        return redirect()->route('materials.index');
     }
 }

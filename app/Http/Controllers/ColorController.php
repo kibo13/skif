@@ -99,6 +99,7 @@ class ColorController extends Controller
     public function destroy(Color $color)
     {
         $color->delete();
+        Storage::delete($color->image);
         return redirect()->route('colors.index');
     }
 }

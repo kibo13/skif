@@ -1,7 +1,7 @@
 @extends('layouts.master')
 <!-- worker-form -->
 @section('content')
-<section id="worker-form" class="section">
+<section id="worker-form" class="valid-form section">
   <h2 class="mb-3">
     @isset($worker) 
       Редактирование записи 

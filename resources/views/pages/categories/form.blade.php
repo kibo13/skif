@@ -1,7 +1,7 @@
 @extends('layouts.master')
 <!-- category-form -->
 @section('content')
-<section id="category-form" class="section">
+<section id="category-form" class="valid-form img-form section">
   <h2 class="mb-3">
     @isset($category) 
       Редактирование записи 

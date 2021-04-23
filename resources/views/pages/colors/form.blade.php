@@ -1,7 +1,7 @@
 @extends('layouts.master')
 <!-- color-form -->
 @section('content')
-<section id="color-form" class="section">
+<section id="color-form" class="img-form section">
   <h2 class="mb-3">
     @isset($color) 
       Редактирование записи 

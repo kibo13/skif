@@ -14,7 +14,8 @@ class TreeController extends Controller
      */
     public function index()
     {
-        //
+        $trees = Tree::get();
+        return view('pages.trees.index', compact('trees'));
     }
 
     /**
@@ -24,7 +25,7 @@ class TreeController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.trees.form');
     }
 
     /**
@@ -35,7 +36,8 @@ class TreeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Tree::create($request->all());
+        return redirect()->route('trees.index');
     }
 
     /**
@@ -57,7 +59,7 @@ class TreeController extends Controller
      */
     public function edit(Tree $tree)
     {
-        //
+        return view('pages.trees.form', compact('tree'));
     }
 
     /**
@@ -69,7 +71,8 @@ class TreeController extends Controller
      */
     public function update(Request $request, Tree $tree)
     {
-        //
+        $tree->update($request->all());
+        return redirect()->route('trees.index');
     }
 
     /**
@@ -80,6 +83,7 @@ class TreeController extends Controller
      */
     public function destroy(Tree $tree)
     {
-        //
+        $tree->delete();
+        return redirect()->route('trees.index');
     }
 }

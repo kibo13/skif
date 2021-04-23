@@ -1,21 +1,14 @@
-// loader
-// require('./loader');
+// vendors 
+require('./vendors/datatable')
 
-// includes 
-require('./includes/navbar')
-require('./includes/modal')
-require('./includes/datatable')
+// components 
+// require('./components/loader')
+require('./components/navbar')
+require('./components/modal')
+require('./components/validation')
+require('./components/image')
 
-// pages 
-require('./pages/position')
-require('./pages/worker')
-require('./pages/user')
-require('./pages/category')
-require('./pages/color')
-// require('./pages/plot');
-// require('./pages/statement');
-// require("./pages/log");
-// require("./pages/job");
-// require("./pages/promiser");
-// require("./pages/report");
-// require('./pages/brief');
+// views 
+require('./views/worker')
+require('./views/user')
+require('./views/material')
