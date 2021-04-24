@@ -47,12 +47,6 @@
               >    
                 Материалы 
             </a>
-            <a 
-                class="dropdown-item" 
-                href="{{ route('fabrics.index') }}"
-              >    
-                Обивка 
-            </a>
           </div>
         </li> 
 

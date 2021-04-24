@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Color;
-use App\Models\Tree;
 use App\Models\Material;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MaterialController extends Controller
 {
@@ -27,13 +26,7 @@ class MaterialController extends Controller
      */
     public function create()
     {
-        // trees 
-        $trees = Tree::get();
-
-        // colors 
-        $colors = Color::get();
-
-        return view('pages.materials.form', compact('colors', 'trees'));
+        return view('pages.materials.form');
     }
 
     /**
@@ -44,13 +37,13 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        $material = Material::create($request->all());
+        $params = $request->all();
+        unset($params['image']);
+        if ($request->has('image')) {
+	        $params['image'] = $request->file('image')->store('materials');
+        }
 
-        // colors 
-        if ($request->input('colors')) :
-            $material->colors()->attach($request->input('colors'));
-        endif;
-
+        Material::create($params);
         return redirect()->route('materials.index');
     }
 
@@ -73,13 +66,7 @@ class MaterialController extends Controller
      */
     public function edit(Material $material)
     {
-        // trees 
-        $trees = Tree::get();
-
-        // colors 
-        $colors = Color::get();
-
-        return view('pages.materials.form', compact('material', 'colors', 'trees'));
+        return view('pages.materials.form', compact('material'));
     }
 
     /**
@@ -91,17 +78,14 @@ class MaterialController extends Controller
      */
     public function update(Request $request, Material $material)
     {
-        $material->update($request->all());
-
-        // addresses 
-        $material->colors()->detach();
-
-        if ($request->input('colors')) :
-            $material->colors()->attach($request->input('colors'));
-        endif;
-
-        $material->save();
-
+        $params = $request->all();
+        unset($params['image']);
+        if ($request->has('image')) {
+            Storage::delete($material->image);
+            $params['image'] = $request->file('image')->store('materials');
+        }
+        
+        $material->update($params);
         return redirect()->route('materials.index');
     }
 
@@ -113,10 +97,8 @@ class MaterialController extends Controller
      */
     public function destroy(Material $material)
     {
-        // colors 
-        $material->colors()->detach();
         $material->delete();
-
+        Storage::delete($material->image);
         return redirect()->route('materials.index');
     }
 }

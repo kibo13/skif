@@ -1,7 +1,7 @@
 @extends('layouts.master')
 <!-- category-index -->
 @section('content')
-<section id="category-index" class="bk-page section">
+<section id="category-index" class="bk-page info-form section">
   <h2 class="mb-3">Категории</h2>
 
   <div class="py-2 mb-1">
@@ -17,9 +17,8 @@
     <thead class="thead-light">
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Категория</th>
-        <th scope="col" class="no-sort">Изображение</th>
-        <th scope="col" class="w-100 no-sort">Описание</th>
+        <th scope="col" class="w-25 no-sort">Категория</th>
+        <th scope="col" class="w-75 no-sort">Описание</th>
         <th scope="col" class="no-sort">Действие</th>
       </tr>
     </thead>
@@ -29,12 +28,14 @@
         <td scope="row">{{ $key+=1 }}</td>
         <td>{{ $category->name }}</td>
         <td>
-          <img 
-            class="bk-table__img" 
-            src="{{asset('images/' . $category->image)}}" 
-            alt="{{ $category->name }}">
+          <div class="bk-btn-info">
+            {{ $category->description }}
+            <button 
+              class="bk-btn-triangle bk-btn-triangle--down" 
+              title="Читать ещё">
+            </button>
+          </div>
         </td>
-        <td>{{ $category->description }}</td>
         <td>
           <div class="d-flex">
             <div

@@ -25,19 +25,9 @@
         @include('assets.icons.user-group') Сотрудники
       </a>
     </li>
-    <li class="sidebar-item">
-      <a class="sidebar-link" href="">
-        @include('assets.icons.database') Клиенты
-      </a>
-    </li>
     <li @sbactive('product*')>
       <a class="sidebar-link" href="{{ route('products.index') }}">
         @include('assets.icons.bookmark-alt') Мебель
-      </a>
-    </li>
-    <li class="sidebar-item">
-      <a class="sidebar-link" href="">
-        @include('assets.icons.document-report') Отчеты
       </a>
     </li>
   </ul>

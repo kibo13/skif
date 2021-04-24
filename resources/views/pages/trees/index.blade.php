@@ -1,7 +1,7 @@
 @extends('layouts.master')
 <!-- tree-index -->
 @section('content')
-<section id="tree-index" class="bk-page section">
+<section id="tree-index" class="bk-page info-form section">
   <h2 class="mb-3">Вид древесины</h2>
 
   <div class="bk-group">
@@ -21,7 +21,8 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col" class="w-25">Наименование</th>
-        <th scope="col" class="w-50 no-sort">Описание</th>
+        <th scope="col" class="w-25">Цена</th>
+        <th scope="col" class="w-25 no-sort">Описание</th>
         <th scope="col" class="w-25 no-sort">Действие</th>
       </tr>
     </thead>
@@ -30,7 +31,16 @@
       <tr>
         <td scope="row">{{ $key+=1 }}</td>
         <td>{{ $tree->name }}</td>
-        <td>{{ $tree->description }}</td>
+        <td>{{ number_format($tree->price, 2) }}</td>
+        <td>
+          <div class="bk-btn-info">
+            {{ $tree->description }}
+            <button 
+              class="bk-btn-triangle bk-btn-triangle--down" 
+              title="Читать ещё">
+            </button>
+          </div>
+        </td>
         <td>
           <div class="d-flex">
             <div

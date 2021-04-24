@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 24/04/2021 03:55:43
+ Date: 25/04/2021 00:29:14
 */
 
 SET NAMES utf8mb4;
@@ -31,7 +31,7 @@ CREATE TABLE `categories`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of categories
@@ -41,68 +41,31 @@ INSERT INTO `categories` VALUES (2, 'Мягкая мебель', 'soft', 'Эта
 INSERT INTO `categories` VALUES (4, 'Прочее', 'other', 'Столы представлены огромным разнообразием, изготовлены из различных материалов, выполнены в различных стилях, кроме того, современные модели отличаются дизайном, способом раскладывания. Столы делают из дерева, стекла, металла, пластика.', 'categories/oBbNbb9tHEKP0yLzXTfy6LmAVxmQ49nOW7pUPqHf.gif', 'other.gif', '2021-04-18 19:53:39', '2021-04-21 20:51:43');
 
 -- ----------------------------
--- Table structure for color_material
+-- Table structure for fabrics
 -- ----------------------------
-DROP TABLE IF EXISTS `color_material`;
-CREATE TABLE `color_material`  (
-  `color_id` bigint(20) UNSIGNED NOT NULL,
-  `material_id` bigint(20) UNSIGNED NOT NULL,
-  INDEX `color_material_color_id_foreign`(`color_id`) USING BTREE,
-  INDEX `color_material_material_id_foreign`(`material_id`) USING BTREE,
-  CONSTRAINT `color_material_color_id_foreign` FOREIGN KEY (`color_id`) REFERENCES `colors` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
-  CONSTRAINT `color_material_material_id_foreign` FOREIGN KEY (`material_id`) REFERENCES `materials` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of color_material
--- ----------------------------
-INSERT INTO `color_material` VALUES (9, 3);
-INSERT INTO `color_material` VALUES (13, 3);
-INSERT INTO `color_material` VALUES (14, 3);
-INSERT INTO `color_material` VALUES (15, 3);
-INSERT INTO `color_material` VALUES (17, 3);
-INSERT INTO `color_material` VALUES (2, 2);
-INSERT INTO `color_material` VALUES (3, 2);
-INSERT INTO `color_material` VALUES (7, 2);
-INSERT INTO `color_material` VALUES (8, 2);
-INSERT INTO `color_material` VALUES (15, 2);
-
--- ----------------------------
--- Table structure for colors
--- ----------------------------
-DROP TABLE IF EXISTS `colors`;
-CREATE TABLE `colors`  (
+DROP TABLE IF EXISTS `fabrics`;
+CREATE TABLE `fabrics`  (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
-  `note` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
+  `price` double NOT NULL DEFAULT 0,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `colors_name_unique`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of colors
+-- Records of fabrics
 -- ----------------------------
-INSERT INTO `colors` VALUES (2, 'H1145-1', 'colors/BBN3AzE8suQFPYqytlhQMm9xlBNWGE2TeUmqYYpX.jpg', 'H1145-1.jpg', '2021-04-22 09:17:54', '2021-04-22 09:17:54');
-INSERT INTO `colors` VALUES (3, 'H1176', 'colors/ANtkneb5eF077Ny3iYQ8lPdtdfTFWNgZLe61bR8N.jpg', 'H1176.jpg', '2021-04-22 09:25:38', '2021-04-22 09:25:38');
-INSERT INTO `colors` VALUES (4, 'H1250', 'colors/4qKZiAQWAzUcxn14J3WwKNVosUZKxJfCtNzSGXnx.jpg', 'H1250.jpg', '2021-04-22 09:25:54', '2021-04-22 09:25:54');
-INSERT INTO `colors` VALUES (5, 'H1123-1', 'colors/8jj5rnjWJXFxyjU7d6kNcgrlT65ATBmDlwKkjI8D.jpg', 'H1123-1.jpg', '2021-04-22 09:26:23', '2021-04-22 09:26:23');
-INSERT INTO `colors` VALUES (6, 'H1318', 'colors/HgCHbLS53Qp3zdb1Thpecuaj2u4ALfySdmBUEUsU.jpg', 'H1318.jpg', '2021-04-22 09:26:41', '2021-04-22 09:26:41');
-INSERT INTO `colors` VALUES (7, 'H3730', 'colors/9iC1oEwTaNOA0soryya3SRkCSM8IVmg7vJ5EqBOb.jpg', 'H3730.jpg', '2021-04-22 09:27:15', '2021-04-22 09:27:15');
-INSERT INTO `colors` VALUES (8, 'h1377', 'colors/YbId0h4DS2oDxYziT1Fu6SwlJLixRcSZDGQNV1ex.jpg', 'H1377.jpg', '2021-04-22 09:27:31', '2021-04-22 09:27:31');
-INSERT INTO `colors` VALUES (9, 'h1122-1', 'colors/FDEKGWa1TEYDHluSa3xnKOEMKPqJ3WjtAjyQ84BV.jpg', 'H1122-1.jpg', '2021-04-22 09:28:05', '2021-04-22 09:28:05');
-INSERT INTO `colors` VALUES (10, 'h1313', 'colors/57BE4TfNM6NyfGrQCT8VzBYRpVPsK4tCZ7TaAIsX.jpg', 'H1313.jpg', '2021-04-22 09:28:20', '2021-04-22 09:28:20');
-INSERT INTO `colors` VALUES (11, 'h1582', 'colors/vyiVJXMgkxpsbABBHBKhP5PSLy7L2WjbShEVJ3oi.jpg', 'H1582.jpg', '2021-04-22 09:28:34', '2021-04-22 09:28:34');
-INSERT INTO `colors` VALUES (12, 'h1424', 'colors/w2cSESr44YawOhzV3TTibXw8P8JXG3zcUPOHROR4.jpg', 'H1424.jpg', '2021-04-22 09:28:48', '2021-04-22 09:28:48');
-INSERT INTO `colors` VALUES (13, 'h3404', 'colors/J1sHCleoJzp9ZpGSiCQz4aKUBX5tJuZln59th2Jr.jpg', 'H3404.jpg', '2021-04-22 09:29:06', '2021-04-22 09:29:06');
-INSERT INTO `colors` VALUES (14, 'h3700', 'colors/R4clKBrWDU1jC2QkJnfdLm8r4HeVZ15Z3zUQJBSX.jpg', 'H3700.jpg', '2021-04-22 09:29:21', '2021-04-22 09:29:21');
-INSERT INTO `colors` VALUES (15, 'h3860', 'colors/PXtOLKmJ4RqNRYIocPs1Mn3fRve9XjZZb8Z6NufG.jpg', 'H3860.jpg', '2021-04-22 09:29:38', '2021-04-22 09:29:38');
-INSERT INTO `colors` VALUES (17, 'h1180', 'colors/FX4NDe01ys8MpIDHoDUUphdLFr3WNiMxBHt4gccQ.jpg', 'H1180.jpg', '2021-04-22 09:30:11', '2021-04-22 09:30:11');
-INSERT INTO `colors` VALUES (18, 'h1253', 'colors/AjbaGwXauVqKn307ZKnbo9KIXHdgBBXhDSBQi1yn.jpg', 'H1253.jpg', '2021-04-22 09:30:26', '2021-04-22 09:30:26');
-INSERT INTO `colors` VALUES (19, 'h1487', 'colors/XhFlygK4iClV7cXU7h4x9IrnnNDas7uh8ScraM0k.jpg', 'H1487.jpg', '2021-04-22 09:30:43', '2021-04-22 09:30:43');
-INSERT INTO `colors` VALUES (20, 'h1387', 'colors/6ezvdn98KM86c6qlyR1xDQDj2Z1p4AEXZGb9XANr.jpg', 'H1387.jpg', '2021-04-22 13:06:09', '2021-04-22 13:06:09');
+INSERT INTO `fabrics` VALUES (1, 'Жаккард', 5500, 'Прочные и износостойкие ткани, вырабатываемые из синтетических, хлопчатобумажных или смесовых волокон на жаккардовом станке.', '2021-04-24 17:23:24', '2021-04-24 19:22:24');
+INSERT INTO `fabrics` VALUES (3, 'Гобелен', 5400, 'Ткань, схожая с жаккардом, но превосходящая его по плотности. Износостойкая и долговечная. Используется в производстве элитной мебели.', '2021-04-24 17:24:05', '2021-04-24 19:22:35');
+INSERT INTO `fabrics` VALUES (4, 'Шенилл', 5200, 'Приятная на ощупь прочная ткань. Полностью гипоаллергенна. Современный шенилл имеет пропитку против пыли, влаги и маслянистых жидкостей.', '2021-04-24 17:24:39', '2021-04-24 19:22:42');
+INSERT INTO `fabrics` VALUES (5, 'Флок', 4900, 'Недорогая практичная ткань с мелким ворсом для изготовления мебели «эконом» и «стандарт» класса.', '2021-04-24 17:24:56', '2021-04-24 19:22:51');
+INSERT INTO `fabrics` VALUES (6, 'Велюр', 5000, 'Мягкая ткань для обивки недорогих диванов и кресел.', '2021-04-24 17:25:15', '2021-04-24 19:22:58');
+INSERT INTO `fabrics` VALUES (7, 'Рогожка', 5100, 'Шенилл с грубым плетением из толстых нитей, используется для создания мебели в современном и эко стиле.', '2021-04-24 17:25:32', '2021-04-24 19:23:05');
+INSERT INTO `fabrics` VALUES (8, 'Бархат', 5000, 'Ткань для обивки мебели класса «люкс». В мебельном производстве используются специальные износостойкие виды бархата.', '2021-04-24 17:25:49', '2021-04-24 19:23:16');
+INSERT INTO `fabrics` VALUES (9, 'Натуральная кожа', 5700, 'Экологически чистый материал с превосходными потребительскими качествами. Используется для обивки мебели представительского класса.', '2021-04-24 17:26:03', '2021-04-24 19:23:23');
+INSERT INTO `fabrics` VALUES (10, 'Искусственная кожа', 5000, 'Синтетический аналог кожи, не пропускающий влагу и устойчивый к воздействию механических нагрузок.', '2021-04-24 17:26:21', '2021-04-24 19:23:30');
 
 -- ----------------------------
 -- Table structure for materials
@@ -110,18 +73,36 @@ INSERT INTO `colors` VALUES (20, 'h1387', 'colors/6ezvdn98KM86c6qlyR1xDQDj2Z1p4A
 DROP TABLE IF EXISTS `materials`;
 CREATE TABLE `materials`  (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `tree_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
+  `note` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
   `price` double NOT NULL DEFAULT 0,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of materials
 -- ----------------------------
-INSERT INTO `materials` VALUES (2, 1, 1700, '2021-04-23 21:55:10', '2021-04-23 21:55:10');
-INSERT INTO `materials` VALUES (3, 1, 1800, '2021-04-23 21:55:31', '2021-04-23 21:55:31');
+INSERT INTO `materials` VALUES (4, 'H1115-1', 'materials/ZzRux5W2YdsuAGjsg7yeOFYI1Ta6088rcPaKEDyJ.jpg', 'H1115-1.jpg', 2300, '2021-04-24 18:05:04', '2021-04-24 18:05:04');
+INSERT INTO `materials` VALUES (5, 'H1122-1', 'materials/hq6Pm3LmebQxcWVdv0eYGsLqLYBQuMzUtjUOQHCf.jpg', 'H1122-1.jpg', 2300, '2021-04-24 18:05:17', '2021-04-24 18:05:17');
+INSERT INTO `materials` VALUES (6, 'H1123-1', 'materials/jVWEVi21dwb2yu8PBBNv3KYF1JMQywWMhOBVwee3.jpg', 'H1123-1.jpg', 2300, '2021-04-24 18:05:28', '2021-04-24 18:05:28');
+INSERT INTO `materials` VALUES (7, 'H1137-1', 'materials/Xpj5PWTK0xNxqhqEVEBcSl0pPT82AEA1myPG5Kkk.jpg', 'H1137-1.jpg', 2300, '2021-04-24 18:05:40', '2021-04-24 18:05:40');
+INSERT INTO `materials` VALUES (8, 'H1145-1', 'materials/xMzBXGvTXc6sKh71RXI6XxOVpdSK4phk1P3ng0QM.jpg', 'H1145-1.jpg', 2300, '2021-04-24 18:05:51', '2021-04-24 18:05:51');
+INSERT INTO `materials` VALUES (9, 'H1146-1', 'materials/VtRSmQ2MHvYT4tjE3jKjGCEt7bPWBNRKmp2aKf1m.jpg', 'H1146-1.jpg', 2300, '2021-04-24 18:06:07', '2021-04-24 18:06:07');
+INSERT INTO `materials` VALUES (10, 'H1150-1', 'materials/zNqG3bJHeEQYIzj63kdGPDJJV6xPS2va3j44YoOQ.jpg', 'H1150-1.jpg', 2300, '2021-04-24 18:06:37', '2021-04-24 18:06:37');
+INSERT INTO `materials` VALUES (11, 'H1151', 'materials/t2EGf1K1kB8jRqdGo1ys52BsPGhMrGTCwQyFQtIK.jpg', 'H1151.jpg', 2300, '2021-04-24 18:06:52', '2021-04-24 18:06:52');
+INSERT INTO `materials` VALUES (14, 'H1199', 'materials/8HtrI3dC4lAAJGhO1tj7Ojj6tXR41zrNNm6VJm7E.jpg', 'H1199.jpg', 2300, '2021-04-24 18:07:33', '2021-04-24 18:07:33');
+INSERT INTO `materials` VALUES (15, 'H1210', 'materials/yry5kb2RsMIo75hduyuxtuRy9m2nvPY079cmjYOn.jpg', 'H1210.jpg', 2300, '2021-04-24 18:08:17', '2021-04-24 18:08:17');
+INSERT INTO `materials` VALUES (16, 'H1212', 'materials/06pLDECJlgRa4lSrEeDyYu9G9hOSvbnNxPB8Qf0s.jpg', 'H1212.jpg', 2300, '2021-04-24 18:08:31', '2021-04-24 18:08:31');
+INSERT INTO `materials` VALUES (17, 'H1250', 'materials/ugFzf35bhjcb8ILvU2G616DustZyX2hUsiT8Osp2.jpg', 'H1250.jpg', 2300, '2021-04-24 18:08:44', '2021-04-24 18:08:44');
+INSERT INTO `materials` VALUES (18, 'H1253', 'materials/axVp0n5CR9fB80zW03l92os8wesWBLbjugeMpV2l.jpg', 'H1253.jpg', 2300, '2021-04-24 18:09:04', '2021-04-24 18:09:04');
+INSERT INTO `materials` VALUES (21, 'H1334', 'materials/pxHxh94EFZbhrBHzxROQqk2Nvuovk124Xekr63A1.jpg', 'H1334.jpg', 2300, '2021-04-24 18:10:11', '2021-04-24 18:10:11');
+INSERT INTO `materials` VALUES (23, 'H1377', 'materials/DQ1RR3KUYNfDeUaPC6VZeh8slklPK9tONOaOn2bW.jpg', 'H1377.jpg', 2300, '2021-04-24 18:11:10', '2021-04-24 18:11:10');
+INSERT INTO `materials` VALUES (24, 'H1401', 'materials/sdWBv3GQoz2eR9XBeWVcr0AzcSpg2PAYgFWBUHM6.jpg', 'H1401.jpg', 2300, '2021-04-24 18:11:34', '2021-04-24 18:11:34');
+INSERT INTO `materials` VALUES (25, 'H1582', 'materials/bsJ2P5giD76KnfYJFFomImYP1FbM95whsJ8753C3.jpg', 'H1582.jpg', 2300, '2021-04-24 18:11:49', '2021-04-24 18:11:49');
+INSERT INTO `materials` VALUES (26, 'H1733', 'materials/WrCUIgukiSYXh2KgL8ISBECElUHvpWpWUhg1zSWG.jpg', 'H1733.jpg', 2300, '2021-04-24 18:12:03', '2021-04-24 18:12:03');
 
 -- ----------------------------
 -- Table structure for migrations
@@ -132,7 +113,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -144,10 +125,9 @@ INSERT INTO `migrations` VALUES (4, '2021_04_16_184729_create_users_table', 1);
 INSERT INTO `migrations` VALUES (5, '2021_04_16_184749_create_permissions_table', 1);
 INSERT INTO `migrations` VALUES (6, '2021_04_16_184808_create_permission_user_table', 1);
 INSERT INTO `migrations` VALUES (9, '2021_04_17_163938_create_categories_table', 2);
-INSERT INTO `migrations` VALUES (12, '2021_04_22_070021_create_colors_table', 3);
-INSERT INTO `migrations` VALUES (13, '2021_04_22_070031_create_trees_table', 3);
-INSERT INTO `migrations` VALUES (15, '2021_04_22_071558_create_materials_table', 4);
-INSERT INTO `migrations` VALUES (16, '2021_04_23_185221_create_color_material_table', 4);
+INSERT INTO `migrations` VALUES (21, '2021_04_24_170907_create_trees_table', 3);
+INSERT INTO `migrations` VALUES (22, '2021_04_24_170951_create_materials_table', 3);
+INSERT INTO `migrations` VALUES (23, '2021_04_24_171011_create_fabrics_table', 3);
 
 -- ----------------------------
 -- Table structure for permission_user
@@ -188,7 +168,7 @@ CREATE TABLE `positions`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of positions
@@ -226,18 +206,18 @@ DROP TABLE IF EXISTS `trees`;
 CREATE TABLE `trees`  (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `price` double NOT NULL DEFAULT 0,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of trees
 -- ----------------------------
-INSERT INTO `trees` VALUES (1, 'ЛДСП', NULL, 'Ламинированная древесно-стружечная плита', '2021-04-23 18:17:33', '2021-04-23 18:20:29');
-INSERT INTO `trees` VALUES (5, 'МДФ', NULL, 'Древесноволокнистая плита средней плотности', '2021-04-23 18:22:38', '2021-04-23 18:22:38');
+INSERT INTO `trees` VALUES (1, 'ЛДСП', 1500, 'Ламинированная древесно-стружечная плита', '2021-04-24 17:30:10', '2021-04-24 19:17:31');
+INSERT INTO `trees` VALUES (2, 'МДФ', 1700, 'Древесноволокнистая плита средней плотности', '2021-04-24 17:30:43', '2021-04-24 19:17:38');
 
 -- ----------------------------
 -- Table structure for users

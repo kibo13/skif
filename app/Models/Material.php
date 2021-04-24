@@ -10,17 +10,14 @@ class Material extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tree_id',
+        'name',
+        'image',
+        'note',
         'price'
     ];
 
-    public function tree()
+    public function products()
     {
-        return $this->belongsTo('App\Models\Tree');
-    }
-
-    public function colors()
-    {
-        return $this->belongsToMany('App\Models\Color');
+        return $this->hasMany('App\Models\Product');
     }
 }

@@ -41,9 +41,24 @@
             />
           </div>
 
+          <!-- /.price -->
+          <h6 class="bk-form__title">Цена</h6>
+          <div class="bk-form__field-100 mb-2">
+            <input
+              class="form-control bk-form__input bk-valid"
+              id="price"
+              type="text"
+              name="price"
+              value="@isset($tree) {{ $tree->price }} @endisset"
+              maxlength="7"
+              placeholder="1 500"
+              required
+            />
+          </div>
+
           <!-- /.description -->
           <h6 class="bk-form__title">Описание</h6>
-          <div class="bk-form__field-full mb-2">
+          <div class="bk-form__field-full">
             <textarea class="form-control bk-form__text" name="description" placeholder="Введите описание">{{ old('description', isset($tree) ? $tree->description : null) }}</textarea>
           </div>
 

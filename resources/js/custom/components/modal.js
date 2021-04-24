@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-  $('.bk-btn-del').on('click', function (e) {
+  $(document).on("click", ".bk-btn-del", e => {
 
     var data_id = $(e.target).data('id');
     var data_tname = $(e.target).data('table-name');
@@ -21,8 +21,8 @@ $(document).ready(function () {
         $('#bk-delete-form').attr('action', '/users/' + data_id);
         break;
 
-      case 'color':
-        $('#bk-delete-form').attr('action', '/colors/' + data_id);
+      case 'category':
+        $('#bk-delete-form').attr('action', '/categories/' + data_id);
         break;
 
       case 'tree':
@@ -35,10 +35,6 @@ $(document).ready(function () {
 
       case 'fabric':
         $('#bk-delete-form').attr('action', '/fabrics/' + data_id);
-        break;
-
-      case 'category':
-        $('#bk-delete-form').attr('action', '/categories/' + data_id);
         break;
 
       case 'product':

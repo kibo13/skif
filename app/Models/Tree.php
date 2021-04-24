@@ -11,12 +11,12 @@ class Tree extends Model
 
     protected $fillable = [
         'name', 
-        'description',
-        'slug'
+        'price',
+        'description'
     ];
 
-    public function materials()
+    public function products()
     {
-        return $this->hasMany('App\Models\Material');
+        return $this->hasMany('App\Models\Product');
     }
 }
