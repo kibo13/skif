@@ -33,6 +33,10 @@ $(document).ready(function () {
         $('#bk-delete-form').attr('action', '/materials/' + data_id);
         break;
 
+      case 'fabric':
+        $('#bk-delete-form').attr('action', '/fabrics/' + data_id);
+        break;
+
       case 'category':
         $('#bk-delete-form').attr('action', '/categories/' + data_id);
         break;

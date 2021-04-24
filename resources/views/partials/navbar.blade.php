@@ -49,7 +49,7 @@
             </a>
             <a 
                 class="dropdown-item" 
-                href="#"
+                href="{{ route('fabrics.index') }}"
               >    
                 Обивка 
             </a>

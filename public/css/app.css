@@ -10665,26 +10665,32 @@ table.dataTable thead .sorting_desc_disabled {
 .bk-btn-confirm {
   width: 50px;
 }
+.bk-btn-info {
+  margin-right: -5px;
+  position: relative;
+  height: 25px;
+  overflow: hidden;
+}
+.bk-btn-info--active {
+  height: auto;
+}
 .bk-btn-triangle {
-  width: 20px;
-  height: 20px;
-}
-.bk-btn-triangle::after {
-  top: -15px;
-  left: -60px;
-}
-.bk-btn-triangle--up, .bk-btn-triangle--down {
   position: absolute;
+  top: -2px;
+  right: 0;
+  height: 18px;
+  width: 18px;
+  background: transparent;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  border: transparent;
 }
 .bk-btn-triangle--up {
-  bottom: 6px;
-  border: 6px solid transparent;
-  border-bottom: 8px solid #5bc0de;
+  background-image: url("/icons/triangle-up.png");
 }
 .bk-btn-triangle--down {
-  top: 6px;
-  border: 6px solid transparent;
-  border-top: 8px solid #5bc0de;
+  background-image: url("/icons/triangle-down.png");
 }
 
 .bk-list {

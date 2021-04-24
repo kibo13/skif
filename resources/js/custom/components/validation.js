@@ -27,7 +27,7 @@ $(document).ready(function () {
       // validation for other fields 
       else {
         validation.oninput = e => {
-          e.target.value = e.target.value.replace(/[^а-яё]/ig, '')
+          e.target.value = e.target.value.replace(/[^а-яё ]/ig, '')
         }
       }
     }

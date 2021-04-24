@@ -9,88 +9,69 @@
 	
 .bk-btn 
 	position: relative
-
 	display: flex
 	justify-content: center
 	align-items: center
-
-	// display data-tip 
 	&::after
 		content: attr(data-tip)
 		position: absolute
 		top: -20px
 		left: -40px
 		padding: 0 5px
-
 		text-align: center
 		font-size: $text-sm
 		color: $dark
 		background: #ffffff
 		box-shadow: 0 0 2px 	
 		border-radius: 4px	
-
 		visibility: hidden
-	
 	&:hover 
 		&::after
 			visibility: visible
-
-	// START group crud-buttons
 	&-crud
 		width: 25px
 		height: 25px 
-	
-	// wrapper 
 	&-wrap
 		position: absolute
 		top: 0
 		left: 0
 		width: 100%
 		height: 100%
-	
-	// link
+	// for links 
 	&-link 
 		z-index: 5
-
-	// icon 
+	// for svg-icons  
 	&-icon 
 		z-index: 4
-
 		&--size 
 			width: 15px 
 			height: 15px 
 			color: #ffffff 
-	// END group crud-buttons
-
-	// START confirm-button
+	// for modal window 
 	&-confirm
 		width: 50px	
-	// END confirm-button
 
-	// START triangle-button
+	// for more info 
+	&-info 
+		margin-right: -5px
+		position: relative
+		height: 25px
+		overflow: hidden 
+		&--active 
+			height: auto
 	&-triangle 
-		width: 20px
-		height: 20px
-
-		&::after
-			top: -15px
-			left: -60px	
-		
-		&:hover 
-			// &::after
-			// 	background: $danger
-		
-		&--up,
-		&--down 
-			position: absolute
-		
+		position: absolute
+		top: -2px
+		right: 0
+		height: 18px
+		width: 18px
+		background: transparent
+		background-repeat: no-repeat
+		background-position: center top
+		background-size: cover
+		border: transparent
 		&--up 
-			bottom: 6px
-			border: 6px solid transparent
-			border-bottom: 8px solid #5bc0de 
-
+			background-image: url('/icons/triangle-up.png') 	
 		&--down 
-			top: 6px
-			border: 6px solid transparent
-			border-top: 8px solid #5bc0de 
-	// END triangle-button
+			background-image: url('/icons/triangle-down.png') 
+		

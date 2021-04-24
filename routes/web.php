@@ -10,6 +10,7 @@ use App\Http\Controllers\PositionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\FabricController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\TreeController;
 
@@ -32,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('colors', ColorController::class)->except(['show']);
     Route::resource('trees', TreeController::class)->except(['show']);
     Route::resource('materials', MaterialController::class)->except(['show']);
+    Route::resource('fabrics', FabricController::class)->except(['show']);
 
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
