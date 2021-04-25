@@ -16,8 +16,8 @@ class Material extends Model
         'price'
     ];
 
-    public function products()
-    {
-        return $this->hasMany('App\Models\Product');
-    }
+    // public function products()
+    // {
+    //     return $this->hasMany('App\Models\Product');
+    // }
 }

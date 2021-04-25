@@ -27,7 +27,7 @@
         {{ $material->name }}
       </p>
       <p class="bk-gallery__info bk-gallery__info--price">
-        <td>{{ number_format($material->price, 2) }}</td>
+        <td>{{ number_format($material->price) }} ₽</td>
       </p>
       <div class="bk-gallery__crud">
         <div 

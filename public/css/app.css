@@ -10469,6 +10469,11 @@ table.dataTable thead .sorting_desc_disabled {
 .bk-form__field-full {
   width: 100%;
 }
+.bk-form__field-inbox {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(55px, auto));
+  grid-gap: 5px;
+}
 .bk-form__title {
   padding: 3px 0;
   margin-bottom: 6px;
@@ -10496,8 +10501,8 @@ table.dataTable thead .sorting_desc_disabled {
 }
 .bk-form__text {
   padding: 5px 10px;
-  height: 80px;
-  resize: none;
+  height: 100px;
+  resize: vertical;
 }
 .bk-form__file {
   position: relative;
@@ -10693,46 +10698,6 @@ table.dataTable thead .sorting_desc_disabled {
   background-image: url("/icons/triangle-down.png");
 }
 
-.bk-list {
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
-  grid-gap: 10px;
-}
-.bk-list__item {
-  text-align: center;
-}
-.bk-list__title {
-  font-size: 16px;
-  font-weight: bold;
-}
-.bk-list__text {
-  font-size: 14px;
-}
-
-.bk-display {
-  margin-top: 30px;
-  padding: 0 10px;
-}
-.bk-display__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
-}
-.bk-display__control {
-  display: grid;
-  grid-template-columns: 25px 25px;
-  grid-gap: 5px;
-}
-.bk-display__body {
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, auto));
-  grid-gap: 5px;
-}
-
 .bk-gallery {
   padding: 0;
   margin-top: 30px;
@@ -10783,4 +10748,45 @@ table.dataTable thead .sorting_desc_disabled {
   background: transparent;
   transform: translateY(150%);
   transition: all 0.3s;
+}
+
+.bk-home-list {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  grid-gap: 10px;
+}
+.bk-home-list__item {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+.bk-home-list__img {
+  width: 100%;
+  height: 200px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.bk-info {
+  display: flex;
+  flex-direction: column;
+}
+.bk-info__img {
+  height: 70px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.bk-info__title {
+  margin-bottom: 0;
+  font-weight: bold;
+}
+.bk-info__size {
+  margin: 2px 0;
+  font-size: 14px;
 }

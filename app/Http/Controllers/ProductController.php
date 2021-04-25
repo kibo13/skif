@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -14,8 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // $positions = Position::get();
-        return view('pages.products.index');
+        $products = Product::get();
+        return view('pages.products.index', compact('products'));
     }
 
     /**
@@ -25,7 +27,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::get();
+        return view('pages.products.form', compact('categories'));
     }
 
     /**
@@ -36,7 +39,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $params = $request->all();
+        unset($params['image']);
+        if ($request->has('image')) {
+	        $params['image'] = $request->file('image')->store('products');
+        }
+
+        Product::create($params);
+        return redirect()->route('products.index');
     }
 
     /**
@@ -58,7 +68,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::get();
+        return view('pages.products.form', compact('product', 'categories'));
     }
 
     /**
@@ -70,7 +81,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $params = $request->all();
+        unset($params['image']);
+        if ($request->has('image')) {
+            Storage::delete($product->image);
+            $params['image'] = $request->file('image')->store('products');
+        }
+        
+        $product->update($params);
+        return redirect()->route('products.index');
     }
 
     /**
@@ -81,6 +100,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        Storage::delete($product->image);
+        return redirect()->route('products.index');
     }
 }

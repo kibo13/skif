@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('trees', TreeController::class)->except(['show']);
     Route::resource('materials', MaterialController::class)->except(['show']);
     Route::resource('fabrics', FabricController::class)->except(['show']);
-    Route::resource('products', ProductController::class)->except(['show']);
+    Route::resource('products', ProductController::class);
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
 });

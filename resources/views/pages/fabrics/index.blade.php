@@ -31,7 +31,7 @@
       <tr>
         <td scope="row">{{ $key+=1 }}</td>
         <td>{{ $fabric->name }}</td>
-        <td>{{ number_format($fabric->price, 2) }}</td>
+        <td>{{ number_format($fabric->price, 2) }} ₽</td>
         <td>
           <div class="bk-btn-info">
             {{ $fabric->description }}

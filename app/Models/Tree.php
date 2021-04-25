@@ -15,8 +15,8 @@ class Tree extends Model
         'description'
     ];
 
-    public function products()
-    {
-        return $this->hasMany('App\Models\Product');
-    }
+    // public function products()
+    // {
+    //     return $this->hasMany('App\Models\Product');
+    // }
 }

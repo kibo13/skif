@@ -38,7 +38,7 @@
           {{ $worker->surname }}
         </td>
         <td>{{ $worker->position->name }}</td>
-        <td>{{ number_format($worker->position->salary) }}</td>
+        <td>{{ number_format($worker->position->salary) }} ₽</td>
         <td>{{ $worker->address }}</td>
         <td>{{ $worker->phone }}</td>
         <td>

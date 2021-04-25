@@ -10,17 +10,16 @@
     </a>
   </div>
 
-  <ul class="bk-list">
+  <ul class="bk-home-list">
     @foreach($categories as $category)
-    <li class="card bk-list__item">
+    <li class="bk-home-list__item">
       <img 
-        class="card-img-top" 
+        class="bk-home-list__img" 
         src="{{asset('images/' . $category->image)}}" 
         alt="{{ $category->name }}">
-      <div class="card-body">
-        <h5 class="card-title bk-list__title">{{ $category->name }}</h5>
-        <p class="card-text bk-list__text">{{ $category->description }}</p>
-      </div>
+      <h5 class="bk-home-list__title">
+        {{ $category->name }}
+      </h5>
     </li>
     @endforeach 
   </ul>

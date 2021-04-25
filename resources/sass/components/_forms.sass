@@ -37,6 +37,10 @@
 		width: 300px
 	&__field-full
 		width: 100%
+	&__field-inbox
+		display: grid
+		grid-template-columns: repeat(auto-fill, minmax(55px, auto))
+		grid-gap: 5px
 
 	&__title
 		padding: 3px 0
@@ -60,8 +64,8 @@
 
 	&__text 
 		padding: 5px 10px
-		height: 80px
-		resize: none
+		height: 100px
+		resize: vertical
 
 	&__file 
 		position: relative

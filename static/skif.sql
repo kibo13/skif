@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 25/04/2021 00:29:14
+ Date: 26/04/2021 00:28:20
 */
 
 SET NAMES utf8mb4;
@@ -31,14 +31,14 @@ CREATE TABLE `categories`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of categories
 -- ----------------------------
-INSERT INTO `categories` VALUES (1, 'Корпусная мебель', 'corps', 'К корпусной мебели относятся шкафы, комоды, стеллажи, горки, трюмо, тумбы, словом, предметы мебели, имеющие внутренний объём именно для хранения либо демонстрации вещей. Такая мебель может иметь вид отдельно стоящих предметов либо быть элементом модульной конструкции - стенка или составной шкаф.', 'categories/psm5rkRqcQrxbZ4pOQeRMct2GhOfTcC7fc3kfm2j.gif', 'corps.gif', '2021-04-18 19:38:59', '2021-04-23 20:13:58');
-INSERT INTO `categories` VALUES (2, 'Мягкая мебель', 'soft', 'Эта мебельная группа предполагает чаще всего комплект, включающий диван, кресла, кровати и стулья. Основным свойством такой мебели является мягкость и комфорт.', 'categories/k7kmfW9kxfn8XZTJ4aSjvUEMWuM8f4XJaEq2lqTm.gif', 'soft.gif', '2021-04-18 19:52:36', '2021-04-21 20:51:35');
-INSERT INTO `categories` VALUES (4, 'Прочее', 'other', 'Столы представлены огромным разнообразием, изготовлены из различных материалов, выполнены в различных стилях, кроме того, современные модели отличаются дизайном, способом раскладывания. Столы делают из дерева, стекла, металла, пластика.', 'categories/oBbNbb9tHEKP0yLzXTfy6LmAVxmQ49nOW7pUPqHf.gif', 'other.gif', '2021-04-18 19:53:39', '2021-04-21 20:51:43');
+INSERT INTO `categories` VALUES (1, 'Корпусная мебель', 'corps', 'К корпусной мебели относятся шкафы, комоды, стеллажи, горки, трюмо, тумбы, словом, предметы мебели, имеющие внутренний объём именно для хранения либо демонстрации вещей. Такая мебель может иметь вид отдельно стоящих предметов либо быть элементом модульной конструкции - стенка или составной шкаф.', 'categories/RkTGOMAAvApuBOU9yhB26ZiPOYwPY9jGhuHrlBhm.png', 'corps.png', '2021-04-18 19:38:59', '2021-04-25 18:05:02');
+INSERT INTO `categories` VALUES (2, 'Мягкая мебель', 'soft', 'Эта мебельная группа предполагает чаще всего комплект, включающий диван, кресла, кровати и стулья. Основным свойством такой мебели является мягкость и комфорт.', 'categories/eHROm1ZGix8dGbrgw2uq56kq9r8SEB9dD65mvwzX.png', 'soft.png', '2021-04-18 19:52:36', '2021-04-25 18:05:10');
+INSERT INTO `categories` VALUES (4, 'Прочее', 'other', 'Столы представлены огромным разнообразием, изготовлены из различных материалов, выполнены в различных стилях, кроме того, современные модели отличаются дизайном, способом раскладывания. Столы делают из дерева, стекла, металла, пластика.', 'categories/aUKxL55YmqBhE0JH9Pk6PiLERbrjxfslgAqWgyjN.png', 'other.png', '2021-04-18 19:53:39', '2021-04-25 18:05:23');
 
 -- ----------------------------
 -- Table structure for fabrics
@@ -113,7 +113,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -128,6 +128,7 @@ INSERT INTO `migrations` VALUES (9, '2021_04_17_163938_create_categories_table',
 INSERT INTO `migrations` VALUES (21, '2021_04_24_170907_create_trees_table', 3);
 INSERT INTO `migrations` VALUES (22, '2021_04_24_170951_create_materials_table', 3);
 INSERT INTO `migrations` VALUES (23, '2021_04_24_171011_create_fabrics_table', 3);
+INSERT INTO `migrations` VALUES (25, '2021_04_24_193139_create_products_table', 4);
 
 -- ----------------------------
 -- Table structure for permission_user
@@ -177,6 +178,39 @@ INSERT INTO `positions` VALUES (1, 'Директор', 55000, '2021-04-16 15:54:
 INSERT INTO `positions` VALUES (2, 'Кладовщик', 40000, '2021-04-16 15:55:18', '2021-04-16 15:55:18');
 INSERT INTO `positions` VALUES (3, 'Продавец', 35000, '2021-04-16 15:58:55', '2021-04-16 15:58:55');
 INSERT INTO `positions` VALUES (4, 'Мастер', 30000, '2021-04-16 15:59:12', '2021-04-16 15:59:12');
+
+-- ----------------------------
+-- Table structure for products
+-- ----------------------------
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE `products`  (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `category_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `L` double NOT NULL DEFAULT 0,
+  `B` double NOT NULL DEFAULT 0,
+  `H` double NOT NULL DEFAULT 0,
+  `price` double NOT NULL DEFAULT 0,
+  `image` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
+  `note` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of products
+-- ----------------------------
+INSERT INTO `products` VALUES (1, 4, 'Стол компьютерный континент', 1304, 704, 760, 6140, 'products/lYHzt2o71W4ycCWMwymgXFJbjitbmYBHLpD8jTRQ.jpg', 'SF238.jpg', NULL, '2021-04-25 16:46:53', '2021-04-25 19:09:30');
+INSERT INTO `products` VALUES (3, 4, 'Стол криволинейный оптима', 1300, 900, 760, 3480, 'products/7E02UMbMnqFXwJNK9CUzlinUFwi730UosSnfHHT9.jpg', 'SF257.jpg', NULL, '2021-04-25 19:10:44', '2021-04-25 19:10:44');
+INSERT INTO `products` VALUES (4, 4, 'Стол компьютерный оптима', 1304, 704, 760, 6050, 'products/9EWfIzwHa2SqfLNdcEv4iHr8FwmrthVUgX3w8jq3.jpg', 'SF248.jpg', NULL, '2021-04-25 19:12:03', '2021-04-25 19:12:03');
+INSERT INTO `products` VALUES (5, 2, 'Диван Интегра', 2100, 880, 820, 26500, 'products/PyCypq6WjHBjsdDE1FetIgArmwMRsFi5K6wl2NCu.jpg', 'DI365.jpg', NULL, '2021-04-25 19:16:58', '2021-04-25 19:20:36');
+INSERT INTO `products` VALUES (6, 2, 'Диван Клерк', 1900, 800, 800, 24750, 'products/vt69afFOcXGFFttrTbanQDp3o6DAuqLqfvYNcpsb.jpg', 'DI475.jpg', NULL, '2021-04-25 19:19:51', '2021-04-25 19:19:51');
+INSERT INTO `products` VALUES (7, 2, 'Диван Алекто', 1730, 850, 700, 21300, 'products/NM7RxenFBOn4sJfCTFnHNyHCV029ryd0GcLc0vD8.jpg', 'DI220.jpg', NULL, '2021-04-25 19:21:41', '2021-04-25 19:22:05');
+INSERT INTO `products` VALUES (8, 1, 'Стеллаж угловой Оптима', 406, 406, 2000, 3390, 'products/luwgCxccjgit3EPv70kCkkHnVJFXEbl8X0oIE7Oj.jpg', 'LF202.jpg', NULL, '2021-04-25 19:24:36', '2021-04-25 19:24:36');
+INSERT INTO `products` VALUES (9, 1, 'Шкаф полузакрытый Оптима', 800, 406, 2000, 5860, 'products/cGPiOkFyGg8V2U5mKBahSV8rLnEC9fBmQUBBwQg5.jpg', 'LF218.jpg', NULL, '2021-04-25 19:25:14', '2021-04-25 19:25:14');
+INSERT INTO `products` VALUES (10, 1, 'Шкаф для одежды Оптима', 800, 560, 2000, 6760, 'products/JEkVWKXTmzVh4RFXInVReEE0drDJ0VgBVDhf3hhA.jpg', 'SHF222.jpg', NULL, '2021-04-25 19:25:41', '2021-04-25 19:25:41');
 
 -- ----------------------------
 -- Table structure for roles

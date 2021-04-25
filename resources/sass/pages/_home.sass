@@ -1,4 +1,4 @@
-.bk-list 
+.bk-home-list
   margin: 0
   padding: 0
   display: grid
@@ -7,9 +7,14 @@
 
   &__item 
     text-align: center
-  
-  &__title 
     font-size: $text-md 
     font-weight: bold
-  &__text 
-    font-size: $text-base
+    overflow: hidden
+    background: #fff
+    border: 1px solid $gray
+    border-radius: 0.25rem
+  
+  &__img 
+    width: 100%
+    height: 200px
+    object-fit: contain

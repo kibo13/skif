@@ -30,7 +30,7 @@
       <tr>
         <td scope="row">{{ $key+=1 }}</td>
         <td>{{ $position->name }}</td>
-        <td>{{ number_format($position->salary, 2) }}</td>
+        <td>{{ number_format($position->salary, 2) }} ₽</td>
         <td>
           <div class="d-flex">
             <div
