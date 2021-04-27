@@ -12,3 +12,4 @@ require('./components/info')
 // views 
 require('./views/worker')
 require('./views/user')
+require('./views/customer')

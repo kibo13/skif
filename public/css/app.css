@@ -10543,6 +10543,21 @@ table.dataTable thead .sorting_desc_disabled {
   font-size: 11px;
 }
 
+.bk-radio {
+  padding: 0;
+}
+.bk-radio__item {
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+.bk-radio__label {
+  margin-left: 7px;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
 .bk-checks {
   margin: 0;
   padding: 0 5px;

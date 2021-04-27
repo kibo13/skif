@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\TreeController;
@@ -28,11 +29,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('workers', WorkerController::class)->except(['show']);
     Route::resource('positions', PositionController::class)->except(['show']);
     Route::resource('categories', CategoryController::class)->except(['show']);
-
     Route::resource('trees', TreeController::class)->except(['show']);
     Route::resource('materials', MaterialController::class)->except(['show']);
     Route::resource('fabrics', FabricController::class)->except(['show']);
-    Route::resource('products', ProductController::class);
+    Route::resource('products', ProductController::class)->except(['show']);
+    Route::resource('customers', CustomerController::class)->except(['show']);
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
 });

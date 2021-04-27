@@ -20,14 +20,19 @@
         @include('assets.icons.home') Главная
       </a>
     </li>
+    <li @sbactive('customer*')>
+      <a class="sidebar-link" href="{{ route('customers.index') }}">
+        @include('assets.icons.customer') Клиенты
+      </a>
+    </li>
     <li @sbactive('worker*')>
       <a class="sidebar-link" href="{{ route('workers.index') }}">
-        @include('assets.icons.user-group') Сотрудники
+        @include('assets.icons.worker') Сотрудники
       </a>
     </li>
     <li @sbactive('product*')>
       <a class="sidebar-link" href="{{ route('products.index') }}">
-        @include('assets.icons.bookmark-alt') Мебель
+        @include('assets.icons.product') Мебель
       </a>
     </li>
   </ul>

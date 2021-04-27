@@ -1,7 +1,7 @@
 @extends('layouts.master')
 <!-- worker-index -->
 @section('content')
-<section id="worker-index" class="bk-page section overflow-auto">
+<section id="worker-index" class="bk-page section">
   <h2 class="mb-3">Сотрудники</h2>
 
   <div class="bk-group">

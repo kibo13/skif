@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 26/04/2021 00:28:20
+ Date: 27/04/2021 23:34:05
 */
 
 SET NAMES utf8mb4;
@@ -39,6 +39,38 @@ CREATE TABLE `categories`  (
 INSERT INTO `categories` VALUES (1, 'Корпусная мебель', 'corps', 'К корпусной мебели относятся шкафы, комоды, стеллажи, горки, трюмо, тумбы, словом, предметы мебели, имеющие внутренний объём именно для хранения либо демонстрации вещей. Такая мебель может иметь вид отдельно стоящих предметов либо быть элементом модульной конструкции - стенка или составной шкаф.', 'categories/RkTGOMAAvApuBOU9yhB26ZiPOYwPY9jGhuHrlBhm.png', 'corps.png', '2021-04-18 19:38:59', '2021-04-25 18:05:02');
 INSERT INTO `categories` VALUES (2, 'Мягкая мебель', 'soft', 'Эта мебельная группа предполагает чаще всего комплект, включающий диван, кресла, кровати и стулья. Основным свойством такой мебели является мягкость и комфорт.', 'categories/eHROm1ZGix8dGbrgw2uq56kq9r8SEB9dD65mvwzX.png', 'soft.png', '2021-04-18 19:52:36', '2021-04-25 18:05:10');
 INSERT INTO `categories` VALUES (4, 'Прочее', 'other', 'Столы представлены огромным разнообразием, изготовлены из различных материалов, выполнены в различных стилях, кроме того, современные модели отличаются дизайном, способом раскладывания. Столы делают из дерева, стекла, металла, пластика.', 'categories/aUKxL55YmqBhE0JH9Pk6PiLERbrjxfslgAqWgyjN.png', 'other.png', '2021-04-18 19:53:39', '2021-04-25 18:05:23');
+
+-- ----------------------------
+-- Table structure for customers
+-- ----------------------------
+DROP TABLE IF EXISTS `customers`;
+CREATE TABLE `customers`  (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `type_id` bigint(20) UNSIGNED NOT NULL,
+  `code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `firstname` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `lastname` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `surname` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `fio` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `phone` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `customers_code_unique`(`code`) USING BTREE,
+  UNIQUE INDEX `customers_email_unique`(`email`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of customers
+-- ----------------------------
+INSERT INTO `customers` VALUES (5, 2, '982365199553', NULL, NULL, NULL, NULL, 'ООО \"Юпитер\"', 'upiter@info.com', 'Гвардейская 5', '+7-777-777-10-10', '2021-04-27 11:55:18', '2021-04-27 17:16:38');
+INSERT INTO `customers` VALUES (7, 1, '347061866200', 'Николай', 'Макаров', 'Викторович', NULL, NULL, 'makarov_v@gmail.com', '8 март 4-16', '+7-777-123-32-21', '2021-04-27 12:28:40', '2021-04-27 18:07:21');
+INSERT INTO `customers` VALUES (8, 1, '942944546297', 'Юрий', 'Нестеров', 'Игоревич', NULL, NULL, 'nesterov1010@gmail.com', '6 мкр 10-10', '+77019013005', '2021-04-27 18:27:15', '2021-04-27 18:27:15');
+INSERT INTO `customers` VALUES (9, 2, '601579973170', NULL, NULL, NULL, NULL, 'АО \"Аргус\"', 'argus@argus.ru', 'Пионерская 7', '+7-776-555-40-40', '2021-04-27 18:30:24', '2021-04-27 18:30:24');
+INSERT INTO `customers` VALUES (10, 1, '842002341610', 'Айгуль', 'Оспанова', 'Олжасовна', NULL, NULL, 'ospanova_ao@mail.ru', 'Мира 5-39', '+7-776-432-87-65', '2021-04-27 18:33:02', '2021-04-27 18:33:02');
 
 -- ----------------------------
 -- Table structure for fabrics
@@ -113,7 +145,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -129,6 +161,7 @@ INSERT INTO `migrations` VALUES (21, '2021_04_24_170907_create_trees_table', 3);
 INSERT INTO `migrations` VALUES (22, '2021_04_24_170951_create_materials_table', 3);
 INSERT INTO `migrations` VALUES (23, '2021_04_24_171011_create_fabrics_table', 3);
 INSERT INTO `migrations` VALUES (25, '2021_04_24_193139_create_products_table', 4);
+INSERT INTO `migrations` VALUES (26, '2021_04_25_200157_create_customers_table', 5);
 
 -- ----------------------------
 -- Table structure for permission_user
