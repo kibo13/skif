@@ -26,8 +26,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $type_customer = config('constants.type_customer');
-        return view('pages.customers.form', compact('type_customer'));
+        $types = config('constants.type_customer');
+        return view('pages.customers.form', compact('types'));
     }
 
     /**
@@ -61,8 +61,8 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        // $type_customer = config('constants.type_customer');
-        return view('pages.customers.form', compact('customer'));
+        $types = config('constants.type_customer');
+        return view('pages.customers.form', compact('customer', 'types'));
     }
 
     /**

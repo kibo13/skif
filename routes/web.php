@@ -13,6 +13,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\TreeController;
 use App\Http\Controllers\FabricController;
+use App\Http\Controllers\OrderController;
 
 Auth::routes([
     'login' => true,
@@ -34,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('fabrics', FabricController::class)->except(['show']);
     Route::resource('products', ProductController::class)->except(['show']);
     Route::resource('customers', CustomerController::class)->except(['show']);
+    Route::resource('orders', OrderController::class)->except(['show']);
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
 });

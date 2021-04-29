@@ -26,18 +26,8 @@ class Product extends Model
         return $this->belongsTo('App\Models\Category');
     }
 
-    // public function tree()
-    // {
-    //     return $this->belongsTo('App\Models\Tree');
-    // }
-
-    // public function material()
-    // {
-    //     return $this->belongsTo('App\Models\Material');
-    // }
-
-    // public function fabric()
-    // {
-    //     return $this->belongsTo('App\Models\Fabric');
-    // }
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order');
+    }
 }

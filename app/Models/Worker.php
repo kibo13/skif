@@ -29,4 +29,9 @@ class Worker extends Model
     {
         return $this->hasOne('App\Models\User');
     }
+
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order');
+    }
 }

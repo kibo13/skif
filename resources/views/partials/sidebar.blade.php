@@ -20,6 +20,11 @@
         @include('assets.icons.home') Главная
       </a>
     </li>
+    {{-- <li @sbactive('order*')>
+      <a class="sidebar-link" href="{{ route('orders.index') }}">
+        @include('assets.icons.order') Заказы
+      </a>
+    </li> --}}
     <li @sbactive('customer*')>
       <a class="sidebar-link" href="{{ route('customers.index') }}">
         @include('assets.icons.customer') Клиенты

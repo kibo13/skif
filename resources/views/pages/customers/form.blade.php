@@ -31,37 +31,29 @@
           <!-- /.type_customer -->
           <h6 class="bk-form__title">Тип клиента</h6>
           <ul class="bk-radio mb-2">
-            <li class="bk-radio__item">
-              <input 
-                class="bk-radio__toggle"
-                type="radio" 
-                name="type_id" 
-                id="1" 
-                value="1" 
-                checked 
-                @isset($customer) 
-                  disabled
-                  @if($customer->type_id == 1)
-                    checked="checked"
-                  @endif
-                @endisset >
-              <label class="bk-radio__label" for="1" >Физическое лицо</label>
-            </li>
-            <li class="bk-radio__item">
-              <input 
-                class="bk-radio__toggle"
-                type="radio" 
-                name="type_id" 
-                id="2" 
-                value="2" 
-                @isset($customer)
-                  disabled
-                  @if($customer->type_id == 2)
-                    checked="checked"
-                  @endif
-                @endisset >
-              <label class="bk-radio__label" for="2" >Юридическое лицо</label>
-            </li>
+            @foreach($types as $type)
+              <li class="bk-radio__item">
+                <input 
+                  class="bk-radio__toggle"
+                  type="radio" 
+                  name="type_id" 
+                  id="{{ $type['id'] }}" 
+                  value="{{ $type['id'] }}" 
+                  @isset($customer) 
+                    disabled
+                    @if($customer->type_id == $type['id'])
+                      checked="checked"
+                    @endif
+                  @else 
+                    @if($type['id'] == 1)
+                      checked
+                    @endif
+                  @endisset >
+                <label class="bk-radio__label" for="{{ $type['id'] }}" >
+                  {{ $type['name'] }}
+                </label>
+              </li>
+            @endforeach
           </ul>
           
           <!-- /.code -->
