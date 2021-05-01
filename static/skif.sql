@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 27/04/2021 23:34:05
+ Date: 29/04/2021 21:42:15
 */
 
 SET NAMES utf8mb4;
@@ -61,7 +61,7 @@ CREATE TABLE `customers`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `customers_code_unique`(`code`) USING BTREE,
   UNIQUE INDEX `customers_email_unique`(`email`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of customers
@@ -145,7 +145,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -162,6 +162,32 @@ INSERT INTO `migrations` VALUES (22, '2021_04_24_170951_create_materials_table',
 INSERT INTO `migrations` VALUES (23, '2021_04_24_171011_create_fabrics_table', 3);
 INSERT INTO `migrations` VALUES (25, '2021_04_24_193139_create_products_table', 4);
 INSERT INTO `migrations` VALUES (26, '2021_04_25_200157_create_customers_table', 5);
+INSERT INTO `migrations` VALUES (27, '2021_04_27_183847_create_orders_table', 6);
+
+-- ----------------------------
+-- Table structure for orders
+-- ----------------------------
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders`  (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date_in` date NOT NULL,
+  `date_out` date NULL DEFAULT NULL,
+  `customer_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `tree_id` int(11) NOT NULL,
+  `material_id` int(11) NOT NULL,
+  `fabric_id` int(11) NULL DEFAULT NULL,
+  `worker_id` int(11) NULL DEFAULT NULL,
+  `count` tinyint(4) NOT NULL,
+  `sale` tinyint(4) NULL DEFAULT NULL,
+  `price` double NOT NULL DEFAULT 0,
+  `state` tinyint(4) NOT NULL DEFAULT 0,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `orders_code_unique`(`code`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for permission_user

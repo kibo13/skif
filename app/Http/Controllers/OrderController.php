@@ -15,9 +15,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        // $orders = Order::get();
-        // return view('pages.positions.index', compact('orders'));
-        return view('pages.orders.index');
+        $orders = Order::get();
+        return view('pages.orders.index', compact('orders'));
     }
 
     /**
@@ -27,15 +26,10 @@ class OrderController extends Controller
      */
     public function create(Request $request)
     {
-        // types 
-        $types = config('constants.type_customer');
-
         // customers 
-        // if ($request->filled('types')) {
-        //     $customers = Customer::where('type_id', '==', $request->type);
-        // }
+        $customers = Customer::get();
 
-        return view('pages.orders.form', compact('types', 'customers'));
+        return view('pages.orders.form', compact('customers'));
     }
 
     /**
@@ -46,7 +40,8 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Order::create($request->all());
+        return redirect()->route('orders.index');
     }
 
     /**
@@ -68,8 +63,10 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        $types = config('constants.type_customer');
-        return view('pages.orders.form', compact('types'));
+        // customers 
+        $customers = Customer::get();
+
+        return view('pages.orders.form', compact('order', 'customers'));
     }
 
     /**
@@ -81,7 +78,8 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $order->update($request->all());
+        return redirect()->route('orders.index');
     }
 
     /**
@@ -92,6 +90,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        return redirect()->route('orders.index');
     }
 }

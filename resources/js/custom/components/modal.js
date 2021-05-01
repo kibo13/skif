@@ -45,6 +45,10 @@ $(document).ready(function () {
         $('#bk-delete-form').attr('action', '/customers/' + data_id);
         break;
 
+      case 'order':
+        $('#bk-delete-form').attr('action', '/orders/' + data_id);
+        break;
+
       default:
         break;
 

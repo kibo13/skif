@@ -10,19 +10,19 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'code',
-        'date_in',
-        'date_out',
+        // 'code',
+        // 'date_in',
+        // 'date_out',
         'customer_id',
-        'product_id',
-        'tree_id',
-        'material_id',
-        'fabric_id',
-        'worker_id',
-        'count',
-        'sale',
-        'price',
-        'state'
+        // 'product_id',
+        // 'tree_id',
+        // 'material_id',
+        // 'fabric_id',
+        // 'worker_id',
+        // 'count',
+        // 'sale',
+        // 'price',
+        // 'state'
     ];
 
     public function customer()

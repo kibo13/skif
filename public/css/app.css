@@ -10046,6 +10046,9 @@ hr {
   overflow: hidden;
 }
 
+.bk-table {
+  font-size: 14px;
+}
 .bk-table th,
 .bk-table td {
   padding: 5px 10px !important;
@@ -10804,4 +10807,90 @@ table.dataTable thead .sorting_desc_disabled {
 .bk-info__size {
   margin: 2px 0;
   font-size: 14px;
+}
+
+.order-customer .dataTable {
+  padding-right: 5px;
+  margin-bottom: 0;
+  height: 130px;
+  font-size: 14px;
+  overflow-y: auto;
+}
+.order-customer .dataTable th,
+.order-customer .dataTable td {
+  padding: 5px;
+  vertical-align: middle;
+  text-align: center;
+}
+.order-customer .dataTable th:nth-child(2) {
+  text-align: left;
+}
+.order-customer .dataTables_empty {
+  padding: 5px 10px !important;
+  text-align: left !important;
+}
+.order-customer .dataTables_length,
+.order-customer .dataTables_info,
+.order-customer .dataTables_paginate {
+  display: none;
+}
+.order-customer .dataTables_filter {
+  display: flex;
+  justify-content: flex-start;
+  vertical-align: middle;
+  flex-basis: 100%;
+}
+.order-customer .dataTables_filter label,
+.order-customer .dataTables_filter input {
+  width: 100%;
+}
+.order-alert {
+  margin-top: 5px;
+  margin-bottom: 0;
+  padding: 5px 10px;
+  display: block;
+  color: #e3342f;
+  font-size: 12px;
+}
+.order-list {
+  padding: 5px 10px;
+  margin: 0;
+  text-align: left;
+}
+.order-list__item {
+  margin: 5px 0px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  border-bottom: 1px solid #ced4da;
+}
+.order-list__tip {
+  display: block;
+  min-width: 70px;
+  font-weight: bold;
+}
+.order-control {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.order-control__radio {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+.order-control__radio:checked ~ .order-control__label {
+  background-image: url("/icons/check.svg");
+}
+.order-control__label {
+  width: 32px;
+  height: 32px;
+  background-image: url("/icons/uncheck.svg");
+  background-repeat: no-repeat;
+  background-position: center right;
+  background-size: cover;
+  cursor: pointer;
 }

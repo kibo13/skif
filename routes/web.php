@@ -9,6 +9,7 @@ use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\TreeController;
@@ -38,5 +39,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('orders', OrderController::class)->except(['show']);
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
+
+    // JSON 
+    Route::get('data/customers', [DataController::class, 'customers']);
 });
 

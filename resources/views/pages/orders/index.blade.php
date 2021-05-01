@@ -17,13 +17,57 @@
     <thead class="thead-light">
       <tr>
         <th scope="col">#</th>
-        <th scope="col" class="w-50">Номер заказа</th>
-        <th scope="col" class="w-25">Дата</th>
+        <th scope="col" class="w-75">Клиент</th>
         <th scope="col" class="w-25 no-sort">Действие</th>
       </tr>
     </thead>
     <tbody>
-     
+      @foreach($orders as $key => $order)
+      <tr>
+        <td scope="row">{{ $key+=1 }}</td>
+        <td>
+          @if($order->customer->type_id == 1) 
+            <div title="{{ $order->customer->lastname . ' ' . $order->customer->firstname . ' ' . $order->customer->surname}}">
+              {{ getFIO($order->customer->lastname, $order->customer->firstname, $order->customer->surname) }}
+            </div>
+          @else
+            {{ $order->customer->name }}
+          @endif 
+        </td>
+        <td>
+          <div class="d-flex">
+            <div
+              class="bk-btn bk-btn-crud btn btn-warning mr-1"
+              data-tip="Редактировать"
+            >
+              <a
+                href="{{ route('orders.edit', $order) }}"
+                class="bk-btn-wrap bk-btn-link"
+              >
+              </a>
+              <span class="bk-btn-wrap bk-btn-icon">
+                @include('assets.icons.pen')
+              </span>
+            </div>
+
+            <div class="bk-btn bk-btn-crud btn btn-danger" data-tip="Удалить">
+              <a
+                href="javascript:void(0)"
+                class="bk-btn-wrap bk-btn-link bk-btn-del"
+                data-id="{{ $order->id }}"
+                data-table-name="order"
+                data-toggle="modal"
+                data-target="#bk-delete-modal"
+              >
+              </a>
+              <span class="bk-btn-wrap bk-btn-icon">
+                @include('assets.icons.trash')
+              </span>
+            </div>
+          </div>
+        </td>
+      </tr>
+      @endforeach
     </tbody>
   </table>
 </section>
