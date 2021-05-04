@@ -28,6 +28,15 @@ class Product extends Model
 
     public function orders()
     {
-        return $this->hasMany('App\Models\Order');
+        return $this->belongsToMany('App\Models\Order');
+    }
+
+    public function getPriceForCount()
+    {
+        if (!is_null($this->pivot)) {
+            return $this->pivot->count * $this->price;
+        }
+
+        return $this->price;
     }
 }

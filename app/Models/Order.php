@@ -10,48 +10,56 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
+        'state'
         // 'code',
+        // 'customer_id',
         // 'date_in',
         // 'date_out',
-        'customer_id',
         // 'product_id',
-        // 'tree_id',
         // 'material_id',
         // 'fabric_id',
         // 'worker_id',
         // 'count',
-        // 'sale',
         // 'price',
-        // 'state'
     ];
 
-    public function customer()
+    public function products()
     {
-        return $this->belongsTo('App\Models\Customer');
+        return $this->belongsToMany('App\Models\Product')->withPivot('count')->withTimestamps();
     }
 
-    public function product()
+    public function getFullPrice()
     {
-        return $this->belongsTo('App\Models\Product');
+        $sum = 0; 
+        foreach($this->products as $product) {
+            $sum += $product->getPriceForCount();
+        }
+
+        return $sum;
     }
 
-    public function tree()
-    {
-        return $this->belongsTo('App\Models\Tree');
-    }
+    // public function customer()
+    // {
+    //     return $this->belongsTo('App\Models\Customer');
+    // }
 
-    public function material()
-    {
-        return $this->belongsTo('App\Models\Material');
-    }
+    // public function tree()
+    // {
+    //     return $this->belongsTo('App\Models\Tree');
+    // }
 
-    public function fabric()
-    {
-        return $this->belongsTo('App\Models\Fabric');
-    }
+    // public function material()
+    // {
+    //     return $this->belongsTo('App\Models\Material');
+    // }
 
-    public function worker()
-    {
-        return $this->belongsTo('App\Models\Worker');
-    }
+    // public function fabric()
+    // {
+    //     return $this->belongsTo('App\Models\Fabric');
+    // }
+
+    // public function worker()
+    // {
+    //     return $this->belongsTo('App\Models\Worker');
+    // }
 }

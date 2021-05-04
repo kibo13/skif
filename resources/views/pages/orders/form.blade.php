@@ -135,9 +135,86 @@
             </span>
           </div>
 
-          <!-- /.customers -->
-          <h6 class="bk-form__title">Мебель</h6>
-  
+          <!-- /.code -->
+          <input 
+            class="form-control bk-form__input"
+            type="hidden" 
+            name="code" 
+            value="{{ isset($order) ? $order->code : getCodeOrder() }}" 
+          >
+
+          <!-- /.date-in -->
+          <input 
+            class="form-control bk-form__input"
+            type="hidden" 
+            name="date_in" 
+            value="{{ isset($order) ? $order->date_in : getCurrentDay() }}" 
+          >
+          
+          <!-- /.category -->
+          <h6 class="bk-form__title">Категория</h6>
+          <div class="bk-form__field-250 mb-2">
+            <select 
+              class="form-control bk-form__input" 
+              id="category_id" 
+              @isset($oder) disabled @endisset >
+							<option disabled selected>Выберите категорию</option>
+							@foreach($categories as $category)
+							<option 
+                value="{{ $category->slug }}" 
+                data-id="{{ $category->id }}"
+                @isset($order) 
+                  @if($order->product->category_id == $category->id)
+								    selected
+								  @endif
+								@endisset >
+								{{ ucfirst($category->name) }}
+							</option>
+							@endforeach
+						</select>
+          </div>
+
+          <!-- /.product -->
+          <div id="product-block">
+            <h6 class="bk-form__title">Мебель</h6>
+            <div class="bk-form__field-full mb-2">
+              PRODUCT HERE
+            </div>
+          </div>
+
+          <!-- /.material -->
+          <div id="material-block" class="d-none">
+            <h6 class="bk-form__title">Цвет</h6>
+            <div class="bk-form__field-full mb-2">
+              COLORS HERE
+            </div>
+          </div>
+
+          <!-- /.fabric -->
+          <div id="fabric-block" class="d-none">
+            <h6 class="bk-form__title">Обивка</h6>
+            <div class="bk-form__field-250 mb-2">
+              <select 
+                class="form-control bk-form__input" 
+                id="fabric_id" >
+                <option disabled selected>Выберите обивку</option>
+                @foreach($fabrics as $fabric)
+                <option 
+                  value="{{ $fabric->id }}" 
+                  @isset($order) 
+                    @if($order->fabric_id == $fabric->id)
+                      selected
+                    @endif
+                  @endisset >
+                  {{ ucfirst($fabric->name) }}
+                </option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+
+          <!-- /.state -->
+          <h6 class="bk-form__title">Статус заказа</h6>
           
         </div>
       </div>

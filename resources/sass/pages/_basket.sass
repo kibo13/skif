@@ -1,0 +1,79 @@
+.basket
+  // column 'name'
+  &-list
+    display: flex
+    grid-gap: 10px
+
+    &__img 
+      height: 64px
+      object-fit: cover
+      
+    &__name,
+    &__size,
+    &__price 
+      margin-bottom: 0
+    
+    &__name 
+      font-weight: bold
+
+    &__size 
+      font-size: $text-sm
+      color: rgba($dark, .65)
+
+    &__price 
+      margin-top: 5px
+      font-size: $text-sm
+      &--bold 
+        font-weight: bold
+  // column 'count'
+  &-count 
+    display: flex
+    height: 25px
+    // border: 1px solid $gray 
+    // overflow: hidden
+
+    &__btn,
+    &__field 
+      margin-bottom: 0
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 25px
+      height: 100%
+      font-size: $text-sm
+      border: 1px solid $gray 
+      user-select: none
+    
+    &__btn 
+      font-size: $text-base
+      transition: all .3s ease-out
+
+      &:focus 
+        box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1)
+
+    &__field 
+      border-left: none 
+      border-right: none
+  // total sum 
+  &-footer 
+    display: flex
+    flex-direction: column
+    &__total 
+      margin-bottom: 15px
+      text-align: right
+      &--sm 
+        padding-right: 10px
+        font-size: $text-base
+        font-weight: bold
+    &__control 
+      display: flex
+      justify-content: space-between
+  // basket empty 
+  &-empty 
+    display: flex
+    flex-direction: column
+    align-items: center
+    text-align: center
+    &__title 
+      margin-top: 20px
+      margin-bottom: 15px

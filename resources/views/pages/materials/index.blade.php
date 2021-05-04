@@ -8,9 +8,6 @@
     <a class="btn btn-outline-primary" href="{{ route('materials.create') }}">
       Новая запись
     </a>
-    <a class="btn btn-outline-secondary" href="{{ route('trees.index') }}">
-      Вид древесины
-    </a>
     <a class="btn btn-outline-secondary" href="{{ route('fabrics.index') }}">
       Обивка
     </a>

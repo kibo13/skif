@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,9 @@ class HomeController extends Controller
         // categories 
         $categories = Category::get();
 
-        return view('home', compact('categories'));
+        // products 
+        $products = Product::get();
+
+        return view('home', compact('products'));
     }
 }

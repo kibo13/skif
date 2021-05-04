@@ -2,15 +2,38 @@
 <!-- home-index -->
 @section('content')
 <section id="home-index" class="bk-page section">
-  <h2 class="mb-3">Мебель на заказ</h2>
+  <h2 class="mb-3">Каталог мебели</h2>
 
-  <div class="py-2 mb-1">
-    <a href="#!" class="btn btn-outline-primary">
-      Заказать
+  <div class="bk-group">
+    <button class="btn btn-primary">CATEGORIES</button>
+    <a class="btn btn-outline-primary" href="{{ route('basket.index') }}">
+      Корзина
     </a>
   </div>
 
   <ul class="bk-home-list">
+    @foreach($products as $product)
+    <li class="bk-home-list__item">
+      <h5 class="bk-home-list__title">
+        {{ $product->name }}
+      </h5>
+      <form 
+        action="{{ route('basket.create', $product) }}"
+        enctype="multipart/form-data"
+        method="POST" >
+        @csrf
+
+        <button class="btn btn-outline-primary">
+          Add
+        </button>
+      </form>
+    </li>
+    @endforeach 
+  </ul>
+
+
+
+  {{-- <ul class="bk-home-list">
     @foreach($categories as $category)
     <li class="bk-home-list__item">
       <img 
@@ -22,7 +45,7 @@
       </h5>
     </li>
     @endforeach 
-  </ul>
+  </ul> --}}
 
 
 

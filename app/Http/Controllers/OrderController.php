@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Customer;
+use App\Models\Category;
+use App\Models\Fabric;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -26,10 +29,16 @@ class OrderController extends Controller
      */
     public function create(Request $request)
     {
+        // categories
+        $categories = Category::get();
+
+        // fabrics 
+        $fabrics = Fabric::get();
+
         // customers 
         $customers = Customer::get();
 
-        return view('pages.orders.form', compact('customers'));
+        return view('pages.orders.form', compact('customers', 'categories', 'fabrics'));
     }
 
     /**

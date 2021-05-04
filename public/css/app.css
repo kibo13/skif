@@ -10027,13 +10027,14 @@ hr {
 .wrapper {
   display: flex;
   align-items: stretch;
+  height: 100vh;
 }
 
 .main {
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 100vh;
+  overflow: auto;
 }
 
 .content {
@@ -10810,7 +10811,6 @@ table.dataTable thead .sorting_desc_disabled {
 }
 
 .order-customer .dataTable {
-  padding-right: 5px;
   margin-bottom: 0;
   height: 130px;
   font-size: 14px;
@@ -10893,4 +10893,87 @@ table.dataTable thead .sorting_desc_disabled {
   background-position: center right;
   background-size: cover;
   cursor: pointer;
+}
+
+.basket-list {
+  display: flex;
+  grid-gap: 10px;
+}
+.basket-list__img {
+  height: 64px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.basket-list__name, .basket-list__size, .basket-list__price {
+  margin-bottom: 0;
+}
+.basket-list__name {
+  font-weight: bold;
+}
+.basket-list__size {
+  font-size: 12px;
+  color: rgba(66, 66, 66, 0.65);
+}
+.basket-list__price {
+  margin-top: 5px;
+  font-size: 12px;
+}
+.basket-list__price--bold {
+  font-weight: bold;
+}
+.basket-count {
+  display: flex;
+  height: 25px;
+}
+.basket-count__btn, .basket-count__field {
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 100%;
+  font-size: 12px;
+  border: 1px solid #ced4da;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.basket-count__btn {
+  font-size: 14px;
+  transition: all 0.3s ease-out;
+}
+.basket-count__btn:focus {
+  box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px white;
+}
+.basket-count__field {
+  border-left: none;
+  border-right: none;
+}
+.basket-footer {
+  display: flex;
+  flex-direction: column;
+}
+.basket-footer__total {
+  margin-bottom: 15px;
+  text-align: right;
+}
+.basket-footer__total--sm {
+  padding-right: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.basket-footer__control {
+  display: flex;
+  justify-content: space-between;
+}
+.basket-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.basket-empty__title {
+  margin-top: 20px;
+  margin-bottom: 15px;
 }

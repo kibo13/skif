@@ -17,7 +17,9 @@
     <thead class="thead-light">
       <tr>
         <th scope="col">#</th>
-        <th scope="col" class="w-75">Клиент</th>
+        <th scope="col" class="w-25">Номер</th>
+        <th scope="col" class="w-25">Клиент</th>
+        <th scope="col" class="w-25">Статус</th>
         <th scope="col" class="w-25 no-sort">Действие</th>
       </tr>
     </thead>
@@ -25,15 +27,9 @@
       @foreach($orders as $key => $order)
       <tr>
         <td scope="row">{{ $key+=1 }}</td>
-        <td>
-          @if($order->customer->type_id == 1) 
-            <div title="{{ $order->customer->lastname . ' ' . $order->customer->firstname . ' ' . $order->customer->surname}}">
-              {{ getFIO($order->customer->lastname, $order->customer->firstname, $order->customer->surname) }}
-            </div>
-          @else
-            {{ $order->customer->name }}
-          @endif 
-        </td>
+        <td scope="row">{{ $order->id }}</td>
+        <td scope="row">{{ $order->id }}</td>
+        <td scope="row">{{ $order->id }}</td>
         <td>
           <div class="d-flex">
             <div

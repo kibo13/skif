@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\BasketController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkerController;
@@ -26,7 +27,6 @@ Auth::routes([
 
 Route::middleware(['auth'])->group(function () {
 
-  
     Route::resource('users', UserController::class)->except(['show']);
     Route::resource('workers', WorkerController::class)->except(['show']);
     Route::resource('positions', PositionController::class)->except(['show']);
@@ -40,7 +40,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
+    // basket 
+    Route::get('basket', [BasketController::class, 'index'])->name('basket.index');
+    Route::post('basket/create/{id}', [BasketController::class, 'create'])->name('basket.create');
+    Route::post('basket/destroy/{id}', [BasketController::class, 'destroy'])->name('basket.destroy');
+
     // JSON 
-    Route::get('data/customers', [DataController::class, 'customers']);
+    Route::get('data/products', [DataController::class, 'products']);
 });
 
