@@ -43,7 +43,7 @@
             </a>
             <a 
                 class="dropdown-item" 
-                href="{{ route('materials.index') }}"
+                href="{{ route('colors.index') }}"
               >    
                 Материалы 
             </a>

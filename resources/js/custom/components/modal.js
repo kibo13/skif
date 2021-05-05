@@ -25,16 +25,16 @@ $(document).ready(function () {
         $('#bk-delete-form').attr('action', '/categories/' + data_id);
         break;
 
-      case 'tree':
-        $('#bk-delete-form').attr('action', '/trees/' + data_id);
-        break;
-
       case 'material':
         $('#bk-delete-form').attr('action', '/materials/' + data_id);
         break;
 
       case 'fabric':
         $('#bk-delete-form').attr('action', '/fabrics/' + data_id);
+        break;
+
+      case 'color':
+        $('#bk-delete-form').attr('action', '/colors/' + data_id);
         break;
 
       case 'product':

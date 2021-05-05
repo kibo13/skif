@@ -11,13 +11,11 @@ class Material extends Model
 
     protected $fillable = [
         'name',
-        'image',
-        'note',
-        'price'
+        'description'
     ];
 
-    public function orders()
+    public function products()
     {
-        return $this->hasMany('App\Models\Order');
+        return $this->hasMany('App\Models\Product');
     }
 }

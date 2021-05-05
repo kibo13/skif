@@ -3,19 +3,24 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-use App\Http\Controllers\BasketController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\DataController;
-use App\Http\Controllers\ProductController;
+
 use App\Http\Controllers\MaterialController;
-use App\Http\Controllers\TreeController;
 use App\Http\Controllers\FabricController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ColorController;
+
+use App\Http\Controllers\CustomerController;
+
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DataController;
+
+// use App\Http\Controllers\CustomerController;
+// use App\Http\Controllers\ProductController;
+// use App\Http\Controllers\OrderController;
+// use App\Http\Controllers\BasketController;
 
 Auth::routes([
     'login' => true,
@@ -31,19 +36,27 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('workers', WorkerController::class)->except(['show']);
     Route::resource('positions', PositionController::class)->except(['show']);
     Route::resource('categories', CategoryController::class)->except(['show']);
-    Route::resource('trees', TreeController::class)->except(['show']);
+    
     Route::resource('materials', MaterialController::class)->except(['show']);
     Route::resource('fabrics', FabricController::class)->except(['show']);
-    Route::resource('products', ProductController::class)->except(['show']);
+    Route::resource('colors', ColorController::class)->except(['show']);
+
     Route::resource('customers', CustomerController::class)->except(['show']);
-    Route::resource('orders', OrderController::class)->except(['show']);
 
+    // Route::resource('colors', ColorController::class)->except(['show']);
+    // Route::resource('products', ProductController::class)->except(['show']);
+    // Route::resource('customers', CustomerController::class)->except(['show']);
+    // Route::resource('orders', OrderController::class)->except(['show']);
+
+    // Route::get('/', [HomeController::class, 'index'])->name('home');
+
+    // // basket 
+    // Route::get('basket', [BasketController::class, 'index'])->name('basket.index');
+    // Route::post('basket/create/{id}', [BasketController::class, 'create'])->name('basket.create');
+    // Route::post('basket/destroy/{id}', [BasketController::class, 'destroy'])->name('basket.destroy');
+
+    // HOME 
     Route::get('/', [HomeController::class, 'index'])->name('home');
-
-    // basket 
-    Route::get('basket', [BasketController::class, 'index'])->name('basket.index');
-    Route::post('basket/create/{id}', [BasketController::class, 'create'])->name('basket.create');
-    Route::post('basket/destroy/{id}', [BasketController::class, 'destroy'])->name('basket.destroy');
 
     // JSON 
     Route::get('data/products', [DataController::class, 'products']);

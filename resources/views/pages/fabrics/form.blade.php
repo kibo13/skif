@@ -13,7 +13,6 @@
   <form
     class="bk-form"
     method="POST"
-    enctype="multipart/form-data"
     @isset($fabric)
       action="{{ route('fabrics.update', $fabric) }}"
     @else
@@ -38,21 +37,6 @@
               name="name"
               value="@isset($fabric) {{ $fabric->name }} @endisset"
               placeholder="Введите наименование"
-              required
-            />
-          </div>
-
-          <!-- /.price -->
-          <h6 class="bk-form__title">Цена</h6>
-          <div class="bk-form__field-100 mb-2">
-            <input
-              class="form-control bk-form__input bk-valid"
-              id="price"
-              type="text"
-              name="price"
-              value="@isset($tree) {{ $fabric->price }} @endisset"
-              maxlength="7"
-              placeholder="3 500"
               required
             />
           </div>

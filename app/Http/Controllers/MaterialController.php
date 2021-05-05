@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Material;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class MaterialController extends Controller
 {
@@ -37,13 +36,7 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        $params = $request->all();
-        unset($params['image']);
-        if ($request->has('image')) {
-	        $params['image'] = $request->file('image')->store('materials');
-        }
-
-        Material::create($params);
+        Material::create($request->all());
         return redirect()->route('materials.index');
     }
 
@@ -78,14 +71,7 @@ class MaterialController extends Controller
      */
     public function update(Request $request, Material $material)
     {
-        $params = $request->all();
-        unset($params['image']);
-        if ($request->has('image')) {
-            Storage::delete($material->image);
-            $params['image'] = $request->file('image')->store('materials');
-        }
-        
-        $material->update($params);
+        $material->update($request->all());
         return redirect()->route('materials.index');
     }
 
@@ -98,7 +84,6 @@ class MaterialController extends Controller
     public function destroy(Material $material)
     {
         $material->delete();
-        Storage::delete($material->image);
         return redirect()->route('materials.index');
     }
 }

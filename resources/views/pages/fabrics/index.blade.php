@@ -8,7 +8,7 @@
     <a class="btn btn-outline-primary" href="{{ route('fabrics.create') }}">
       Новая запись
     </a>
-    <a class="btn btn-outline-secondary" href="{{ route('materials.index') }}">
+    <a class="btn btn-outline-secondary" href="{{ route('colors.index') }}">
       Материалы
     </a>
   </div>
@@ -21,8 +21,7 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col" class="w-25">Наименование</th>
-        <th scope="col" class="w-25">Цена</th>
-        <th scope="col" class="w-25 no-sort">Описание</th>
+        <th scope="col" class="w-50 no-sort">Описание</th>
         <th scope="col" class="w-25 no-sort">Действие</th>
       </tr>
     </thead>
@@ -31,7 +30,6 @@
       <tr>
         <td scope="row">{{ $key+=1 }}</td>
         <td>{{ $fabric->name }}</td>
-        <td>{{ number_format($fabric->price, 2) }} ₽</td>
         <td>
           <div class="bk-btn-info">
             {{ $fabric->description }}
