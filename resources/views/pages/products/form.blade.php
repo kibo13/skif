@@ -9,6 +9,7 @@
       Добавление записи 
     @endisset
   </h2>
+
   <form
     class="bk-form"
     method="POST"
@@ -35,23 +36,34 @@
             <select 
               class="form-control bk-form__input"
               id="category_id"
-              name="category_id" 
-            >
+              name="category_id" >
 							<option disabled selected>Выберите категорию</option>
 							@foreach($categories as $category)
 							<option 
                 value="{{ $category->id }}" 
+                data-slug="{{ $category->slug }}"
                 @isset($product) 
                   @if($product->category_id == $category->id)
 								    selected
 								  @endif
-								@endisset
-							>
+								@endisset	>
 								{{ ucfirst($category->name) }}
 							</option>
 							@endforeach
 						</select>
-          </div>
+
+            <span class="bk-alert d-none">
+              <strong>Необходимо выбрать категорию</strong>
+            </span>
+          </div>   
+
+          <!-- /.code -->
+          <input 
+            class="form-control bk-form__input"
+            type="hidden" 
+            name="code" 
+            value="{{ isset($product) ? $product->code : getCode() }}" 
+          >
 
           <!-- /.product -->
           <h6 class="bk-form__title">Наименование</h6>
@@ -63,7 +75,66 @@
               name="name"
               value="@isset($product) {{ $product->name }} @endisset"
               placeholder="Введите наименование"
+              required
             />
+          </div>
+
+          <!-- /.material -->
+          <input 
+            class="form-control bk-form__input"
+            type="hidden" 
+            name="material_id" 
+            value="{{ isset($product) ? $product->material_id : 1 }}" 
+          >
+
+          <!-- /.colors -->
+          <h6 class="bk-form__title">Каталог цветов</h6>
+          <div class="bk-form__field-full mb-2">
+            <ul class="bk-checks">
+              @foreach($colors as $id => $color)
+              <li class="bk-checks__item" title="{{ $color->name }}">
+                <img 
+                class="bk-checks__img" 
+                src="{{asset('images/' . $color->image)}}" 
+                alt="{{ $color->name }}" >
+              
+                <input 
+                  class="bk-checks__checkbox" 
+                  id="{{ $id }}" 
+                  type="checkbox"
+                  name="colors[]"
+                  value="{{ $color->id }}" 
+                  @isset($product) 
+                    @if($product->colors->where('id', $color->id)->count())
+                      checked="checked"
+                    @endif
+                  @endisset >
+              
+                <label class="bk-checks__label" for="{{ $id }}"></label>
+              </li>
+              @endforeach            
+            </ul>
+          </div>
+
+          <!-- /.fabric -->
+          <div id="fabric-block" class="d-none">
+            <h6 class="bk-form__title">Обивка</h6>
+            <div class="bk-form__field-250 mb-2">
+              <select class="form-control bk-form__input" name="fabric_id" >
+                <option disabled selected>Выберите обивку</option>
+                @foreach($fabrics as $fabric)
+                <option 
+                  value="{{ $fabric->id }}" 
+                  @isset($product) 
+                    @if($product->fabric_id == $fabric->id)
+                      selected
+                    @endif
+                  @endisset	>
+                  {{ ucfirst($fabric->name) }}
+                </option>
+                @endforeach
+              </select>
+            </div>
           </div>
 
           <!-- /.sizes -->
@@ -120,7 +191,7 @@
               name="price"
               value="@isset($product) {{ $product->price }} @endisset"
               maxlength="7"
-              placeholder="1 250"
+              placeholder="6 030"
               required
             />
           </div>
@@ -159,23 +230,19 @@
             </div>            
           </div>
           
-
         </div>
       </div>
 
       <div class="form-group">
-        
         <button 
           class="btn btn-outline-success" 
-          id="worker-save"
-          type="submit"
-        >
+          id="product-save"
+          type="submit" >
           Сохранить
         </button>
         <a 
           class="btn btn-outline-secondary" 
-          href="{{ route('products.index') }}"
-        >
+          href="{{ route('products.index') }}" >
           Назад
         </a>
       </div>

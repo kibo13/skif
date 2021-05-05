@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Color;
+use App\Models\Fabric;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,8 +18,13 @@ class ProductController extends Controller
      */
     public function index()
     {
+        // products
         $products = Product::get();
-        return view('pages.products.index', compact('products'));
+        
+        // colors 
+        $colors = Color::get();
+
+        return view('pages.products.index', compact('products', 'colors'));
     }
 
     /**
@@ -27,8 +34,16 @@ class ProductController extends Controller
      */
     public function create()
     {
+        // categories
         $categories = Category::get();
-        return view('pages.products.form', compact('categories'));
+
+        // colors 
+        $colors = Color::get();
+
+        // fabrics 
+        $fabrics = Fabric::get();
+
+        return view('pages.products.form', compact('categories', 'colors', 'fabrics'));
     }
 
     /**
@@ -45,7 +60,12 @@ class ProductController extends Controller
 	        $params['image'] = $request->file('image')->store('products');
         }
 
-        Product::create($params);
+        $product = Product::create($params);
+        
+        if ($request->input('colors')) :
+            $product->colors()->attach($request->input('colors'));
+        endif;
+
         return redirect()->route('products.index');
     }
 
@@ -68,8 +88,16 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        // categories
         $categories = Category::get();
-        return view('pages.products.form', compact('product', 'categories'));
+
+        // colors 
+        $colors = Color::get();
+
+        // fabrics 
+        $fabrics = Fabric::get();
+
+        return view('pages.products.form', compact('product', 'categories', 'colors', 'fabrics'));
     }
 
     /**
@@ -89,6 +117,14 @@ class ProductController extends Controller
         }
         
         $product->update($params);
+
+        $product->colors()->detach();
+        if ($request->input('colors')) :
+            $product->colors()->attach($request->input('colors'));
+        endif;
+
+        $product->save();
+
         return redirect()->route('products.index');
     }
 
@@ -100,6 +136,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $product->colors()->detach();
         $product->delete();
         Storage::delete($product->image);
         return redirect()->route('products.index');

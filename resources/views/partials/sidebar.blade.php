@@ -36,7 +36,7 @@
       </a>
     </li>
     <li @sbactive('product*')>
-      <a class="sidebar-link" href="{{ route('workers.index') }}">
+      <a class="sidebar-link" href="{{ route('products.index') }}">
         @include('assets.icons.product') Мебель
       </a>
     </li>

@@ -17,10 +17,10 @@
     <thead class="thead-light">
       <tr>
         <th scope="col">#</th>
-        <th scope="col" class="no-sort">Фото</th>
-        <th scope="col" class="no-sort w-50">Описание</th>
-        <th scope="col" class="w-25">Категория</th>
-        <th scope="col" class="w-25">Цена</th>
+        <th scope="col" class="no-sort w-100" style="min-width: 400px;">Описание</th>
+        <th scope="col" class="no-sort" style="min-width: 150px;">Цвета</th>
+        <th scope="col" style="min-width: 150px;">Категория</th>
+        <th scope="col" style="min-width: 150px;">Цена</th>
         <th scope="col" class="no-sort">Действие</th>
       </tr>
     </thead>
@@ -29,18 +29,46 @@
       <tr>
         <td scope="row">{{ $key+=1 }}</td>
         <td>
-          <img 
-            class="bk-info__img"
-            src="{{asset('images/' . $product->image)}}" 
-            alt="{{ $product->name }}">
+          <div class="bk-cells">
+            <img 
+              class="bk-cells__img" 
+              src="{{asset('images/' . $product->image)}}" 
+              alt="{{ $product->name }}" >
+            <div class="bk-cells__info">
+              <h6 class="bk-cells__title mb-0">{{ $product->name }}</h6>
+              <p class="bk-cells__item bk-cells__item--size">
+                ({{ $product->L . 'x' . $product->B . 'x' . $product->H}})
+              </p>
+              <p class="bk-cells__item">
+                <span class="bk-cells__subtitle">Артикул:</span> 
+                {{ $product->code }} 
+              </p>
+              <p class="bk-cells__item">
+                <span class="bk-cells__subtitle">Материал:</span> 
+                {{ $product->material->name }} 
+              </p>
+              @if($product->category->slug == 'soft')
+              <p class="bk-cells__item">
+                <span class="bk-cells__subtitle">Обивка:</span> 
+                {{ $product->fabric->name }} 
+              </p>
+              @endif
+            </div>
+          </div>      
         </td>
         <td>
-          <div class="bk-info">
-            <h6 class="bk-info__title">{{ $product->name }}</h6>
-            <p class="bk-info__size">
-              ({{ $product->L . 'x' . $product->B . 'x' . $product->H}})
-            </p>
-          </div>          
+          <ul class="bk-colors">
+          @foreach($colors as $color)
+            @if($product->colors->where('id', $color->id)->count())
+            <li class="bk-colors__item" title="{{ $color->name }}">
+              <img 
+                class="bk-colors__img" 
+                src="{{asset('images/' . $color->image)}}" 
+                alt="{{ $color->name }}" >
+            </li>
+            @endif
+          @endforeach
+          </ul>
         </td>
         <td>{{ $product->category->name }}</td>
         <td>{{ number_format($product->price, 2) }} ₽</td>

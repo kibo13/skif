@@ -140,7 +140,7 @@
             class="form-control bk-form__input"
             type="hidden" 
             name="code" 
-            value="{{ isset($order) ? $order->code : getCodeOrder() }}" 
+            value="{{ isset($order) ? $order->code : getCode() }}" 
           >
 
           <!-- /.date-in -->

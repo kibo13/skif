@@ -13,6 +13,7 @@ use App\Http\Controllers\FabricController;
 use App\Http\Controllers\ColorController;
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductController;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DataController;
@@ -42,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('colors', ColorController::class)->except(['show']);
 
     Route::resource('customers', CustomerController::class)->except(['show']);
+    Route::resource('products', ProductController::class)->except(['show']);
 
     // Route::resource('colors', ColorController::class)->except(['show']);
     // Route::resource('products', ProductController::class)->except(['show']);

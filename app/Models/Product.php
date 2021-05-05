@@ -11,7 +11,10 @@ class Product extends Model
 
     protected $fillable = [
         'category_id',
+        'code',
         'name',
+        'material_id',
+        'fabric_id',
         'L',
         'B',
         'H',
@@ -24,6 +27,21 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo('App\Models\Category');
+    }
+
+    public function fabric()
+    {
+        return $this->belongsTo('App\Models\Fabric');
+    }
+
+    public function material()
+    {
+        return $this->belongsTo('App\Models\Material');
+    }
+
+    public function colors()
+    {
+        return $this->belongsToMany('App\Models\Color');
     }
 
     public function orders()
