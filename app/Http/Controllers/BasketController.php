@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BasketController extends Controller
 {
@@ -18,7 +19,7 @@ class BasketController extends Controller
         return view('basket', compact('order'));
     }
 
-    public function create($product) 
+    public function create(Request $request, $product) 
     {
         $order_id = session('order_id');
 
@@ -31,10 +32,10 @@ class BasketController extends Controller
 
         if ($order->products->contains($product)) {
             $pivotRow = $order->products()->where('product_id', $product)->first()->pivot;
-            $pivotRow->count++;
+            $pivotRow->count = $request['count'];
             $pivotRow->update();
         } else {
-            $order->products()->attach($product);
+            $order->products()->attach($product, ['count' => $request['count']]);
         }          
 
         return redirect()->route('basket.index');

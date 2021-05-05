@@ -28,7 +28,7 @@
       <tr>
         <td scope="row">{{ $key+=1 }}</td>
         <td scope="row">{{ $order->id }}</td>
-        <td scope="row">{{ $order->id }}</td>
+        <td scope="row">{{ $order->getFullPrice() }}</td>
         <td scope="row">{{ $order->id }}</td>
         <td>
           <div class="d-flex">
