@@ -18,14 +18,14 @@
 
 // components
 @import 'components/logo';
-@import 'components/auth';
 @import 'components/forms';
 @import 'components/buttons';
-@import 'components/gallery';
-@import 'components/cells';
 @import 'components/alerts';
 
 // pages
+@import 'pages/auth';
 @import 'pages/home';
-@import 'pages/orders';
+@import 'pages/colors';
+@import 'pages/products';
 @import 'pages/basket';
+@import 'pages/orders';

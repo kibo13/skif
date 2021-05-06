@@ -21,7 +21,7 @@
       </a>
     </li>
     <li @sbactive('order*')>
-      <a class="sidebar-link" href="{{ route('workers.index') }}">
+      <a class="sidebar-link" href="{{ route('orders.index') }}">
         @include('assets.icons.order') Заказы
       </a>
     </li>

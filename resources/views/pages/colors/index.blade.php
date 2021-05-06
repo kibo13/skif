@@ -16,15 +16,15 @@
     </a>
   </div>
 
-  <ul class="bk-gallery">
+  <ul class="bk-colors">
     @foreach($colors as $key => $color)
-    <li class="bk-gallery__item">
+    <li class="bk-colors__item">
       <img 
-        class="bk-gallery__img"
+        class="bk-colors__img"
         src="{{asset('images/' . $color->image)}}" 
         alt="{{ $color->name }}" >
-      <p class="bk-gallery__info">{{ $color->name }}</p>
-      <div class="bk-gallery__crud">
+      <p class="bk-colors__info">{{ $color->name }}</p>
+      <div class="bk-colors__crud">
         <div 
             class="bk-btn bk-btn-crud btn btn-warning" 
             data-tip="Редактировать" >

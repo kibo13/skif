@@ -10,6 +10,7 @@ require('./components/image')
 require('./components/info')
 
 // views 
+require('./views/home')
 require('./views/worker')
 require('./views/user')
 require('./views/customer')

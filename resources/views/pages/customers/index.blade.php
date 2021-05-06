@@ -17,7 +17,7 @@
     <thead class="thead-light">
       <tr>
         <th scope="col">#</th>
-        <th scope="col" class="w-25">Клиент</th>
+        <th scope="col" class="w-25" style="min-width: 200px">Клиент</th>
         <th scope="col" class="w-25">Тип</th>
         <th scope="col" class="w-25" style="min-width: 200px">ИИН/БИН</th>
         <th scope="col" class="w-25 no-sort" style="min-width: 300px">Контакты</th>

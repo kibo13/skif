@@ -1,7 +1,7 @@
 @extends('layouts.master')
 <!-- home-index -->
 @section('content')
-<section id="home-index" class="bk-page section">
+<section id="home-index" class="bk-page valid-form section">
   <h2 class="mb-3">Каталог мебели</h2>
 
   <div class="bk-group">
@@ -13,51 +13,77 @@
     @endif
   </div>
 
-  <ul class="bk-home-list">
+  <ul class="bk-home">
     @foreach($products as $product)
-    <li class="bk-home-list__item">
-      <h5 class="bk-home-list__title">
-        {{ $product->name }}
-      </h5>
+    <li class="bk-home__card">
+      <img 
+        class="bk-home__img"
+        src="{{asset('images/' . $product->image)}}" 
+        alt="{{ $product->name }}" >
       <form 
-        action="{{ route('basket.create', $product) }}"
-        enctype="multipart/form-data"
+        class="bk-home__form" 
+        action="" 
         method="POST" >
-        @csrf
-
-        <input 
-          type="text" 
-          name="count" 
-          @if($order->products->where('id', $product->id)->count())
-            value="{{ $order->products->where('id', $product->id)->first()->pivot->count }}"
-          @endif >
-
-        <button class="btn btn-outline-primary">
-          Add
-        </button>
+        <h6 class="bk-home__title mb-0" title="{{ $product->name }}">
+          {{ $product->name }}
+        </h6>
+        <p class="bk-home__text bk-home__text--sizes">
+          ({{ $product->L . 'x' . $product->B . 'x' . $product->H}})
+        </p>
+        <p class="bk-home__text">
+          <span class="bk-home__subtitle">Материал:</span> 
+          {{ $product->material->name }} 
+        </p>
+        @if($product->category->slug == 'soft')
+        <p class="bk-home__text bk-home__text--price">
+          <span class="bk-home__subtitle">Обивка:</span> 
+          {{ $product->fabric->name }} 
+        </p>
+        @else 
+        <p class="bk-home__text" style="opacity: 0">
+          <span class="bk-home__subtitle">Обивка:</span> 
+          {{-- fabric hasn't --}}
+        </p>
+        @endif
+        <h5 class="bk-home__price">{{ number_format($product->price) }} ₽</h5>
+        <ul class="bk-home__colors">
+          @foreach($product->colors as $color)
+          <li class="bk-home__color">
+            <img 
+              class="bk-home__img" 
+              src="{{asset('images/' . $color->image)}}" 
+              alt="{{ $color->name }}" >
+            <input 
+              class="bk-home__radio" 
+              id="{{ $product->id . $color->id }}"
+              data-color="{{ $product->id }}"
+              name="color_id"
+              value="{{ $color->id }}"
+              type="radio" >
+            <label 
+              class="bk-home__label" 
+              title="{{ $color->name }}"
+              for="{{ $product->id . $color->id }}" ></label>
+          </li>
+          @endforeach
+        </ul>
+        <div class="bk-home__control">
+          <input 
+            class="bk-home__input form-control bk-form__input" 
+            data-count="{{ $product->id }}"
+            name="count"
+            type="text"
+            maxlength="3"
+            placeholder="1" >
+          <button 
+            class="bk-home__btn" 
+            id="{{ $product->id }}"
+            type="submit" >В корзину</button>
+        </div>
       </form>
     </li>    
     @endforeach 
   </ul>
-
-
-
-  {{-- <ul class="bk-home-list">
-    @foreach($categories as $category)
-    <li class="bk-home-list__item">
-      <img 
-        class="bk-home-list__img" 
-        src="{{asset('images/' . $category->image)}}" 
-        alt="{{ $category->name }}">
-      <h5 class="bk-home-list__title">
-        {{ $category->name }}
-      </h5>
-    </li>
-    @endforeach 
-  </ul> --}}
-
-
-
   
 </section>
 @endsection

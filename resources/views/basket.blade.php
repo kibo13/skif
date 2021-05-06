@@ -51,7 +51,7 @@
           <div class="basket-count">
             <form 
               class="basket-count__add" 
-              action="{{ route('basket.create', $product) }}" 
+              action="{{ route('basket.add.item', $product) }}" 
               method="POST" >
               @csrf 
               <button class="basket-count__btn">+</button>
@@ -61,7 +61,7 @@
             </p>
             <form 
               class="basket-count__del" 
-              action="{{ route('basket.destroy', $product) }}" 
+              action="{{ route('basket.del.item', $product) }}" 
               method="POST" >
               @csrf 
               <button class="basket-count__btn">-</button>

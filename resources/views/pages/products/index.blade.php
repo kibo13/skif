@@ -29,27 +29,27 @@
       <tr>
         <td scope="row">{{ $key+=1 }}</td>
         <td>
-          <div class="bk-cells">
+          <div class="bk-products">
             <img 
-              class="bk-cells__img" 
+              class="bk-products__img" 
               src="{{asset('images/' . $product->image)}}" 
               alt="{{ $product->name }}" >
-            <div class="bk-cells__info">
-              <h6 class="bk-cells__title mb-0">{{ $product->name }}</h6>
-              <p class="bk-cells__item bk-cells__item--size">
+            <div class="bk-products__info">
+              <h6 class="bk-products__title mb-0">{{ $product->name }}</h6>
+              <p class="bk-products__item bk-products__item--sizes">
                 ({{ $product->L . 'x' . $product->B . 'x' . $product->H}})
               </p>
-              <p class="bk-cells__item">
-                <span class="bk-cells__subtitle">Артикул:</span> 
+              <p class="bk-products__item">
+                <span class="bk-products__subtitle">Артикул:</span> 
                 {{ $product->code }} 
               </p>
-              <p class="bk-cells__item">
-                <span class="bk-cells__subtitle">Материал:</span> 
+              <p class="bk-products__item">
+                <span class="bk-products__subtitle">Материал:</span> 
                 {{ $product->material->name }} 
               </p>
               @if($product->category->slug == 'soft')
-              <p class="bk-cells__item">
-                <span class="bk-cells__subtitle">Обивка:</span> 
+              <p class="bk-products__item">
+                <span class="bk-products__subtitle">Обивка:</span> 
                 {{ $product->fabric->name }} 
               </p>
               @endif
@@ -57,12 +57,14 @@
           </div>      
         </td>
         <td>
-          <ul class="bk-colors">
+          <ul class="bk-products bk-products--gap-5">
           @foreach($colors as $color)
             @if($product->colors->where('id', $color->id)->count())
-            <li class="bk-colors__item" title="{{ $color->name }}">
+            <li 
+              class="bk-products__item bk-products__item--color" 
+              title="{{ $color->name }}" >
               <img 
-                class="bk-colors__img" 
+                class="bk-products__img bk-products__img--full" 
                 src="{{asset('images/' . $color->image)}}" 
                 alt="{{ $color->name }}" >
             </li>

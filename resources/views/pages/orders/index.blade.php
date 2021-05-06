@@ -18,7 +18,7 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col" class="w-25">Номер</th>
-        <th scope="col" class="w-25">Клиент</th>
+        <th scope="col" class="w-25">Сумма</th>
         <th scope="col" class="w-25">Статус</th>
         <th scope="col" class="w-25 no-sort">Действие</th>
       </tr>
@@ -28,8 +28,12 @@
       <tr>
         <td scope="row">{{ $key+=1 }}</td>
         <td scope="row">{{ $order->id }}</td>
-        <td scope="row">{{ $order->getFullPrice() }}</td>
-        <td scope="row">{{ $order->id }}</td>
+        <td scope="row">{{ $order->getFullPrice() }} ₽</td>
+        <td scope="row">
+        @if($order->state == 0) В корзине @endif 
+        @if($order->state == 1) Оформлен @endif 
+        @if($order->state == 2) Готов @endif 
+        </td>
         <td>
           <div class="d-flex">
             <div

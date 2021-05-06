@@ -1,20 +1,90 @@
-.bk-home-list
+.bk-home
   margin: 0
   padding: 0
   display: grid
   grid-template-columns: repeat(auto-fit, minmax(200px, auto))
   grid-gap: 10px
-
-  &__item 
-    text-align: center
-    font-size: $text-md 
-    font-weight: bold
-    overflow: hidden
+  &__card
     background: #fff
-    border: 1px solid $gray
-    border-radius: 0.25rem
-  
+    border: 1px solid $gray 
+    border-radius: .25rem
+    overflow: hidden
   &__img 
     width: 100%
-    height: 200px
-    object-fit: contain
+    object-fit: cover
+  &__form 
+    padding: 0px 15px
+    padding-bottom: 10px
+    display: flex
+    flex-direction: column
+  &__title 
+    height: 18px
+    word-wrap: break-word
+    overflow: hidden
+  &__subtitle 
+    font-weight: bold
+  &__price
+    margin-bottom: 0
+    padding: 10px 0
+    color: $blue
+  &__text 
+    margin-bottom: 0
+    font-size: $text-sm
+    &--sizes
+      color: rgba($dark, .65)
+  &__colors 
+    padding: 0
+    margin: 0
+    display: flex
+    flex-wrap: wrap
+    grid-gap: 5px
+  &__color 
+    position: relative
+    display: flex
+    width: 25px
+    height: 25px
+    box-shadow: 0 0 2px 
+    overflow: hidden
+  &__radio,
+  &__label
+    position: absolute
+    top: 0
+    left: 0
+  &__radio 
+    opacity: 0
+    &:checked~
+      .bk-home__label:before
+        content: '\2713'	
+        position: absolute
+        top: 0
+        left: 0
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 100%
+        height: 100%
+        font-weight: bold
+        color: $light
+        background: rgba($dark, .35)
+        border: 2px solid $light
+  &__label
+    width: 100%
+    height: 100%
+    cursor: pointer
+  &__control 
+    margin-top: 10px
+    margin-bottom: 5px
+    display: flex
+    overflow: hidden
+  &__input,
+  &__btn 
+    border-radius: 0 
+  &__btn 
+    width: 150px
+    font-size: $text-sm
+    color: #fff
+    background: $blue
+    border: 1px solid $blue
+    &:hover 
+      background: #0069d9
+      border: 1px solid #0069d9

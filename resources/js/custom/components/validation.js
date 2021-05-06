@@ -6,6 +6,7 @@ $(document).ready(function () {
   // if active validation-form
   if (validation_form != null) {
 
+    /* general validation */
     const validations = document.querySelectorAll('.bk-valid')
 
     for (let validation of validations) {
@@ -32,5 +33,9 @@ $(document).ready(function () {
       }
     }
 
+    /* special validation */
+    $('.bk-home__input').on('input', function () {
+      this.value = this.value.replace(/^0|[^\d]/g, '')
+    })
   }
 });

@@ -43,21 +43,6 @@ class Order extends Model
     //     return $this->belongsTo('App\Models\Customer');
     // }
 
-    // public function tree()
-    // {
-    //     return $this->belongsTo('App\Models\Tree');
-    // }
-
-    // public function material()
-    // {
-    //     return $this->belongsTo('App\Models\Material');
-    // }
-
-    // public function fabric()
-    // {
-    //     return $this->belongsTo('App\Models\Fabric');
-    // }
-
     // public function worker()
     // {
     //     return $this->belongsTo('App\Models\Worker');
