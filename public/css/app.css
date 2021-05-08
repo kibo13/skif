@@ -10507,6 +10507,10 @@ table.dataTable thead .sorting_desc_disabled {
   font-size: 14px;
   cursor: pointer;
 }
+.bk-form__color {
+  height: 30px;
+  padding: 0 2px;
+}
 .bk-form__alert {
   font-size: 11px;
 }
@@ -10833,42 +10837,51 @@ table.dataTable thead .sorting_desc_disabled {
   border: 1px solid #0069d9;
 }
 
-.bk-colors {
+.bk-materials-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.bk-materials-header__title {
+  margin-bottom: 0;
+}
+.bk-materials-list {
   padding: 0;
-  margin-top: 30px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, auto));
+  grid-template-columns: repeat(auto-fill, minmax(128px, auto));
   grid-gap: 5px;
 }
-.bk-colors__item {
+.bk-materials-list__item {
   position: relative;
   display: flex;
-  height: 150px;
+  height: 128px;
   box-shadow: 0 0 4px;
   cursor: pointer;
   overflow: hidden;
 }
-.bk-colors__item:hover .bk-colors__crud {
+.bk-materials-list__item:hover .bk-materials-list__crud {
   transform: translateY(0);
 }
-.bk-colors__img {
+.bk-materials-list__plate {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.bk-colors__info {
+.bk-materials-list__fabric {
+  width: 100%;
+}
+.bk-materials-list__info {
   padding: 0 5px;
   position: absolute;
   top: 10px;
   left: 10px;
-  text-transform: uppercase;
   font-size: 12px;
   font-weight: bold;
   background: rgba(248, 250, 252, 0.55);
   border-radius: 2px;
   box-shadow: 0 0 2px;
 }
-.bk-colors__crud {
+.bk-materials-list__crud {
   position: absolute;
   bottom: 7px;
   right: 7px;
@@ -10880,6 +10893,13 @@ table.dataTable thead .sorting_desc_disabled {
   transition: all 0.3s;
 }
 
+@media (max-width: 640px) {
+  .bk-materials-header {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 5px;
+  }
+}
 .bk-products {
   padding: 0;
   margin: 0;

@@ -25,24 +25,20 @@ $(document).ready(function () {
         $('#bk-delete-form').attr('action', '/categories/' + data_id);
         break;
 
-      case 'material':
-        $('#bk-delete-form').attr('action', '/materials/' + data_id);
+      case 'customer':
+        $('#bk-delete-form').attr('action', '/customers/' + data_id);
         break;
 
       case 'fabric':
         $('#bk-delete-form').attr('action', '/fabrics/' + data_id);
         break;
 
-      case 'color':
-        $('#bk-delete-form').attr('action', '/colors/' + data_id);
+      case 'plate':
+        $('#bk-delete-form').attr('action', '/plates/' + data_id);
         break;
 
       case 'product':
         $('#bk-delete-form').attr('action', '/products/' + data_id);
-        break;
-
-      case 'customer':
-        $('#bk-delete-form').attr('action', '/customers/' + data_id);
         break;
 
       case 'order':

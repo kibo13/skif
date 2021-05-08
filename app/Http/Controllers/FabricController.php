@@ -14,8 +14,7 @@ class FabricController extends Controller
      */
     public function index()
     {
-        $fabrics = Fabric::get();
-        return view('pages.fabrics.index', compact('fabrics'));
+        // 
     }
 
     /**
@@ -25,7 +24,7 @@ class FabricController extends Controller
      */
     public function create()
     {
-        return view('pages.fabrics.form');
+        return view('pages.materials.fabric');
     }
 
     /**
@@ -37,7 +36,7 @@ class FabricController extends Controller
     public function store(Request $request)
     {
         Fabric::create($request->all());
-        return redirect()->route('fabrics.index');
+        return redirect()->route('materials.index');
     }
 
     /**
@@ -59,7 +58,7 @@ class FabricController extends Controller
      */
     public function edit(Fabric $fabric)
     {
-        return view('pages.fabrics.form', compact('fabric'));
+        return view('pages.materials.fabric', compact('fabric'));
     }
 
     /**
@@ -72,7 +71,7 @@ class FabricController extends Controller
     public function update(Request $request, Fabric $fabric)
     {
         $fabric->update($request->all());
-        return redirect()->route('fabrics.index');
+        return redirect()->route('materials.index');
     }
 
     /**
@@ -84,6 +83,6 @@ class FabricController extends Controller
     public function destroy(Fabric $fabric)
     {
         $fabric->delete();
-        return redirect()->route('fabrics.index');
+        return redirect()->route('materials.index');
     }
 }

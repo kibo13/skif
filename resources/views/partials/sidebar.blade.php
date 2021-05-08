@@ -16,12 +16,12 @@
   <!-- START Links -->
   <ul class="sidebar-list">
     <li @sbactive('home*')>
-      <a class="sidebar-link" href="{{ route('home') }}" >
+      <a class="sidebar-link" href="{{ route('customers.index') }}" >
         @include('assets.icons.home') Главная
       </a>
     </li>
     <li @sbactive('order*')>
-      <a class="sidebar-link" href="{{ route('orders.index') }}">
+      <a class="sidebar-link" href="{{ route('customers.index') }}">
         @include('assets.icons.order') Заказы
       </a>
     </li>

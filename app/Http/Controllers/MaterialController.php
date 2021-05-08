@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Material;
-use Illuminate\Http\Request;
+use App\Models\Plate;
+use App\Models\Fabric;
 
 class MaterialController extends Controller
 {
@@ -14,76 +14,12 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        $materials = Material::get();
-        return view('pages.materials.index', compact('materials'));
-    }
+        // plates 
+        $plates = Plate::get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('pages.materials.form');
-    }
+        // fabrics 
+        $fabrics = Fabric::get();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        Material::create($request->all());
-        return redirect()->route('materials.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Material  $material
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Material $material)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Material  $material
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Material $material)
-    {
-        return view('pages.materials.form', compact('material'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Material  $material
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Material $material)
-    {
-        $material->update($request->all());
-        return redirect()->route('materials.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Material  $material
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Material $material)
-    {
-        $material->delete();
-        return redirect()->route('materials.index');
+        return view('pages.materials.index', compact('plates', 'fabrics'));
     }
 }

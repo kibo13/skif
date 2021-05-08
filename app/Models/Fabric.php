@@ -11,11 +11,11 @@ class Fabric extends Model
 
     protected $fillable = [
         'name', 
-        'description'
+        'code'
     ];
 
-    public function products()
-    {
-        return $this->hasMany('App\Models\Product');
-    }
+    // public function products()
+    // {
+    //     return $this->hasMany('App\Models\Product');
+    // }
 }
