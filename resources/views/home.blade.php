@@ -22,8 +22,9 @@
         alt="{{ $product->name }}" >
       <form 
         class="bk-home__form" 
-        action="" 
+        action="{{ route('basket.create', $product) }}" 
         method="POST" >
+        @csrf
         <h6 class="bk-home__title mb-0" title="{{ $product->name }}">
           {{ $product->name }}
         </h6>
@@ -63,7 +64,13 @@
             <label 
               class="bk-home__label" 
               title="{{ $color->name }}"
-              for="{{ $product->id . $color->id }}" ></label>
+              for="{{ $product->id . $color->id }}" >
+              {{-- @if($order != null)
+                @if($order->products->where('id', $product->id)->count())
+                value="{{ $order->products->where('id', $product->id)->first()->pivot->count }}"
+                @endif 
+              @endif --}}
+            </label>
           </li>
           @endforeach
         </ul>

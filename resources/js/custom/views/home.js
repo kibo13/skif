@@ -11,11 +11,13 @@ $(document).ready(function () {
       if (colors == 0) {
         e.preventDefault()
         alert('Необходимо выбрать цвет мебельной продукции')
+        return
       }
 
       if (count == '') {
         e.preventDefault()
         alert('Необходимо указать количество мебельной продукции')
+        return
       }
 
     })

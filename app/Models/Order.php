@@ -25,7 +25,7 @@ class Order extends Model
 
     public function products()
     {
-        return $this->belongsToMany('App\Models\Product')->withPivot('count')->withTimestamps();
+        return $this->belongsToMany('App\Models\Product')->withPivot('count', 'color_id')->withTimestamps();
     }
 
     public function getFullPrice()

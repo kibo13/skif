@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 05/05/2021 23:27:43
+ Date: 08/05/2021 22:31:01
 */
 
 SET NAMES utf8mb4;
@@ -60,17 +60,18 @@ INSERT INTO `color_product` VALUES (4, 2);
 INSERT INTO `color_product` VALUES (5, 2);
 INSERT INTO `color_product` VALUES (4, 1);
 INSERT INTO `color_product` VALUES (5, 1);
-INSERT INTO `color_product` VALUES (4, 3);
-INSERT INTO `color_product` VALUES (5, 3);
 INSERT INTO `color_product` VALUES (4, 5);
 INSERT INTO `color_product` VALUES (5, 5);
 INSERT INTO `color_product` VALUES (4, 6);
 INSERT INTO `color_product` VALUES (5, 6);
-INSERT INTO `color_product` VALUES (1, 7);
 INSERT INTO `color_product` VALUES (1, 8);
 INSERT INTO `color_product` VALUES (1, 9);
 INSERT INTO `color_product` VALUES (4, 4);
 INSERT INTO `color_product` VALUES (5, 4);
+INSERT INTO `color_product` VALUES (1, 7);
+INSERT INTO `color_product` VALUES (4, 3);
+INSERT INTO `color_product` VALUES (5, 3);
+INSERT INTO `color_product` VALUES (6, 3);
 
 -- ----------------------------
 -- Table structure for colors
@@ -84,7 +85,7 @@ CREATE TABLE `colors`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of colors
@@ -174,7 +175,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -192,6 +193,53 @@ INSERT INTO `migrations` VALUES (12, '2021_05_05_102932_create_colors_table', 3)
 INSERT INTO `migrations` VALUES (13, '2021_05_05_112412_create_customers_table', 4);
 INSERT INTO `migrations` VALUES (16, '2021_05_05_113117_create_products_table', 5);
 INSERT INTO `migrations` VALUES (17, '2021_05_05_113143_create_color_product_table', 5);
+INSERT INTO `migrations` VALUES (18, '2021_05_05_183153_create_orders_table', 6);
+INSERT INTO `migrations` VALUES (20, '2021_05_05_183221_create_order_product_table', 7);
+
+-- ----------------------------
+-- Table structure for order_product
+-- ----------------------------
+DROP TABLE IF EXISTS `order_product`;
+CREATE TABLE `order_product`  (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `order_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `count` int(11) NOT NULL DEFAULT 1,
+  `color_id` int(11) NOT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `order_product_order_id_foreign`(`order_id`) USING BTREE,
+  INDEX `order_product_product_id_foreign`(`product_id`) USING BTREE,
+  CONSTRAINT `order_product_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+  CONSTRAINT `order_product_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of order_product
+-- ----------------------------
+INSERT INTO `order_product` VALUES (10, 3, 1, 2, 5, '2021-05-08 11:18:47', '2021-05-08 11:18:47');
+INSERT INTO `order_product` VALUES (11, 3, 1, 5, 4, '2021-05-08 11:23:27', '2021-05-08 11:23:27');
+INSERT INTO `order_product` VALUES (12, 4, 2, 4, 4, '2021-05-08 17:30:23', '2021-05-08 17:30:40');
+INSERT INTO `order_product` VALUES (13, 4, 2, 4, 5, '2021-05-08 17:30:32', '2021-05-08 17:30:40');
+
+-- ----------------------------
+-- Table structure for orders
+-- ----------------------------
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders`  (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `state` tinyint(4) NOT NULL DEFAULT 0,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of orders
+-- ----------------------------
+INSERT INTO `orders` VALUES (3, 0, '2021-05-08 09:50:28', '2021-05-08 09:50:28');
+INSERT INTO `orders` VALUES (4, 0, '2021-05-08 17:30:07', '2021-05-08 17:30:07');
 
 -- ----------------------------
 -- Table structure for permission_user
@@ -263,7 +311,7 @@ CREATE TABLE `products`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of products

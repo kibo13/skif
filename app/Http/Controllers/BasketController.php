@@ -20,9 +20,10 @@ class BasketController extends Controller
     }
 
     // create multiple items
-    public function create(Request $request, $product) 
+    public function create(Request $request, $product_id) 
     {
-        $order_id = session('order_id');      
+        $order_id = session('order_id');     
+        
         $order = Order::find($order_id);
 
         if (is_null($order)) {
@@ -35,13 +36,38 @@ class BasketController extends Controller
             }
         }
 
-        if ($order->products->contains($product)) {
-            $pivot_row = $order->products()->where('product_id', $product)->first()->pivot;
-            $pivot_row->count = $request['count'];
-            $pivot_row->update();
-        } else {
-            $order->products()->attach($product, ['count' => $request['count']]);
-        }        
+        // order has product with product_id
+        if ($order->products->contains($product_id)) {
+            $product = $order->products()->where('product_id', $product_id)->where('color_id', $request['color_id'])->first();
+
+            // product hasn't color with color_id
+            if (is_null($product)) {
+                $order->products()->attach(
+                    $product_id, 
+                    [
+                        'count' => $request['count'], 
+                        'color_id' => $request['color_id']
+                    ]
+                );
+            } 
+
+            // product has color with color_id
+            else {
+                $product->pivot->count = $request['count'];
+                $product->pivot->color_id = $request['color_id'];
+                $product->pivot->update();
+            }
+        } 
+        // order hasn't product with product_id
+        else { 
+            $order->products()->attach(
+                $product_id, 
+                [
+                    'count' => $request['count'], 
+                    'color_id' => $request['color_id']
+                ]
+            );
+        }
 
         return redirect()->route('home');
     }
