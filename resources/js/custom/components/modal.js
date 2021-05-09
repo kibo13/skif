@@ -1,11 +1,11 @@
 $(document).ready(function () {
 
-  $(document).on("click", ".bk-btn-del", e => {
+  $(document).on("click", ".bk-btn-actions__link--delete", e => {
 
     var data_id = $(e.target).data('id');
     var data_tname = $(e.target).data('table-name');
 
-    // console.log(data_id);
+    console.log(data_id);
 
     switch (data_tname) {
 

@@ -78,7 +78,7 @@
           <!-- /.sizes -->
           <h6 class="bk-form__title">
             Размеры
-            <small class="text-muted align-text-top">см</small>
+            <small class="text-muted align-text-top">мм</small>
           </h6>
           <div class="bk-form__field-inbox mb-2">
             <div>

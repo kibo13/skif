@@ -4,7 +4,7 @@
 <section id="position-index" class="bk-page section">
   <h2 class="mb-3">Должности</h2>
 
-  <div class="bk-group">
+  <div class="bk-btn-group">
     <a class="btn btn-outline-primary" href="{{ route('positions.create') }}">
       Новая запись
     </a>
@@ -32,34 +32,19 @@
         <td>{{ $position->name }}</td>
         <td>{{ number_format($position->salary, 2) }} ₽</td>
         <td>
-          <div class="d-flex">
-            <div
-              class="bk-btn bk-btn-crud btn btn-warning mr-1"
-              data-tip="Редактировать"
-            >
-              <a
-                href="{{ route('positions.edit', $position) }}"
-                class="bk-btn-wrap bk-btn-link"
-              ></a>
-              <span class="bk-btn-wrap bk-btn-icon">
-                @include('assets.icons.pen')
-              </span>
-            </div>
-
-            <div class="bk-btn bk-btn-crud btn btn-danger" data-tip="Удалить">
-              <a
-                href="javascript:void(0)"
-                class="bk-btn-wrap bk-btn-link bk-btn-del"
-                data-id="{{ $position->id }}"
-                data-table-name="position"
-                data-toggle="modal"
-                data-target="#bk-delete-modal"
-              >
-              </a>
-              <span class="bk-btn-wrap bk-btn-icon">
-                @include('assets.icons.trash')
-              </span>
-            </div>
+          <div class="bk-btn-actions">
+            <a 
+              class="bk-btn-actions__link bk-btn-actions__link--edit btn btn-warning" 
+              href="{{ route('positions.edit', $position) }}"
+              data-tip="Редактировать" ></a>
+            <a 
+              class="bk-btn-actions__link bk-btn-actions__link--delete btn btn-danger" 
+              href="javascript:void(0)"
+              data-id="{{ $position->id }}"
+              data-table-name="position"
+              data-toggle="modal"
+              data-target="#bk-delete-modal"
+              data-tip="Удалить" ></a>
           </div>
         </td>
       </tr>

@@ -17,7 +17,7 @@
     <thead class="thead-light">
       <tr>
         <th scope="col">#</th>
-        <th scope="col" class="no-sort w-100" style="min-width: 400px;">Описание</th>
+        <th scope="col" class="no-sort w-100" style="min-width: 300px;">Описание</th>
         <th scope="col" class="no-sort" style="min-width: 150px;">Цвета</th>
         <th scope="col" style="min-width: 150px;">Категория</th>
         <th scope="col" style="min-width: 150px;">Цена</th>
@@ -32,8 +32,8 @@
           <div class="bk-products">
             <img 
               class="bk-products__img" 
-              src="{{asset('images/' . $product->image)}}" 
-              alt="{{ $product->name }}" >
+              src="" 
+              alt="Картинка" >
             <div class="bk-products__info">
               <h6 class="bk-products__title mb-0">{{ $product->name }}</h6>
               <p class="bk-products__item bk-products__item--sizes">
@@ -44,65 +44,40 @@
                 {{ $product->code }} 
               </p>
               <p class="bk-products__item">
-                <span class="bk-products__subtitle">Материал:</span> 
-                {{ $product->material->name }} 
-              </p>
-              @if($product->category->slug == 'soft')
-              <p class="bk-products__item">
+                @if($product->category->slug == 'soft')
                 <span class="bk-products__subtitle">Обивка:</span> 
-                {{ $product->fabric->name }} 
+                Экокожа
+                @else 
+                <span class="bk-products__subtitle">Материал:</span> 
+                ЛДСП
+                @endif
               </p>
-              @endif
             </div>
           </div>      
         </td>
         <td>
-          <ul class="bk-products bk-products--gap-5">
-          @foreach($colors as $color)
-            @if($product->colors->where('id', $color->id)->count())
-            <li 
-              class="bk-products__item bk-products__item--color" 
-              title="{{ $color->name }}" >
-              <img 
-                class="bk-products__img bk-products__img--full" 
-                src="{{asset('images/' . $color->image)}}" 
-                alt="{{ $color->name }}" >
-            </li>
-            @endif
-          @endforeach
-          </ul>
+          COLORS 
         </td>
         <td>{{ $product->category->name }}</td>
         <td>{{ number_format($product->price, 2) }} ₽</td>
         <td>
-          <div class="d-flex">
-            <div
-              class="bk-btn bk-btn-crud btn btn-warning mr-1"
-              data-tip="Редактировать"
-            >
-              <a
-                href="{{ route('products.edit', $product) }}"
-                class="bk-btn-wrap bk-btn-link"
-              ></a>
-              <span class="bk-btn-wrap bk-btn-icon">
-                @include('assets.icons.pen')
-              </span>
-            </div>
-
-            <div class="bk-btn bk-btn-crud btn btn-danger" data-tip="Удалить">
-              <a
-                href="javascript:void(0)"
-                class="bk-btn-wrap bk-btn-link bk-btn-del"
-                data-id="{{ $product->id }}"
-                data-table-name="product"
-                data-toggle="modal"
-                data-target="#bk-delete-modal"
-              >
-              </a>
-              <span class="bk-btn-wrap bk-btn-icon">
-                @include('assets.icons.trash')
-              </span>
-            </div>
+          <div class="bk-btn-actions">
+            <a 
+              class="bk-btn-actions__link bk-btn-actions__link--color btn btn-info" 
+              href="{{ route('products.show', $product) }}" 
+              data-tip="Цвета" ></a>
+            <a 
+              class="bk-btn-actions__link bk-btn-actions__link--edit btn btn-warning" 
+              href="{{ route('products.edit', $product) }}"
+              data-tip="Редактировать" ></a>
+            <a 
+              class="bk-btn-actions__link bk-btn-actions__link--delete btn btn-danger" 
+              href="javascript:void(0)"
+              data-id="{{ $product->id }}"
+              data-table-name="product"
+              data-toggle="modal"
+              data-target="#bk-delete-modal"
+              data-tip="Удалить" ></a>
           </div>
         </td>
       </tr>

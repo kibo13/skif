@@ -17,9 +17,6 @@ class ProductController extends Controller
     {
         // products
         $products = Product::get();
-        
-        // colors 
-        // $colors = Color::get();
 
         return view('pages.products.index', compact('products'));
     }

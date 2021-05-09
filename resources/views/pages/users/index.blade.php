@@ -4,7 +4,7 @@
 <section id="user-index" class="bk-page section">
   <h2 class="mb-3">Пользователи</h2>
 
-  <div class="bk-group">
+  <div class="bk-btn-group">
     <a class="btn btn-outline-primary" href="{{ route('users.create') }}">
       Новая запись
     </a>
@@ -31,34 +31,19 @@
         <td>{{ $user->name }}</td>
         <td>{{ $user->role->name }}</td>
         <td>
-          <div class="d-flex">
-            <div
-                class="bk-btn bk-btn-crud btn btn-warning mr-1"
-                data-tip="Редактировать"
-              >
-              <a
-                href="{{ route('users.edit', $user) }}"
-                class="bk-btn-wrap bk-btn-link"
-              ></a>
-              <span class="bk-btn-wrap bk-btn-icon">
-                @include('assets.icons.pen')
-              </span>
-            </div>
-
-            <div class="bk-btn bk-btn-crud btn btn-danger" data-tip="Удалить">
-              <a
-                href="javascript:void(0)"
-                class="bk-btn-wrap bk-btn-link bk-btn-del"
-                data-id="{{ $user->id }}"
-                data-table-name="user"
-                data-toggle="modal"
-                data-target="#bk-delete-modal"
-              >
-              </a>
-              <span class="bk-btn-wrap bk-btn-icon">
-                @include('assets.icons.trash')
-              </span>
-            </div>            
+          <div class="bk-btn-actions">
+            <a 
+              class="bk-btn-actions__link bk-btn-actions__link--edit btn btn-warning" 
+              href="{{ route('users.edit', $user) }}"
+              data-tip="Редактировать" ></a>
+            <a 
+              class="bk-btn-actions__link bk-btn-actions__link--delete btn btn-danger" 
+              href="javascript:void(0)"
+              data-id="{{ $user->id }}"
+              data-table-name="user"
+              data-toggle="modal"
+              data-target="#bk-delete-modal"
+              data-tip="Удалить" ></a>
           </div>
         </td>
       </tr>

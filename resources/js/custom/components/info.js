@@ -7,22 +7,22 @@ $(document).ready(function () {
   // if active info-form
   if (info_form != null) {
 
-    $(document).on("click", ".bk-btn-triangle", e => {
+    $(document).on("click", ".bk-btn-info__triangle", e => {
       let elem = e.target;
       let info = e.target.parentNode;
 
       // set arrow up 
-      if ($(elem).hasClass("bk-btn-triangle--down")) {
+      if ($(elem).hasClass("bk-btn-info__triangle--down")) {
         $(elem)
-          .removeClass("bk-btn-triangle--down")
-          .addClass("bk-btn-triangle--up");
+          .removeClass("bk-btn-info__triangle--down")
+          .addClass("bk-btn-info__triangle--up");
       }
 
       // set arrow down 
       else {
         $(elem)
-          .removeClass("bk-btn-triangle--up")
-          .addClass("bk-btn-triangle--down");
+          .removeClass("bk-btn-info__triangle--up")
+          .addClass("bk-btn-info__triangle--down");
       }
 
       // more info block hides 

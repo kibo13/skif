@@ -4,7 +4,7 @@
 <section id="order-index" class="bk-page section">
   <h2 class="mb-3">Заказы</h2>
 
-  <div class="bk-group">
+  <div class="bk-btn-group">
     <a class="btn btn-outline-primary" href="{{ route('orders.create') }}">
       Новая запись
     </a>
@@ -35,36 +35,6 @@
         @if($order->state == 2) Готов @endif 
         </td>
         <td>
-          <div class="d-flex">
-            <div
-              class="bk-btn bk-btn-crud btn btn-warning mr-1"
-              data-tip="Редактировать"
-            >
-              <a
-                href="{{ route('orders.edit', $order) }}"
-                class="bk-btn-wrap bk-btn-link"
-              >
-              </a>
-              <span class="bk-btn-wrap bk-btn-icon">
-                @include('assets.icons.pen')
-              </span>
-            </div>
-
-            <div class="bk-btn bk-btn-crud btn btn-danger" data-tip="Удалить">
-              <a
-                href="javascript:void(0)"
-                class="bk-btn-wrap bk-btn-link bk-btn-del"
-                data-id="{{ $order->id }}"
-                data-table-name="order"
-                data-toggle="modal"
-                data-target="#bk-delete-modal"
-              >
-              </a>
-              <span class="bk-btn-wrap bk-btn-icon">
-                @include('assets.icons.trash')
-              </span>
-            </div>
-          </div>
         </td>
       </tr>
       @endforeach

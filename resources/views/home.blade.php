@@ -4,7 +4,7 @@
 <section id="home-index" class="bk-page valid-form section">
   <h2 class="mb-3">Каталог мебели</h2>
 
-  <div class="bk-group">
+  <div class="bk-btn-group">
     <button class="btn btn-primary">CATEGORIES</button>
     @if($order != null)
     <a class="btn btn-outline-primary" href="{{ route('basket.index') }}">

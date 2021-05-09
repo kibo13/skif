@@ -4,7 +4,7 @@
 <section id="worker-index" class="bk-page section">
   <h2 class="mb-3">Сотрудники</h2>
 
-  <div class="bk-group">
+  <div class="bk-btn-group">
     <a class="btn btn-outline-primary" href="{{ route('workers.create') }}">
       Новая запись
     </a>
@@ -42,34 +42,19 @@
         <td>{{ $worker->address }}</td>
         <td>{{ $worker->phone }}</td>
         <td>
-          <div class="d-flex">
-            <div
-                class="bk-btn bk-btn-crud btn btn-warning mr-1"
-                data-tip="Редактировать"
-              >
-              <a
-                href="{{ route('workers.edit', $worker) }}"
-                class="bk-btn-wrap bk-btn-link"
-              ></a>
-              <span class="bk-btn-wrap bk-btn-icon">
-                @include('assets.icons.pen')
-              </span>
-            </div>
-
-            <div class="bk-btn bk-btn-crud btn btn-danger" data-tip="Удалить">
-              <a
-                href="javascript:void(0)"
-                class="bk-btn-wrap bk-btn-link bk-btn-del"
-                data-id="{{ $worker->id }}"
-                data-table-name="worker"
-                data-toggle="modal"
-                data-target="#bk-delete-modal"
-              >
-              </a>
-              <span class="bk-btn-wrap bk-btn-icon">
-                @include('assets.icons.trash')
-              </span>
-            </div>
+          <div class="bk-btn-actions">
+            <a 
+              class="bk-btn-actions__link bk-btn-actions__link--edit btn btn-warning" 
+              href="{{ route('workers.edit', $worker) }}"
+              data-tip="Редактировать" ></a>
+            <a 
+              class="bk-btn-actions__link bk-btn-actions__link--delete btn btn-danger" 
+              href="javascript:void(0)"
+              data-id="{{ $worker->id }}"
+              data-table-name="worker"
+              data-toggle="modal"
+              data-target="#bk-delete-modal"
+              data-tip="Удалить" ></a>
           </div>
         </td>
       </tr>
