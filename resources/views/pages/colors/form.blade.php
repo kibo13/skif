@@ -32,7 +32,7 @@
           <!-- /.product -->
           <h6 class="bk-form__title">Наименование мебели</h6>
           <div class="bk-form__field-full">
-            <p class="bk-products__text">{{ $product->name }}</p>
+            <p class="bk-colors__text">{{ $product->name }}</p>
           </div>
 
           <!-- /.sizes -->
@@ -42,21 +42,21 @@
               <small class="text-muted align-text-top">мм</small>
             </h6>
             <div class="bk-form__field-full">
-              <p class="bk-products__text">{{ $product->L }}</p>
+              <p class="bk-colors__text">{{ $product->L }}</p>
             </div>
             <h6 class="bk-form__title">
               Ширина
               <small class="text-muted align-text-top">мм</small>
             </h6>
             <div class="bk-form__field-full">
-              <p class="bk-products__text">{{ $product->B }}</p>
+              <p class="bk-colors__text">{{ $product->B }}</p>
             </div>
             <h6 class="bk-form__title">
               Высота
               <small class="text-muted align-text-top">мм</small>
             </h6>
             <div class="bk-form__field-full">
-              <p class="bk-products__text">{{ $product->H }}</p>
+              <p class="bk-colors__text">{{ $product->H }}</p>
             </div>
           </div>
 
@@ -138,7 +138,7 @@
                 id="upload-file"
                 name="note"
                 type="text"
-                value="@isset($type) {{ $type->note }} @endisset"
+                value="{{ isset($type) ? $type->note : null }}"
                 placeholder="Файл не выбран" />
 
               <button 

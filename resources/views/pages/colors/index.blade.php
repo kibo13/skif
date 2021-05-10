@@ -34,23 +34,20 @@
       <tr>
         <td scope="row">{{ $key+=1 }}</td>
         <td>
-          <div class="bk-products">
+          <div class="bk-colors">
             <img 
-              class="bk-products__img" 
-              @if($type->image == null)
-                src="{{asset('images/soon.png')}}" alt=""
-              @else 
-                src="{{asset('images/' . $type->image)}}" alt=""
-              @endif >
-            <div class="bk-products__info">
-              <h6 class="bk-products__title mb-0">
+              class="bk-colors__img" 
+              src="{{asset('images/' . $type->image)}}" 
+              alt="{{ $product->name }}" >
+            <div class="bk-colors__info">
+              <h6 class="bk-colors__title mb-0">
                 {{ $type->product->name }}
               </h6>
-              <p class="bk-products__item bk-products__item--sizes">
+              <p class="bk-colors__item text-muted mb-1">
                 ({{ $type->product->L . 'x' . $type->product->B . 'x' . $type->product->H}})
               </p>
-              <p class="bk-products__item">
-                <span class="bk-products__subtitle">Артикул:</span> 
+              <p class="bk-colors__item">
+                <span class="bk-colors__subtitle">Артикул:</span> 
                 {{ $type->product->code }} 
                 <small class="text-muted align-text-top">
                 @if($type->product->category->slug == 'soft')
@@ -60,16 +57,16 @@
                 @endif
                 </small>
               </p>
-              <p class="bk-products__item">
-                <span class="bk-products__subtitle">Материал:</span> 
+              <p class="bk-colors__item">
+                <span class="bk-colors__subtitle">Материал:</span> 
                 @if($type->product->category->slug == 'soft')
                 Экокожа
                 @else 
                 ЛДСП
                 @endif
               </p>
-              <p class="bk-products__item">
-                <span class="bk-products__subtitle">Цвет:</span>
+              <p class="bk-colors__item">
+                <span class="bk-colors__subtitle">Цвет:</span>
                 @if($type->product->category->slug == 'soft')
                 {{ $type->fabric->name }}
                 @else

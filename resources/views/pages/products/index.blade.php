@@ -30,13 +30,18 @@
         <td scope="row">{{ $key+=1 }}</td>
         <td>
           <div class="bk-products">
-            <img 
-              class="bk-products__img" 
-              src="" 
-              alt="Картинка" >
+            <div class="bk-products__frame">
+              @foreach($product->types as $id => $type)
+              <img 
+                class="bk-products__frame-img product-{{ $product->id }} d-none"
+                data-id="{{ $type->product->id . $id }}"
+                src="{{asset('images/' . $type->image)}}" 
+                alt ="{{ $product->name }}" >
+              @endforeach
+            </div>
             <div class="bk-products__info">
               <h6 class="bk-products__title mb-0">{{ $product->name }}</h6>
-              <p class="bk-products__item bk-products__item--sizes">
+              <p class="bk-products__item text-muted mb-1">
                 ({{ $product->L . 'x' . $product->B . 'x' . $product->H}})
               </p>
               <p class="bk-products__item">
@@ -55,7 +60,48 @@
           </div>      
         </td>
         <td>
-          COLORS 
+          <ul class="bk-products__colors">
+            @foreach($product->types as $id => $type)
+            @if($type->plate_id == null)
+            <li 
+              class="bk-products__colors-item" 
+              title="{{ $type->fabric->name }}" >
+              <div 
+                class="bk-products__colors-img" 
+                style="background-color: {{ $type->fabric->code }}" >
+              </div>
+              <input 
+                class="bk-checks__checkbox" 
+                id="{{ $type->product->id . $id }}" 
+                data-product="{{ 'product-' . $type->product->id }}"
+                type="radio"
+                name="{{ $type->product->id }}"
+                value="{{ $type->fabric->id }}"
+                @if($id == 0) checked @endif >
+              <label class="bk-checks__label" for="{{ $type->product->id . $id }}" ></label>
+            </li>
+            @elseif($type->fabric_id == null)
+            <li 
+              class="bk-products__colors-item" 
+              title="{{ $type->plate->name }}" >
+              <img 
+                class="bk-products__colors-img" 
+                src="{{asset('images/' . $type->plate->image)}}" 
+                alt="{{ $type->plate->name }}" >
+              </div>
+              <input 
+                class="bk-checks__checkbox" 
+                id="{{ $type->product->id . $id }}" 
+                data-product="{{ 'product-' . $type->product->id }}"
+                type="radio"
+                name="{{ $type->product->id }}"
+                value="{{ $type->plate->id }}"
+                @if($id == 0) checked @endif >
+              <label class="bk-checks__label" for="{{ $type->product->id . $id }}" ></label>
+            </li>
+            @endif
+            @endforeach            
+          </ul>
         </td>
         <td>{{ $product->category->name }}</td>
         <td>{{ number_format($product->price, 2) }} ₽</td>
