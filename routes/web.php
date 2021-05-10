@@ -13,6 +13,7 @@ use App\Http\Controllers\FabricController;
 use App\Http\Controllers\PlateController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TypeController;
 
 // use App\Http\Controllers\ProductController;
 // use App\Http\Controllers\OrderController;
@@ -49,7 +50,13 @@ Route::middleware(['auth'])->group(function () {
         'materials', 
         [MaterialController::class, 'index'])->name('materials.index');
     
-    Route::resource('products', ProductController::class);
+    Route::resource('products', ProductController::class)->except(['show']);
+    Route::get('products/{product}/types', [TypeController::class, 'index'])->name('products.types');
+    Route::get('products/{product}/types/create', [TypeController::class, 'create'])->name('products.types.create');
+    Route::post('products/{product}/types', [TypeController::class, 'store'])->name('products.types.store');
+    Route::get('products/{product}/types/{type}/edit', [TypeController::class, 'edit'])->name('products.types.edit');
+    Route::put('products/{product}/types/{type}', [TypeController::class, 'update'])->name('products.types.update');
+    Route::delete('products/{product}/types/{type}', [TypeController::class, 'destroy'])->name('products.types.destroy');
 
     
     // Route::resource('products', ProductController::class)->except(['show']);

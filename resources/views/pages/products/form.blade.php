@@ -71,8 +71,7 @@
               name="name"
               value="@isset($product) {{ $product->name }} @endisset"
               placeholder="Введите наименование"
-              required
-            />
+              required />
           </div>
 
           <!-- /.sizes -->

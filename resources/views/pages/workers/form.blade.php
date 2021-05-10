@@ -140,7 +140,7 @@
 
           <!-- /.phone -->
           <h6 class="bk-form__title">Телефон</h6>
-          <div class="bk-form__field-250 mb-2">
+          <div class="bk-form__field-250">
             <input
               class="form-control bk-form__input bk-valid"
               id="phone"

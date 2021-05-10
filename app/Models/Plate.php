@@ -15,8 +15,8 @@ class Plate extends Model
         'note'
     ];
 
-    // public function products()
-    // {
-    //     return $this->belongsToMany('App\Models\Product');
-    // }
+    public function types()
+    {
+        return $this->hasMany('App\Models\Type');
+    }
 }

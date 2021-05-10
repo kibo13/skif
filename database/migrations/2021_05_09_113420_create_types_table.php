@@ -15,7 +15,6 @@ class CreateTypesTable extends Migration
     {
         Schema::create('types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('code');
             $table->bigInteger('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('plate_id')->nullable();

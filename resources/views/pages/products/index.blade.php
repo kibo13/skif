@@ -4,7 +4,7 @@
 <section id="product-index" class="bk-page section">
   <h2 class="mb-3">Мебельная продукция</h2>
 
-  <div class="bk-group">
+  <div class="bk-btn-group">
     <a class="btn btn-outline-primary" href="{{ route('products.create') }}">
       Новая запись
     </a>
@@ -44,11 +44,10 @@
                 {{ $product->code }} 
               </p>
               <p class="bk-products__item">
+                <span class="bk-products__subtitle">Материал:</span> 
                 @if($product->category->slug == 'soft')
-                <span class="bk-products__subtitle">Обивка:</span> 
                 Экокожа
                 @else 
-                <span class="bk-products__subtitle">Материал:</span> 
                 ЛДСП
                 @endif
               </p>
@@ -64,7 +63,7 @@
           <div class="bk-btn-actions">
             <a 
               class="bk-btn-actions__link bk-btn-actions__link--color btn btn-info" 
-              href="{{ route('products.show', $product) }}" 
+              href="{{ route('products.types', $product) }}" 
               data-tip="Цвета" ></a>
             <a 
               class="bk-btn-actions__link bk-btn-actions__link--edit btn btn-warning" 

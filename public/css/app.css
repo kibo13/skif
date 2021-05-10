@@ -10922,8 +10922,21 @@ table.dataTable thead .sorting_desc_disabled {
 .bk-products__img--full {
   width: 100%;
 }
+.bk-products__img--type {
+  width: 100px;
+  height: 15px;
+  box-shadow: 0 0 2px;
+  cursor: pointer;
+}
 .bk-products__subtitle {
+  margin-right: 2px;
   font-weight: bold;
+}
+.bk-products__text {
+  margin-bottom: 0;
+  padding: 0 2px;
+  font-size: 14px;
+  color: rgba(66, 66, 66, 0.65);
 }
 
 .basket-list {

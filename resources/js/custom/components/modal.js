@@ -3,6 +3,7 @@ $(document).ready(function () {
   $(document).on("click", ".bk-btn-actions__link--delete", e => {
 
     var data_id = $(e.target).data('id');
+    var data_pr = $(e.target).data('product');
     var data_tname = $(e.target).data('table-name');
 
     console.log(data_id);
@@ -39,6 +40,11 @@ $(document).ready(function () {
 
       case 'product':
         $('#bk-delete-form').attr('action', '/products/' + data_id);
+        break;
+
+      case 'type':
+        $('#bk-delete-form')
+          .attr('action', `/products/${data_pr}/types/${data_id}`);
         break;
 
       case 'order':
