@@ -20,56 +20,57 @@ class BasketController extends Controller
     }
 
     // create multiple items
-    public function create(Request $request, $product_id) 
+    public function create(Request $request) 
     {
-        $order_id = session('order_id');     
+        // dd($request['type_id']);
+        // $order_id = session('order_id');     
         
-        $order = Order::find($order_id);
+        // $order = Order::find($order_id);
 
-        if (is_null($order)) {
-            $order_new = Order::create();
-            session(['order_id' => $order_new->id]);
-        } else {
-            if ($order->state > 0) {
-                $order_new = Order::create();
-                session(['order_id' => $order_new->id]);
-            }
-        }
+        // if (is_null($order)) {
+        //     $order_new = Order::create();
+        //     session(['order_id' => $order_new->id]);
+        // } else {
+        //     if ($order->state > 0) {
+        //         $order_new = Order::create();
+        //         session(['order_id' => $order_new->id]);
+        //     }
+        // }
 
         // order has product with product_id
-        if ($order->products->contains($product_id)) {
-            $product = $order->products()->where('product_id', $product_id)->where('color_id', $request['color_id'])->first();
+        // if ($order->products->contains($product_id)) {
+        //     $product = $order->products()->where('product_id', $product_id)->where('color_id', $request['color_id'])->first();
 
-            // product hasn't color with color_id
-            if (is_null($product)) {
-                $order->products()->attach(
-                    $product_id, 
-                    [
-                        'count' => $request['count'], 
-                        'color_id' => $request['color_id']
-                    ]
-                );
-            } 
+        //     // product hasn't color with color_id
+        //     if (is_null($product)) {
+        //         $order->products()->attach(
+        //             $product_id, 
+        //             [
+        //                 'count' => $request['count'], 
+        //                 'color_id' => $request['color_id']
+        //             ]
+        //         );
+        //     } 
 
-            // product has color with color_id
-            else {
-                $product->pivot->count = $request['count'];
-                $product->pivot->color_id = $request['color_id'];
-                $product->pivot->update();
-            }
-        } 
-        // order hasn't product with product_id
-        else { 
-            $order->products()->attach(
-                $product_id, 
-                [
-                    'count' => $request['count'], 
-                    'color_id' => $request['color_id']
-                ]
-            );
-        }
+        //     // product has color with color_id
+        //     else {
+        //         $product->pivot->count = $request['count'];
+        //         $product->pivot->color_id = $request['color_id'];
+        //         $product->pivot->update();
+        //     }
+        // } 
+        // // order hasn't product with product_id
+        // else { 
+        //     $order->products()->attach(
+        //         $product_id, 
+        //         [
+        //             'count' => $request['count'], 
+        //             'color_id' => $request['color_id']
+        //         ]
+        //     );
+        // }
 
-        return redirect()->route('home');
+        // return redirect()->route('home');
     }
 
     // create one item 

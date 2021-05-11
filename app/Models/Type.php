@@ -17,11 +17,6 @@ class Type extends Model
         'note'
     ];
 
-    public function product()
-    {
-        return $this->belongsTo('App\Models\Product');
-    }
-
     public function plate()
     {
         return $this->belongsTo('App\Models\Plate');
@@ -30,5 +25,24 @@ class Type extends Model
     public function fabric()
     {
         return $this->belongsTo('App\Models\Fabric');
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany('App\Models\Order');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo('App\Models\Product');
+    }
+
+    public function getPriceForCount()
+    {
+        if (!is_null($this->pivot)) {
+            return $this->pivot->count * $this->product->price;
+        }
+
+        return $this->product->price;
     }
 }

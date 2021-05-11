@@ -7,7 +7,7 @@
   <div class="bk-btn-group">
     <button class="btn btn-primary">CATEGORIES</button>
     @if($order != null)
-    <a class="btn btn-outline-primary" href="{{ route('basket.index') }}">
+    <a class="btn btn-outline-primary" href="">
       Корзина
     </a>
     @endif
@@ -16,64 +16,77 @@
   <ul class="bk-home">
     @foreach($products as $product)
     <li class="bk-home__card">
-      <img 
-        class="bk-home__img"
-        src="{{asset('images/' . $product->image)}}" 
-        alt="{{ $product->name }}" >
+      <div class="bk-home__frame">
+        @foreach($product->types as $id => $type)
+        <img 
+          class="bk-home__frame-img product-{{ $product->id }} d-none"
+          data-id="{{ $type->product->id . $id }}"
+          src="{{asset('images/' . $type->image)}}" 
+          alt ="{{ $product->name }}" >
+        @endforeach
+      </div>
       <form 
         class="bk-home__form" 
-        action="{{ route('basket.create', $product) }}" 
+        action="{{ route('basket.create') }}" 
         method="POST" >
         @csrf
+
         <h6 class="bk-home__title mb-0" title="{{ $product->name }}">
           {{ $product->name }}
         </h6>
+
         <p class="bk-home__text bk-home__text--sizes">
           ({{ $product->L . 'x' . $product->B . 'x' . $product->H}})
         </p>
+
         <p class="bk-home__text">
           <span class="bk-home__subtitle">Материал:</span> 
-          {{ $product->material->name }} 
+          @if($product->category->slug == 'soft') экокожа 
+          @else ЛДСП 
+          @endif
         </p>
-        @if($product->category->slug == 'soft')
-        <p class="bk-home__text bk-home__text--price">
-          <span class="bk-home__subtitle">Обивка:</span> 
-          {{ $product->fabric->name }} 
-        </p>
-        @else 
-        <p class="bk-home__text" style="opacity: 0">
-          <span class="bk-home__subtitle">Обивка:</span> 
-          {{-- fabric hasn't --}}
-        </p>
-        @endif
+
         <h5 class="bk-home__price">{{ number_format($product->price) }} ₽</h5>
+
         <ul class="bk-home__colors">
-          @foreach($product->colors as $color)
-          <li class="bk-home__color">
-            <img 
-              class="bk-home__img" 
-              src="{{asset('images/' . $color->image)}}" 
-              alt="{{ $color->name }}" >
+          @foreach($product->types as $id => $type)
+          @if($type->plate_id == null)
+          <li class="bk-home__color" title="{{ $type->fabric->name }}">
+            <div 
+              class="bk-home__color-img" 
+              style="background-color: {{ $type->fabric->code }}" >
             <input 
               class="bk-home__radio" 
-              id="{{ $product->id . $color->id }}"
-              data-color="{{ $product->id }}"
-              name="color_id"
-              value="{{ $color->id }}"
-              type="radio" >
-            <label 
-              class="bk-home__label" 
-              title="{{ $color->name }}"
-              for="{{ $product->id . $color->id }}" >
-              {{-- @if($order != null)
-                @if($order->products->where('id', $product->id)->count())
-                value="{{ $order->products->where('id', $product->id)->first()->pivot->count }}"
-                @endif 
-              @endif --}}
+              id="{{ $type->product->id . $id }}" 
+              data-product="{{ 'product-' . $type->product->id }}"
+              type="radio"
+              name="type_id"
+              value="{{ $type->id }}"
+              @if($id == 0) checked @endif >
+            <label class="bk-home__label" for="{{ $type->product->id . $id }}">
             </label>
           </li>
+          @elseif($type->fabric_id == null)
+          <li class="bk-home__color" title="{{ $type->plate->name }}">
+            <img 
+              class="bk-home__img" 
+              src="{{asset('images/' . $type->plate->image)}}" 
+              alt="" >
+            <input 
+              class="bk-home__radio" 
+              id="{{ $type->product->id . $id }}" 
+              data-product="{{ 'product-' . $type->product->id }}"
+              type="radio"
+              name="type_id"
+              value="{{ $type->id }}"
+              @if($id == 0) checked @endif >
+            <label class="bk-home__label" for="{{ $type->product->id . $id }}">
+            </label>
+          </li>
+          @endif 
           @endforeach
         </ul>
+
         <div class="bk-home__control">
           <input 
             class="bk-home__input form-control bk-form__input" 
@@ -87,10 +100,13 @@
             id="{{ $product->id }}"
             type="submit" >В корзину</button>
         </div>
+
       </form>
-    </li>    
-    @endforeach 
+    </li>
+    @endforeach
   </ul>
+
+  
   
 </section>
 @endsection

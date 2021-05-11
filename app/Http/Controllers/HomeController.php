@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Color;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Order;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -36,12 +35,9 @@ class HomeController extends Controller
         // categories 
         $categories = Category::get();
 
-        // colors 
-        $colors = Color::get();
-
         // products 
         $products = Product::get();
 
-        return view('home', compact('products', 'order', 'colors'));
+        return view('home', compact('products', 'order'));
     }
 }

@@ -4,15 +4,9 @@ $(document).ready(function () {
 
   if (home) {
 
+    /* check field 'count' == empty */
     $('.bk-home__btn').on('click', e => {
-      let colors = $(`[data-color=${e.target.id}]:checked`).length
       let count = $(`[data-count=${e.target.id}]`).val()
-
-      if (colors == 0) {
-        e.preventDefault()
-        alert('Необходимо выбрать цвет мебельной продукции')
-        return
-      }
 
       if (count == '') {
         e.preventDefault()
@@ -20,6 +14,37 @@ $(document).ready(function () {
         return
       }
 
+    })
+
+    /* display images */
+    // events on show
+    $('.bk-home__radio:checked').each(function () {
+      let radio = this.id
+      let image = '.' + this.dataset.product
+
+      $(image).each(function (i, elem) {
+        if (elem.dataset.id == radio) {
+          elem.classList.remove('d-none')
+        } else {
+          elem.classList.add('d-none')
+        }
+      })
+    })
+
+    // events on click
+    $('.bk-home__radio').change(function () {
+      if (this.checked) {
+        let radio = this.id
+        let image = '.' + this.dataset.product
+
+        $(image).each(function (i, elem) {
+          if (elem.dataset.id == radio) {
+            elem.classList.remove('d-none')
+          } else {
+            elem.classList.add('d-none')
+          }
+        })
+      }
     })
   }
 })

@@ -23,16 +23,16 @@ class Order extends Model
         // 'price',
     ];
 
-    public function products()
+    public function types()
     {
-        return $this->belongsToMany('App\Models\Product')->withPivot('count', 'color_id')->withTimestamps();
+        return $this->belongsToMany('App\Models\Type')->withPivot('count')->withTimestamps();
     }
 
     public function getFullPrice()
     {
         $sum = 0; 
-        foreach($this->products as $product) {
-            $sum += $product->getPriceForCount();
+        foreach($this->types as $type) {
+            $sum += $type->getPriceForCount();
         }
 
         return $sum;
