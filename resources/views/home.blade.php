@@ -7,7 +7,7 @@
   <div class="bk-btn-group">
     <button class="btn btn-primary">CATEGORIES</button>
     @if($order != null)
-    <a class="btn btn-outline-primary" href="">
+    <a class="btn btn-outline-primary" href="{{ route('home.basket.index') }}">
       Корзина
     </a>
     @endif
@@ -27,7 +27,7 @@
       </div>
       <form 
         class="bk-home__form" 
-        action="{{ route('basket.create') }}" 
+        action="{{ route('home.basket.create') }}" 
         method="POST" >
         @csrf
 

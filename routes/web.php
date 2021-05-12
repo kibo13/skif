@@ -70,10 +70,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
     // BASKET 
-    Route::get('basket', [BasketController::class, 'index'])->name('basket.index');
-    Route::post('basket', [BasketController::class, 'create'])->name('basket.create');
-    // Route::post('basket/add/{id}', [BasketController::class, 'addItem'])->name('basket.add.item');
-    // Route::post('basket/del/{id}', [BasketController::class, 'delItem'])->name('basket.del.item');
+    Route::get('basket', [BasketController::class, 'index'])->name('home.basket.index');
+    Route::post('basket', [BasketController::class, 'create'])->name('home.basket.create');
+    Route::post('basket/add/{id}', [BasketController::class, 'addItem'])->name('basket.add.item');
+    Route::post('basket/del/{id}', [BasketController::class, 'delItem'])->name('basket.del.item');
+    Route::get('basket/confirm', [BasketController::class, 'confirm'])->name('home.basket.confirm');
 
     // JSON 
     Route::get('data/products', [DataController::class, 'products']);

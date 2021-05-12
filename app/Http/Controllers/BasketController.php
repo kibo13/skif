@@ -10,6 +10,7 @@ class BasketController extends Controller
     // basket page 
     public function index() 
     {
+        // session 
         $order_id = session('order_id');
 
         if (!is_null($order_id)) {
@@ -22,102 +23,84 @@ class BasketController extends Controller
     // create multiple items
     public function create(Request $request) 
     {
-        // dd($request['type_id']);
-        // $order_id = session('order_id');     
+        // session 
+        $order_id = session('order_id');
+
+        // order 
+        $order = Order::find($order_id);
+
+        // type_id 
+        $type_id = $request['type_id'];
+
+        // order doesn't exist
+        if (is_null($order)) {
+            $order = Order::create();
+            session(['order_id' => $order->id]);
+        }
+
+        // order exists with type_id
+        if ($order->types->contains($type_id)) {
+            $type = $order->types()->where('type_id', $type_id)->first();
+            $type->pivot->count = $request['count'];
+            $type->pivot->update();
+        } 
+        // order doesn't exists with type_id
+        else {
+            $order->types()->attach($type_id, ['count' => $request['count']]);
+        }
         
-        // $order = Order::find($order_id);
-
-        // if (is_null($order)) {
-        //     $order_new = Order::create();
-        //     session(['order_id' => $order_new->id]);
-        // } else {
-        //     if ($order->state > 0) {
-        //         $order_new = Order::create();
-        //         session(['order_id' => $order_new->id]);
-        //     }
-        // }
-
-        // order has product with product_id
-        // if ($order->products->contains($product_id)) {
-        //     $product = $order->products()->where('product_id', $product_id)->where('color_id', $request['color_id'])->first();
-
-        //     // product hasn't color with color_id
-        //     if (is_null($product)) {
-        //         $order->products()->attach(
-        //             $product_id, 
-        //             [
-        //                 'count' => $request['count'], 
-        //                 'color_id' => $request['color_id']
-        //             ]
-        //         );
-        //     } 
-
-        //     // product has color with color_id
-        //     else {
-        //         $product->pivot->count = $request['count'];
-        //         $product->pivot->color_id = $request['color_id'];
-        //         $product->pivot->update();
-        //     }
-        // } 
-        // // order hasn't product with product_id
-        // else { 
-        //     $order->products()->attach(
-        //         $product_id, 
-        //         [
-        //             'count' => $request['count'], 
-        //             'color_id' => $request['color_id']
-        //         ]
-        //     );
-        // }
-
-        // return redirect()->route('home');
+        return redirect()->route('home');
     }
 
     // create one item 
-    public function addItem($product) 
+    public function addItem($type) 
     {
+        // session 
         $order_id = session('order_id');
 
-        if (is_null($order_id)) {
-            return redirect()->route('basket.index');
-        }
-
+        // order 
         $order = Order::find($order_id);
 
-        if ($order->products->contains($product)) {
-            $pivotRow = $order->products()->where('product_id', $product)->first()->pivot;
-            if ($pivotRow->count < 2) {
-                $order->products()->attach($product);
-            } else {
-                $pivotRow->count++;
-                $pivotRow->update();
-            }
-        }   
+        // type 
+        $type = $order->types()->where('type_id', $type)->first();
+        $type->pivot->count++;
+        $type->pivot->update();
 
-        return redirect()->route('basket.index');
+        return redirect()->route('home.basket.index');
     }
 
     // delete one item 
-    public function delItem($product)
+    public function delItem($type)
     {
+        // session 
         $order_id = session('order_id');
 
-        if (is_null($order_id)) {
-            return redirect()->route('basket.index');
-        }
-
+        // order 
         $order = Order::find($order_id);
 
-        if ($order->products->contains($product)) {
-            $pivotRow = $order->products()->where('product_id', $product)->first()->pivot;
-            if ($pivotRow->count < 2) {
-                $order->products()->detach($product);
-            } else {
-                $pivotRow->count--;
-                $pivotRow->update();
-            }
-        }   
+        // type 
+        $type = $order->types()->where('type_id', $type)->first();
+        
+        if ($type->pivot->count < 2) {
+            $order->types()->detach($type);
+        } else {
+            $type->pivot->count--;
+            $type->pivot->update();
+        }
 
-        return redirect()->route('basket.index');
+        return redirect()->route('home.basket.index');
+    }
+
+    // confirm order 
+    public function confirm() 
+    {
+        // // session 
+        // $order_id = session('order_id');
+
+        // if (!is_null($order_id)) {
+        //     $order = Order::findOrFail($order_id);
+        // }
+
+        return view('confirm');
     }
 }

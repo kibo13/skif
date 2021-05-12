@@ -1,36 +1,42 @@
-.basket
-  // column 'name'
-  &-list
+.bk-basket
+  // plug for basket's empty 
+  &-empty 
+    display: flex
+    flex-direction: column
+    align-items: center
+    text-align: center
+    &__title 
+      margin-top: 20px
+      margin-bottom: 15px
+  // general info 
+  &-info
     display: flex
     grid-gap: 10px
-
-    &__img 
-      height: 64px
-      object-fit: cover
-    &__name,
-    &__size,
-    &__price 
+    &__item
       margin-bottom: 0
-    
-    &__name 
-      font-weight: bold
-
-    &__size 
       font-size: $text-sm
+    &__frame 
+      display: flex
+      min-width: 128px
+      width: 128px
+      height: 100px
+      background: #fff
+      overflow: hidden
+      &-img 
+        width: 100%
+        object-fit: cover
+    &__subtitle 
+      margin-right: 2px
+      font-weight: bold	
+    &__text 
+      margin-bottom: 0 
+      padding: 0 2px
+      font-size: $text-base 
       color: rgba($dark, .65)
-
-    &__price 
-      margin-top: 5px
-      font-size: $text-sm
-      &--bold 
-        font-weight: bold
   // column 'count'
   &-count 
     display: flex
     height: 25px
-    // border: 1px solid $gray 
-    // overflow: hidden
-
     &__btn,
     &__field 
       margin-bottom: 0
@@ -42,14 +48,11 @@
       font-size: $text-sm
       border: 1px solid $gray 
       user-select: none
-    
     &__btn 
       font-size: $text-base
       transition: all .3s ease-out
-
       &:focus 
         box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1)
-
     &__field 
       border-left: none 
       border-right: none
@@ -67,12 +70,3 @@
     &__control 
       display: flex
       justify-content: space-between
-  // basket empty 
-  &-empty 
-    display: flex
-    flex-direction: column
-    align-items: center
-    text-align: center
-    &__title 
-      margin-top: 20px
-      margin-bottom: 15px

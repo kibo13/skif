@@ -10987,37 +10987,52 @@ table.dataTable thead .sorting_desc_disabled {
   color: rgba(66, 66, 66, 0.65);
 }
 
-.basket-list {
+.bk-basket-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.bk-basket-empty__title {
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+.bk-basket-info {
   display: flex;
   grid-gap: 10px;
 }
-.basket-list__img {
-  height: 64px;
+.bk-basket-info__item {
+  margin-bottom: 0;
+  font-size: 12px;
+}
+.bk-basket-info__frame {
+  display: flex;
+  min-width: 128px;
+  width: 128px;
+  height: 100px;
+  background: #fff;
+  overflow: hidden;
+}
+.bk-basket-info__frame-img {
+  width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.basket-list__name, .basket-list__size, .basket-list__price {
-  margin-bottom: 0;
-}
-.basket-list__name {
+.bk-basket-info__subtitle {
+  margin-right: 2px;
   font-weight: bold;
 }
-.basket-list__size {
-  font-size: 12px;
+.bk-basket-info__text {
+  margin-bottom: 0;
+  padding: 0 2px;
+  font-size: 14px;
   color: rgba(66, 66, 66, 0.65);
 }
-.basket-list__price {
-  margin-top: 5px;
-  font-size: 12px;
-}
-.basket-list__price--bold {
-  font-weight: bold;
-}
-.basket-count {
+.bk-basket-count {
   display: flex;
   height: 25px;
 }
-.basket-count__btn, .basket-count__field {
+.bk-basket-count__btn, .bk-basket-count__field {
   margin-bottom: 0;
   display: flex;
   justify-content: center;
@@ -11031,43 +11046,33 @@ table.dataTable thead .sorting_desc_disabled {
       -ms-user-select: none;
           user-select: none;
 }
-.basket-count__btn {
+.bk-basket-count__btn {
   font-size: 14px;
   transition: all 0.3s ease-out;
 }
-.basket-count__btn:focus {
+.bk-basket-count__btn:focus {
   box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px white;
 }
-.basket-count__field {
+.bk-basket-count__field {
   border-left: none;
   border-right: none;
 }
-.basket-footer {
+.bk-basket-footer {
   display: flex;
   flex-direction: column;
 }
-.basket-footer__total {
+.bk-basket-footer__total {
   margin-bottom: 15px;
   text-align: right;
 }
-.basket-footer__total--sm {
+.bk-basket-footer__total--sm {
   padding-right: 10px;
   font-size: 14px;
   font-weight: bold;
 }
-.basket-footer__control {
+.bk-basket-footer__control {
   display: flex;
   justify-content: space-between;
-}
-.basket-empty {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-.basket-empty__title {
-  margin-top: 20px;
-  margin-bottom: 15px;
 }
 
 .order-customer .dataTable {
