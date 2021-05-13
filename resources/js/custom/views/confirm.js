@@ -2,6 +2,7 @@ $(document).ready(function () {
   const confirm_form = document.getElementById('confirm-form')
 
   if (confirm_form) {
+
     /* Set up datatable */
     $('.table').dataTable({
       language: {
@@ -12,6 +13,16 @@ $(document).ready(function () {
       },
       ordering: false,
     })
+
+    /* Insert button 'New customer' */
+    // const block_search = $('.dataTables_filter label')
+    // const btn_customer = document.createElement('button')
+
+    // btn_customer.classList.add('btn')
+    // btn_customer.classList.add('btn-outline-primary')
+    // btn_customer.classList.add('bk-confirm-append')
+    // btn_customer.innerText = 'Новый клиент'
+    // block_search.append(btn_customer)
 
     /* Show\Hide alert */
     // const order_save = document.getElementById('order-save')
