@@ -1,11 +1,9 @@
 $(document).ready(function () {
-
   const home = document.getElementById('home-index')
 
   if (home) {
-
     /* check field 'count' == empty */
-    $('.bk-home__btn').on('click', e => {
+    $('.bk-home__btn').on('click', (e) => {
       let count = $(`[data-count=${e.target.id}]`).val()
 
       if (count == '') {
@@ -13,7 +11,6 @@ $(document).ready(function () {
         alert('Необходимо указать количество мебельной продукции')
         return
       }
-
     })
 
     /* display images */

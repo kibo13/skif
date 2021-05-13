@@ -1,19 +1,18 @@
 @extends('layouts.master')
 <!-- category-form -->
 @section('content')
-<section id="category-form" class="valid-form img-form section">
+<section id="category-form" class="valid-form section">
   <h2 class="mb-3">
-    @isset($category) 
-      Редактирование записи 
-    @else 
-      Добавление записи 
+    @isset($category)
+      Редактирование записи
+    @else
+      Добавление записи
     @endisset
   </h2>
 
   <form
     class="bk-form"
     method="POST"
-    enctype="multipart/form-data"
     @isset($category)
       action="{{ route('categories.update', $category) }}"
     @else
@@ -22,8 +21,8 @@
   >
     @csrf
     <div>
-      @isset($category) 
-        @method('PUT') 
+      @isset($category)
+        @method('PUT')
       @endisset
 
       <div class="bk-form__wrapper" data-info="Общие сведения">
@@ -44,37 +43,10 @@
 
           <!-- /.description -->
           <h6 class="bk-form__title">Описание</h6>
-          <div class="bk-form__field-full mb-2">
+          <div class="bk-form__field-full">
             <textarea class="form-control bk-form__text" name="description" placeholder="Краткое описание категории">{{ old('description', isset($category) ? $category->description : null) }}</textarea>
           </div>
 
-          <!-- /.image -->
-          <h6 class="bk-form__title">Изображение</h6>
-          <div class="bk-form__field-300">
-            <div class="bk-form__file">
-              <input
-                class="form-control bk-form__input"
-                id="upload-file"
-                name="note"
-                type="text"
-                value="@isset($category) {{ $category->note }} @endisset"
-                placeholder="Файл не выбран"
-              />
-
-              <button 
-                class="btn btn-primary bk-form__file--btn">
-                Загрузить
-              </button>
-
-              <input 
-                class="form-control-file bk-form__file--upload" 
-                id="image"
-                name="image"
-                type="file"
-                accept="image/*"
-              >
-            </div>            
-          </div>
         </div>
       </div>
 

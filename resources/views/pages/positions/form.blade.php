@@ -3,10 +3,10 @@
 @section('content')
 <section id="position-form" class="valid-form section">
   <h2 class="mb-3">
-    @isset($position) 
-      Редактирование записи 
-    @else 
-      Добавление записи 
+    @isset($position)
+      Редактирование записи
+    @else
+      Добавление записи
     @endisset
   </h2>
 
@@ -17,12 +17,11 @@
       action="{{ route('positions.update', $position) }}"
     @else
       action="{{ route('positions.store') }}"
-    @endisset
-  >
+    @endisset >
     @csrf
     <div>
-      @isset($position) 
-        @method('PUT') 
+      @isset($position)
+        @method('PUT')
       @endisset
 
       <div class="bk-form__wrapper" data-info="Общие сведения">
@@ -37,8 +36,7 @@
               name="name"
               value="@isset($position) {{ $position->name }} @endisset"
               placeholder="Новая должность"
-              required
-            />
+              required />
           </div>
           <!-- /.salary -->
           <h6 class="bk-form__title">Оклад</h6>

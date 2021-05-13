@@ -3,10 +3,10 @@
 @section('content')
 <section id="product-form" class="valid-form section">
   <h2 class="mb-3">
-    @isset($product) 
-      Редактирование записи 
-    @else 
-      Добавление записи 
+    @isset($product)
+      Редактирование записи
+    @else
+      Добавление записи
     @endisset
   </h2>
 
@@ -21,8 +21,8 @@
     @csrf
 
     <div>
-      @isset($product) 
-        @method('PUT') 
+      @isset($product)
+        @method('PUT')
       @endisset
 
       <div class="bk-form__wrapper" data-info="Общие сведения">
@@ -31,15 +31,15 @@
           <!-- /.category -->
           <h6 class="bk-form__title">Категория</h6>
           <div class="bk-form__field-250 mb-2">
-            <select 
+            <select
               class="form-control bk-form__input"
               id="category_id"
               name="category_id" >
 							<option disabled selected>Выберите категорию</option>
 							@foreach($categories as $category)
-							<option 
-                value="{{ $category->id }}" 
-                @isset($product) 
+							<option
+                value="{{ $category->id }}"
+                @isset($product)
                   @if($product->category_id == $category->id)
 								    selected
 								  @endif
@@ -52,13 +52,13 @@
             <span class="bk-alert d-none">
               <strong>Необходимо выбрать категорию</strong>
             </span>
-          </div>   
+          </div>
 
           <!-- /.code -->
-          <input 
+          <input
             class="form-control bk-form__input"
-            type="hidden" 
-            name="code" 
+            type="hidden"
+            name="code"
             value="{{ isset($product) ? $product->code : getCode() }}" >
 
           <!-- /.product -->
@@ -135,22 +135,22 @@
 
           <!-- /.description -->
           <h6 class="bk-form__title">Описание</h6>
-          <div class="bk-form__field-full mb-2">
+          <div class="bk-form__field-full">
             <textarea class="form-control bk-form__text" name="description" placeholder="Введите описание">{{ old('description', isset($product) ? $product->description : null) }}</textarea>
           </div>
-          
+
         </div>
       </div>
 
       <div class="form-group">
-        <button 
-          class="btn btn-outline-success" 
+        <button
+          class="btn btn-outline-success"
           id="product-save"
           type="submit" >
           Сохранить
         </button>
-        <a 
-          class="btn btn-outline-secondary" 
+        <a
+          class="btn btn-outline-secondary"
           href="{{ route('products.index') }}" >
           Назад
         </a>

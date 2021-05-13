@@ -28,33 +28,33 @@ Auth::routes([
 
 Route::middleware(['auth'])->group(function () {
 
-    // USERS 
+    // USERS
     Route::resource('users', UserController::class)->except(['show']);
 
-    // WORKERS 
+    // WORKERS
     Route::resource('workers', WorkerController::class)->except(['show']);
 
-    // POSITIONS  
+    // POSITIONS
     Route::resource('positions', PositionController::class)->except(['show']);
 
-    // CATEGORIES 
+    // CATEGORIES
     Route::resource('categories', CategoryController::class)->except(['show']);
 
-    // CUSTOMERS 
+    // CUSTOMERS
     Route::resource('customers', CustomerController::class)->except(['show']);
-   
-    // MATERIALS  
+
+    // MATERIALS
     Route::get(
-        'materials', 
+        'materials',
         [MaterialController::class, 'index'])->name('materials.index');
     Route::resource(
-        'plates', 
+        'plates',
         PlateController::class)->except(['index', 'show']);
     Route::resource(
-        'fabrics', 
+        'fabrics',
         FabricController::class)->except(['index', 'show']);
 
-    // PRODUCTS  
+    // PRODUCTS
     Route::resource('products', ProductController::class)->except(['show']);
     Route::get('products/{product}/types', [TypeController::class, 'index'])->name('products.types');
     Route::get('products/{product}/types/create', [TypeController::class, 'create'])->name('products.types.create');
@@ -66,17 +66,17 @@ Route::middleware(['auth'])->group(function () {
     // ORDERS
     Route::resource('orders', OrderController::class)->except(['show']);
 
-    // HOME 
+    // HOME
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
-    // BASKET 
+    // BASKET
     Route::get('basket', [BasketController::class, 'index'])->name('home.basket.index');
     Route::post('basket', [BasketController::class, 'create'])->name('home.basket.create');
-    Route::post('basket/add/{id}', [BasketController::class, 'addItem'])->name('basket.add.item');
-    Route::post('basket/del/{id}', [BasketController::class, 'delItem'])->name('basket.del.item');
+    Route::post('basket/add/{type}', [BasketController::class, 'addItem'])->name('home.basket.add');
+    Route::post('basket/del/{type}', [BasketController::class, 'delItem'])->name('home.basket.del');
     Route::get('basket/confirm', [BasketController::class, 'confirm'])->name('home.basket.confirm');
 
-    // JSON 
+    // JSON
     Route::get('data/products', [DataController::class, 'products']);
 });
 

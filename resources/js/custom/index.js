@@ -1,7 +1,7 @@
-// vendors 
+// vendors
 require('./vendors/datatable')
 
-// components 
+// components
 // require('./components/loader')
 require('./components/navbar')
 require('./components/modal')
@@ -9,11 +9,12 @@ require('./components/validation')
 require('./components/image')
 require('./components/info')
 
-// views 
+// views
 require('./views/home')
 require('./views/worker')
 require('./views/user')
 require('./views/customer')
 require('./views/fabric')
 require('./views/product')
+require('./views/confirm')
 require('./views/order')

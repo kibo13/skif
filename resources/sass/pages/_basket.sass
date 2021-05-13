@@ -1,44 +1,44 @@
 .bk-basket
-  // plug for basket's empty 
-  &-empty 
+  // plug for basket's empty
+  &-empty
     display: flex
     flex-direction: column
     align-items: center
     text-align: center
-    &__title 
+    &__title
       margin-top: 20px
       margin-bottom: 15px
-  // general info 
+  // general info
   &-info
     display: flex
     grid-gap: 10px
     &__item
       margin-bottom: 0
       font-size: $text-sm
-    &__frame 
+    &__frame
       display: flex
       min-width: 128px
       width: 128px
       height: 100px
       background: #fff
       overflow: hidden
-      &-img 
+      &-img
         width: 100%
         object-fit: cover
-    &__subtitle 
+    &__subtitle
       margin-right: 2px
-      font-weight: bold	
-    &__text 
-      margin-bottom: 0 
+      font-weight: bold
+    &__text
+      margin-bottom: 0
       padding: 0 2px
-      font-size: $text-base 
+      font-size: $text-base
       color: rgba($dark, .65)
   // column 'count'
-  &-count 
+  &-count
     display: flex
     height: 25px
     &__btn,
-    &__field 
+    &__field
       margin-bottom: 0
       display: flex
       justify-content: center
@@ -46,27 +46,27 @@
       width: 25px
       height: 100%
       font-size: $text-sm
-      border: 1px solid $gray 
+      border: 1px solid $gray
       user-select: none
-    &__btn 
+    &__btn
       font-size: $text-base
       transition: all .3s ease-out
-      &:focus 
+      &:focus
         box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1)
-    &__field 
-      border-left: none 
+    &__field
+      border-left: none
       border-right: none
-  // total sum 
-  &-footer 
+  // total sum
+  &-footer
     display: flex
     flex-direction: column
-    &__total 
+    align-items: flex-end
+    &__control
+      display: flex
+      grid-gap: 5px
+    &__total
       margin-bottom: 15px
-      text-align: right
-      &--sm 
+      &--sm
         padding-right: 10px
         font-size: $text-base
         font-weight: bold
-    &__control 
-      display: flex
-      justify-content: space-between

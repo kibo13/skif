@@ -17,7 +17,7 @@
     <thead class="thead-light">
       <tr>
         <th scope="col">#</th>
-        <th scope="col" class="w-25 no-sort">Категория</th>
+        <th scope="col" class="w-25">Категория</th>
         <th scope="col" class="w-75 no-sort">Описание</th>
         <th scope="col" class="no-sort">Действие</th>
       </tr>
@@ -30,20 +30,20 @@
         <td>
           <div class="bk-btn-info">
             {{ $category->description }}
-            <button 
-              class="bk-btn-info__triangle bk-btn-info__triangle--down" 
+            <button
+              class="bk-btn-info__triangle bk-btn-info__triangle--down"
               title="Читать ещё">
             </button>
           </div>
         </td>
         <td>
           <div class="bk-btn-actions">
-            <a 
-              class="bk-btn-actions__link bk-btn-actions__link--edit btn btn-warning" 
+            <a
+              class="bk-btn-actions__link bk-btn-actions__link--edit btn btn-warning"
               href="{{ route('categories.edit', $category) }}"
               data-tip="Редактировать" ></a>
-            <a 
-              class="bk-btn-actions__link bk-btn-actions__link--delete btn btn-danger" 
+            <a
+              class="bk-btn-actions__link bk-btn-actions__link--delete btn btn-danger"
               href="javascript:void(0)"
               data-id="{{ $category->id }}"
               data-table-name="category"

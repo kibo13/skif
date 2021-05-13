@@ -1,39 +1,34 @@
-.bk-form 
+.bk-form
 	padding-top: 10px
-
-	&__wrapper 
+	&__wrapper
 		position: relative
 		margin-bottom: 15px
 		padding: 15px
 		border-radius: 4px
-		border: 1px solid $gray 
-
+		border: 1px solid $gray
 		&::before
 			content: attr(data-info)
 			padding: 0 5px
 			position: absolute
 			top: -12px
 			left: 6px
-			font-size: $text-base 
+			font-size: $text-base
 			font-weight: bold
-			background: $light 
-	
+			background: $light
 	&__block
 		padding: 0
 		margin: 0
-		display: flex 
+		display: flex
 		flex-direction: column
-		// flex-wrap: wrap
-
 	&__field-50
 		width: 50px
 	&__field-100
 		width: 100px
-	&__field-200 
+	&__field-200
 		width: 200px
 	&__field-250
 		width: 250px
-	&__field-300 
+	&__field-300
 		width: 300px
 	&__field-full
 		width: 100%
@@ -41,7 +36,6 @@
 		display: grid
 		grid-template-columns: repeat(auto-fill, minmax(55px, auto))
 		grid-gap: 5px
-
 	&__title
 		padding: 3px 0
 		margin-bottom: 6px
@@ -49,28 +43,22 @@
 		font-size: 13px
 		font-weight: bold
 		border-bottom: 1px solid $gray
-
 	&__input,
-	&__text 
-		padding: 0 10px 
+	&__text
+		padding: 0 10px
 		height: 30px
 		font-size: $text-base
-
-		&:focus 
-			box-shadow: none 
-		
-		&::placeholder 
+		&:focus
+			box-shadow: none
+		&::placeholder
 			font-size: $text-base
-
-	&__text 
+	&__text
 		padding: 5px 10px
 		height: 100px
 		resize: vertical
-
-	&__file 
+	&__file
 		position: relative
-
-		&--btn 
+		&--btn
 			position: absolute
 			top: 50%
 			right: 4px
@@ -81,38 +69,32 @@
 			width: 70px
 			height: 23px
 			font-size: $text-sm
-		
 		&--upload
 			position: absolute
 			top: 0
 			left: 0
 			opacity: 0
 			cursor: pointer
-			
 	&__check
 		margin: 0 5px
 		width: 15px
 		height: 15px
 		cursor: pointer
-
-	&__label 
+	&__label
 		display: flex
 		align-items: center
 		height: 14px
 		font-size: $text-base
 		cursor: pointer
-	
-	&__color 
+	&__color
 		height: 30px
 		padding: 0 2px
-
-	&__alert 
+	&__alert
 		font-size: 11px
-
-// for group radiobuttons 
-.bk-radio 
+// for group radiobuttons
+.bk-radio
 	padding: 0
-	&__item 
+	&__item
 		padding: 2px
 		display: flex
 		align-items: center
@@ -121,42 +103,37 @@
 		margin-left: 7px
 		margin-bottom: 0
 		cursor: pointer
-// for group checkboxes 
+// for group checkboxes
 .bk-checks
 	margin: 0
-	padding: 0 5px 
+	padding: 0 5px
 	display: grid
 	grid-template-columns: repeat(auto-fill, minmax(32px, auto))
 	grid-gap: 5px
-
-	&__item 
+	&__item
 		position: relative
 		display: flex
 		height: 32px
 		box-shadow: 0 0 2px
 		overflow: hidden
-
-	&__img 
+	&__img
 		width: 100%
 		object-fit: cover
-	
-	&__label 
+	&__label
 		position: absolute
 		top: 0
-		left: 0	
+		left: 0
 		width: 100%
 		height: 100%
 		cursor: pointer
-
 	&__checkbox
 		position: absolute
 		top: 0
 		left: 0
 		opacity: 0
-
 		&:checked~
 			.bk-checks__label:before
-				content: '\2713'	
+				content: '\2713'
 				position: absolute
 				top: 0
 				left: 0
@@ -169,10 +146,8 @@
 				color: $light
 				background: rgba($dark, .35)
 				border: 2px solid $light
-
 .bk-access
 	position: relative
-
 	&::before
 		content: ''
 		position: absolute
@@ -184,7 +159,7 @@
 		border-radius: .25rem
 
 @media screen and ( max-width: $width-sm )
-	.bk-form 
+	.bk-form
 		&__field-50,
 		&__field-100,
 		&__field-200,

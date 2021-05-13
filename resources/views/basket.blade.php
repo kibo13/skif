@@ -4,7 +4,7 @@
 <section id="basket-index" class="section">
   <h2 class="mb-3">Корзина</h2>
 
-  @if($order->getFullPrice() == 0)
+  @if($order == null || $order->getFullPrice() == 0)
   <div class="bk-basket-empty">
     <img src="{{ asset('images/basket.png') }}" alt="basket" >
     <h5 class="bk-basket-empty__title">В корзине еще нет товаров...</h5>
@@ -32,9 +32,9 @@
         <td>
           <div class="bk-basket-info">
             <div class="bk-basket-info__frame">
-              <img 
-                class="bk-basket-info__frame-img" 
-                src="{{asset('images/' . $type->image)}}" 
+              <img
+                class="bk-basket-info__frame-img"
+                src="{{asset('images/' . $type->image)}}"
                 alt="{{ $type->product->name }}" >
             </div>
             <div class="bk-basket-info__info">
@@ -45,26 +45,26 @@
                 ({{ $type->product->L . 'x' . $type->product->B . 'x' . $type->product->H}})
               </p>
               <p class="bk-basket-info__item">
-                <span class="bk-basket-info__subtitle">Артикул:</span> 
-                {{ $type->product->code }} 
+                <span class="bk-basket-info__subtitle">Артикул:</span>
+                {{ $type->product->code }}
                 <small class="text-muted align-text-top">
                 @if($type->product->category->slug == 'soft')
                   {{ $type->fabric->name }}
-                @else 
+                @else
                   {{ $type->plate->name }}
                 @endif
                 </small>
               </p>
               <p class="bk-basket-info__item">
-                <span class="bk-basket-info__subtitle">Материал:</span> 
+                <span class="bk-basket-info__subtitle">Материал:</span>
                 @if($type->product->category->slug == 'soft')
                 Экокожа
-                @else 
+                @else
                 ЛДСП
                 @endif
               </p>
               <p class="bk-basket-info__item">
-                <span class="bk-basket-info__subtitle">Цена:</span> 
+                <span class="bk-basket-info__subtitle">Цена:</span>
                 {{ number_format($type->product->price) }} ₽
               </p>
             </div>
@@ -72,21 +72,21 @@
         </td>
         <td>
           <div class="bk-basket-count">
-            <form 
-              class="bk-basket-count__add" 
-              action="{{ route('basket.add.item', $type) }}" 
+            <form
+              class="bk-basket-count__add"
+              action="{{ route('home.basket.add', $type) }}"
               method="POST" >
-              @csrf 
+              @csrf
               <button class="bk-basket-count__btn" title="Добавить">+</button>
             </form>
             <p class="bk-basket-count__field">
               {{ $type->pivot->count }}
             </p>
-            <form 
-              class="bk-basket-count__del" 
-              action="{{ route('basket.del.item', $type) }}" 
+            <form
+              class="bk-basket-count__del"
+              action="{{ route('home.basket.del', $type) }}"
               method="POST" >
-              @csrf 
+              @csrf
               <button class="bk-basket-count__btn" title="Удалить">-</button>
             </form>
           </div>
@@ -103,19 +103,19 @@
       {{ number_format($order->getFullPrice()) }} ₽
     </h5>
     <div class="bk-basket-footer__control">
-      <a 
-        class="btn btn-outline-secondary" 
+      <a
+        class="btn btn-outline-secondary"
         href="{{ route('home') }}" >
         Назад
       </a>
-      <a 
-        class="btn btn-outline-success" 
+      <a
+        class="btn btn-outline-success"
         href="{{ route('home.basket.confirm') }}" >
         Оформить заказ
       </a>
     </div>
   </div>
   @endif
-  
+
 </section>
 @endsection

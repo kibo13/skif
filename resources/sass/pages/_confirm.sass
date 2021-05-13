@@ -1,0 +1,73 @@
+.bk-confirm
+  &-customer
+    margin-bottom: 10px
+    .dataTable
+      margin-bottom: 0
+      height: 135px
+      font-size: $text-base
+      overflow-y: auto
+      th,
+      td
+        padding: 5px
+        vertical-align: middle
+        text-align: center
+      th:nth-child(2)
+        text-align: left
+    .dataTables_empty
+      padding: 5px 10px !important
+      text-align: left !important
+    .dataTables_length,
+    .dataTables_info,
+    .dataTables_paginate
+      display: none
+    .dataTables_filter
+      display: flex
+      justify-content: flex-start
+      vertical-align: middle
+      flex-basis: 100%
+      label,
+      input
+        width: 100%
+  &-alert
+    margin-top: 5px
+    margin-bottom: 0
+    padding: 5px 10px
+    display: block
+    color: $red
+    font-size: $text-sm
+  &-list
+    padding: 5px 10px
+    margin: 0
+    text-align: left
+    &__item
+      margin: 5px 0px
+      display: flex
+      align-items: center
+      font-size: $text-sm
+      border-bottom: 1px solid $gray
+    &__tip
+      display: block
+      min-width: 70px
+      font-weight: bold
+  &-control
+    position: relative
+    display: flex
+    justify-content: center
+    align-items: center
+    &__radio
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      opacity: 0
+      &:checked~
+        .bk-confirm-control__label
+          background-image: url('/icons/check.svg')
+    &__label
+      width: 32px
+      height: 32px
+      background-image: url('/icons/uncheck.svg')
+      background-repeat: no-repeat
+      background-position: center right
+      background-size: cover
+      cursor: pointer

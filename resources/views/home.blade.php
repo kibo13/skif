@@ -5,12 +5,10 @@
   <h2 class="mb-3">Каталог мебели</h2>
 
   <div class="bk-btn-group">
-    <button class="btn btn-primary">CATEGORIES</button>
-    @if($order != null)
+    <button class="btn btn-primary">Категории</button>
     <a class="btn btn-outline-primary" href="{{ route('home.basket.index') }}">
       Корзина
     </a>
-    @endif
   </div>
 
   <ul class="bk-home">
@@ -18,16 +16,16 @@
     <li class="bk-home__card">
       <div class="bk-home__frame">
         @foreach($product->types as $id => $type)
-        <img 
+        <img
           class="bk-home__frame-img product-{{ $product->id }} d-none"
           data-id="{{ $type->product->id . $id }}"
-          src="{{asset('images/' . $type->image)}}" 
+          src="{{asset('images/' . $type->image)}}"
           alt ="{{ $product->name }}" >
         @endforeach
       </div>
-      <form 
-        class="bk-home__form" 
-        action="{{ route('home.basket.create') }}" 
+      <form
+        class="bk-home__form"
+        action="{{ route('home.basket.create') }}"
         method="POST" >
         @csrf
 
@@ -40,9 +38,9 @@
         </p>
 
         <p class="bk-home__text">
-          <span class="bk-home__subtitle">Материал:</span> 
-          @if($product->category->slug == 'soft') экокожа 
-          @else ЛДСП 
+          <span class="bk-home__subtitle">Материал:</span>
+          @if($product->category->slug == 'soft') экокожа
+          @else ЛДСП
           @endif
         </p>
 
@@ -52,12 +50,12 @@
           @foreach($product->types as $id => $type)
           @if($type->plate_id == null)
           <li class="bk-home__color" title="{{ $type->fabric->name }}">
-            <div 
-              class="bk-home__color-img" 
+            <div
+              class="bk-home__color-img"
               style="background-color: {{ $type->fabric->code }}" >
-            <input 
-              class="bk-home__radio" 
-              id="{{ $type->product->id . $id }}" 
+            <input
+              class="bk-home__radio"
+              id="{{ $type->product->id . $id }}"
               data-product="{{ 'product-' . $type->product->id }}"
               type="radio"
               name="type_id"
@@ -68,13 +66,13 @@
           </li>
           @elseif($type->fabric_id == null)
           <li class="bk-home__color" title="{{ $type->plate->name }}">
-            <img 
-              class="bk-home__img" 
-              src="{{asset('images/' . $type->plate->image)}}" 
+            <img
+              class="bk-home__img"
+              src="{{asset('images/' . $type->plate->image)}}"
               alt="" >
-            <input 
-              class="bk-home__radio" 
-              id="{{ $type->product->id . $id }}" 
+            <input
+              class="bk-home__radio"
+              id="{{ $type->product->id . $id }}"
               data-product="{{ 'product-' . $type->product->id }}"
               type="radio"
               name="type_id"
@@ -83,20 +81,20 @@
             <label class="bk-home__label" for="{{ $type->product->id . $id }}">
             </label>
           </li>
-          @endif 
+          @endif
           @endforeach
         </ul>
 
         <div class="bk-home__control">
-          <input 
-            class="bk-home__input form-control bk-form__input" 
+          <input
+            class="bk-home__input form-control bk-form__input"
             data-count="{{ $product->id }}"
             name="count"
             type="text"
             maxlength="3"
             placeholder="1" >
-          <button 
-            class="bk-home__btn" 
+          <button
+            class="bk-home__btn"
             id="{{ $product->id }}"
             type="submit" >В корзину</button>
         </div>
@@ -106,7 +104,7 @@
     @endforeach
   </ul>
 
-  
-  
+
+
 </section>
 @endsection
