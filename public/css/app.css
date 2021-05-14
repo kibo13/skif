@@ -11081,7 +11081,7 @@ table.dataTable thead .sorting_desc_disabled {
 }
 .bk-confirm-customer .dataTable {
   margin-bottom: 0;
-  max-height: 185px;
+  max-height: 150px;
   font-size: 14px;
   overflow-y: auto;
 }
@@ -11105,7 +11105,7 @@ table.dataTable thead .sorting_desc_disabled {
 }
 .bk-confirm-customer .dataTables_filter {
   position: relative;
-  margin: 0.5rem 0;
+  margin: 5px 0;
   display: flex;
   justify-content: flex-start;
   vertical-align: middle;
@@ -11119,13 +11119,35 @@ table.dataTable thead .sorting_desc_disabled {
 .bk-confirm-customer .dataTables_filter label {
   margin-bottom: 0;
 }
-.bk-confirm-alert {
-  margin-top: 5px;
+.bk-confirm-header {
+  display: flex;
+  border-bottom: 1px solid #ced4da;
+}
+.bk-confirm-header__title {
   margin-bottom: 0;
-  padding: 5px 10px;
-  display: block;
-  color: #e3342f;
-  font-size: 12px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  background: #fff;
+  border: 1px solid #ced4da;
+  border-bottom: none;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.bk-confirm-header__btn {
+  margin: 5px;
+  height: 30px;
+  width: 30px;
+  background-image: url("/icons/user-add.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 80%;
 }
 .bk-confirm-info {
   padding: 0px 5px;
@@ -11167,4 +11189,12 @@ table.dataTable thead .sorting_desc_disabled {
   background-position: center right;
   background-size: cover;
   cursor: pointer;
+}
+.bk-confirm-alert {
+  margin-top: 5px;
+  margin-bottom: 0;
+  padding: 5px 10px;
+  display: block;
+  color: #e3342f;
+  font-size: 12px;
 }

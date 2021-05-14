@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Http\Requests\CustomerRequest;
 
 class BasketController extends Controller
 {
@@ -37,6 +38,13 @@ class BasketController extends Controller
     }
 
     return view('confirm', compact('order', 'customers'));
+  }
+
+  // create new customer
+  public function newCustomer(CustomerRequest $request)
+  {
+    Customer::create($request->all());
+    return redirect()->route('home.basket.confirm');
   }
 
   // create multiple items

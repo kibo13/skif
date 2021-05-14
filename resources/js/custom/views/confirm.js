@@ -1,8 +1,8 @@
 $(document).ready(function () {
   const confirm_form = document.getElementById('confirm-form')
 
+  // confirm.form is active
   if (confirm_form) {
-
     /* Set up datatable */
     $('.table').dataTable({
       language: {

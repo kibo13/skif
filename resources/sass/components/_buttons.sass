@@ -1,9 +1,9 @@
 .bk-btn
-	// for columns actions 
-	&-actions 
-		display: flex 
+	// for columns actions
+	&-actions
+		display: flex
 		grid-gap: 5px
-		&__link 
+		&__link
 			position: relative
 			width: 25px
 			height: 25px
@@ -11,11 +11,11 @@
 			background-position: center center
 			background-size: 80%
 			&--color
-				background-image: url('/icons/color.svg') 
+				background-image: url('/icons/color.svg')
 			&--edit
-				background-image: url('/icons/pen.svg') 
+				background-image: url('/icons/pen.svg')
 			&--delete
-				background-image: url('/icons/trash.svg') 
+				background-image: url('/icons/trash.svg')
 			&::after
 				content: attr(data-tip)
 				position: absolute
@@ -26,24 +26,24 @@
 				font-size: $text-sm
 				color: $dark
 				background: #ffffff
-				box-shadow: 0 0 2px 	
-				border-radius: 4px	
+				box-shadow: 0 0 2px
+				border-radius: 4px
 				visibility: hidden
-			&:hover 
+			&:hover
 				&::after
 					visibility: visible
 			&:focus,
 			&:active
 				box-shadow: none !important
-	// for columns more info 
-	&-info 
+	// for columns more info
+	&-info
 		margin-right: -5px
 		position: relative
 		height: 25px
-		overflow: hidden 
-		&--active 
+		overflow: hidden
+		&--active
 			height: auto
-		&__triangle 
+		&__triangle
 			position: absolute
 			top: -2px
 			right: 0
@@ -54,10 +54,10 @@
 			background-position: center top
 			background-size: cover
 			border: transparent
-			&--up 
-				background-image: url('/icons/triangle-up.svg') 	
-			&--down 
-				background-image: url('/icons/triangle-down.svg') 
+			&--up
+				background-image: url('/icons/triangle-up.svg')
+			&--down
+				background-image: url('/icons/triangle-down.svg')
 	// for buttons new record
 	&-group
 		margin: 10px 0
@@ -67,5 +67,6 @@
 	.bk-btn
 		// for buttons new record
 		&-group
-			display: grid	
+			display: grid
 			grid-template-columns: repeat(auto-fill, minmax(150px, auto))
+
