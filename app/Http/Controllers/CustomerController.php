@@ -26,6 +26,8 @@ class CustomerController extends Controller
    */
   public function create()
   {
+
+    // dd(session('order_id'));
     $types = config('constants.type_customer');
     return view('pages.customers.form', compact('types'));
   }
@@ -38,8 +40,21 @@ class CustomerController extends Controller
    */
   public function store(CustomerRequest $request)
   {
+    // session
+    $order_id = session('order_id');
+
+    // customer creation 
     Customer::create($request->all());
-    return redirect()->route('customers.index');
+
+    // session is null 
+    if (is_null($order_id)) {
+      return redirect()->route('customers.index');
+    } 
+    
+    // session isn't null 
+    else {
+      return redirect()->route('home.basket.confirm');
+    }
   }
 
   /**

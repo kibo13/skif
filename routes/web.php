@@ -78,7 +78,6 @@ Route::middleware(['auth'])->group(function () {
   Route::post('basket/add/{type}', [BasketController::class, 'addItem'])->name('home.basket.add');
   Route::post('basket/del/{type}', [BasketController::class, 'delItem'])->name('home.basket.del');
   Route::get('basket/confirm', [BasketController::class, 'confirm'])->name('home.basket.confirm');
-  Route::post('basket/customer', [BasketController::class, 'newCustomer'])->name('home.basket.customer');
 
   // JSON
   Route::get('data/products', [DataController::class, 'products']);

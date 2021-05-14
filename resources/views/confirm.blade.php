@@ -1,20 +1,17 @@
 @extends('layouts.master')
 <!-- confirm-form -->
 @section('content')
-<section id="confirm-form" class="section">
+<section id="confirm-form" class="valid-form section">
   <h2 class="mb-3">Подтверждение заказа</h2>
 
   <div class="bk-confirm-header">
     <h5 class="bk-confirm-header__title">
       Клиентская база
     </h5>
-    <button
-      class="bk-confirm-header__btn btn btn-sm btn-primary"
-      type="button"
-      data-toggle="modal"
-      data-target="#new-customer"
-      data-target="#bk-delete-modal"
-      title="Новый клиент" ></button>
+    <a 
+      class="bk-confirm-header__btn btn btn-sm btn-primary" 
+      href="{{ route('customers.create') }}"
+      title="Новый клиент" ></a>
   </div>
 
   <form

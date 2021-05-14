@@ -38,9 +38,5 @@
     <!-- START modal-destroy -->
     @include('assets.modals.destroy')
     <!-- END modal-destroy -->
-
-    <!-- START modal-customer -->
-    @include('assets.modals.customer')
-    <!-- END modal-customer -->
   </body>
 </html>

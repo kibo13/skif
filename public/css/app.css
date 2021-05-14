@@ -11081,7 +11081,7 @@ table.dataTable thead .sorting_desc_disabled {
 }
 .bk-confirm-customer .dataTable {
   margin-bottom: 0;
-  max-height: 150px;
+  max-height: 200px;
   font-size: 14px;
   overflow-y: auto;
 }
