@@ -1,14 +1,15 @@
 .bk-confirm
+  // customer start 
   &-customer
-    margin-bottom: 10px
+    position: relative
     .dataTable
       margin-bottom: 0
-      max-height: 200px
+      max-height: 150px
       font-size: $text-base
       overflow-y: auto
       th,
       td
-        padding: 5px
+        padding: 2px
         vertical-align: middle
         text-align: center
       th:nth-child(2)
@@ -22,7 +23,7 @@
       display: none
     .dataTables_filter
       position: relative
-      margin: 5px 0
+      margin-bottom: 5px
       display: flex
       justify-content: flex-start
       vertical-align: middle
@@ -33,64 +34,56 @@
         width: 100%
       label
         margin-bottom: 0
-  &-header
-    display: flex
-    border-bottom: 1px solid $gray
-    &__title
-      margin-bottom: 0
-      padding: 0 10px
+    &__new 
+      position: absolute
+      top: 0
+      right: 0
+      width: 35px
+      height: 35px
       display: flex
-      align-items: center
       justify-content: center
-      font-size: $text-base
-      background: #fff
-      border: 1px solid $gray
-      border-bottom: none
-      border-top-left-radius: .25rem
-      border-top-right-radius: .25rem
-      user-select: none
-    &__btn
-      margin: 5px
-      height: 30px
-      width: 30px
+      align-items: center
       background-image: url('/icons/user-add.svg')
       background-repeat: no-repeat
       background-position: center center
       background-size: 80%
-  &-info
-    padding: 0px 5px
-    text-align: left
-    &__title
-      margin: 3px 0px
-      font-size: $text-base
-    &__subtitle
-      margin-right: 3px
-      font-weight: bold
-    &__text
-      margin-bottom: 0
-      font-size: $text-sm
-  &-control
-    position: relative
-    display: flex
-    justify-content: center
-    align-items: center
-    &__radio
-      position: absolute
-      top: 0
-      left: 0
-      opacity: 0
-      &:checked~
-        .bk-confirm-control__label
-          background-image: url('/icons/check.svg')
-    &__label
-      margin-bottom: 0
-      width: 32px
-      height: 32px
-      background-image: url('/icons/uncheck.svg')
-      background-repeat: no-repeat
-      background-position: center right
-      background-size: cover
-      cursor: pointer
+      border-radius: 0 !important
+      z-index: 10
+    &__info
+      padding: 0px 5px
+      text-align: left
+      &-title
+        margin: 3px 0px
+        font-size: $text-base
+      &-subtitle
+        margin-right: 3px
+        font-weight: bold
+      &-text
+        margin-bottom: 0
+        font-size: $text-sm
+    &__control
+      position: relative
+      display: flex
+      justify-content: center
+      align-items: center
+      &-radio
+        position: absolute
+        top: 0
+        left: 0
+        opacity: 0
+        &:checked~
+          .bk-confirm-customer__control-label
+            background-image: url('/icons/check.svg')
+      &-label
+        margin-bottom: 0
+        width: 25px
+        height: 25px
+        background-image: url('/icons/uncheck.svg')
+        background-repeat: no-repeat
+        background-position: center right
+        background-size: cover
+        cursor: pointer
+  // customer end 
   &-alert
     margin-top: 5px
     margin-bottom: 0

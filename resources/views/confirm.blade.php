@@ -1,28 +1,30 @@
 @extends('layouts.master')
 <!-- confirm-form -->
 @section('content')
-<section id="confirm-form" class="valid-form section">
-  <h2 class="mb-3">Подтверждение заказа</h2>
-
-  <div class="bk-confirm-header">
-    <h5 class="bk-confirm-header__title">
-      Клиентская база
-    </h5>
-    <a 
-      class="bk-confirm-header__btn btn btn-sm btn-primary" 
-      href="{{ route('customers.create') }}"
-      title="Новый клиент" ></a>
-  </div>
+<section id="confirm-form" class="valid-form section" >
+  <h2 class="mb-3">Подтверждение заказа</h2> 
 
   <form
     method="POST"
     action="" >
     @csrf
 
-    <div class="bk-form__block">
+    {{-- @isset($order)
+      @method('PUT')
+    @endisset --}}
 
-      <!-- /.customers -->
-      <div class="bk-form__field-full bk-confirm-customer">
+    <!-- /.order -->
+
+    <!-- /.customer_id -->
+    <div class="bk-form__wrapper px-2 pb-2" data-info="Контактные данные">
+      <div class="bk-form__block bk-confirm-customer" >
+
+        <a 
+          class="bk-confirm-customer__new btn btn-sm btn-primary" 
+          href="{{ route('customers.create') }}"
+          title="Новый клиент" >
+        </a>       
+  
         <table class="table table-bordered table-responsive">
           <thead class="thead-light">
             <tr>
@@ -38,35 +40,37 @@
             <tr>
               <td scope="row" style="min-width: 32px;">{{ $key+=1 }}</td>
               <td>
-                <div class="bk-confirm-info">
-                  <h6 class="bk-confirm-info__title" >
+                <div class="bk-confirm-customer__info">
+                  <h6 class="bk-confirm-customer__info-title" >
                     @if($customer->type_id == 1)
                     {{ $customer->lastname . ' ' . $customer->firstname . ' ' . $customer->surname }}
                     @else
                     {{ $customer->name }}
                     @endif
                   </h6>
-                  <p class="bk-confirm-info__text">
-                    <span class="bk-confirm-info__subtitle">
+                  <p class="bk-confirm-customer__info-text">
+                    <span class="bk-confirm-customer__info-subtitle">
                       @if($customer->type_id == 1)  ИИН: @else БИН: @endif
                     </span>
                     {{ $customer->code }}
                     /
-                    <span class="bk-confirm-info__subtitle">Тел:</span>
+                    <span class="bk-confirm-customer__info-subtitle">
+                      Тел:
+                    </span>
                     {{ $customer->phone }}
                   </p>
                 </div>
               </td>
               <td>
-                <div class="bk-confirm-control">
+                <div class="bk-confirm-customer__control">
                   <input
-                    class="bk-confirm-control__radio"
+                    class="bk-confirm-customer__control-radio"
                     id="{{ $customer->id }}"
                     type="radio"
                     value="{{ $customer->id }}"
                     name="customer_id" >
                   <label
-                    class="bk-confirm-control__label"
+                    class="bk-confirm-customer__control-label"
                     for="{{ $customer->id }}" >
                   </label>
                 </div>
@@ -75,39 +79,36 @@
             @endforeach
           </tbody>
         </table>
+
+        <!-- /.ALERT HERE -->
+  
       </div>
+    </div>
 
-
-
-
+    <div class="bk-form__wrapper px-2 pb-2" data-info="Примечание к заказу">
+      <div class="bk-form__block" >
+        <textarea class="form-control" name="note"></textarea>
+      </div>
     </div>
 
 
 
+
+    <div class="form-group">
+      <a
+        class="btn btn-outline-secondary"
+        href="{{ route('home.basket.index') }}" >
+        Назад
+      </a>
+      <button
+        class="btn btn-outline-success"
+        id="confirm-save"
+        type="submit" >
+        Подтвердить заказ
+      </button>
+    </div>
+
   </form>
 
-
-
-
-
-
-
-
-
-
-
-  <div class="form-group">
-    <a
-      class="btn btn-outline-secondary"
-      href="{{ route('home.basket.index') }}" >
-      Назад
-    </a>
-    <button
-      class="btn btn-outline-success"
-      id="confirm-save"
-      type="submit" >
-      Подтвердить заказ
-    </button>
-  </div>
 </section>
 @endsection
