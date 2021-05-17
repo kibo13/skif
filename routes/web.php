@@ -70,6 +70,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
   Route::get('orders/confirm', [OrderController::class, 'create'])->name('home.orders.create');
   Route::put('orders/{order}', [OrderController::class, 'store'])->name('home.orders.store');
+  Route::delete('orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
 
   // JSON
   Route::get('data/products', [DataController::class, 'products']);

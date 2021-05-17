@@ -17,8 +17,17 @@ class OrderController extends Controller
    */
   public function index()
   {
-    $orders = Order::get();
-    return view('pages.orders.index', compact('orders'));
+    // orders 
+    $orders = Order::where('state', '>', 0)->get();
+
+    // total number of orders
+    $total = Order::count();
+
+    // number of orders placed
+    // number of orders in progress
+    // number of completed orders
+    
+    return view('pages.orders.index', compact('orders', 'total'));
   }
 
   /**

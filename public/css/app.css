@@ -10686,6 +10686,62 @@ table.dataTable thead .sorting_desc_disabled {
   font-size: 12px;
 }
 
+.bk-inspect {
+  margin: 10px 0;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  border-left-width: 0.25rem;
+  border-left-color: #5bc0de;
+  overflow: hidden;
+}
+.bk-inspect-top {
+  padding: 10px 15px;
+}
+.bk-inspect-top__title {
+  margin-bottom: 0;
+  font-size: 18px;
+}
+.bk-inspect-top__text {
+  margin-bottom: 0;
+  display: flex;
+  grid-gap: 3px;
+  font-size: 14px;
+}
+.bk-inspect-list {
+  margin-bottom: 0;
+  padding: 10px 20px;
+  border-top: 1px solid #ced4da;
+}
+.bk-inspect-list__subtitle {
+  font-size: 14px;
+  font-weight: bold;
+  color: #5bc0de;
+}
+.bk-inspect-list__item {
+  font-size: 14px;
+}
+.bk-inspect-value {
+  vertical-align: top;
+  font-size: 12px;
+  font-weight: bold;
+  color: #5bc0de;
+}
+.bk-inspect-toggler {
+  width: 15px;
+  height: 15px;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  cursor: pointer;
+}
+.bk-inspect-toggler--hide {
+  background-image: url("/icons/triangle-down.svg");
+}
+.bk-inspect-toggler--show {
+  background-image: url("/icons/triangle-up.svg");
+}
+
 .auth {
   position: relative;
   display: flex;

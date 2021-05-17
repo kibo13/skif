@@ -1,7 +1,8 @@
 $(document).ready(function () {
   const confirm_form = document.getElementById('confirm-form')
+  const order_index = document.getElementById('order-index')
 
-  // confirm.form is active
+  // orders.confirm is active
   if (confirm_form) {
     /* Set up datatable */
     $('.table').dataTable({
@@ -23,6 +24,32 @@ $(document).ready(function () {
         alert('Необходимо выбрать клиента')
       }
     })
+  }
+  // orders.index is active
+  else if (order_index) {
+    /* Toggler for order control */
+
+
+    $('.bk-inspect-toggler').on('click', e => {
+      let elem = e.target
+
+      if ($(elem).hasClass("bk-inspect-toggler--hide")) {
+        $(elem)
+          .removeClass("bk-inspect-toggler--hide")
+          .addClass("bk-inspect-toggler--show")
+      } else {
+        $(elem)
+          .removeClass("bk-inspect-toggler--show")
+          .addClass("bk-inspect-toggler--hide")
+      }
+
+      $(".bk-inspect-list")
+        .stop()
+        .slideToggle("normal", function () {
+          $(".d-none").toggleClass("d-none");
+        });
+    })
+
   }
 
   //   if (order_form) {
