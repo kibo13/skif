@@ -5,7 +5,7 @@
   <h2 class="mb-3">Заказы</h2>
 
   <div class="bk-btn-group">
-    <a class="btn btn-outline-primary" href="{{ route('orders.create') }}">
+    <a class="btn btn-outline-primary" href="">
       Новая запись
     </a>
   </div>
@@ -30,9 +30,9 @@
         <td scope="row">{{ $order->id }}</td>
         <td scope="row">{{ $order->getFullPrice() }} ₽</td>
         <td scope="row">
-        @if($order->state == 0) В корзине @endif 
-        @if($order->state == 1) Оформлен @endif 
-        @if($order->state == 2) Готов @endif 
+        @if($order->state == 0) В корзине @endif
+        @if($order->state == 1) Оформлен @endif
+        @if($order->state == 2) Готов @endif
         </td>
         <td>
         </td>

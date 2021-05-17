@@ -44,18 +44,9 @@ Route::middleware(['auth'])->group(function () {
   Route::resource('customers', CustomerController::class)->except(['show']);
 
   // MATERIALS
-  Route::get(
-    'materials',
-    [MaterialController::class, 'index']
-  )->name('materials.index');
-  Route::resource(
-    'plates',
-    PlateController::class
-  )->except(['index', 'show']);
-  Route::resource(
-    'fabrics',
-    FabricController::class
-  )->except(['index', 'show']);
+  Route::get('materials', [MaterialController::class, 'index'])->name('materials.index');
+  Route::resource('plates', PlateController::class)->except(['index', 'show']);
+  Route::resource('fabrics', FabricController::class)->except(['index', 'show']);
 
   // PRODUCTS
   Route::resource('products', ProductController::class)->except(['show']);
@@ -66,9 +57,6 @@ Route::middleware(['auth'])->group(function () {
   Route::put('products/{product}/types/{type}', [TypeController::class, 'update'])->name('products.types.update');
   Route::delete('products/{product}/types/{type}', [TypeController::class, 'destroy'])->name('products.types.destroy');
 
-  // ORDERS
-  Route::resource('orders', OrderController::class)->except(['show']);
-
   // HOME
   Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -77,7 +65,11 @@ Route::middleware(['auth'])->group(function () {
   Route::post('basket', [BasketController::class, 'create'])->name('home.basket.create');
   Route::post('basket/add/{type}', [BasketController::class, 'addItem'])->name('home.basket.add');
   Route::post('basket/del/{type}', [BasketController::class, 'delItem'])->name('home.basket.del');
-  Route::get('basket/confirm', [BasketController::class, 'confirm'])->name('home.basket.confirm');
+
+  // ORDERS
+  Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+  Route::get('orders/confirm', [OrderController::class, 'create'])->name('home.orders.create');
+  Route::put('orders/{order}', [OrderController::class, 'store'])->name('home.orders.store');
 
   // JSON
   Route::get('data/products', [DataController::class, 'products']);

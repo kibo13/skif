@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class BasketController extends Controller
@@ -20,28 +19,6 @@ class BasketController extends Controller
     return view('basket', compact('order'));
   }
 
-  // confirm order
-  public function confirm()
-  {
-    // session
-    $order_id = session('order_id');
-
-    // order
-    $order = Order::find($order_id);
-
-    // customers
-    $customers = Customer::get();
-
-    // persons 
-    $persons = config('constants.type_customer');
-
-    if ($order == null || $order->getFullPrice() == 0) {
-      return redirect()->route('home');
-    }
-
-    return view('confirm', compact('order', 'customers', 'persons'));
-  }
-  
   // create multiple items
   public function create(Request $request)
   {

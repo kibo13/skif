@@ -11176,11 +11176,26 @@ table.dataTable thead .sorting_desc_disabled {
   background-size: cover;
   cursor: pointer;
 }
-.bk-confirm-alert {
-  margin-top: 5px;
-  margin-bottom: 0;
-  padding: 5px 10px;
-  display: block;
-  color: #e3342f;
-  font-size: 12px;
+.bk-confirm-ship {
+  border: 1px dashed red;
+}
+.bk-confirm-pay {
+  border: 1px dashed red;
+}
+.bk-confirm-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.bk-confirm-footer__control {
+  display: flex;
+  grid-gap: 5px;
+}
+.bk-confirm-footer__total {
+  margin-bottom: 15px;
+}
+.bk-confirm-footer__total--sm {
+  padding-right: 10px;
+  font-size: 14px;
+  font-weight: bold;
 }

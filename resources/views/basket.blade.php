@@ -110,7 +110,7 @@
       </a>
       <a
         class="btn btn-outline-success"
-        href="{{ route('home.basket.confirm') }}" >
+        href="{{ route('home.orders.create') }}" >
         Оформить заказ
       </a>
     </div>

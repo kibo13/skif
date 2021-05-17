@@ -1,5 +1,5 @@
 .bk-confirm
-  // customer start 
+  // customer start
   &-customer
     position: relative
     .dataTable
@@ -34,7 +34,7 @@
         width: 100%
       label
         margin-bottom: 0
-    &__new 
+    &__new
       position: absolute
       top: 0
       right: 0
@@ -83,11 +83,27 @@
         background-position: center right
         background-size: cover
         cursor: pointer
-  // customer end 
-  &-alert
-    margin-top: 5px
-    margin-bottom: 0
-    padding: 5px 10px
-    display: block
-    color: $red
-    font-size: $text-sm
+  // customer end
+  // ship start
+  &-ship
+    border: 1px dashed red
+  // ship end
+  // pay start
+  // pay end
+  &-pay
+    border: 1px dashed red
+  // footer start
+  &-footer
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    &__control
+      display: flex
+      grid-gap: 5px
+    &__total
+      margin-bottom: 15px
+      &--sm
+        padding-right: 10px
+        font-size: $text-base
+        font-weight: bold
+  // footer end
