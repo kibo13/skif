@@ -17,11 +17,41 @@ $(document).ready(function () {
 
     /* Show\Hide alert */
     $('#confirm-save').on('click', function (e) {
-      const isChecked = $('.bk-confirm-customer__control-radio:checked').length
+      const isCustomer = $('.bk-confirm-customer__control-radio:checked').length
+      const isPayment = $('.bk-confirm-pay__radio:checked').length
 
-      if (isChecked == 0) {
+      if (isCustomer == 0) {
         e.preventDefault()
         alert('Необходимо выбрать клиента')
+        return
+      }
+
+      if (isPayment == 0) {
+        e.preventDefault()
+        alert('Необходимо выбрать способ оплаты')
+        return
+      }
+    })
+
+    /* Cost calculation */
+    const cost = document.getElementById('output')
+    const total = document.getElementById('total')
+    const depo = document.getElementById('depo')
+    const debt = document.getElementById('debt')
+
+    $('.bk-confirm-pay__radio').on('click', (e) => {
+      let output = ''
+      let pay = e.target.value
+
+      // prepayment
+      if (pay == 1) {
+        depo.value = total.value / 2
+        debt.value = total.value / 2
+      }
+      // payment
+      else if (pay == 2) {
+        depo.value = total.value
+        debt.value = 0
       }
     })
   }
@@ -29,27 +59,25 @@ $(document).ready(function () {
   else if (order_index) {
     /* Toggler for order control */
 
-
-    $('.bk-inspect-toggler').on('click', e => {
+    $('.bk-inspect-toggler').on('click', (e) => {
       let elem = e.target
 
-      if ($(elem).hasClass("bk-inspect-toggler--hide")) {
+      if ($(elem).hasClass('bk-inspect-toggler--hide')) {
         $(elem)
-          .removeClass("bk-inspect-toggler--hide")
-          .addClass("bk-inspect-toggler--show")
+          .removeClass('bk-inspect-toggler--hide')
+          .addClass('bk-inspect-toggler--show')
       } else {
         $(elem)
-          .removeClass("bk-inspect-toggler--show")
-          .addClass("bk-inspect-toggler--hide")
+          .removeClass('bk-inspect-toggler--show')
+          .addClass('bk-inspect-toggler--hide')
       }
 
-      $(".bk-inspect-list")
+      $('.bk-inspect-list')
         .stop()
-        .slideToggle("normal", function () {
-          $(".d-none").toggleClass("d-none");
-        });
+        .slideToggle('normal', function () {
+          $('.d-none').toggleClass('d-none')
+        })
     })
-
   }
 
   //   if (order_form) {

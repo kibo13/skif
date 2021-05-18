@@ -14,7 +14,7 @@
         </span>
       </h5>
       <p class="bk-inspect-top__text">
-        Общее количество заказов: 
+        Общее количество заказов:
         <span class="bk-inspect-value">
           {{ $total }}
         </span>
@@ -24,19 +24,13 @@
     <ul class="bk-inspect-list d-none">
       <li class="bk-inspect-list__subtitle">Количество заказов:</li>
       <li class="bk-inspect-list__item">
-        - оформленных 
+        - в обработке
         <span class="bk-inspect-value">
           {{ $total }}
         </span>
       </li>
       <li class="bk-inspect-list__item">
-        - в процессе 
-        <span class="bk-inspect-value">
-          {{ $total }}
-        </span>
-      </li>
-      <li class="bk-inspect-list__item">
-        - готовых 
+        - выполненных
         <span class="bk-inspect-value">
           {{ $total }}
         </span>
@@ -55,7 +49,8 @@
         <th scope="col" class="w-25">Номер</th>
         <th scope="col" class="w-25">Сумма</th>
         <th scope="col" class="w-25">Статус</th>
-        <th scope="col" class="w-25 no-sort">Действие</th>
+        <th scope="col" class="w-25">Принял</th>
+        <th scope="col" class="no-sort">Действие</th>
       </tr>
     </thead>
     <tbody>
@@ -65,17 +60,32 @@
         <td>{{ $order->code }}</td>
         <td>{{ number_format($order->total) }} ₽</td>
         <td>
-        @if($order->state == 1) Оформлен @endif
-        @if($order->state == 2) Готов @endif
+        @if($order->state == 1)
+        <span class="text-danger font-weight-bold">В обработке</span>
+        @elseif($order->state == 2)
+        <span class="text-success font-weight-bold">Готов</span>
+        @endif
+        </td>
+        <td>
+          <div title="{{ $order->worker->lastname . ' ' . $order->worker->firstname . ' ' . $order->worker->surname}}">
+            {{ $order->worker->fio }}
+          </div>
         </td>
         <td>
           <div class="bk-btn-actions">
-            <a 
-              class="bk-btn-actions__link bk-btn-actions__link--edit btn btn-warning" 
+            <a
+              class="bk-btn-actions__link bk-btn-actions__link--state btn btn-success"
+              href="javascript:void(0)"
+              data-id="{{ $order->id }}"
+              data-toggle="modal"
+              data-target="#bk-complete-modal"
+              data-tip="Статус" ></a>
+            <a
+              class="bk-btn-actions__link bk-btn-actions__link--info btn btn-info"
               href=""
-              data-tip="Редактировать" ></a>
-            <a 
-              class="bk-btn-actions__link bk-btn-actions__link--delete btn btn-danger" 
+              data-tip="Детали" ></a>
+            <a
+              class="bk-btn-actions__link bk-btn-actions__link--delete btn btn-danger"
               href="javascript:void(0)"
               data-id="{{ $order->id }}"
               data-table-name="order"

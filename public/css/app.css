@@ -10620,6 +10620,12 @@ table.dataTable thead .sorting_desc_disabled {
 .bk-btn-actions__link--delete {
   background-image: url("/icons/trash.svg");
 }
+.bk-btn-actions__link--state {
+  background-image: url("/icons/state.svg");
+}
+.bk-btn-actions__link--info {
+  background-image: url("/icons/info.svg");
+}
 .bk-btn-actions__link::after {
   content: attr(data-tip);
   position: absolute;
@@ -11232,26 +11238,46 @@ table.dataTable thead .sorting_desc_disabled {
   background-size: cover;
   cursor: pointer;
 }
-.bk-confirm-ship {
-  border: 1px dashed red;
-}
 .bk-confirm-pay {
-  border: 1px dashed red;
+  padding: 0 5px;
+}
+.bk-confirm-pay__control {
+  display: flex;
+  align-items: center;
+  height: 25px;
+  grid-gap: 5px;
+}
+.bk-confirm-pay__label {
+  margin-bottom: 0;
+  font-size: 14px;
+  cursor: pointer;
+}
+.bk-confirm-pay__label--value {
+  vertical-align: top;
+  font-size: 12px;
+  font-weight: bold;
+  color: #007bff;
 }
 .bk-confirm-footer {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
+.bk-confirm-footer__cost {
+  margin-bottom: 10px;
+}
+.bk-confirm-footer__cost-text {
+  margin-bottom: 5px;
+  text-align: right;
+  font-size: 14px;
+  font-weight: bold;
+}
+.bk-confirm-footer__cost-value {
+  padding-left: 15px;
+  font-size: 16px;
+  font-weight: normal;
+}
 .bk-confirm-footer__control {
   display: flex;
   grid-gap: 5px;
-}
-.bk-confirm-footer__total {
-  margin-bottom: 15px;
-}
-.bk-confirm-footer__total--sm {
-  padding-right: 10px;
-  font-size: 14px;
-  font-weight: bold;
 }

@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fabric extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = [
-        'name', 
-        'code'
-    ];
+  protected $fillable = [
+    'name',
+    'code'
+  ];
 
-    public function types()
-    {
-        return $this->hasMany('App\Models\Type');
-    }
+  public function types()
+  {
+    return $this->hasMany('App\Models\Type');
+  }
 }

@@ -84,26 +84,42 @@
         background-size: cover
         cursor: pointer
   // customer end
-  // ship start
-  &-ship
-    border: 1px dashed red
-  // ship end
   // pay start
-  // pay end
   &-pay
-    border: 1px dashed red
+    padding: 0 5px
+    &__control
+      display: flex
+      align-items: center
+      height: 25px
+      grid-gap: 5px
+    &__label
+      margin-bottom: 0
+      font-size: $text-base
+      cursor: pointer
+      &--value
+        vertical-align: top
+        font-size: $text-sm
+        font-weight: bold
+        color: $blue
+  // pay end
   // footer start
   &-footer
     display: flex
     flex-direction: column
     align-items: flex-end
+    &__cost
+      margin-bottom: 10px
+      &-text
+        margin-bottom: 5px
+        text-align: right
+        font-size: $text-base
+        font-weight: bold
+      &-value
+        padding-left: 15px
+        font-size: $text-md
+        font-weight: normal
     &__control
       display: flex
       grid-gap: 5px
-    &__total
-      margin-bottom: 15px
-      &--sm
-        padding-right: 10px
-        font-size: $text-base
-        font-weight: bold
+
   // footer end

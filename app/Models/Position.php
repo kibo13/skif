@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Position extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = ['name', 'salary'];
+  protected $fillable = ['name', 'salary'];
 
-    public function workers()
-    {
-        return $this->hasMany('App\Models\Worker');
-    }
+  public function workers()
+  {
+    return $this->hasMany('App\Models\Worker');
+  }
 }

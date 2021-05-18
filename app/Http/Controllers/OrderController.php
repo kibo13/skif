@@ -17,7 +17,7 @@ class OrderController extends Controller
    */
   public function index()
   {
-    // orders 
+    // orders
     $orders = Order::where('state', '>', 0)->get();
 
     // total number of orders
@@ -26,7 +26,7 @@ class OrderController extends Controller
     // number of orders placed
     // number of orders in progress
     // number of completed orders
-    
+
     return view('pages.orders.index', compact('orders', 'total'));
   }
 
@@ -64,15 +64,10 @@ class OrderController extends Controller
     // order
     $order = Order::find($order_id);
 
+    dd($request->all());
+
     // store order
-    $order->code = getCode();
-    $order->date_on = getCurrentDay();
-    $order->customer_id = $request['customer_id'];
-    $order->note = $request['note'];
-    $order->worker_id = Auth::user()->worker->id;
-    $order->total = $request['total'];
-    $order->state = 1;
-    $order->save();
+    $order->update($request->all());
 
     // clear session
     session()->forget('order_id');

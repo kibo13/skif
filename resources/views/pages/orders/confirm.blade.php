@@ -10,6 +10,30 @@
     @csrf
     @method('PUT')
 
+    <!-- /.code -->
+    <input
+      class="form-control bk-form__input mb-2"
+      type="hidden"
+      name="code"
+      value="{{ getCode() }}"
+    >
+
+    <!-- /.date_on -->
+    <input
+      class="form-control bk-form__input mb-2"
+      type="hidden"
+      name="date_on"
+      value="{{ getCurrentDay() }}"
+    >
+
+    <!-- /.state -->
+    <input
+      class="form-control bk-form__input mb-2"
+      type="hidden"
+      name="state"
+      value="1"
+    >
+
     <!-- /.customer_id -->
     <div class="bk-form__wrapper px-2 pb-2" data-info="Контактные данные">
       <div class="bk-form__block bk-confirm-customer" >
@@ -75,37 +99,11 @@
           </tbody>
         </table>
 
-        <!-- /.ALERT HERE -->
-
-      </div>
-    </div>
-
-    <!-- /.ship -->
-    <div class="bk-form__wrapper px-2 pb-2 d-none" data-info="Способ доставки">
-      <div class="bk-form__block bk-confirm-ship" >
-
-        <div class="bk-confirm-ship__control">
-          <input
-            class="bk-confirm-ship__radio"
-            id="ship1"
-            type="radio"
-            name="ship" >
-          <label class="bk-confirm-ship__label" for="ship1">Доставка</label>
-        </div>
-        <div class="bk-confirm-ship__control">
-          <input
-            class="bk-confirm-ship__radio"
-            id="ship2"
-            type="radio"
-            name="ship" >
-          <label class="bk-confirm-ship__label" for="ship2">Самовывоз</label>
-        </div>
-
       </div>
     </div>
 
     <!-- /.pay -->
-    <div class="bk-form__wrapper px-2 pb-2 d-none" data-info="Способ оплаты">
+    <div class="bk-form__wrapper px-2 pb-2" data-info="Способ оплаты">
       <div class="bk-form__block bk-confirm-pay" >
 
         <div class="bk-confirm-pay__control">
@@ -113,20 +111,67 @@
             class="bk-confirm-pay__radio"
             id="pay1"
             type="radio"
-            name="pay" >
-          <label class="bk-confirm-pay__label" for="pay1">Предоплата</label>
+            name="pay"
+            value="1" >
+          <label class="bk-confirm-pay__label" for="pay1">
+            Предоплата
+            <span class="bk-confirm-pay__label--value">50%</span>
+          </label>
         </div>
+
         <div class="bk-confirm-pay__control">
           <input
             class="bk-confirm-pay__radio"
             id="pay2"
             type="radio"
-            name="pay" >
-          <label class="bk-confirm-pay__label" for="pay2">Оплата</label>
+            name="pay"
+            value="2" >
+          <label class="bk-confirm-pay__label" for="pay2">
+            Оплата
+            <span class="bk-confirm-pay__label--value">100%</span>
+          </label>
         </div>
 
       </div>
     </div>
+
+    <!-- /.worker_id -->
+    <input
+      class="form-control bk-form__input mb-2"
+      type="hidden"
+      name="worker_id"
+      value="{{ Auth::user()->worker->id }}"
+    >
+
+    <!-- /.total -->
+    <input
+      class="form-control bk-form__input mb-2"
+      id="total"
+      type="text"
+      name="total"
+      value="{{ $order->getFullPrice() }}"
+      placeholder="total"
+    >
+
+    <!-- /.depo -->
+    <input
+      class="form-control bk-form__input mb-2"
+      id="depo"
+      type="text"
+      name="depo"
+      value=""
+      placeholder="depo"
+    >
+
+    <!-- /.debt -->
+    <input
+      class="form-control bk-form__input mb-2"
+      id="debt"
+      type="text"
+      name="debt"
+      value=""
+      placeholder="debt"
+    >
 
     <!-- /.note -->
     <div class="bk-form__wrapper px-2 pb-2" data-info="Примечание к заказу">
@@ -135,18 +180,15 @@
       </div>
     </div>
 
-    <!-- /.note -->
-    <input
-      class="form-control bk-form__input mb-2"
-      type="hidden"
-      name="total"
-      value="{{ $order->getFullPrice() }}" >
-
     <div class="bk-confirm-footer">
-      <h5 class="bk-confirm-footer__total">
-        <span class="bk-confirm-footer__total--sm">Итого:</span>
-        {{ number_format($order->getFullPrice()) }} ₽
-      </h5>
+      <div id="output" class="bk-confirm-footer__cost">
+        <h5 class="bk-confirm-footer__cost-text">
+          Итого:
+          <span id="output-total" class="bk-confirm-footer__cost-value">
+            {{ $order->getFullPrice() }} ₽
+          </span>
+        </h5>
+      </div>
       <div class="bk-confirm-footer__control">
         <a
           class="btn btn-outline-secondary"

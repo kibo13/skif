@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Plate extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'image',
-        'note'
-    ];
+  protected $fillable = [
+    'name',
+    'image',
+    'note'
+  ];
 
-    public function types()
-    {
-        return $this->hasMany('App\Models\Type');
-    }
+  public function types()
+  {
+    return $this->hasMany('App\Models\Type');
+  }
 }
