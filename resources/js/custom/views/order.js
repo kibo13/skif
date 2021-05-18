@@ -34,24 +34,55 @@ $(document).ready(function () {
     })
 
     /* Cost calculation */
-    const cost = document.getElementById('output')
     const total = document.getElementById('total')
     const depo = document.getElementById('depo')
     const debt = document.getElementById('debt')
 
     $('.bk-confirm-pay__radio').on('click', (e) => {
-      let output = ''
       let pay = e.target.value
+
+      $('#cost').removeClass('d-none')
 
       // prepayment
       if (pay == 1) {
-        depo.value = total.value / 2
-        debt.value = total.value / 2
+        depo.value = Math.ceil(total.value / 2)
+        debt.value = total.value - depo.value
+
+        $('#cost-wrapper-debt').removeClass('d-none')
+        $('#cost-depo').text(depo.value + ' ₽')
+        $('#cost-debt').text(debt.value + ' ₽')
       }
       // payment
       else if (pay == 2) {
         depo.value = total.value
         debt.value = 0
+
+        $('#cost-depo').text(depo.value + ' ₽')
+        $('#cost-wrapper-debt').addClass('d-none')
+      }
+    })
+
+    $('.bk-confirm-pay__radio:checked').each(function () {
+      let pay = this.value
+
+      $('#cost').removeClass('d-none')
+
+      // prepayment
+      if (pay == 1) {
+        depo.value = Math.ceil(total.value / 2)
+        debt.value = total.value - depo.value
+
+        $('#cost-wrapper-debt').removeClass('d-none')
+        $('#cost-depo').text(depo.value + ' ₽')
+        $('#cost-debt').text(debt.value + ' ₽')
+      }
+      // payment
+      else if (pay == 2) {
+        depo.value = total.value
+        debt.value = 0
+
+        $('#cost-depo').text(depo.value + ' ₽')
+        $('#cost-wrapper-debt').addClass('d-none')
       }
     })
   }

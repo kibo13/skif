@@ -5,16 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Customer;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 
 class OrderController extends Controller
 {
-  /**
-   * Display a listing of the resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
+  // general order page
   public function index()
   {
     // orders
@@ -30,11 +24,7 @@ class OrderController extends Controller
     return view('pages.orders.index', compact('orders', 'total'));
   }
 
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
+  // order confirmation form
   public function create(Request $request)
   {
     // session
@@ -53,18 +43,11 @@ class OrderController extends Controller
     return view('pages.orders.confirm', compact('order', 'customers'));
   }
 
-  /**
-   * Store a newly created resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\Response
-   */
+  // order creation
   public function store(Request $request, $order_id)
   {
     // order
     $order = Order::find($order_id);
-
-    dd($request->all());
 
     // store order
     $order->update($request->all());
@@ -75,50 +58,13 @@ class OrderController extends Controller
     return redirect()->route('orders.index');
   }
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  \App\Models\Order  $order
-   * @return \Illuminate\Http\Response
-   */
+  // order details
   public function show(Order $order)
   {
-    //
+    return view('pages.orders.detail', compact('order'));
   }
 
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  \App\Models\Order  $order
-   * @return \Illuminate\Http\Response
-   */
-  public function edit(Order $order)
-  {
-    // customers
-    $customers = Customer::get();
-
-    return view('pages.orders.form', compact('order', 'customers'));
-  }
-
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Models\Order  $order
-   * @return \Illuminate\Http\Response
-   */
-  public function update(Request $request, Order $order)
-  {
-    $order->update($request->all());
-    return redirect()->route('orders.index');
-  }
-
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  \App\Models\Order  $order
-   * @return \Illuminate\Http\Response
-   */
+  // deleting an order
   public function destroy(Order $order)
   {
     $order->delete();

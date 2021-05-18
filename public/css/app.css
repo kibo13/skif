@@ -11281,3 +11281,16 @@ table.dataTable thead .sorting_desc_disabled {
   display: flex;
   grid-gap: 5px;
 }
+
+.bk-detail {
+  border: 1px dashed red;
+}
+.bk-detail-value {
+  font-size: 12px;
+  font-weight: bold;
+}
+.bk-detail-value--date {
+  vertical-align: top;
+  font-weight: bold;
+  color: #424242;
+}

@@ -82,7 +82,7 @@
               data-tip="Статус" ></a>
             <a
               class="bk-btn-actions__link bk-btn-actions__link--info btn btn-info"
-              href=""
+              href="{{ route('orders.show', $order) }}"
               data-tip="Детали" ></a>
             <a
               class="bk-btn-actions__link bk-btn-actions__link--delete btn btn-danger"

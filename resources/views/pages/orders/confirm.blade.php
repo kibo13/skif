@@ -147,7 +147,7 @@
     <input
       class="form-control bk-form__input mb-2"
       id="total"
-      type="text"
+      type="hidden"
       name="total"
       value="{{ $order->getFullPrice() }}"
       placeholder="total"
@@ -157,7 +157,7 @@
     <input
       class="form-control bk-form__input mb-2"
       id="depo"
-      type="text"
+      type="hidden"
       name="depo"
       value=""
       placeholder="depo"
@@ -167,7 +167,7 @@
     <input
       class="form-control bk-form__input mb-2"
       id="debt"
-      type="text"
+      type="hidden"
       name="debt"
       value=""
       placeholder="debt"
@@ -181,13 +181,24 @@
     </div>
 
     <div class="bk-confirm-footer">
-      <div id="output" class="bk-confirm-footer__cost">
+      <div class="bk-confirm-footer__cost">
         <h5 class="bk-confirm-footer__cost-text">
           Итого:
-          <span id="output-total" class="bk-confirm-footer__cost-value">
+          <span class="bk-confirm-footer__cost-value">
             {{ $order->getFullPrice() }} ₽
           </span>
         </h5>
+        <div id="cost" class="d-none">
+          <hr>
+          <h5 class="bk-confirm-footer__cost-text">
+            Сумма к оплате:
+            <span id="cost-depo" class="bk-confirm-footer__cost-value"></span>
+          </h5>
+          <h5 id="cost-wrapper-debt" class="bk-confirm-footer__cost-text">
+            Остаток:
+            <span id="cost-debt" class="bk-confirm-footer__cost-value"></span>
+          </h5>
+        </div>
       </div>
       <div class="bk-confirm-footer__control">
         <a
