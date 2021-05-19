@@ -1,6 +1,7 @@
 $(document).ready(function () {
   const confirm_form = document.getElementById('confirm-form')
   const order_index = document.getElementById('order-index')
+  const order_form = document.getElementById('order-form')
 
   // orders.confirm is active
   if (confirm_form) {
@@ -45,19 +46,19 @@ $(document).ready(function () {
 
       // prepayment
       if (pay == 1) {
-        depo.value = Math.ceil(total.value / 2)
-        debt.value = total.value - depo.value
+        depo.value = 0
+        debt.value = 0
 
         $('#cost-wrapper-debt').removeClass('d-none')
-        $('#cost-depo').text(depo.value + ' ₽')
-        $('#cost-debt').text(debt.value + ' ₽')
+        $('#cost-depo').text(Math.ceil(total.value / 2) + ' ₽')
+        $('#cost-debt').text(total.value - Math.ceil(total.value / 2) + ' ₽')
       }
       // payment
       else if (pay == 2) {
-        depo.value = total.value
-        debt.value = 0
+        depo.value = 0
+        debt.value = 1
 
-        $('#cost-depo').text(depo.value + ' ₽')
+        $('#cost-depo').text(total.value + ' ₽')
         $('#cost-wrapper-debt').addClass('d-none')
       }
     })
@@ -69,19 +70,19 @@ $(document).ready(function () {
 
       // prepayment
       if (pay == 1) {
-        depo.value = Math.ceil(total.value / 2)
-        debt.value = total.value - depo.value
+        depo.value = 0
+        debt.value = 0
 
         $('#cost-wrapper-debt').removeClass('d-none')
-        $('#cost-depo').text(depo.value + ' ₽')
-        $('#cost-debt').text(debt.value + ' ₽')
+        $('#cost-depo').text(Math.ceil(total.value / 2) + ' ₽')
+        $('#cost-debt').text(total.value - Math.ceil(total.value / 2) + ' ₽')
       }
       // payment
       else if (pay == 2) {
-        depo.value = total.value
-        debt.value = 0
+        depo.value = 0
+        debt.value = 1
 
-        $('#cost-depo').text(depo.value + ' ₽')
+        $('#cost-depo').text(total.value + ' ₽')
         $('#cost-wrapper-debt').addClass('d-none')
       }
     })
@@ -89,7 +90,6 @@ $(document).ready(function () {
   // orders.index is active
   else if (order_index) {
     /* Toggler for order control */
-
     $('.bk-inspect-toggler').on('click', (e) => {
       let elem = e.target
 
@@ -109,6 +109,9 @@ $(document).ready(function () {
           $('.d-none').toggleClass('d-none')
         })
     })
+  }
+  // orders.form is active
+  else if (order_form) {
   }
 
   //   if (order_form) {

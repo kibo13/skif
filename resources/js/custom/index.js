@@ -10,7 +10,6 @@ require('./components/info')
 
 // modals
 require('./modals/destroy')
-require('./modals/complete')
 
 // views
 require('./views/home')

@@ -38,9 +38,5 @@
     <!-- START modal-destroy -->
     @include('assets.modals.destroy')
     <!-- END modal-destroy -->
-
-    <!-- START modal-complete -->
-    @include('assets.modals.complete')
-    <!-- END modal-complete -->
   </body>
 </html>

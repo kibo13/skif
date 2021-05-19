@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-  // general order page
+  // orders.index
   public function index()
   {
     // orders
@@ -24,7 +24,7 @@ class OrderController extends Controller
     return view('pages.orders.index', compact('orders', 'total'));
   }
 
-  // order confirmation form
+  // home.orders.create
   public function create(Request $request)
   {
     // session
@@ -43,7 +43,7 @@ class OrderController extends Controller
     return view('pages.orders.confirm', compact('order', 'customers'));
   }
 
-  // order creation
+  // home.orders.store
   public function store(Request $request, $order_id)
   {
     // order
@@ -58,13 +58,22 @@ class OrderController extends Controller
     return redirect()->route('orders.index');
   }
 
-  // order details
-  public function show(Order $order)
+  // orders.edit
+  public function edit(Order $order)
   {
-    return view('pages.orders.detail', compact('order'));
+    return view('pages.orders.form', compact('order'));
   }
 
-  // deleting an order
+  // orders.update
+  public function update(Request $request, Order $order)
+  {
+
+    dd($request->all());
+    $order->update($request->all());
+    return redirect()->route('orders.index');
+  }
+
+  // orders.destroy
   public function destroy(Order $order)
   {
     $order->delete();

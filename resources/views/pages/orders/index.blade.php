@@ -74,16 +74,9 @@
         <td>
           <div class="bk-btn-actions">
             <a
-              class="bk-btn-actions__link bk-btn-actions__link--state btn btn-success"
-              href="javascript:void(0)"
-              data-id="{{ $order->id }}"
-              data-toggle="modal"
-              data-target="#bk-complete-modal"
-              data-tip="Статус" ></a>
-            <a
-              class="bk-btn-actions__link bk-btn-actions__link--info btn btn-info"
-              href="{{ route('orders.show', $order) }}"
-              data-tip="Детали" ></a>
+              class="bk-btn-actions__link bk-btn-actions__link--edit btn btn-warning"
+              href="{{ route('orders.edit', $order) }}"
+              data-tip="Редактировать" ></a>
             <a
               class="bk-btn-actions__link bk-btn-actions__link--delete btn btn-danger"
               href="javascript:void(0)"

@@ -1,0 +1,36 @@
+.bk-orders
+  &__title
+    font-size: $text-lg
+    font-weight: bold
+    &--date
+      font-size: $text-base
+  &__text
+    margin-bottom: 0
+    padding: 0 2px
+    font-size: $text-base
+    color: rgba($dark, .65)
+  &__value
+    vertical-align: top
+    font-size: $text-sm
+    font-weight: bold
+    color: $blue
+  &__control
+    margin: 5px 0
+    display: flex
+    align-items: center
+    user-select: none
+  &__bill
+    display: flex
+    align-items: center
+    overflow: hidden
+    &-icon
+      width: 25px
+      height: 25px
+      object-fit: cover
+    &-link
+      font-size: $text-base
+
+@media (max-width: $width-sm)
+  .bk-orders
+    &__title
+      display: grid

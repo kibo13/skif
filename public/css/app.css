@@ -11282,6 +11282,54 @@ table.dataTable thead .sorting_desc_disabled {
   grid-gap: 5px;
 }
 
+.bk-orders__title {
+  font-size: 18px;
+  font-weight: bold;
+}
+.bk-orders__title--date {
+  font-size: 14px;
+}
+.bk-orders__text {
+  margin-bottom: 0;
+  padding: 0 2px;
+  font-size: 14px;
+  color: rgba(66, 66, 66, 0.65);
+}
+.bk-orders__value {
+  vertical-align: top;
+  font-size: 12px;
+  font-weight: bold;
+  color: #007bff;
+}
+.bk-orders__control {
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.bk-orders__bill {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.bk-orders__bill-icon {
+  width: 25px;
+  height: 25px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.bk-orders__bill-link {
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .bk-orders__title {
+    display: grid;
+  }
+}
 .bk-detail {
   border: 1px dashed red;
 }

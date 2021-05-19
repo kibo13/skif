@@ -26,14 +26,6 @@
       value="{{ getCurrentDay() }}"
     >
 
-    <!-- /.state -->
-    <input
-      class="form-control bk-form__input mb-2"
-      type="hidden"
-      name="state"
-      value="1"
-    >
-
     <!-- /.customer_id -->
     <div class="bk-form__wrapper px-2 pb-2" data-info="Контактные данные">
       <div class="bk-form__block bk-confirm-customer" >
@@ -102,6 +94,14 @@
       </div>
     </div>
 
+    <!-- /.worker_id -->
+    <input
+      class="form-control bk-form__input mb-2"
+      type="hidden"
+      name="worker_id"
+      value="{{ Auth::user()->worker->id }}"
+    >
+
     <!-- /.pay -->
     <div class="bk-form__wrapper px-2 pb-2" data-info="Способ оплаты">
       <div class="bk-form__block bk-confirm-pay" >
@@ -135,24 +135,6 @@
       </div>
     </div>
 
-    <!-- /.worker_id -->
-    <input
-      class="form-control bk-form__input mb-2"
-      type="hidden"
-      name="worker_id"
-      value="{{ Auth::user()->worker->id }}"
-    >
-
-    <!-- /.total -->
-    <input
-      class="form-control bk-form__input mb-2"
-      id="total"
-      type="hidden"
-      name="total"
-      value="{{ $order->getFullPrice() }}"
-      placeholder="total"
-    >
-
     <!-- /.depo -->
     <input
       class="form-control bk-form__input mb-2"
@@ -171,6 +153,24 @@
       name="debt"
       value=""
       placeholder="debt"
+    >
+
+    <!-- /.total -->
+    <input
+      class="form-control bk-form__input mb-2"
+      id="total"
+      type="hidden"
+      name="total"
+      value="{{ $order->getFullPrice() }}"
+      placeholder="total"
+    >
+
+    <!-- /.state -->
+    <input
+      class="form-control bk-form__input mb-2"
+      type="hidden"
+      name="state"
+      value="1"
     >
 
     <!-- /.note -->
