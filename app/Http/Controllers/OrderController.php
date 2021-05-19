@@ -58,7 +58,7 @@ class OrderController extends Controller
     return redirect()->route('orders.index');
   }
 
-  // orders.edit
+  // orders.details
   public function edit(Order $order)
   {
     return view('pages.orders.form', compact('order'));

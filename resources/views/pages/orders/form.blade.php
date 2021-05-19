@@ -69,7 +69,11 @@
         <h6 class="bk-form__title">К оплате</h6>
         <div class="bk-form__field-full mb-2">
           <p class="bk-orders__text font-weight-bold @if($order->depo == 0) text-danger @else text-success @endif">
+            @if($order->pay == 1) 
             {{ calcDepo($order->total) }}
+            @else 
+            {{ calcTotal($order->total) }}
+            @endif
           </p>
 
           <div class="bk-orders__control">
@@ -89,7 +93,9 @@
               class="bk-orders__bill-icon"
               src="{{ asset('icons/bill.svg') }}"
               alt="report" >
-            <a class="bk-orders__bill-link" href="" >
+            <a 
+              class="bk-orders__bill-link" 
+              href="{{ route('orders.depo', $order) }}" >
               вывести счёт
             </a>
           </div>

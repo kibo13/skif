@@ -46,10 +46,11 @@
     <thead class="thead-light">
       <tr>
         <th scope="col">#</th>
-        <th scope="col" class="w-25">Номер</th>
-        <th scope="col" class="w-25">Сумма</th>
+        <th scope="col" class="w-25" style="min-width: 200px;">Номер</th>
+        <th scope="col" class="w-25">Способ оплаты</th>
+        <th scope="col" class="w-25" style="min-width: 100px;">Сумма заказа</th>
         <th scope="col" class="w-25">Статус</th>
-        <th scope="col" class="w-25">Принял</th>
+        <th scope="col" style="min-width: 100px;">Принял</th>
         <th scope="col" class="no-sort">Действие</th>
       </tr>
     </thead>
@@ -57,8 +58,17 @@
       @foreach($orders as $key => $order)
       <tr>
         <td>{{ $key+=1 }}</td>
-        <td>{{ $order->code }}</td>
-        <td>{{ number_format($order->total) }} ₽</td>
+        <td>
+          {{ $order->code }}
+        </td>
+        <td>
+          @if($order->pay == 1)
+          Предоплата
+          @elseif($order->pay == 2)
+          Оплата
+          @endif
+        </td>
+        <td>{{ calcTotal($order->total) }}</td>
         <td>
         @if($order->state == 1)
         <span class="text-danger font-weight-bold">В обработке</span>
@@ -74,9 +84,17 @@
         <td>
           <div class="bk-btn-actions">
             <a
-              class="bk-btn-actions__link bk-btn-actions__link--edit btn btn-warning"
-              href="{{ route('orders.edit', $order) }}"
-              data-tip="Редактировать" ></a>
+              class="bk-btn-actions__link bk-btn-actions__link--alarm btn btn-warning"
+              href=""
+              data-tip="Уведомить" ></a>
+            <a
+              class="bk-btn-actions__link bk-btn-actions__link--agree btn btn-primary"
+              href=""
+              data-tip="Договор" ></a>
+            <a
+              class="bk-btn-actions__link bk-btn-actions__link--info btn btn-info"
+              href="{{ route('orders.details', $order) }}"
+              data-tip="Информация" ></a>
             <a
               class="bk-btn-actions__link bk-btn-actions__link--delete btn btn-danger"
               href="javascript:void(0)"

@@ -1,5 +1,13 @@
 <?php
 
+function calcTotal($value) 
+{
+  // result
+  $result = number_format($value) . ' ₽';
+
+  return $result;
+}
+
 function calcDepo($value)
 {
   // converted number

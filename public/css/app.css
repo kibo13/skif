@@ -10626,6 +10626,12 @@ table.dataTable thead .sorting_desc_disabled {
 .bk-btn-actions__link--info {
   background-image: url("/icons/info.svg");
 }
+.bk-btn-actions__link--agree {
+  background-image: url("/icons/agree.svg");
+}
+.bk-btn-actions__link--alarm {
+  background-image: url("/icons/alarm.svg");
+}
 .bk-btn-actions__link::after {
   content: attr(data-tip);
   position: absolute;

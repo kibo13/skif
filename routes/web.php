@@ -16,6 +16,7 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BasketController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DataController;
 
 Auth::routes([
@@ -69,10 +70,11 @@ Route::middleware(['auth'])->group(function () {
   // ORDERS
   Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
   Route::get('orders/confirm', [OrderController::class, 'create'])->name('home.orders.create');
-  Route::put('orders/{order}', [OrderController::class, 'store'])->name('home.orders.store');
-  Route::get('orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit');
+  Route::put('orders/confirm/{order}', [OrderController::class, 'store'])->name('home.orders.store');
+  Route::get('orders/{order}/details', [OrderController::class, 'edit'])->name('orders.details');
   Route::put('orders/{order}', [OrderController::class, 'update'])->name('orders.update');
   Route::delete('orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
+  Route::get('orders/report/{order}', [ReportController::class, 'depo'])->name('orders.depo');
 
   // JSON
   Route::get('data/products', [DataController::class, 'products']);
