@@ -142,6 +142,7 @@
             <input
               class="form-control bk-form__check"
               id="depo"
+              data-pay="{{ $order->pay }}"
               type="checkbox"
               name="depo"
               value="1"
@@ -164,34 +165,36 @@
 
         <!-- /.debt -->
         @if($order->pay == 1)
-        <h6 class="bk-form__title">Долг</h6>
-        <div class="bk-form__field-full mb-2">
-          <p class="bk-orders__text font-weight-bold @if($order->debt == 0) text-danger @else text-success @endif">
-            {{ calcDebt($order->total) }}
-          </p>
-
-          <div class="bk-orders__control">
-            <input type="hidden" name="debt" value="0">
-            <input
-              class="form-control bk-form__check"
-              id="debt"
-              type="checkbox"
-              name="debt"
-              value="1"
-              @if($order->debt) checked @endif />
-            <label class="bk-form__label mb-0" for="debt">оплачено</label>
-          </div>
-
-          <div class="bk-orders__bill">
-            <img
-              class="bk-orders__bill-icon"
-              src="{{ asset('icons/bill.svg') }}"
-              alt="report" >
-            <a
-              class="bk-orders__bill-link"
-              href="{{ route('orders.debt', $order) }}" >
-              вывести счёт
-            </a>
+        <div id="debt-block" class="d-none">
+          <h6 class="bk-form__title">Долг</h6>
+          <div class="bk-form__field-full mb-2">
+            <p class="bk-orders__text font-weight-bold @if($order->debt == 0) text-danger @else text-success @endif">
+              {{ calcDebt($order->total) }}
+            </p>
+  
+            <div class="bk-orders__control">
+              <input type="hidden" name="debt" value="0">
+              <input
+                class="form-control bk-form__check"
+                id="debt"
+                type="checkbox"
+                name="debt"
+                value="1"
+                @if($order->debt) checked @endif />
+              <label class="bk-form__label mb-0" for="debt">оплачено</label>
+            </div>
+  
+            <div class="bk-orders__bill">
+              <img
+                class="bk-orders__bill-icon"
+                src="{{ asset('icons/bill.svg') }}"
+                alt="report" >
+              <a
+                class="bk-orders__bill-link"
+                href="{{ route('orders.debt', $order) }}" >
+                вывести счёт
+              </a>
+            </div>
           </div>
         </div>
         @endif
