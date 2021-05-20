@@ -1,7 +1,7 @@
 @extends('layouts.master')
 <!-- order-form -->
 @section('content')
-<section id="order-form" class="section">
+<section id="order-form" class="info-form section">
   <h5 class="bk-orders__title">
     Заказ №{{ $order->code }}
     <span class="bk-orders__title--date">
@@ -43,8 +43,6 @@
           <p class="bk-orders__text">{{ $order->customer->address }}</p>
         </div>
 
-        <!-- /.customer->email -->
-
         <!-- /.pay -->
         <h6 class="bk-form__title">Способ оплаты</h6>
         <div class="bk-form__field-full mb-2">
@@ -59,6 +57,69 @@
           </p>
         </div>
 
+        <!-- /.products -->
+        <h6 class="bk-form__title">Товары</h6>
+        <div class="bk-form__field-full mb-2">
+          <table class="bk-table table table-bordered table-responsive mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th>#</th>
+                <th class="w-100" style="min-width: 200px;">Наименование</th>
+                <th class="text-center" style="min-width: 150px;">Кол-во</th>
+                <th class="text-center" style="min-width: 150px;">Цена</th>
+                <th class="text-center" style="min-width: 150px;">Сумма</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($order->types as $key => $type)
+              <tr>
+                <td>{{ $key+=1 }}</td>
+                <td>
+                  <div class="bk-btn-info">
+                    <h6 class="my-1">
+                      {{ $type->product->name }}
+                    </h6>
+                    <p class="bk-orders__info-item">
+                      <span class="bk-orders__info-subtitle">Артикул:</span>
+                      {{ $type->product->code }}
+                      <small class="text-muted align-text-top">
+                      @if($type->product->category->slug == 'soft')
+                        {{ $type->fabric->name }}
+                      @else
+                        {{ $type->plate->name }}
+                      @endif
+                      </small>
+                    </p>
+                    <p class="bk-orders__info-item">
+                      <span class="bk-orders__info-subtitle">Размер:</span>
+                      {{ $type->product->L . 'x' . $type->product->B . 'x' . $type->product->H }}
+                    </p>
+                    <p class="bk-orders__info-item">
+                      <span class="bk-orders__info-subtitle">Материал:</span>
+                      @if($type->product->category->slug == 'soft')
+                      Экокожа
+                      @else
+                      ЛДСП
+                      @endif
+                    </p>
+                    <button
+                      class="bk-btn-info__triangle bk-btn-info__triangle--down"
+                      type="button"
+                      title="Читать ещё">
+                    </button>
+                  </div>
+                </td>
+                <td class="text-center">{{ $type->pivot->count }} шт.</td>
+                <td class="text-center">{{ number_format($type->product->price) }} ₽</td>
+                <td class="text-center">{{ number_format($type->getPriceForCount()) }} ₽</td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+
+        <!-- /.customer->email -->
+
         <!-- /.pay -->
         <h6 class="bk-form__title">Сумма заказа</h6>
         <div class="bk-form__field-full mb-2">
@@ -69,9 +130,9 @@
         <h6 class="bk-form__title">К оплате</h6>
         <div class="bk-form__field-full mb-2">
           <p class="bk-orders__text font-weight-bold @if($order->depo == 0) text-danger @else text-success @endif">
-            @if($order->pay == 1) 
+            @if($order->pay == 1)
             {{ calcDepo($order->total) }}
-            @else 
+            @else
             {{ calcTotal($order->total) }}
             @endif
           </p>
@@ -93,8 +154,8 @@
               class="bk-orders__bill-icon"
               src="{{ asset('icons/bill.svg') }}"
               alt="report" >
-            <a 
-              class="bk-orders__bill-link" 
+            <a
+              class="bk-orders__bill-link"
               href="{{ route('orders.depo', $order) }}" >
               вывести счёт
             </a>
@@ -126,17 +187,28 @@
               class="bk-orders__bill-icon"
               src="{{ asset('icons/bill.svg') }}"
               alt="report" >
-            <a class="bk-orders__bill-link" href="" >
+            <a
+              class="bk-orders__bill-link"
+              href="{{ route('orders.debt', $order) }}" >
               вывести счёт
             </a>
           </div>
         </div>
         @endif
 
+        <!-- /.date_off -->
+        <input
+          class="form-control bk-form__input mb-2 d-none"
+          id="date_off"
+          type="date"
+          name="date_off"
+          value="{{ $order->date_off }}"
+        >
+
         <!-- /.state -->
         <h6 class="bk-form__title">Статус заказа</h6>
         <div class="bk-form__field-250 mb-2">
-          <select class="form-control bk-form__input" name="state" >
+          <select class="form-control bk-form__input" id="state" name="state" >
             <option
               value="1"
               @if($order->state == 1)

@@ -74,7 +74,8 @@ Route::middleware(['auth'])->group(function () {
   Route::get('orders/{order}/details', [OrderController::class, 'edit'])->name('orders.details');
   Route::put('orders/{order}', [OrderController::class, 'update'])->name('orders.update');
   Route::delete('orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
-  Route::get('orders/report/{order}', [ReportController::class, 'depo'])->name('orders.depo');
+  Route::get('orders/depo/{order}', [ReportController::class, 'depo'])->name('orders.depo');
+  Route::get('orders/debt/{order}', [ReportController::class, 'debt'])->name('orders.debt');
 
   // JSON
   Route::get('data/products', [DataController::class, 'products']);

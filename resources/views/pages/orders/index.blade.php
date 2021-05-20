@@ -26,13 +26,13 @@
       <li class="bk-inspect-list__item">
         - в обработке
         <span class="bk-inspect-value">
-          {{ $total }}
+          {{ $progress }}
         </span>
       </li>
       <li class="bk-inspect-list__item">
         - выполненных
         <span class="bk-inspect-value">
-          {{ $total }}
+          {{ $complete }}
         </span>
       </li>
     </ul>

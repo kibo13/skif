@@ -112,6 +112,17 @@ $(document).ready(function () {
   }
   // orders.form is active
   else if (order_form) {
+    const date_off = document.getElementById('date_off')
+
+    $('#state').on('change', (e) => {
+      let option = $('#state option:selected').val()
+      let currentDate = new Date()
+
+      // order complete
+      option == 2
+        ? (date_off.valueAsDate = currentDate)
+        : (date_off.valueAsDate = null)
+    })
   }
 
   //   if (order_form) {

@@ -17,11 +17,13 @@ class OrderController extends Controller
     // total number of orders
     $total = Order::count();
 
-    // number of orders placed
-    // number of orders in progress
-    // number of completed orders
+    // orders are progress
+    $progress = Order::where('state', '=', 1)->count();
 
-    return view('pages.orders.index', compact('orders', 'total'));
+    // orders are complete
+    $complete = Order::where('state', '=', 2)->count();
+
+    return view('pages.orders.index', compact('orders', 'total', 'progress', 'complete'));
   }
 
   // home.orders.create
@@ -67,8 +69,6 @@ class OrderController extends Controller
   // orders.update
   public function update(Request $request, Order $order)
   {
-
-    dd($request->all());
     $order->update($request->all());
     return redirect()->route('orders.index');
   }
