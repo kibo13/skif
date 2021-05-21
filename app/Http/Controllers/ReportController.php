@@ -14,7 +14,7 @@ use PhpOffice\PhpWord\TemplateProcessor;
 
 class ReportController extends Controller
 {
-  // report for depo
+  // report for customer bill-depo
   public function depo(Order $order)
   {
     // template
@@ -81,7 +81,7 @@ class ReportController extends Controller
     $tmp->setValue('depo', calcDepo($order->total));
 
     // signature
-    $tmp->setValue('boss', getBoss());
+    $tmp->setValue('boss', getShortBoss());
     $tmp->setValue('worker', $order->worker->fio);
 
     // filename
@@ -91,7 +91,7 @@ class ReportController extends Controller
     return response()->download($fn . '.docx')->deleteFileAfterSend(true);
   }
 
-  // report for debt
+  // report for customer bill-debt
   public function debt(Order $order)
   {
     // template
@@ -149,11 +149,57 @@ class ReportController extends Controller
     $tmp->setValue('debt', calcDebt($order->total));
 
     // signature
-    $tmp->setValue('boss', getBoss());
+    $tmp->setValue('boss', getShortBoss());
     $tmp->setValue('worker', $order->worker->fio);
 
     // filename
     $fn = 'Счет на оплату заказа №' . $order->code . '-2 от ' . getDMY($order->date_on);
+    $tmp->saveAs($fn . '.docx');
+
+    return response()->download($fn . '.docx')->deleteFileAfterSend(true);
+  }
+
+  // report for customer contract
+  public function term(Order $order)
+  {
+    // template
+    $tmp = new TemplateProcessor('reports/client-term.docx');
+
+    // individual
+    if ($order->customer->type_id == 1) {
+
+      // filename
+      $fn = 'Договор №' . $order->code . '-' . $order->id . ' от ' . getDMY($order->date_on) . ' [ФЛ]';
+
+      // customer
+      $lastname = $order->customer->lastname;
+      $firstname = $order->customer->firstname;
+      $surname = $order->customer->surname;
+
+      $customer_full = $lastname . ' ' . $firstname . ' ' . $surname;
+      $customer_short = getFIO($lastname, $firstname, $surname);
+    }
+    // entity
+    else {
+
+      // filename
+      $fn = 'Договор №' . $order->code . '-' . $order->id . ' от ' . getDMY($order->date_on) . ' [ЮЛ]';
+
+      // customer
+      $customer_full = $order->customer->name;
+      $customer_short = $order->customer->name;
+    }
+
+    // filling in the fields
+    $tmp->setValue('id', $order->code . '/' . $order->id);
+    $tmp->setValue('date_on', getDMY($order->date_on) . 'г.');
+    $tmp->setValue('boss_full', getFullBoss());
+    $tmp->setValue('customer_full', $customer_full);
+    $tmp->setValue('total', number_format($order->total) . ' руб.');
+    $tmp->setValue('address', $order->customer->address);
+    $tmp->setValue('phone', $order->customer->phone);
+    $tmp->setValue('customer_short', $customer_short);
+    $tmp->setValue('boss_short', getShortBoss());
     $tmp->saveAs($fn . '.docx');
 
     return response()->download($fn . '.docx')->deleteFileAfterSend(true);

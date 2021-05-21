@@ -89,7 +89,7 @@
               data-tip="Уведомить" ></a>
             <a
               class="bk-btn-actions__link bk-btn-actions__link--agree btn btn-primary"
-              href=""
+              href="{{ route('orders.term', $order) }}"
               data-tip="Договор" ></a>
             <a
               class="bk-btn-actions__link bk-btn-actions__link--info btn btn-info"
