@@ -16,6 +16,7 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BasketController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DataController;
 
@@ -74,6 +75,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('orders/{order}/details', [OrderController::class, 'edit'])->name('orders.details');
   Route::put('orders/{order}', [OrderController::class, 'update'])->name('orders.update');
   Route::delete('orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
+  Route::get('orders/alert/{order}', [MailController::class, 'alert'])->name('orders.alert');
   Route::get('orders/depo/{order}', [ReportController::class, 'depo'])->name('orders.depo');
   Route::get('orders/debt/{order}', [ReportController::class, 'debt'])->name('orders.debt');
   Route::get('orders/term/{order}', [ReportController::class, 'term'])->name('orders.term');

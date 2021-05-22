@@ -38,5 +38,9 @@
     <!-- START modal-destroy -->
     @include('assets.modals.destroy')
     <!-- END modal-destroy -->
+
+    <!-- START modal-alert -->
+    @include('assets.modals.alert')
+    <!-- END modal-alert -->
   </body>
 </html>

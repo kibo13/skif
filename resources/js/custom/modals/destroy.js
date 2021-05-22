@@ -4,7 +4,8 @@ $(document).ready(function () {
     let data_pr = $(e.target).data('product')
     let data_tname = $(e.target).data('table-name')
 
-    console.log(data_id)
+    // cheking 
+    // console.log(data_id)
 
     switch (data_tname) {
       case 'position':

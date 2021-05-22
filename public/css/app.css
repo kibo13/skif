@@ -10627,9 +10627,6 @@ table.dataTable thead .sorting_desc_disabled {
 .bk-btn-actions__link--delete {
   background-image: url("/icons/trash.svg");
 }
-.bk-btn-actions__link--state {
-  background-image: url("/icons/state.svg");
-}
 .bk-btn-actions__link--info {
   background-image: url("/icons/info.svg");
 }
@@ -10637,7 +10634,7 @@ table.dataTable thead .sorting_desc_disabled {
   background-image: url("/icons/agree.svg");
 }
 .bk-btn-actions__link--alarm {
-  background-image: url("/icons/alarm.svg");
+  background-image: url("/icons/mail.svg");
 }
 .bk-btn-actions__link::after {
   content: attr(data-tip);

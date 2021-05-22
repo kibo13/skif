@@ -4,6 +4,7 @@
 <section id="order-index" class="bk-page section">
   <h2 class="mb-3">Заказы</h2>
 
+  {{-- control --}}
   @if($total != 0)
   <div class="bk-inspect">
     <div class="bk-inspect-top">
@@ -39,6 +40,18 @@
   </div>
   @endif
 
+  {{-- alert --}}
+  @if(session()->has('warning'))
+  <div class="alert alert-warning" role="alert">
+    {{ session()->get('warning') }}
+  </div>
+  @elseif(session()->has('success'))
+  <div class="alert alert-success" role="alert">
+    {{ session()->get('success') }}
+  </div>
+  @endif
+
+  {{-- table --}}
   <table
       id="order-table"
       class="bk-table table table-bordered table-hover table-responsive"
@@ -128,8 +141,12 @@
         <td>
           <div class="bk-btn-actions">
             <a
-              class="bk-btn-actions__link bk-btn-actions__link--alarm btn btn-warning"
-              href=""
+              class="bk-btn-actions__link bk-btn-actions__link--alarm btn btn-success"
+              href="javascript:void(0)"
+              data-id="{{ $order->id }}"
+              data-table-name="order"
+              data-toggle="modal"
+              data-target="#bk-alert-modal"
               data-tip="Уведомить" ></a>
             <a
               class="bk-btn-actions__link bk-btn-actions__link--agree btn btn-primary"
