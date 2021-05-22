@@ -46,11 +46,10 @@
     <thead class="thead-light">
       <tr>
         <th scope="col">#</th>
-        <th scope="col" class="w-25" style="min-width: 200px;">Номер</th>
-        <th scope="col" class="w-25">Способ оплаты</th>
-        <th scope="col" class="w-25" style="min-width: 100px;">Сумма заказа</th>
-        <th scope="col" class="w-25">Статус</th>
-        <th scope="col" style="min-width: 100px;">Принял</th>
+        <th scope="col" class="w-25" style="min-width: 300px;">Информация</th>
+        <th scope="col" class="w-25" style="min-width: 150px;">Заказчик</th>
+        <th scope="col" class="w-25" style="min-width: 150px;">Исполнитель</th>
+        <th scope="col" class="w-25" style="min-width: 150px;">Статус</th>
         <th scope="col" class="no-sort">Действие</th>
       </tr>
     </thead>
@@ -59,27 +58,72 @@
       <tr>
         <td>{{ $key+=1 }}</td>
         <td>
-          {{ $order->code }}
-        </td>
-        <td>
-          @if($order->pay == 1)
-          Предоплата
+          <h6 class="my-1">
+            Заказ №{{ $order->code }}
+            <span class="bk-small">{{ getDMY($order->date_on) }}</span>
+          </h6>
+          <p class="bk-orders__info-item">
+            <span class="bk-orders__info-subtitle">Способ оплаты:</span>
+            @if($order->pay == 1) предоплата @endif
+            @if($order->pay == 2) оплата @endif
+          </p>
+          <p class="bk-orders__info-item">
+            <span class="bk-orders__info-subtitle">Сумма заказа:</span>
+            {{ calcTotal($order->total) }}
+          </p>
+          <hr class="bk-orders__line">
+          <p class="bk-orders__info-item">
+          @if($order->pay == 1) 
+            <span class="bk-orders__info-subtitle">Предоплата:</span>
+            @if($order->depo == 0) 
+            <span class="text-danger">{{ calcDepo($order->total) }}</span>
+            @else 
+            <span class="text-success">{{ calcDepo($order->total) }}</span>
+            @endif
           @elseif($order->pay == 2)
-          Оплата
+            <span class="bk-orders__info-subtitle">Оплата:</span>
+            @if($order->depo == 0) 
+            <span class="text-danger">{{ calcTotal($order->total) }}</span>
+            @else 
+            <span class="text-success">{{ calcTotal($order->total) }}</span>
+            @endif
           @endif
+          </p>
+          @if($order->pay == 1)
+          <p class="bk-orders__info-item">
+            <span class="bk-orders__info-subtitle">Долг:</span>
+            @if($order->debt == 0) 
+            <span class="text-danger">{{ calcDebt($order->total) }}</span>
+            @else 
+            <span class="text-success">{{ calcDebt($order->total) }}</span>
+            @endif
+          </p>    
+          @endif 
         </td>
-        <td>{{ calcTotal($order->total) }}</td>
         <td>
-        @if($order->state == 1)
-        <span class="text-danger font-weight-bold">В обработке</span>
-        @elseif($order->state == 2)
-        <span class="text-success font-weight-bold">Готов</span>
-        @endif
+          @if($order->customer->type_id == 1) 
+            <div title="{{ $order->customer->lastname . ' ' . $order->customer->firstname . ' ' . $order->customer->surname}}">
+              {{ getFIO($order->customer->lastname, $order->customer->firstname, $order->customer->surname) }}
+              <span class="bk-small">ФЛ</span>
+            </div>
+          @else
+            {{ $order->customer->name }}
+            <span class="bk-small">ЮЛ</span>
+          @endif 
         </td>
         <td>
           <div title="{{ $order->worker->lastname . ' ' . $order->worker->firstname . ' ' . $order->worker->surname}}">
             {{ $order->worker->fio }}
           </div>
+        </td>
+        <td>
+          @if($order->state == 1)
+          <span class="text-danger font-weight-bold">В обработке</span>
+          @elseif($order->state == 2)
+          <span class="text-success font-weight-bold">
+          Готов <span class="bk-small">{{ getDMY($order->date_off) }}</span>
+          </span>
+          @endif
         </td>
         <td>
           <div class="bk-btn-actions">

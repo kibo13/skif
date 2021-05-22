@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 13/05/2021 14:05:42
+ Date: 22/05/2021 08:37:25
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `categories`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of categories
@@ -59,16 +59,17 @@ CREATE TABLE `customers`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `customers_code_unique`(`code`) USING BTREE,
   UNIQUE INDEX `customers_email_unique`(`email`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of customers
 -- ----------------------------
-INSERT INTO `customers` VALUES (5, 2, '982365199553', NULL, NULL, NULL, NULL, 'ООО \"Юпитер\"', 'upiter@info.com', 'Гвардейская 5', '+7-777-777-10-10', '2021-04-27 11:55:18', '2021-04-27 17:16:38');
-INSERT INTO `customers` VALUES (7, 1, '347061866200', 'Николай', 'Макаров', 'Викторович', NULL, NULL, 'makarov_v@gmail.com', '8 март 4-16', '+7-777-123-32-21', '2021-04-27 12:28:40', '2021-04-27 18:07:21');
-INSERT INTO `customers` VALUES (8, 1, '942944546297', 'Юрий', 'Нестеров', 'Игоревич', NULL, NULL, 'nesterov1010@gmail.com', '6 мкр 10-10', '+77019013005', '2021-04-27 18:27:15', '2021-04-27 18:27:15');
-INSERT INTO `customers` VALUES (9, 2, '601579973170', NULL, NULL, NULL, NULL, 'АО \"Аргус\"', 'argus@argus.ru', 'Пионерская 7', '+7-776-555-40-40', '2021-04-27 18:30:24', '2021-04-27 18:30:24');
-INSERT INTO `customers` VALUES (10, 1, '842002341610', 'Айгуль', 'Оспанова', 'Олжасовна', NULL, NULL, 'ospanova_ao@mail.ru', 'Мира 5-39', '+7-776-432-87-65', '2021-04-27 18:33:02', '2021-04-27 18:33:02');
+INSERT INTO `customers` VALUES (1, 2, '982365199553', NULL, NULL, NULL, NULL, 'ООО \"Юпитер\"', 'upiter@info.com', 'Гвардейская 5', '+7-777-777-10-10', '2021-04-27 11:55:18', '2021-04-27 17:16:38');
+INSERT INTO `customers` VALUES (2, 1, '347061866200', 'Николай', 'Макаров', 'Викторович', NULL, NULL, 'makarov_v@gmail.com', '8 март 4-16', '+7-777-123-32-21', '2021-04-27 12:28:40', '2021-04-27 18:07:21');
+INSERT INTO `customers` VALUES (3, 1, '942944546297', 'Юрий', 'Нестеров', 'Игоревич', NULL, NULL, 'nesterov1010@gmail.com', '6 мкр 10-10', '+77019013005', '2021-04-27 18:27:15', '2021-04-27 18:27:15');
+INSERT INTO `customers` VALUES (4, 2, '601579973170', NULL, NULL, NULL, NULL, 'АО \"Аргус\"', 'argus@argus.ru', 'Пионерская 7', '+7-776-555-40-40', '2021-04-27 18:30:24', '2021-04-27 18:30:24');
+INSERT INTO `customers` VALUES (5, 1, '842002341610', 'Айгуль', 'Оспанова', 'Олжасовна', NULL, NULL, 'ospanova_ao@mail.ru', 'Мира 5-39', '+7-776-432-87-65', '2021-04-27 18:33:02', '2021-04-27 18:33:02');
+INSERT INTO `customers` VALUES (6, 1, '843123167299', 'Кирилл', 'Чайкин', 'Ильич', NULL, NULL, 'calaxip509@mxcdd.com', 'Шубникова 8-59', '+7-776-081-53-08', '2021-05-14 19:26:49', '2021-05-14 19:26:49');
 
 -- ----------------------------
 -- Table structure for fabrics
@@ -103,7 +104,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -119,8 +120,8 @@ INSERT INTO `migrations` VALUES (8, '2021_05_08_184222_create_fabrics_table', 3)
 INSERT INTO `migrations` VALUES (9, '2021_05_08_224008_create_products_table', 4);
 INSERT INTO `migrations` VALUES (10, '2021_05_09_113420_create_types_table', 5);
 INSERT INTO `migrations` VALUES (11, '2021_05_13_063952_update_categories_table', 6);
-INSERT INTO `migrations` VALUES (12, '2021_05_13_064435_create_orders_table', 7);
-INSERT INTO `migrations` VALUES (13, '2021_05_13_064447_create_order_type_table', 7);
+INSERT INTO `migrations` VALUES (18, '2021_05_13_064435_create_orders_table', 7);
+INSERT INTO `migrations` VALUES (19, '2021_05_13_064447_create_order_type_table', 7);
 
 -- ----------------------------
 -- Table structure for order_type
@@ -136,12 +137,17 @@ CREATE TABLE `order_type`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `order_type_order_id_foreign`(`order_id`) USING BTREE,
   CONSTRAINT `order_type_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of order_type
 -- ----------------------------
-INSERT INTO `order_type` VALUES (3, 2, 3, 5, '2021-05-13 12:25:26', '2021-05-13 12:25:32');
+INSERT INTO `order_type` VALUES (1, 1, 2, 5, '2021-05-19 17:58:27', '2021-05-19 18:01:15');
+INSERT INTO `order_type` VALUES (2, 1, 5, 2, '2021-05-19 17:58:36', '2021-05-19 17:58:36');
+INSERT INTO `order_type` VALUES (3, 2, 13, 10, '2021-05-19 18:06:09', '2021-05-19 18:06:09');
+INSERT INTO `order_type` VALUES (4, 3, 14, 2, '2021-05-22 03:32:09', '2021-05-22 03:32:24');
+INSERT INTO `order_type` VALUES (5, 3, 3, 1, '2021-05-22 03:32:15', '2021-05-22 03:32:15');
+INSERT INTO `order_type` VALUES (6, 4, 20, 4, '2021-05-22 03:34:19', '2021-05-22 03:34:31');
 
 -- ----------------------------
 -- Table structure for orders
@@ -149,16 +155,29 @@ INSERT INTO `order_type` VALUES (3, 2, 3, 5, '2021-05-13 12:25:26', '2021-05-13 
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders`  (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `date_on` date NULL DEFAULT NULL,
+  `date_off` date NULL DEFAULT NULL,
+  `customer_id` int(11) NULL DEFAULT NULL,
+  `worker_id` int(11) NULL DEFAULT NULL,
+  `pay` tinyint(4) NOT NULL DEFAULT 0,
+  `depo` tinyint(4) NOT NULL DEFAULT 0,
+  `debt` tinyint(4) NOT NULL DEFAULT 0,
+  `total` double NOT NULL DEFAULT 0,
   `state` tinyint(4) NOT NULL DEFAULT 0,
+  `note` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES (2, 0, '2021-05-13 12:25:25', '2021-05-13 12:25:25');
+INSERT INTO `orders` VALUES (1, '210519230524', '2021-05-19', NULL, 6, 1, 1, 1, 0, 45915, 1, NULL, '2021-05-19 17:58:27', '2021-05-20 18:16:09');
+INSERT INTO `orders` VALUES (2, '210519230614', '2021-05-19', NULL, 1, 1, 2, 1, 1, 61400, 1, NULL, '2021-05-19 18:06:09', '2021-05-20 18:15:48');
+INSERT INTO `orders` VALUES (3, '210522083228', '2021-05-22', '2021-05-22', 3, 1, 2, 1, 1, 19095, 2, NULL, '2021-05-22 03:32:09', '2021-05-22 03:33:38');
+INSERT INTO `orders` VALUES (4, '210522083436', '2021-05-22', NULL, 4, 1, 1, 1, 0, 51000, 1, NULL, '2021-05-22 03:34:19', '2021-05-22 03:35:31');
 
 -- ----------------------------
 -- Table structure for plates
@@ -172,7 +191,7 @@ CREATE TABLE `plates`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of plates
