@@ -1,6 +1,6 @@
 # Laravel Application
 
-> Laravel application for the dispatcher of the emergency department of a housing enterprise
+> Laravel application for creating and controlling orders of a furniture company
 
 ## Quick Start
 
@@ -30,6 +30,14 @@ DB_PORT=3306
 DB_DATABASE=database_name
 DB_USERNAME=database_username
 DB_PASSWORD=database_password
+
+# email configuration
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.email_service
+MAIL_PORT=465
+MAIL_USERNAME=email_username
+MAIL_PASSWORD=email_password
+MAIL_ENCRYPTION=ssl
 
 # run application
 php artisan serve

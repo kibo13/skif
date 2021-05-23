@@ -141,14 +141,6 @@
         <td>
           <div class="bk-btn-actions">
             <a
-              class="bk-btn-actions__link bk-btn-actions__link--alarm btn btn-success"
-              href="javascript:void(0)"
-              data-id="{{ $order->id }}"
-              data-table-name="order"
-              data-toggle="modal"
-              data-target="#bk-alert-modal"
-              data-tip="Уведомить" ></a>
-            <a
               class="bk-btn-actions__link bk-btn-actions__link--agree btn btn-primary"
               href="{{ route('orders.term', $order) }}"
               data-tip="Договор" ></a>
@@ -156,6 +148,14 @@
               class="bk-btn-actions__link bk-btn-actions__link--info btn btn-info"
               href="{{ route('orders.details', $order) }}"
               data-tip="Информация" ></a>
+            <a
+              class="bk-btn-actions__link bk-btn-actions__link--alarm btn btn-success"
+              href="javascript:void(0)"
+              data-id="{{ $order->id }}"
+              data-table-name="order"
+              data-toggle="modal"
+              data-target="#bk-alert-modal"
+              data-tip="Уведомить" ></a>
             <a
               class="bk-btn-actions__link bk-btn-actions__link--delete btn btn-danger"
               href="javascript:void(0)"

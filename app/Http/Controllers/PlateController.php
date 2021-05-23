@@ -10,7 +10,7 @@ class PlateController extends Controller
 {
   public function create()
   {
-    return view('pages.materials.plate');
+    return view('pages.colors.plate');
   }
 
   public function store(Request $request)
@@ -22,12 +22,12 @@ class PlateController extends Controller
     }
 
     Plate::create($params);
-    return redirect()->route('materials.index');
+    return redirect()->route('colors.index');
   }
 
   public function edit(Plate $plate)
   {
-    return view('pages.materials.plate', compact('plate'));
+    return view('pages.colors.plate', compact('plate'));
   }
 
   public function update(Request $request, Plate $plate)
@@ -40,13 +40,13 @@ class PlateController extends Controller
     }
 
     $plate->update($params);
-    return redirect()->route('materials.index');
+    return redirect()->route('colors.index');
   }
 
   public function destroy(Plate $plate)
   {
     $plate->delete();
     Storage::delete($plate->image);
-    return redirect()->route('materials.index');
+    return redirect()->route('colors.index');
   }
 }

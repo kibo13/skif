@@ -19,25 +19,29 @@ class HomeController extends Controller
     $this->middleware('auth');
   }
 
-  /**
-   * Show the application dashboard.
-   *
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
-  public function index()
+  // home
+  public function index(Request $request)
   {
+    // categories
+    $categories = Category::get();
+
     // session
     $order_id = session('order_id');
 
     // order
     $order = Order::find($order_id);
 
-    // categories
-    $categories = Category::get();
+    // product query
+    $product_query = Product::query();
 
-    // products
-    $products = Product::get();
+    dd($request);
 
-    return view('home', compact('products', 'order'));
+    if ($request->filled('categories')) {
+      $product_query->where('category_id', '==', $request['categories']);
+    }
+
+    $products = $product_query->get();
+
+    return view('home', compact('categories', 'order', 'products'));
   }
 }

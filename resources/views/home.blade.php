@@ -2,12 +2,37 @@
 <!-- home-index -->
 @section('content')
 <section id="home-index" class="bk-page valid-form section">
-  <h2 class="mb-3">Каталог мебели</h2>
+  <h2>Каталог мебели</h2>
 
-  <div class="bk-btn-group">
-    <button class="btn btn-primary">Категории</button>
-    <a class="btn btn-outline-primary" href="{{ route('home.basket.index') }}">
+  <div class="bk-btn-group bk-home__tools">
+    <div class="bk-form__field-250">
+      <form class="d-flex" action="{{ route('home') }}" method="GET">
+        <select class="p-1 mr-1 form-control" name="categories">
+          <option value="0" selected>Все категории</option>
+          @foreach($categories as $category)
+          <option value="{{ $category->id }}">
+            {{ ucfirst($category->name) }}
+          </option>
+          @endforeach
+        </select>
+        <button 
+          class="bk-home__tools-filter btn btn-primary" 
+          type="submit"
+          title="Фильтр"></button>
+      </form>
+    </div>
+    <a 
+      class="btn btn-outline-primary bk-home__tools-basket" 
+      href="{{ route('home.basket.index') }}" >
       Корзина
+      @if($order && $order->getFullPrice() > 0) 
+      <span class="bk-home__tools-basket-num">
+        {{ $order->types()->count() }}
+      </span>
+      <span class="bk-home__tools-basket-sum">
+        {{ number_format($order->getFullPrice()) }} ₽
+      </span>
+      @endif
     </a>
   </div>
 
@@ -103,8 +128,6 @@
     </li>
     @endforeach
   </ul>
-
-
 
 </section>
 @endsection

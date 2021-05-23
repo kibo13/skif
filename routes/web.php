@@ -8,9 +8,9 @@ use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PlateController;
 use App\Http\Controllers\FabricController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\OrderController;
@@ -18,7 +18,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\DataController;
 
 Auth::routes([
   'login' => true,
@@ -46,7 +45,7 @@ Route::middleware(['auth'])->group(function () {
   Route::resource('customers', CustomerController::class)->except(['show']);
 
   // MATERIALS
-  Route::get('materials', [MaterialController::class, 'index'])->name('materials.index');
+  Route::get('colors', [ColorController::class, 'index'])->name('colors.index');
   Route::resource('plates', PlateController::class)->except(['index', 'show']);
   Route::resource('fabrics', FabricController::class)->except(['index', 'show']);
 
@@ -79,7 +78,4 @@ Route::middleware(['auth'])->group(function () {
   Route::get('orders/depo/{order}', [ReportController::class, 'depo'])->name('orders.depo');
   Route::get('orders/debt/{order}', [ReportController::class, 'debt'])->name('orders.debt');
   Route::get('orders/term/{order}', [ReportController::class, 'term'])->name('orders.term');
-
-  // JSON
-  Route::get('data/products', [DataController::class, 'products']);
 });
