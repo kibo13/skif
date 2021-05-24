@@ -10,13 +10,13 @@
         <select class="p-1 mr-1 form-control" name="categories">
           <option
             value="0"
-            @if($category_id == 0)
+            @if(is_null(session('category_id')) || session('category_id') == 0)
             selected
             @endif >Все категории</option>
           @foreach($categories as $category)
           <option
             value="{{ $category->id }}"
-            @if($category_id == $category->id)
+            @if(session('category_id') == $category->id)
             selected
             @endif >
             {{ ucfirst($category->name) }}

@@ -48,7 +48,8 @@ class BasketController extends Controller
       $order->types()->attach($type_id, ['count' => $request['count']]);
     }
 
-    return redirect()->route('home');
+    // return redirect()->route('home');
+    return redirect()->back();
   }
 
   // create one item

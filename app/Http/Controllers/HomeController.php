@@ -22,7 +22,7 @@ class HomeController extends Controller
   // home
   public function index(Request $request)
   {
-    // create session for order
+    // session for order
     $order_id = session('order_id');
 
     // get order by order_id
@@ -31,34 +31,17 @@ class HomeController extends Controller
     // get all categories
     $categories = Category::get();
 
-    // current category id
-    $current_id = $request['categories'];
-
-    // old category id
-    $old_id = 0;
-
-    // create session for category
-    $category_id = session('categ_id');
-    session(['categ_id' => $current_id]);
-
-    // add current category to session
-    // if ($category_id == null) {
-    //   $old_id = $request['categories'];
-    //   session(['categ_id' => $current_id]);
-    // }
-    // // add new category to session
-    // else {
-    //   if ($old_id != $current_id) {
-    //     session(['categ_id' => $current_id]);
-    //   }
-    // }
+    // category_id from request 
+    $category_id = $request['categories'];
 
     // get all products
     if ($category_id == 0) {
+      session(['category_id' => 0]);
       $products = Product::get();
     }
     // get all products by category
     else {
+      session(['category_id' => $category_id]);
       $products = Product::where('category_id', $category_id)->get();
     }
 
