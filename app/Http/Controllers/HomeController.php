@@ -22,26 +22,46 @@ class HomeController extends Controller
   // home
   public function index(Request $request)
   {
-    // categories
-    $categories = Category::get();
-
-    // session
+    // create session for order
     $order_id = session('order_id');
 
-    // order
+    // get order by order_id
     $order = Order::find($order_id);
 
-    // product query
-    $product_query = Product::query();
+    // get all categories
+    $categories = Category::get();
 
-    dd($request);
+    // current category id
+    $current_id = $request['categories'];
 
-    if ($request->filled('categories')) {
-      $product_query->where('category_id', '==', $request['categories']);
+    // old category id
+    $old_id = 0;
+
+    // create session for category
+    $category_id = session('categ_id');
+    session(['categ_id' => $current_id]);
+
+    // add current category to session
+    // if ($category_id == null) {
+    //   $old_id = $request['categories'];
+    //   session(['categ_id' => $current_id]);
+    // }
+    // // add new category to session
+    // else {
+    //   if ($old_id != $current_id) {
+    //     session(['categ_id' => $current_id]);
+    //   }
+    // }
+
+    // get all products
+    if ($category_id == 0) {
+      $products = Product::get();
+    }
+    // get all products by category
+    else {
+      $products = Product::where('category_id', $category_id)->get();
     }
 
-    $products = $product_query->get();
-
-    return view('home', compact('categories', 'order', 'products'));
+    return view('home', compact('order', 'categories', 'category_id', 'products'));
   }
 }

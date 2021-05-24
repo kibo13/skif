@@ -8,24 +8,32 @@
     <div class="bk-form__field-250">
       <form class="d-flex" action="{{ route('home') }}" method="GET">
         <select class="p-1 mr-1 form-control" name="categories">
-          <option value="0" selected>Все категории</option>
+          <option
+            value="0"
+            @if($category_id == 0)
+            selected
+            @endif >Все категории</option>
           @foreach($categories as $category)
-          <option value="{{ $category->id }}">
+          <option
+            value="{{ $category->id }}"
+            @if($category_id == $category->id)
+            selected
+            @endif >
             {{ ucfirst($category->name) }}
           </option>
           @endforeach
         </select>
-        <button 
-          class="bk-home__tools-filter btn btn-primary" 
+        <button
+          class="bk-home__tools-filter btn btn-primary"
           type="submit"
           title="Фильтр"></button>
       </form>
     </div>
-    <a 
-      class="btn btn-outline-primary bk-home__tools-basket" 
+    <a
+      class="btn btn-outline-primary bk-home__tools-basket"
       href="{{ route('home.basket.index') }}" >
       Корзина
-      @if($order && $order->getFullPrice() > 0) 
+      @if($order && $order->getFullPrice() > 0)
       <span class="bk-home__tools-basket-num">
         {{ $order->types()->count() }}
       </span>
