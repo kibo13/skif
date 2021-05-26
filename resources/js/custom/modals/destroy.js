@@ -4,7 +4,7 @@ $(document).ready(function () {
     let data_pr = $(e.target).data('product')
     let data_tname = $(e.target).data('table-name')
 
-    // cheking 
+    // cheking
     // console.log(data_id)
 
     switch (data_tname) {
@@ -49,6 +49,10 @@ $(document).ready(function () {
 
       case 'order':
         $('#bk-delete-form').attr('action', '/orders/' + data_id)
+        break
+
+      case 'material':
+        $('#bk-delete-form').attr('action', '/materials/' + data_id)
         break
 
       default:

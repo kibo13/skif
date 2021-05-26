@@ -18,6 +18,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\MaterialController;
 
 Auth::routes([
   'login' => true,
@@ -44,7 +45,7 @@ Route::middleware(['auth'])->group(function () {
   // CUSTOMERS
   Route::resource('customers', CustomerController::class)->except(['show']);
 
-  // MATERIALS
+  // COLORS
   Route::get('colors', [ColorController::class, 'index'])->name('colors.index');
   Route::resource('plates', PlateController::class)->except(['index', 'show']);
   Route::resource('fabrics', FabricController::class)->except(['index', 'show']);
@@ -78,4 +79,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('orders/depo/{order}', [ReportController::class, 'depo'])->name('orders.depo');
   Route::get('orders/debt/{order}', [ReportController::class, 'debt'])->name('orders.debt');
   Route::get('orders/term/{order}', [ReportController::class, 'term'])->name('orders.term');
+
+  // MATERIALS
+  Route::resource('materials', MaterialController::class)->except(['show']);
 });

@@ -15,7 +15,7 @@ class OrderController extends Controller
     $orders = Order::where('state', '>', 0)->get();
 
     // total number of orders
-    $total = Order::count();
+    $total = Order::where('state', '>', 0)->count();
 
     // orders are progress
     $progress = Order::where('state', '=', 1)->count();
