@@ -1,0 +1,84 @@
+php artisan make:model -m NameModel 
+php artisan make:controller NameController --resource --model=NameModel 
+https://laravel.demiart.ru/structure-routes-in-large-projects/
+
+Почему размеры мебели обычно указывают в миллиметрах, а не сантиметрах
+в миллиметрах можно более точнее указать длину
+Что бы не было зазоров на стыках в мебели
+
+@if($order != null)
+@if($order->products->where('id', $product->id)->count())
+value="{{ $order->products->where('id', $product->id)->first()->pivot->count }}"
+@endif 
+@endif 
+            
+ПРОВЕРКА ПРОВЕРКА ПРОВЕРКА 
+@if($order != null)
+  @if($order->products->where('id', $product->id)->count())
+	value="{{ $order->products->where('id', $product->id)->first()->pivot->count }}"
+  @endif 
+@endif
+ПРОВЕРКА ПРОВЕРКА ПРОВЕРКА 
+
+ОТНОШЕНИЯ ОТНОШЕНИЯ ОТНОШЕНИЯ
+
+
+public function orders()
+{
+	return $this->belongsToMany('App\Models\Order');
+}
+
+public function getPriceForCount()
+{
+	if (!is_null($this->pivot)) {
+		return $this->pivot->count * $this->price;
+	}
+
+	return $this->price;
+}
+
+ОТНОШЕНИЯ ОТНОШЕНИЯ ОТНОШЕНИЯ
+
+value="{{ isset($user) ? $user->role_id : null }}"
+
+// $order->products()->attach($product, ['count' => $request['count'], 'color_id' => $request['color_id']]);
+// $products = [];
+// return $order->products;
+// $color = 7; 
+// $flag = false; 
+// $color = $request['color_id'];
+// dd(gettype($order->products));
+// dd($color);
+
+const category_id = $('#category_id option:selected').data('id');
+
+if (category_id) {
+axios({
+  method: 'get',
+  url: '/data/products',
+  params: { category_id }
+}).then(response => {
+
+  console.log(response.data)
+  // if (response.data.rez) {//Проверяем ответ 1 или 0
+  //   $('#defect').html(response.data.option);//Если пришел 1, то вставляем option в Неисправность
+  // }
+});
+}
+// return false;
+
+// $.ajax({
+//   url: '/data/products',
+//   method: 'GET'
+// }).done(products => {
+//   for (let product of products) {
+//     if (category_id == product.category_id) {
+
+//       // // set branch_id to field of branch_id
+//       // $("#stat-branch").val(plot.branch_id);
+
+//       // // set branch_name to field of branch_name
+//       // $('#stat-plot').text(plot.name);
+//     }
+//   }
+// })

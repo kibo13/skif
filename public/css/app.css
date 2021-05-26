@@ -10969,40 +10969,29 @@ table.dataTable thead .sorting_desc_disabled {
     left: 0;
   }
 }
-.bk-colors-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-.bk-colors-header__title {
-  margin-bottom: 0;
-}
-.bk-colors-list {
+.bk-colors {
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(128px, auto));
+  grid-template-columns: repeat(auto-fill, minmax(100px, auto));
   grid-gap: 5px;
 }
-.bk-colors-list__item {
+.bk-colors__item {
   position: relative;
   display: flex;
-  height: 128px;
+  height: 100px;
   box-shadow: 0 0 4px;
   cursor: pointer;
   overflow: hidden;
 }
-.bk-colors-list__item:hover .bk-colors-list__crud {
+.bk-colors__item:hover .bk-colors__crud {
   transform: translateY(0);
 }
-.bk-colors-list__plate {
+.bk-colors__img {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.bk-colors-list__fabric {
-  width: 100%;
-}
-.bk-colors-list__info {
+.bk-colors__info {
   padding: 0 5px;
   position: absolute;
   top: 10px;
@@ -11013,7 +11002,7 @@ table.dataTable thead .sorting_desc_disabled {
   border-radius: 2px;
   box-shadow: 0 0 2px;
 }
-.bk-colors-list__crud {
+.bk-colors__crud {
   position: absolute;
   bottom: 7px;
   right: 7px;
@@ -11022,13 +11011,6 @@ table.dataTable thead .sorting_desc_disabled {
   transition: all 0.3s;
 }
 
-@media (max-width: 640px) {
-  .bk-colors-header {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 5px;
-  }
-}
 .bk-products {
   padding: 0;
   margin: 0;

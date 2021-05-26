@@ -43,9 +43,9 @@
             </a>
             <a
                 class="dropdown-item"
-                href="{{ route('colors.index') }}"
+                href=""
               >
-                Расцветки
+                Материалы
             </a>
             <a
                 class="dropdown-item"
@@ -58,12 +58,6 @@
                 href=""
               >
                 Поставщики
-            </a>
-            <a
-                class="dropdown-item"
-                href="{{ route('materials.index') }}"
-              >
-                Материалы
             </a>
           </div>
         </li>

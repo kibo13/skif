@@ -11,11 +11,16 @@ class Material extends Model
 
   protected $fillable = [
     'name',
-    'note'
+    'color',
+    'L',
+    'B',
+    'H',
+    'note',
+    'slug'
   ];
 
-  // public function products()
-  // {
-  //   return $this->hasMany('App\Models\Product');
-  // }
+  public function colors()
+  {
+    return $this->hasMany('App\Models\Color');
+  }
 }

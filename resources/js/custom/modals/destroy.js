@@ -20,20 +20,20 @@ $(document).ready(function () {
         $('#bk-delete-form').attr('action', '/users/' + data_id)
         break
 
-      case 'category':
-        $('#bk-delete-form').attr('action', '/categories/' + data_id)
-        break
-
       case 'customer':
         $('#bk-delete-form').attr('action', '/customers/' + data_id)
         break
 
-      case 'fabric':
-        $('#bk-delete-form').attr('action', '/fabrics/' + data_id)
+      case 'category':
+        $('#bk-delete-form').attr('action', '/categories/' + data_id)
         break
 
-      case 'plate':
-        $('#bk-delete-form').attr('action', '/plates/' + data_id)
+      case 'color':
+        $('#bk-delete-form').attr('action', '/colors/' + data_id)
+        break
+
+      case 'material':
+        $('#bk-delete-form').attr('action', '/materials/' + data_id)
         break
 
       case 'product':
@@ -49,13 +49,6 @@ $(document).ready(function () {
 
       case 'order':
         $('#bk-delete-form').attr('action', '/orders/' + data_id)
-        break
-
-      case 'material':
-        $('#bk-delete-form').attr('action', '/materials/' + data_id)
-        break
-
-      default:
         break
     }
   })
