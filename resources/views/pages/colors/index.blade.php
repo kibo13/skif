@@ -8,7 +8,7 @@
     <a class="btn btn-outline-primary" href="{{ route('colors.create') }}">
       Новая запись
     </a>
-    <a class="btn btn-outline-secondary" href="">
+    <a class="btn btn-outline-secondary" href="{{ route('materials.index') }}" >
       Материалы
     </a>
   </div>

@@ -1,5 +1,5 @@
 <footer class="footer mt-auto">
-  <a href="">
+  <a href="{{ route('home') }}">
     © ИС мебельного цеха предприятия
     <?php echo date('Y'); ?>
   </a>

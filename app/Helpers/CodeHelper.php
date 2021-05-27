@@ -6,7 +6,7 @@ function getCode()
 {
   // current date 
   $current = Carbon::now()->addHour(5);
-  
+
   // code
   $code = preg_replace('/[- :]/', '', $current);
 

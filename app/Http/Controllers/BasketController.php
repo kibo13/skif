@@ -28,8 +28,8 @@ class BasketController extends Controller
     // order
     $order = Order::find($order_id);
 
-    // type_id
-    $type_id = $request['type_id'];
+    // type of product
+    $top_id = $request['top_id'];
 
     // order doesn't exist
     if (is_null($order)) {
@@ -37,23 +37,22 @@ class BasketController extends Controller
       session(['order_id' => $order->id]);
     }
 
-    // order exists with type_id
-    if ($order->types->contains($type_id)) {
-      $type = $order->types()->where('type_id', $type_id)->first();
-      $type->pivot->count = $request['count'];
-      $type->pivot->update();
+    // order exists with top_id
+    if ($order->tops->contains($top_id)) {
+      $top = $order->tops()->where('top_id', $top_id)->first();
+      $top->pivot->count = $request['count'];
+      $top->pivot->update();
     }
     // order doesn't exists with type_id
     else {
-      $order->types()->attach($type_id, ['count' => $request['count']]);
+      $order->tops()->attach($top_id, ['count' => $request['count']]);
     }
 
-    // return redirect()->route('home');
     return redirect()->back();
   }
 
   // create one item
-  public function addItem($type)
+  public function addItem($top)
   {
     // session
     $order_id = session('order_id');
@@ -61,16 +60,16 @@ class BasketController extends Controller
     // order
     $order = Order::find($order_id);
 
-    // type
-    $type = $order->types()->where('type_id', $type)->first();
-    $type->pivot->count++;
-    $type->pivot->update();
+    // type of product 
+    $top = $order->tops()->where('top_id', $top)->first();
+    $top->pivot->count++;
+    $top->pivot->update();
 
     return redirect()->route('home.basket.index');
   }
 
   // delete one item
-  public function delItem($type)
+  public function delItem($top)
   {
     // session
     $order_id = session('order_id');
@@ -78,14 +77,14 @@ class BasketController extends Controller
     // order
     $order = Order::find($order_id);
 
-    // type
-    $type = $order->types()->where('type_id', $type)->first();
+    // type of product 
+    $top = $order->tops()->where('top_id', $top)->first();
 
-    if ($type->pivot->count < 2) {
-      $order->types()->detach($type);
+    if ($top->pivot->count < 2) {
+      $order->tops()->detach($top);
     } else {
-      $type->pivot->count--;
-      $type->pivot->update();
+      $top->pivot->count--;
+      $top->pivot->update();
     }
 
     return redirect()->route('home.basket.index');

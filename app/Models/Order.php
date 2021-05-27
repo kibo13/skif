@@ -23,16 +23,16 @@ class Order extends Model
     'note'
   ];
 
-  public function types()
+  public function tops()
   {
-    return $this->belongsToMany('App\Models\Type')->withPivot('count')->withTimestamps();
+    return $this->belongsToMany('App\Models\Top')->withPivot('count')->withTimestamps();
   }
 
   public function getFullPrice()
   {
     $sum = 0;
-    foreach ($this->types as $type) {
-      $sum += $type->getPriceForCount();
+    foreach ($this->tops as $top) {
+      $sum += $top->getPriceForCount();
     }
 
     return $sum;

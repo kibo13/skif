@@ -10,17 +10,16 @@ class Material extends Model
   use HasFactory;
 
   protected $fillable = [
+    'tom',
     'name',
-    'color',
     'L',
     'B',
     'H',
-    'note',
-    'slug'
+    'note'
   ];
 
   public function colors()
   {
-    return $this->hasMany('App\Models\Color');
+    return $this->belongsToMany('App\Models\Color');
   }
 }

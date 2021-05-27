@@ -71,36 +71,28 @@
               </tr>
             </thead>
             <tbody>
-              @foreach($order->types as $key => $type)
+              @foreach($order->tops as $key => $top)
               <tr>
                 <td>{{ $key+=1 }}</td>
                 <td>
                   <div class="bk-btn-info">
                     <h6 class="my-1">
-                      {{ $type->product->name }}
+                      {{ $top->product->name }}
                     </h6>
                     <p class="bk-orders__info-item">
                       <span class="bk-orders__info-subtitle">Артикул:</span>
-                      {{ $type->product->code }}
+                      {{ $top->product->code }}
                       <small class="text-muted align-text-top">
-                      @if($type->product->category->slug == 'soft')
-                        {{ $type->fabric->name }}
-                      @else
-                        {{ $type->plate->name }}
-                      @endif
+                      {{ $top->color->name }}
                       </small>
                     </p>
                     <p class="bk-orders__info-item">
                       <span class="bk-orders__info-subtitle">Размер:</span>
-                      {{ $type->product->L . 'x' . $type->product->B . 'x' . $type->product->H }}
+                      {{ $top->product->L . 'x' . $top->product->B . 'x' . $top->product->H }}
                     </p>
                     <p class="bk-orders__info-item">
                       <span class="bk-orders__info-subtitle">Материал:</span>
-                      @if($type->product->category->slug == 'soft')
-                      Экокожа
-                      @else
-                      ЛДСП
-                      @endif
+                      {{ $top->product->material->name }}
                     </p>
                     <button
                       class="bk-btn-info__triangle bk-btn-info__triangle--down"
@@ -109,9 +101,9 @@
                     </button>
                   </div>
                 </td>
-                <td class="text-center">{{ $type->pivot->count }} шт.</td>
-                <td class="text-center">{{ number_format($type->product->price) }} ₽</td>
-                <td class="text-center">{{ number_format($type->getPriceForCount()) }} ₽</td>
+                <td class="text-center">{{ $top->pivot->count }} шт.</td>
+                <td class="text-center">{{ number_format($top->product->price) }} ₽</td>
+                <td class="text-center">{{ number_format($top->getPriceForCount()) }} ₽</td>
               </tr>
               @endforeach
             </tbody>

@@ -13,6 +13,7 @@ class Product extends Model
     'category_id',
     'code',
     'name',
+    'material_id',
     'L',
     'B',
     'H',
@@ -25,8 +26,13 @@ class Product extends Model
     return $this->belongsTo('App\Models\Category');
   }
 
-  public function types()
+  public function material()
   {
-    return $this->hasMany('App\Models\Type');
+    return $this->belongsTo('App\Models\Material');
+  }
+
+  public function tops()
+  {
+    return $this->hasMany('App\Models\Top');
   }
 }

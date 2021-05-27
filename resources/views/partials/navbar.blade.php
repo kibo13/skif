@@ -27,38 +27,28 @@
 
         <li class="nav-item dropdown">
           <a
-              class="nav-link dropdown-toggle pr-3"
-              href="#"
-              data-toggle="dropdown"
-            >
+            class="nav-link dropdown-toggle pr-3"
+            href="#"
+            data-toggle="dropdown">
             Информация
           </a>
 
           <div class="dropdown-menu">
             <a
-                class="dropdown-item"
-                href="{{ route('categories.index') }}"
-              >
-                Категории
-            </a>
+              class="dropdown-item"
+              href="{{ route('categories.index') }}">
+              Категории</a>
             <a
-                class="dropdown-item"
-                href=""
-              >
-                Материалы
-            </a>
+              class="dropdown-item"
+              href="{{ route('materials.index') }}">
+              Материалы</a>
             <a
-                class="dropdown-item"
-                href="{{ route('customers.index') }}"
-              >
-                Клиенты
-            </a>
+              class="dropdown-item"
+              href="{{ route('customers.index') }}">
+              Клиенты</a>
             <a
-                class="dropdown-item"
-                href=""
-              >
-                Поставщики
-            </a>
+              class="dropdown-item"
+              href="{{ route('materials.index') }}">Поставщики</a>
           </div>
         </li>
 

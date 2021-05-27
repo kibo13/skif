@@ -31,75 +31,52 @@
         <td>
           <div class="bk-products">
             <div class="bk-products__frame">
-              @foreach($product->types as $id => $type)
+              @foreach($product->tops as $id => $top)
               <img 
                 class="bk-products__frame-img product-{{ $product->id }} d-none"
-                data-id="{{ $type->product->id . $id }}"
-                src="{{asset('images/' . $type->image)}}" 
+                data-id="{{ $top->product->id . $id }}"
+                src="{{asset('images/' . $top->image)}}" 
                 alt ="{{ $product->name }}" >
               @endforeach
             </div>
             <div class="bk-products__info">
-              <h6 class="bk-products__title mb-0">{{ $product->name }}</h6>
-              <p class="bk-products__item text-muted mb-1">
-                ({{ $product->L . 'x' . $product->B . 'x' . $product->H}})
-              </p>
+              <h6 class="bk-products__title mb-1">{{ $product->name }}</h6>
               <p class="bk-products__item">
                 <span class="bk-products__subtitle">Артикул:</span> 
                 {{ $product->code }} 
               </p>
               <p class="bk-products__item">
+                <span class="bk-products__subtitle">Размер:</span> 
+                {{ $product->L . 'x' . $product->B . 'x' . $product->H}}
+              </p>
+              <p class="bk-products__item">
                 <span class="bk-products__subtitle">Материал:</span> 
-                @if($product->category->slug == 'soft')
-                Экокожа
-                @else 
-                ЛДСП
-                @endif
+                {{ $product->material->name }} 
               </p>
             </div>
           </div>      
         </td>
         <td>
           <ul class="bk-products__colors">
-            @foreach($product->types as $id => $type)
-            @if($type->plate_id == null)
+            @foreach($product->tops as $id => $top)
             <li 
               class="bk-products__colors-item" 
-              title="{{ $type->fabric->name }}" >
-              <div 
-                class="bk-products__colors-img" 
-                style="background-color: {{ $type->fabric->code }}" >
-              </div>
-              <input 
-                class="bk-checks__checkbox" 
-                id="{{ $type->product->id . $id }}" 
-                data-product="{{ 'product-' . $type->product->id }}"
-                type="radio"
-                name="{{ $type->product->id }}"
-                value="{{ $type->fabric->id }}"
-                @if($id == 0) checked @endif >
-              <label class="bk-checks__label" for="{{ $type->product->id . $id }}" ></label>
-            </li>
-            @elseif($type->fabric_id == null)
-            <li 
-              class="bk-products__colors-item" 
-              title="{{ $type->plate->name }}" >
+              title="{{ $top->color->name }}" >
               <img 
                 class="bk-products__colors-img" 
-                src="{{asset('images/' . $type->plate->image)}}" 
-                alt="{{ $type->plate->name }}" >
+                src="{{asset('images/' . $top->color->image)}}" 
+                alt="{{ $top->color->name }}" >
               </div>
               <input 
                 class="bk-checks__checkbox" 
-                id="{{ $type->product->id . $id }}" 
-                data-product="{{ 'product-' . $type->product->id }}"
+                id="{{ $top->product->id . $id }}" 
+                data-product="{{ 'product-' . $top->product->id }}"
                 type="radio"
-                name="{{ $type->product->id }}"
-                value="{{ $type->plate->id }}"
+                name="{{ $top->product->id }}"
+                value="{{ $top->color->id }}"
                 @if($id == 0) checked @endif >
-              <label class="bk-checks__label" for="{{ $type->product->id . $id }}" ></label>
+              <label class="bk-checks__label" for="{{ $top->product->id . $id }}" ></label>
             </li>
-            @endif
             @endforeach            
           </ul>
         </td>
@@ -109,7 +86,7 @@
           <div class="bk-btn-actions">
             <a 
               class="bk-btn-actions__link bk-btn-actions__link--color btn btn-info" 
-              href="{{ route('products.types', $product) }}" 
+              href="{{ route('products.tops', $product) }}" 
               data-tip="Цвета" ></a>
             <a 
               class="bk-btn-actions__link bk-btn-actions__link--edit btn btn-warning" 

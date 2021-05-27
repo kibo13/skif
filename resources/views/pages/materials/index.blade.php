@@ -1,12 +1,15 @@
 @extends('layouts.master')
-<!-- category-index -->
+<!-- material-index -->
 @section('content')
-<section id="category-index" class="bk-page section">
+<section id="material-index" class="bk-page section">
   <h2 class="mb-3">Материалы</h2>
 
   <div class="bk-btn-group">
     <a class="btn btn-outline-primary" href="{{ route('materials.create') }}" >
       Новая запись
+    </a>
+    <a class="btn btn-outline-secondary" href="{{ route('colors.index') }}" >
+      Каталог цветов
     </a>
   </div>
 
@@ -18,7 +21,7 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col" class="w-50">Наименование</th>
-        <th scope="col" class="w-25 no-sort">Примечание</th>
+        <th scope="col" class="w-25 no-sort">Цвета</th>
         <th scope="col" class="w-25 no-sort">Действие</th>
       </tr>
     </thead>
@@ -26,8 +29,32 @@
       @foreach($materials as $key => $material)
       <tr>
         <td scope="row">{{ $key+=1 }}</td>
-        <td>{{ $material->name }}</td>
-        <td>{{ $material->note }}</td>
+        <td>
+          @if($material->tom == 1) 
+          {{ $material->name }}
+          <span class="bk-small">
+            {{ $material->L . 'x' . $material->B . 'x' . $material->H}}
+          </span>
+          @else 
+          {{ $material->name }}
+          @endif 
+        </td>
+        <td>
+          @if($material->colors->count() == 0) 
+          <span class="text-muted">Цвета отсутствуют</span>
+          @else
+          <div class="bk-material__colors">
+            @foreach($material->colors as $id => $color)
+            <div class="bk-material__item" title="{{ $color->name }}" >
+              <img 
+              class="bk-material__img" 
+              src="{{asset('images/' . $color->image)}}" 
+              alt="{{ $color->name }}" >
+            </div>
+              @endforeach        
+          </div>
+          @endif
+        </td>
         <td>
           <div class="bk-btn-actions">
             <a

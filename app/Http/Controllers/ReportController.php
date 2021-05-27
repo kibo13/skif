@@ -63,15 +63,15 @@ class ReportController extends Controller
     $table->addCell(1500)->addText('Цена', array('bold' => true));
     $table->addCell(1500)->addText('Сумма', array('bold' => true));
 
-    foreach ($order->types as $n => $type) {
-      $product = $type->product->name . ', артикул ' . $type->product->code;
+    foreach ($order->tops as $n => $top) {
+      $product = $top->product->name . ', артикул ' . $top->product->code;
 
       $table->addRow();
       $table->addCell(1000)->addText($n + 1);
       $table->addCell(4500)->addText($product, array('size' => '8'));
-      $table->addCell(1500)->addText($type->pivot->count . ' шт.');
-      $table->addCell(1500)->addText(number_format($type->product->price) . ' руб.');
-      $table->addCell(1500)->addText(number_format($type->getPriceForCount()) . ' руб.');
+      $table->addCell(1500)->addText($top->pivot->count . ' шт.');
+      $table->addCell(1500)->addText(number_format($top->product->price) . ' руб.');
+      $table->addCell(1500)->addText(number_format($top->getPriceForCount()) . ' руб.');
     }
 
     $tmp->setComplexBlock('t_depo', $table);
@@ -131,15 +131,15 @@ class ReportController extends Controller
     $table->addCell(1500)->addText('Цена', array('bold' => true));
     $table->addCell(1500)->addText('Сумма', array('bold' => true));
 
-    foreach ($order->types as $n => $type) {
-      $product = $type->product->name . ', артикул ' . $type->product->code;
+    foreach ($order->tops as $n => $top) {
+      $product = $top->product->name . ', артикул ' . $top->product->code;
 
       $table->addRow();
       $table->addCell(1000)->addText($n + 1);
       $table->addCell(4500)->addText($product, array('size' => '8'));
-      $table->addCell(1500)->addText($type->pivot->count . ' шт.');
-      $table->addCell(1500)->addText(number_format($type->product->price) . ' руб.');
-      $table->addCell(1500)->addText(number_format($type->getPriceForCount()) . ' руб.');
+      $table->addCell(1500)->addText($top->pivot->count . ' шт.');
+      $table->addCell(1500)->addText(number_format($top->product->price) . ' руб.');
+      $table->addCell(1500)->addText(number_format($top->getPriceForCount()) . ' руб.');
     }
 
     $tmp->setComplexBlock('t_debt', $table);

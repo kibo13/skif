@@ -28,22 +28,22 @@ $(document).ready(function () {
         $('#bk-delete-form').attr('action', '/categories/' + data_id)
         break
 
-      case 'color':
-        $('#bk-delete-form').attr('action', '/colors/' + data_id)
-        break
-
       case 'material':
         $('#bk-delete-form').attr('action', '/materials/' + data_id)
+        break
+
+      case 'color':
+        $('#bk-delete-form').attr('action', '/colors/' + data_id)
         break
 
       case 'product':
         $('#bk-delete-form').attr('action', '/products/' + data_id)
         break
 
-      case 'type':
+      case 'top':
         $('#bk-delete-form').attr(
           'action',
-          `/products/${data_pr}/types/${data_id}`
+          `/products/${data_pr}/tops/${data_id}`
         )
         break
 

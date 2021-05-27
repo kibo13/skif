@@ -33,11 +33,12 @@
           <div class="bk-form__field-250 mb-2">
             <select
               class="form-control bk-form__input"
-              id="category_id"
+              id="product-category"
               name="category_id" >
 							<option disabled selected>Выберите категорию</option>
 							@foreach($categories as $category)
 							<option
+                data-slug="{{ $category->slug }}"
                 value="{{ $category->id }}"
                 @isset($product)
                   @if($product->category_id == $category->id)
@@ -48,10 +49,6 @@
 							</option>
 							@endforeach
 						</select>
-
-            <span class="bk-alert d-none">
-              <strong>Необходимо выбрать категорию</strong>
-            </span>
           </div>
 
           <!-- /.code -->
@@ -63,7 +60,7 @@
 
           <!-- /.product -->
           <h6 class="bk-form__title">Наименование</h6>
-          <div class="bk-form__field-full mb-2">
+          <div class="bk-form__field-250 mb-2">
             <input
               class="form-control bk-form__input bk-valid"
               id="name"
@@ -72,6 +69,31 @@
               value="@isset($product) {{ $product->name }} @endisset"
               placeholder="Введите наименование"
               required />
+          </div>
+
+          <!-- /.material -->
+          <h6 class="bk-form__title">Вид материала</h6>
+          <div class="bk-form__field-250 mb-2">
+            <select
+              class="form-control bk-form__input"
+              id="product-material"
+              name="material_id" >
+            @isset($product)
+            <option 
+              value="{{ $product->material->id }}" 
+              @if($product->material_id == $product->material->id)
+                selected
+              @endif >
+              @if($product->material->tom == 1)
+              {{ $product->material->name . ' ' . $product->material->L . 'x' . $product->material->B . 'x' . $product->material->H }}
+              @else 
+              {{ $product->material->name }}
+              @endif 
+            </option>
+            @else 
+            <option disabled selected>Выберите материал</option>
+            @endisset 
+            </select>
           </div>
 
           <!-- /.sizes -->

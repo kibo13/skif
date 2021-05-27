@@ -15,13 +15,12 @@ class CreateMaterialsTable extends Migration
   {
     Schema::create('materials', function (Blueprint $table) {
       $table->bigIncrements('id');
+      $table->tinyInteger('tom')->nullable();
       $table->string('name');
-      $table->tinyInteger('color')->nullable();
       $table->double('L')->nullable();
       $table->double('B')->nullable();
       $table->double('H')->nullable();
       $table->text('note')->nullable();
-      $table->string('slug')->nullable();
       $table->timestamps();
     });
   }

@@ -4,20 +4,49 @@ $(document).ready(function () {
 
   // products.form is active
   if (product_form) {
-    /* Validation field 'category' */
-    $('#category_id').on('change', (e) => {
-      $('.bk-alert').addClass('d-none')
-      $('#category_id').removeClass('is-invalid')
+
+    /* Validation for fields 'category' and 'material' */
+    $('#product-save').on('click', (e) => {
+      let isCategory = $('#product-category').val()
+      let isMaterial = $('#product-material').val()
+
+      if (isCategory == null) {
+        e.preventDefault()
+        alert('Необходимо выбрать категорию')
+        return
+      }
+
+      if (isMaterial == null) {
+        e.preventDefault()
+        alert('Необходимо выбрать вид материала')
+        return
+      }
     })
 
-    $('#product-save').on('click', (e) => {
-      const isChecked = $('#category_id').val()
+    /* AJAX for get materails */
+    $('#product-category').on('change', (e) => {
+      let slug = $("#product-category option:selected").data("slug");
 
-      if (isChecked == null) {
-        e.preventDefault()
-        $('.bk-alert').removeClass('d-none')
-        $('#category_id').addClass('is-invalid')
-      }
+      $('#product-material').empty();
+
+      $.ajax({
+        url: '/data/materials',
+        method: 'GET'
+      }).done(materials => {
+
+        $('#product-material').append(`<option disabled selected>Выберите материал</option>`);
+
+        for (let material of materials) {
+          // fabrics 
+          if (slug == 'soft' && material.tom == 2) {
+            $('#product-material').append(`<option value="${material.id}">${material.name}</option>`);
+          }
+          // plates 
+          else if (slug != 'soft' && material.tom == 1) {
+            $('#product-material').append(`<option value="${material.id}">${material.name} ${material.L}x${material.B}x${material.H}</option>`);
+          }
+        }
+      })
     })
   }
 

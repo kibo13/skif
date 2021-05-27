@@ -35,7 +35,7 @@
       Корзина
       @if($order && $order->getFullPrice() > 0)
       <span class="bk-home__tools-basket-num">
-        {{ $order->types()->count() }}
+        {{ $order->tops()->count() }}
       </span>
       <span class="bk-home__tools-basket-sum">
         {{ number_format($order->getFullPrice()) }} ₽
@@ -48,11 +48,11 @@
     @foreach($products as $product)
     <li class="bk-home__card">
       <div class="bk-home__frame">
-        @foreach($product->types as $id => $type)
+        @foreach($product->tops as $id => $top)
         <img
           class="bk-home__frame-img product-{{ $product->id }} d-none"
-          data-id="{{ $type->product->id . $id }}"
-          src="{{asset('images/' . $type->image)}}"
+          data-id="{{ $top->product->id . $id }}"
+          src="{{asset('images/' . $top->image)}}"
           alt ="{{ $product->name }}" >
         @endforeach
       </div>
@@ -72,49 +72,29 @@
 
         <p class="bk-home__text">
           <span class="bk-home__subtitle">Материал:</span>
-          @if($product->category->slug == 'soft') экокожа
-          @else ЛДСП
-          @endif
+          {{ $product->material->name }}
         </p>
 
         <h5 class="bk-home__price">{{ number_format($product->price) }} ₽</h5>
 
         <ul class="bk-home__colors">
-          @foreach($product->types as $id => $type)
-          @if($type->plate_id == null)
-          <li class="bk-home__color" title="{{ $type->fabric->name }}">
-            <div
-              class="bk-home__color-img"
-              style="background-color: {{ $type->fabric->code }}" >
-            <input
-              class="bk-home__radio"
-              id="{{ $type->product->id . $id }}"
-              data-product="{{ 'product-' . $type->product->id }}"
-              type="radio"
-              name="type_id"
-              value="{{ $type->id }}"
-              @if($id == 0) checked @endif >
-            <label class="bk-home__label" for="{{ $type->product->id . $id }}">
-            </label>
-          </li>
-          @elseif($type->fabric_id == null)
-          <li class="bk-home__color" title="{{ $type->plate->name }}">
+          @foreach($product->tops as $id => $top)
+          <li class="bk-home__color" title="{{ $top->color->name }}">
             <img
               class="bk-home__img"
-              src="{{asset('images/' . $type->plate->image)}}"
+              src="{{asset('images/' . $top->color->image)}}"
               alt="" >
             <input
               class="bk-home__radio"
-              id="{{ $type->product->id . $id }}"
-              data-product="{{ 'product-' . $type->product->id }}"
+              id="{{ $top->product->id . $id }}"
+              data-product="{{ 'product-' . $top->product->id }}"
               type="radio"
-              name="type_id"
-              value="{{ $type->id }}"
+              name="top_id"
+              value="{{ $top->id }}"
               @if($id == 0) checked @endif >
-            <label class="bk-home__label" for="{{ $type->product->id . $id }}">
+            <label class="bk-home__label" for="{{ $top->product->id . $id }}">
             </label>
           </li>
-          @endif
           @endforeach
         </ul>
 

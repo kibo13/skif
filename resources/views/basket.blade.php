@@ -26,7 +26,7 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($order->types as $key => $type)
+      @foreach($order->tops as $key => $top)
       <tr>
         <td scope="row">{{ $key+=1 }}</td>
         <td>
@@ -34,38 +34,30 @@
             <div class="bk-basket-info__frame">
               <img
                 class="bk-basket-info__frame-img"
-                src="{{asset('images/' . $type->image)}}"
-                alt="{{ $type->product->name }}" >
+                src="{{asset('images/' . $top->image)}}"
+                alt="{{ $top->product->name }}" >
             </div>
             <div class="bk-basket-info__info">
               <h6 class="bk-basket-info__title mb-0">
-                {{ $type->product->name }}
+                {{ $top->product->name }}
               </h6>
               <p class="bk-basket-info__item text-muted mb-1">
-                ({{ $type->product->L . 'x' . $type->product->B . 'x' . $type->product->H}})
+                ({{ $top->product->L . 'x' . $top->product->B . 'x' . $top->product->H}})
               </p>
               <p class="bk-basket-info__item">
                 <span class="bk-basket-info__subtitle">Артикул:</span>
-                {{ $type->product->code }}
+                {{ $top->product->code }}
                 <small class="text-muted align-text-top">
-                @if($type->product->category->slug == 'soft')
-                  {{ $type->fabric->name }}
-                @else
-                  {{ $type->plate->name }}
-                @endif
+                {{ $top->color->name }}
                 </small>
               </p>
               <p class="bk-basket-info__item">
                 <span class="bk-basket-info__subtitle">Материал:</span>
-                @if($type->product->category->slug == 'soft')
-                Экокожа
-                @else
-                ЛДСП
-                @endif
+                {{ $top->product->material->name }}
               </p>
               <p class="bk-basket-info__item">
                 <span class="bk-basket-info__subtitle">Цена:</span>
-                {{ number_format($type->product->price) }} ₽
+                {{ number_format($top->product->price) }} ₽
               </p>
             </div>
           </div>
@@ -74,24 +66,24 @@
           <div class="bk-basket-count">
             <form
               class="bk-basket-count__add"
-              action="{{ route('home.basket.add', $type) }}"
+              action="{{ route('home.basket.add', $top) }}"
               method="POST" >
               @csrf
               <button class="bk-basket-count__btn" title="Добавить">+</button>
             </form>
             <p class="bk-basket-count__field">
-              {{ $type->pivot->count }}
+              {{ $top->pivot->count }}
             </p>
             <form
               class="bk-basket-count__del"
-              action="{{ route('home.basket.del', $type) }}"
+              action="{{ route('home.basket.del', $top) }}"
               method="POST" >
               @csrf
               <button class="bk-basket-count__btn" title="Удалить">-</button>
             </form>
           </div>
         </td>
-        <td>{{ number_format($type->getPriceForCount()) }} ₽</td>
+        <td>{{ number_format($top->getPriceForCount()) }} ₽</td>
       </tr>
       @endforeach
     </tbody>
