@@ -1,168 +1,168 @@
 .bk-form
-	padding-top: 10px
-	&__wrapper
-		position: relative
-		margin-bottom: 15px
-		padding: 15px
-		border-radius: 4px
-		border: 1px solid $gray
-		&::before
-			content: attr(data-info)
-			padding: 0 5px
-			position: absolute
-			top: -12px
-			left: 6px
-			font-size: $text-base
-			font-weight: bold
-			background: $light
-	&__block
-		padding: 0
-		margin: 0
-		display: flex
-		flex-direction: column
-	&__field-50
-		width: 50px
-	&__field-100
-		width: 100px
-	&__field-200
-		width: 200px
-	&__field-250
-		width: 250px
-	&__field-300
-		width: 300px
-	&__field-full
-		width: 100%
-	&__field-inbox
-		display: grid
-		grid-template-columns: repeat(auto-fill, minmax(55px, auto))
-		grid-gap: 5px
-	&__title
-		padding: 3px 0
-		margin-bottom: 6px
-		width: 100%
-		font-size: 13px
-		font-weight: bold
-		border-bottom: 1px solid $gray
-	&__input,
-	&__text
-		padding: 0 10px
-		height: 30px
-		font-size: $text-base
-		&:focus
-			box-shadow: none
-		&::placeholder
-			font-size: $text-base
-	&__text
-		padding: 5px 10px
-		height: 100px
-		resize: vertical
-	&__file
-		position: relative
-		&--btn
-			position: absolute
-			top: 50%
-			right: 4px
-			transform: translateY(-50%)
-			display: flex
-			justify-content: center
-			align-items: center
-			width: 70px
-			height: 23px
-			font-size: $text-sm
-		&--upload
-			position: absolute
-			top: 0
-			left: 0
-			opacity: 0
-			cursor: pointer
-	&__check
-		margin: 0 5px
-		width: 15px
-		height: 15px
-		cursor: pointer
-	&__label
-		display: flex
-		align-items: center
-		height: 14px
-		font-size: $text-base
-		cursor: pointer
-	&__color
-		height: 30px
-		padding: 0 2px
-	&__alert
-		font-size: 11px
+  padding-top: 10px
+  &__wrapper
+    position: relative
+    margin-bottom: 15px
+    padding: 15px
+    border-radius: 4px
+    border: 1px solid $gray
+    &::before
+      content: attr(data-info)
+      padding: 0 5px
+      position: absolute
+      top: -12px
+      left: 6px
+      font-size: $text-base
+      font-weight: bold
+      background: $light
+  &__block
+    padding: 0
+    margin: 0
+    display: flex
+    flex-direction: column
+  &__field-50
+    width: 50px
+  &__field-100
+    width: 100px
+  &__field-200
+    width: 200px
+  &__field-250
+    width: 250px
+  &__field-300
+    width: 300px
+  &__field-full
+    width: 100%
+  &__field-inbox
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(55px, auto))
+    grid-gap: 5px
+  &__title
+    padding: 3px 0
+    margin-bottom: 6px
+    width: 100%
+    font-size: 13px
+    font-weight: bold
+    border-bottom: 1px solid $gray
+  &__input,
+  &__text
+    padding: 0 10px
+    height: 30px
+    font-size: $text-base
+    &:focus
+      box-shadow: none
+    &::placeholder
+      font-size: $text-base
+  &__text
+    padding: 5px 10px
+    height: 100px
+    resize: vertical
+  &__file
+    position: relative
+    &--btn
+      position: absolute
+      top: 50%
+      right: 4px
+      transform: translateY(-50%)
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 70px
+      height: 23px
+      font-size: $text-sm
+    &--upload
+      position: absolute
+      top: 0
+      left: 0
+      opacity: 0
+      cursor: pointer
+  &__check
+    margin: 0 5px
+    width: 15px
+    height: 15px
+    cursor: pointer
+  &__label
+    display: flex
+    align-items: center
+    height: 14px
+    font-size: $text-base
+    cursor: pointer
+  &__color
+    height: 30px
+    padding: 0 2px
+  &__alert
+    font-size: 11px
 // for group radiobuttons
 .bk-radio
-	padding: 0
-	&__item
-		padding: 2px
-		display: flex
-		align-items: center
-		font-size: $text-base
-	&__label
-		margin-left: 7px
-		margin-bottom: 0
-		cursor: pointer
+  padding: 0
+  &__item
+    padding: 2px
+    display: flex
+    align-items: center
+    font-size: $text-base
+  &__label
+    margin-left: 7px
+    margin-bottom: 0
+    cursor: pointer
 // for group checkboxes
 .bk-checks
-	margin: 0
-	padding: 0 5px
-	display: grid
-	grid-template-columns: repeat(auto-fill, minmax(32px, auto))
-	grid-gap: 5px
-	&__item
-		position: relative
-		display: flex
-		height: 32px
-		box-shadow: 0 0 2px
-		overflow: hidden
-	&__img
-		width: 100%
-		object-fit: cover
-	&__label
-		position: absolute
-		top: 0
-		left: 0
-		width: 100%
-		height: 100%
-		cursor: pointer
-	&__checkbox
-		position: absolute
-		top: 0
-		left: 0
-		opacity: 0
-		&:checked~
-			.bk-checks__label:before
-				content: '\2713'
-				position: absolute
-				top: 0
-				left: 0
-				display: flex
-				align-items: center
-				justify-content: center
-				width: 100%
-				height: 100%
-				font-weight: bold
-				color: $light
-				background: rgba($dark, .35)
-				border: 2px solid $light
+  margin: 0
+  padding: 0 5px
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(32px, auto))
+  grid-gap: 5px
+  &__item
+    position: relative
+    display: flex
+    height: 32px
+    box-shadow: 0 0 2px
+    overflow: hidden
+  &__img
+    width: 100%
+    object-fit: cover
+  &__label
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    cursor: pointer
+  &__checkbox
+    position: absolute
+    top: 0
+    left: 0
+    opacity: 0
+    &:checked~
+      .bk-checks__label:before
+        content: '\2713'
+        position: absolute
+        top: 0
+        left: 0
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 100%
+        height: 100%
+        font-weight: bold
+        color: $light
+        background: rgba($dark, .35)
+        border: 2px solid $light
 .bk-access
-	position: relative
-	&::before
-		content: ''
-		position: absolute
-		top: 0
-		right: 0
-		bottom: 0
-		left: 0
-		background: rgba($dark, .15)
-		border-radius: .25rem
+  position: relative
+  &::before
+    content: ''
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    background: rgba($dark, .15)
+    border-radius: .25rem
 
 @media screen and ( max-width: $width-sm )
-	.bk-form
-		&__field-50,
-		&__field-100,
-		&__field-200,
-		&__field-250,
-		&__field-300
-			width: 100%
+  .bk-form
+    &__field-50,
+    &__field-100,
+    &__field-200,
+    &__field-250,
+    &__field-300
+      width: 100%

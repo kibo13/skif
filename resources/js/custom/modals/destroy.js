@@ -24,6 +24,10 @@ $(document).ready(function () {
         $('#bk-delete-form').attr('action', '/customers/' + data_id)
         break
 
+      case 'supplier':
+        $('#bk-delete-form').attr('action', '/suppliers/' + data_id)
+        break
+
       case 'category':
         $('#bk-delete-form').attr('action', '/categories/' + data_id)
         break

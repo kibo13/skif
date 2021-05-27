@@ -21,8 +21,8 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col" class="w-50">Наименование</th>
-        <th scope="col" class="w-25 no-sort">Цвета</th>
-        <th scope="col" class="w-25 no-sort">Действие</th>
+        <th scope="col" class="w-50 no-sort">Цвета</th>
+        <th scope="col" class="no-sort">Действие</th>
       </tr>
     </thead>
     <tbody>

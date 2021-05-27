@@ -48,7 +48,8 @@
               Клиенты</a>
             <a
               class="dropdown-item"
-              href="{{ route('materials.index') }}">Поставщики</a>
+              href="{{ route('suppliers.index') }}">
+              Поставщики</a>
           </div>
         </li>
 

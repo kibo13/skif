@@ -9,7 +9,7 @@ $(document).ready(function () {
 
     for (let validation of validations) {
       // validation for fields 'price'
-      if (validation.id == 'price') {
+      if (validation.id == 'price' || validation.id == 'index' || validation.id == 'code') {
         validation.oninput = (e) => {
           e.target.value = e.target.value.replace(/\D/g, '')
         }
@@ -18,7 +18,7 @@ $(document).ready(function () {
       // validation for fields 'phone'
       else if (validation.id == 'phone') {
         validation.oninput = (e) => {
-          e.target.value = e.target.value.replace(/[^0-9+-]/g, '')
+          e.target.value = e.target.value.replace(/[^0-9 ()+-]/g, '')
         }
       }
 

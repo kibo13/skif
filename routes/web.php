@@ -16,6 +16,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DataController;
 
@@ -40,6 +41,9 @@ Route::middleware(['auth'])->group(function () {
 
   // CUSTOMERS
   Route::resource('customers', CustomerController::class)->except(['show']);
+
+  // SUPPLIERS 
+  Route::resource('suppliers', SupplierController::class)->except(['show']);
 
   // CATEGORIES
   Route::resource('categories', CategoryController::class)->except(['show']);
