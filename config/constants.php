@@ -2,7 +2,7 @@
 
 return [
 
-  // type of customers 
+  // type of customers
   'type_customer' => [
     [
       'id' => '1',
@@ -14,7 +14,7 @@ return [
     ]
   ],
 
-  // type of materials 
+  // type of materials
   'type_material' => [
     [
       'id' => '1',
@@ -27,6 +27,18 @@ return [
     [
       'id' => '3',
       'name' => 'Прочее'
+    ]
+  ],
+
+  // type of transactions
+  'type_transaction' => [
+    [
+      'id' => '1',
+      'name' => 'Приход'
+    ],
+    [
+      'id' => '2',
+      'name' => 'Расход'
     ]
   ]
 ];

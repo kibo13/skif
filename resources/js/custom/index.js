@@ -2,9 +2,10 @@
 require('./vendors/datatable')
 
 // components
-// require('./components/loader')
+require('./components/loader')
 require('./components/navbar')
 require('./components/validation')
+require('./components/access')
 require('./components/image')
 require('./components/info')
 
@@ -21,3 +22,4 @@ require('./views/supplier')
 require('./views/material')
 require('./views/product')
 require('./views/order')
+require('./views/movement')

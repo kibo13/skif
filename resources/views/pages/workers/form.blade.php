@@ -3,10 +3,10 @@
 @section('content')
 <section id="worker-form" class="valid-form section">
   <h2 class="mb-3">
-    @isset($worker) 
-      Редактирование записи 
-    @else 
-      Добавление записи 
+    @isset($worker)
+      Редактирование записи
+    @else
+      Добавление записи
     @endisset
   </h2>
   <form
@@ -22,8 +22,8 @@
     @csrf
 
     <div>
-      @isset($worker) 
-        @method('PUT') 
+      @isset($worker)
+        @method('PUT')
       @endisset
 
       <div class="bk-form__wrapper" data-info="Общие сведения">
@@ -83,16 +83,16 @@
           <!-- /.position -->
           <h6 class="bk-form__title">Должность</h6>
           <div class="bk-form__field-250 mb-2">
-            <select 
+            <select
               class="form-control bk-form__input"
               id="position_id"
-              name="position_id" 
+              name="position_id"
             >
 							<option disabled selected>Выберите должность</option>
 							@foreach($positions as $position)
-							<option 
-                value="{{ $position->id }}" 
-                @isset($worker) 
+							<option
+                value="{{ $position->id }}"
+                @isset($worker)
                   @if($worker->position_id == $position->id)
 								    selected
 								  @endif
@@ -113,7 +113,7 @@
               type="checkbox"
               name="slug"
               value="1"
-              @isset($worker) 
+              @isset($worker)
                 @if($worker->slug)
                   checked="checked"
                 @endif
@@ -123,7 +123,7 @@
               доступ к учетной записи
             </label>
           </div>
-          
+
           <!-- /.address -->
           <h6 class="bk-form__title">Адрес</h6>
           <div class="bk-form__field-250 mb-2">
@@ -156,18 +156,15 @@
       </div>
 
       <div class="form-group">
-        
-        <button 
-          class="btn btn-outline-success" 
+        <button
+          class="btn btn-outline-success"
           id="worker-save"
-          type="submit"
-        >
+          type="submit">
           Сохранить
         </button>
-        <a 
-          class="btn btn-outline-secondary" 
-          href="{{ route('workers.index') }}"
-        >
+        <a
+          class="btn btn-outline-secondary"
+          href="{{ route('workers.index') }}">
           Назад
         </a>
       </div>

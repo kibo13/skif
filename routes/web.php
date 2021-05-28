@@ -7,18 +7,22 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TopController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\MovementController;
+
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BasketController;
+use App\Http\Controllers\OrderController;
+
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\SupplierController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DataController;
+
 
 Auth::routes([
   'login' => true,
@@ -42,7 +46,7 @@ Route::middleware(['auth'])->group(function () {
   // CUSTOMERS
   Route::resource('customers', CustomerController::class)->except(['show']);
 
-  // SUPPLIERS 
+  // SUPPLIERS
   Route::resource('suppliers', SupplierController::class)->except(['show']);
 
   // CATEGORIES
@@ -54,7 +58,7 @@ Route::middleware(['auth'])->group(function () {
   // COLORS
   Route::resource('colors', ColorController::class)->except(['show']);
 
-  // PRODUCTS 
+  // PRODUCTS
   Route::resource('products', ProductController::class)->except(['show']);
   Route::get('products/{product}/tops', [TopController::class, 'index'])->name('products.tops');
   Route::get('products/{product}/tops/create', [TopController::class, 'create'])->name('products.tops.create');
@@ -62,6 +66,9 @@ Route::middleware(['auth'])->group(function () {
   Route::get('products/{product}/tops/{top}/edit', [TopController::class, 'edit'])->name('products.tops.edit');
   Route::put('products/{product}/tops/{top}', [TopController::class, 'update'])->name('products.tops.update');
   Route::delete('products/{product}/tops/{top}', [TopController::class, 'destroy'])->name('products.tops.destroy');
+
+  // MOVEMENTS
+  Route::resource('movements', MovementController::class)->except(['show']);
 
   // ORDERS
   Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
@@ -75,6 +82,8 @@ Route::middleware(['auth'])->group(function () {
   Route::get('orders/debt/{order}', [ReportController::class, 'debt'])->name('orders.debt');
   Route::get('orders/term/{order}', [ReportController::class, 'term'])->name('orders.term');
 
+
+
   // HOME
   Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -84,6 +93,6 @@ Route::middleware(['auth'])->group(function () {
   Route::post('basket/add/{top}', [BasketController::class, 'addItem'])->name('home.basket.add');
   Route::post('basket/del/{top}', [BasketController::class, 'delItem'])->name('home.basket.del');
 
-  // JSON 
+  // JSON
   Route::get('data/materials', [DataController::class, 'materials']);
 });

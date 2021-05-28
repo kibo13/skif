@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 28/05/2021 01:00:44
+ Date: 28/05/2021 12:54:33
 */
 
 SET NAMES utf8mb4;
@@ -165,7 +165,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -184,6 +184,23 @@ INSERT INTO `migrations` VALUES (11, '2021_05_27_050914_create_tops_table', 5);
 INSERT INTO `migrations` VALUES (12, '2021_05_27_093048_create_orders_table', 6);
 INSERT INTO `migrations` VALUES (13, '2021_05_27_093107_create_order_top_table', 6);
 INSERT INTO `migrations` VALUES (15, '2021_05_27_115524_create_suppliers_table', 7);
+INSERT INTO `migrations` VALUES (17, '2021_05_28_054447_create_movements_table', 8);
+
+-- ----------------------------
+-- Table structure for movements
+-- ----------------------------
+DROP TABLE IF EXISTS `movements`;
+CREATE TABLE `movements`  (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tot` tinyint(4) NOT NULL,
+  `date_move` date NOT NULL,
+  `order_id` int(11) NULL DEFAULT NULL,
+  `note` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for order_top

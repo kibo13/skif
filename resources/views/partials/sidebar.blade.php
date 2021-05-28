@@ -35,8 +35,8 @@
         @include('assets.icons.product') Мебель
       </a>
     </li>
-    <li @sbactive('customer*')>
-      <a class="sidebar-link" href="{{ route('customers.index') }}">
+    <li @sbactive('move*')>
+      <a class="sidebar-link" href="{{ route('movements.index') }}">
         @include('assets.icons.store') Склад
       </a>
     </li>

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 <!-- user-form -->
 @section('content')
-<section id="user-form" class="section">
+<section id="user-form" class="access-form section">
   <h2 class="mb-3">
     @isset($user)
     Редактирование записи
@@ -78,7 +78,7 @@
 
           <!-- /.login -->
           <h6 class="bk-form__title">Логин</h6>
-          <div class="bk-form__field-250 mb-2 bk-access" id="user-login" >
+          <div class="bk-form__field-250 mb-2 bk-access" id="access-field" >
             <input
               class="form-control bk-form__input @error('name') is-invalid @enderror"
               type="text"
@@ -98,13 +98,10 @@
           <div class="d-flex my-1" style="user-select: none">
             <input
               class="form-control bk-form__check"
-              id="access-login"
+              id="access-toggler"
               type="checkbox"
-              tabindex="-1"
-              @isset($user)
-                disabled
-              @endisset />
-            <label class="bk-form__label" for="access-login">
+              tabindex="-1" />
+            <label class="bk-form__label" for="access-toggler">
               редактировать логин
             </label>
           </div>

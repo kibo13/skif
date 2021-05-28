@@ -54,6 +54,10 @@ $(document).ready(function () {
       case 'order':
         $('#bk-delete-form').attr('action', '/orders/' + data_id)
         break
+
+      case 'movement':
+        $('#bk-delete-form').attr('action', '/movements/' + data_id)
+        break
     }
   })
 })

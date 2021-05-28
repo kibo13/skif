@@ -15,18 +15,6 @@ $(document).ready(function () {
       $('#user-login input').val(fio)
     }
 
-    /* ACCESS TO LOGIN */
-    const login_toggler = document.getElementById('access-login')
-    const login_field = document.getElementById('user-login')
-
-    login_toggler.onclick = (e) => {
-      if (login_toggler.checked) {
-        login_field.classList.remove('bk-access')
-      } else {
-        login_field.classList.add('bk-access')
-      }
-    }
-
     /* SET ROLE FOR USER */
     const role_sel = document.getElementById('role-select')
     const role = document.getElementById('user-slug')
