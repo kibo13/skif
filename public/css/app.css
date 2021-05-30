@@ -11105,6 +11105,32 @@ table.dataTable thead .sorting_desc_disabled {
   color: rgba(66, 66, 66, 0.65);
 }
 
+.bk-moms {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  grid-gap: 10px;
+}
+.bk-moms__item {
+  margin-bottom: 0;
+  font-size: 12px;
+}
+.bk-moms__img {
+  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.bk-moms__subtitle {
+  margin-right: 2px;
+  font-weight: bold;
+}
+.bk-moms__text {
+  margin-bottom: 0;
+  padding: 0 2px;
+  font-size: 14px;
+  color: rgba(66, 66, 66, 0.65);
+}
+
 .bk-basket-empty {
   display: flex;
   flex-direction: column;

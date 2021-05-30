@@ -15,6 +15,13 @@ $(document).ready(function () {
         }
       }
 
+      // validation for fields 'count'
+      else if (validation.id == 'count') {
+        validation.oninput = function () {
+          this.value = this.value.replace(/^0|[^\d]/g, '')
+        }
+      }
+
       // validation for fields 'phone'
       else if (validation.id == 'phone') {
         validation.oninput = (e) => {

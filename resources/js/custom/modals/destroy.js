@@ -58,6 +58,13 @@ $(document).ready(function () {
       case 'movement':
         $('#bk-delete-form').attr('action', '/movements/' + data_id)
         break
+
+      case 'mom':
+        $('#bk-delete-form').attr(
+          'action',
+          `/movements/${data_pr}/materials/${data_id}`
+        )
+        break
     }
   })
 })

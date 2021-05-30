@@ -19,7 +19,7 @@
   <h5>Записи отсутствуют</h5>
   @else 
   <table 
-      id="type-table" 
+      id="top-table" 
       class="bk-table table table-bordered table-hover table-responsive"
     >
     <thead class="thead-light">

@@ -14,6 +14,7 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\MovementController;
+use App\Http\Controllers\MomController;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BasketController;
@@ -69,6 +70,13 @@ Route::middleware(['auth'])->group(function () {
 
   // MOVEMENTS
   Route::resource('movements', MovementController::class)->except(['show']);
+  Route::get('movements/{movement}/materials', [MomController::class, 'index'])->name('movements.moms');
+  Route::get('movements/{movement}/materials/create', [MomController::class, 'create'])->name('movements.moms.create');
+  Route::post('movements/{movement}/materials', [MomController::class, 'store'])->name('movements.moms.store');
+  Route::get('movements/{movement}/materials/{mom}/edit', [MomController::class, 'edit'])->name('movements.moms.edit');
+  Route::put('movements/{movement}/materials/{mom}', [MomController::class, 'update'])->name('movements.moms.update');
+  Route::delete('movements/{movement}/materials/{mom}', [MomController::class, 'destroy'])->name('movements.moms.destroy');
+
 
   // ORDERS
   Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
@@ -81,8 +89,6 @@ Route::middleware(['auth'])->group(function () {
   Route::get('orders/depo/{order}', [ReportController::class, 'depo'])->name('orders.depo');
   Route::get('orders/debt/{order}', [ReportController::class, 'debt'])->name('orders.debt');
   Route::get('orders/term/{order}', [ReportController::class, 'term'])->name('orders.term');
-
-
 
   // HOME
   Route::get('/', [HomeController::class, 'index'])->name('home');
