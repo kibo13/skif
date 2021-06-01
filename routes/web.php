@@ -15,6 +15,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\MovementController;
 use App\Http\Controllers\MomController;
+use App\Http\Controllers\RestController;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BasketController;
@@ -70,13 +71,14 @@ Route::middleware(['auth'])->group(function () {
 
   // MOVEMENTS
   Route::resource('movements', MovementController::class)->except(['show']);
+  Route::get('movements/rests', [RestController::class, 'rests'])->name('movements.rests');
   Route::get('movements/{movement}/materials', [MomController::class, 'index'])->name('movements.moms');
   Route::get('movements/{movement}/materials/create', [MomController::class, 'create'])->name('movements.moms.create');
   Route::post('movements/{movement}/materials', [MomController::class, 'store'])->name('movements.moms.store');
   Route::get('movements/{movement}/materials/{mom}/edit', [MomController::class, 'edit'])->name('movements.moms.edit');
   Route::put('movements/{movement}/materials/{mom}', [MomController::class, 'update'])->name('movements.moms.update');
   Route::delete('movements/{movement}/materials/{mom}', [MomController::class, 'destroy'])->name('movements.moms.destroy');
-
+  Route::get('movements/bill/{movement}', [ReportController::class, 'bill'])->name('movements.bill');
 
   // ORDERS
   Route::get('orders', [OrderController::class, 'index'])->name('orders.index');

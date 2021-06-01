@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movement;
-use App\Models\Order;
+use App\Models\Worker;
 use Illuminate\Http\Request;
 
 class MovementController extends Controller
@@ -21,10 +21,10 @@ class MovementController extends Controller
     // type of transactions
     $tots = config('constants.type_transaction');
 
-    // orders
-    $orders = Order::get();
+    // workers with position of master 
+    $masters = Worker::where('position_id', 4)->get();
 
-    return view('pages.movements.form', compact('tots', 'orders'));
+    return view('pages.movements.form', compact('tots', 'masters'));
   }
 
   // movements.store
@@ -40,10 +40,10 @@ class MovementController extends Controller
     // type of transactions
     $tots = config('constants.type_transaction');
 
-    // orders
-    $orders = Order::get();
+    // workers with position of master 
+    $masters = Worker::where('position_id', 4)->get();
 
-    return view('pages.movements.form', compact('movement', 'tots', 'orders'));
+    return view('pages.movements.form', compact('movement', 'tots', 'masters'));
   }
 
   // movements.update

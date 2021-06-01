@@ -15,7 +15,8 @@ class Material extends Model
     'L',
     'B',
     'H',
-    'note'
+    'note',
+    'measure'
   ];
 
   public function colors()

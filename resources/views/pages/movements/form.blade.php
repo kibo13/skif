@@ -55,13 +55,13 @@
           </div>
 
           <!-- /.type of transactions -->
-          <h6 class="bk-form__title">Транзакция</h6>
+          <h6 class="bk-form__title">Вид</h6>
           <div class="bk-form__field-300 mb-2">
             <select
               class="form-control bk-form__input"
               id="movement-tot"
               name="tot" >
-							<option disabled selected>Выберите транзакцию</option>
+							<option disabled selected>Выберите вид</option>
 							@foreach($tots as $tot)
 							<option
                 value="{{ $tot['id'] }}"
@@ -89,30 +89,47 @@
             />
           </div>
 
-          <!-- /.order -->
-          <div id="movement-order" class="d-none">
-            <h6 class="bk-form__title">Заказ</h6>
+          <!-- /.worker_id -->
+          <div id="movement-master" class="d-none">
+            <h6 class="bk-form__title">
+              Принял
+              <span id="movement-position" class="bk-small">
+                @isset($movement)
+                @if($movement->worker_id != null)
+                {{ $movement->worker->position->name }}
+                @endif 
+                @endisset
+              </span>
+            </h6>
             <div class="bk-form__field-300 mb-2">
               <select
                 class="form-control bk-form__input"
-                id="order_id"
-                name="order_id" >
-                <option disabled selected>Выберите заказ</option>
-                @foreach($orders as $order)
+                id="worker_id"
+                name="worker_id">
+                <option disabled selected>Выберите сотрудника</option>
+                @foreach($masters as $master)
                 <option
-                  value="{{ $order->id }}"
+                  data-position="{{ $master->position->name }}"
+                  value="{{ $master->id }}"
                   @isset($movement)
-                    @if($movement->order_id == $order->id)
+                    @if($movement->worker_id == $master->id)
                       selected
                     @endif
-                  @endisset
-                >
-                  {{ '№' . $order->code . ' от ' . getDMY($order->date_on) }}
+                  @endisset>
+                  {{ ucfirst($master->fio) }}
                 </option>
                 @endforeach
               </select>
             </div>
           </div>
+
+          <!-- /.user_id -->
+          <input
+            class="form-control bk-form__input mb-2"
+            type="hidden"
+            name="user_id"
+            value="{{ isset($movement) ? $movement->user_id : Auth::user()->id }}"
+          >
 
           <!-- /.note -->
           <h6 class="bk-form__title">Примечание</h6>

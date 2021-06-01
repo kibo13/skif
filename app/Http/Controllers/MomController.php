@@ -34,7 +34,7 @@ class MomController extends Controller
   // movements.moms.store
   public function store(Request $request, Movement $movement)
   {
-    dd($request->all());
+    // dd($request->all());
     Mom::create($request->all());
     return redirect()->route('movements.moms', $movement);
   }

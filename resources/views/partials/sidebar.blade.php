@@ -40,6 +40,11 @@
         @include('assets.icons.store') Склад
       </a>
     </li>
+    <li @sbactive('purch*')>
+      <a class="sidebar-link" href="">
+        @include('assets.icons.shop') Закупки
+      </a>
+    </li>
   </ul>
   <!-- END Links -->
 </nav>

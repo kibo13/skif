@@ -18,7 +18,8 @@ class CreateMovementsTable extends Migration
       $table->string('code');
       $table->tinyInteger('tot');
       $table->date('date_move');
-      $table->integer('order_id')->nullable();
+      $table->integer('worker_id')->nullable();
+      $table->integer('user_id')->nullable();
       $table->text('note')->nullable();
       $table->timestamps();
     });

@@ -64,6 +64,28 @@
             />            
           </div>
 
+          <!-- /.measure -->
+          <h6 class="bk-form__title">Единица измерения</h6>
+          <div class="bk-form__field-200 mb-2">
+            <select 
+              class="form-control bk-form__input" 
+              id="material-measure" 
+              name="measure" >
+							<option disabled selected>Выберите ед.изм.</option>
+							@foreach($measures as $measure)
+							<option 
+                value="{{ $measure['name'] }}" 
+                @isset($material) 
+                  @if($material->measure == $measure['name'])
+								    selected
+								  @endif
+								@endisset >
+								{{ $measure['name'] }}
+							</option>
+							@endforeach
+						</select>         
+          </div>
+
           <!-- /.sizes -->
           <div id="material-sizes" class="d-none">
             <h6 class="bk-form__title">

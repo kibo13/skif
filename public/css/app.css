@@ -11423,3 +11423,45 @@ table.dataTable thead .sorting_desc_disabled {
     display: grid;
   }
 }
+.bk-rests-table th,
+.bk-rests-table td {
+  padding: 2px;
+  vertical-align: middle;
+  text-align: center;
+}
+.bk-rests-table th:nth-child(2),
+.bk-rests-table td:nth-child(2) {
+  text-align: left;
+}
+.bk-rests-table .dataTables_empty {
+  padding: 5px 10px !important;
+  text-align: left !important;
+}
+.bk-rests-table .dataTables_length,
+.bk-rests-table .dataTables_info,
+.bk-rests-table .dataTables_paginate {
+  display: none;
+}
+.bk-rests-table .dataTables_filter {
+  position: relative;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: flex-start;
+  vertical-align: middle;
+  flex-basis: 100%;
+  overflow: hidden;
+}
+.bk-rests-table .dataTables_filter label,
+.bk-rests-table .dataTables_filter input {
+  width: 100%;
+}
+.bk-rests-table .dataTables_filter label {
+  margin-bottom: 0;
+}
+.bk-rests-color {
+  width: 100%;
+  height: 25px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  cursor: pointer;
+}

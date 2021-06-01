@@ -25,7 +25,9 @@
     <thead class="thead-light">
       <tr>
         <th scope="col">#</th>
-        <th scope="col" class="w-25" style="min-width: 200px;">Наименование</th>
+        <th scope="col" style="min-width: 200px;">Наименование</th>
+        <th scope="col" style="min-width: 100px;">Цвет</th>
+        <th scope="col" class="w-25">Ед.изм.</th>
         <th scope="col" class="w-25">Кол-во</th>
         <th scope="col" class="w-25">Цена</th>
         <th scope="col" class="w-25">Сумма</th>
@@ -38,9 +40,25 @@
         <td scope="row">{{ $key+=1 }}</td>
         <td scope="row">
           {{ $mom->material->name }}
+          @if($mom->material->L != null || $mom->material->B != null || $mom->material->H != null)
           <span class="bk-small">
-            {{ $mom->color->name }}
+            {{ $mom->material->L . 'x' . $mom->material->B . 'x' . $mom->material->H}}
           </span>
+          @endif 
+        </td>
+        <td scope="row">
+          @if($mom->color_id != null)
+          <img 
+            class="bk-rests-color"
+            src="{{asset('images/' . $mom->color->image)}}" 
+            alt ="{{ $mom->color->name }}"
+            title="{{ $mom->color->name }}" >
+          @else 
+          -
+          @endif 
+        </td>
+        <td scope="row">
+          {{ $mom->material->measure }}
         </td>
         <td scope="row">
           {{ $mom->count }}

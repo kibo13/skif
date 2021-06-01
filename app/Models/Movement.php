@@ -13,17 +13,33 @@ class Movement extends Model
     'code',
     'tot',
     'date_move',
-    'order_id',
+    'worker_id',
+    'user_id',
     'note'
   ];
 
-  public function order()
+  public function worker()
   {
-    return $this->belongsTo('App\Models\Order');
+    return $this->belongsTo('App\Models\Worker');
+  }
+
+  public function user()
+  {
+    return $this->belongsTo('App\Models\User');
   }
 
   public function moms()
   {
     return $this->hasMany('App\Models\Mom');
+  }
+
+  public function getFullPrice()
+  {
+    $sum = 0;
+    foreach ($this->moms as $mom) {
+      $sum += $mom->getPriceForCount();
+    }
+
+    return $sum;
   }
 }

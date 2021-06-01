@@ -21,10 +21,13 @@ class MaterialController extends Controller
     // type of materials
     $toms = config('constants.type_material');
 
+    // measures
+    $measures = config('constants.measures');
+
     // colors 
     $colors = Color::get();
 
-    return view('pages.materials.form', compact('toms', 'colors'));
+    return view('pages.materials.form', compact('toms', 'measures', 'colors'));
   }
 
   // materials.store
@@ -45,10 +48,13 @@ class MaterialController extends Controller
     // type of materials
     $toms = config('constants.type_material');
 
+    // measures
+    $measures = config('constants.measures');
+
     // colors 
     $colors = Color::get();
 
-    return view('pages.materials.form', compact('material', 'toms', 'colors'));
+    return view('pages.materials.form', compact('material', 'toms', 'measures', 'colors'));
   }
 
   // materials.update
