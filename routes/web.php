@@ -16,6 +16,8 @@ use App\Http\Controllers\TopController;
 use App\Http\Controllers\MovementController;
 use App\Http\Controllers\MomController;
 use App\Http\Controllers\RestController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\PomController;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BasketController;
@@ -79,6 +81,17 @@ Route::middleware(['auth'])->group(function () {
   Route::put('movements/{movement}/materials/{mom}', [MomController::class, 'update'])->name('movements.moms.update');
   Route::delete('movements/{movement}/materials/{mom}', [MomController::class, 'destroy'])->name('movements.moms.destroy');
   Route::get('movements/bill/{movement}', [ReportController::class, 'bill'])->name('movements.bill');
+
+  // PURCHASES
+  Route::resource('purchases', PurchaseController::class)->except(['show']);
+  Route::get('purchases/materials/create', [PomController::class, 'create'])->name('purchases.poms.create');
+  // Route::get('purchases/{purchase}/materials', [PomController::class, 'index'])->name('purchases.poms');
+  // Route::get('purchases/{purchase}/materials/create', [PomController::class, 'create'])->name('purchases.poms.create');
+  // Route::post('purchases/{purchase}/materials', [PomController::class, 'store'])->name('purchases.poms.store');
+  // Route::get('purchases/{purchase}/materials/{pom}/edit', [PomController::class, 'edit'])->name('purchases.poms.edit');
+  // Route::put('purchases/{purchase}/materials/{pom}', [PomController::class, 'update'])->name('purchases.poms.update');
+  // Route::delete('purchases/{purchase}/materials/{pom}', [PomController::class, 'destroy'])->name('purchases.poms.destroy');
+  // Route::get('purchases/sheet/{purchase}', [ReportController::class, 'sheet'])->name('purchases.sheet');
 
   // ORDERS
   Route::get('orders', [OrderController::class, 'index'])->name('orders.index');

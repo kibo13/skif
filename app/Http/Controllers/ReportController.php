@@ -209,15 +209,15 @@ class ReportController extends Controller
   // report for bills
   public function bill(Movement $movement)
   {
-    // type of transaction 
+    // type of transaction
     $tot = $movement->tot;
 
-    // income 
+    // income
     if ($tot == 1) {
-      // template 
+      // template
       $tmp = new TemplateProcessor('reports/bill-in.docx');
 
-      // filename 
+      // filename
       $fn = 'Приходная накладная №' . $movement->code . ' от ' . getDMY($movement->date_move);
 
       // storeman
@@ -225,13 +225,13 @@ class ReportController extends Controller
     }
     // outcome
     else {
-      // template 
+      // template
       $tmp = new TemplateProcessor('reports/bill-out.docx');
 
-      // filename 
+      // filename
       $fn = 'Расходная накладная №' . $movement->code . ' от ' . getDMY($movement->date_move);
 
-      // master 
+      // master
       $tmp->setValue('master', $movement->worker->fio);
 
       // storeman
@@ -242,30 +242,30 @@ class ReportController extends Controller
     $tmp->setValue('date_bill', getDMY($movement->date_move));
     $tmp->setValue('total', number_format($movement->getFullPrice()));
 
-    // table 
+    // table
     $table = new Table(array('borderSize' => 8));
     $table->addRow();
     $table->addCell(1000)->addText('№', array('bold' => true));
-    $table->addCell(4500)->addText('Наименование', array('bold' => true));
+    $table->addCell(3000)->addText('Наименование', array('bold' => true));
     $table->addCell(1000)->addText('Ед.изм.', array('bold' => true));
     $table->addCell(1000)->addText('Длина', array('bold' => true));
     $table->addCell(1000)->addText('Ширина', array('bold' => true));
     $table->addCell(1000)->addText('Толщина', array('bold' => true));
-    $table->addCell(1000)->addText('Кол-во', array('bold' => true));
-    $table->addCell(1000)->addText('Цена', array('bold' => true));
+    $table->addCell(1500)->addText('Кол-во', array('bold' => true));
+    $table->addCell(1500)->addText('Цена', array('bold' => true));
     $table->addCell(1500)->addText('Сумма', array('bold' => true));
 
     foreach ($movement->moms as $n => $mom) {
       $table->addRow();
       $table->addCell(1000)->addText($n + 1);
-      $table->addCell(4500)->addText($mom->material->name, array('size' => '8'));
+      $table->addCell(3000)->addText($mom->material->name, array('size' => '8'));
       $table->addCell(1000)->addText($mom->material->measure, array('size' => '8'));
       $table->addCell(1000)->addText($mom->material->L, array('size' => '8'));
       $table->addCell(1000)->addText($mom->material->B, array('size' => '8'));
       $table->addCell(1000)->addText($mom->material->H, array('size' => '8'));
-      $table->addCell(1000)->addText($mom->count, array('size' => '8'));
-      $table->addCell(1000)->addText(number_format($mom->price) . ' руб.', array('size' => '8'));
-      $table->addCell(1500)->addText(number_format($mom->getPriceForCount()) . ' руб.');
+      $table->addCell(1500)->addText($mom->count, array('size' => '8'));
+      $table->addCell(1500)->addText(number_format($mom->price) . ' руб.', array('size' => '8'));
+      $table->addCell(1500)->addText(number_format($mom->getPriceForCount()) . ' руб.', array('size' => '8'));
     }
 
     $tmp->setComplexBlock('t_bill', $table);

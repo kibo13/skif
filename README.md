@@ -21,7 +21,7 @@ php artisan key:generate
 # create a new mysql database via phpmyadmin or GUI
 
 # import to created database file
-custom/database.sql
+static/database.sql
 
 # database configuration
 DB_CONNECTION=mysql
@@ -43,5 +43,5 @@ MAIL_ENCRYPTION=ssl
 php artisan serve
 
 # list of users
-custom/users.txt
+static/users.txt
 ```

@@ -10618,6 +10618,12 @@ table.dataTable thead .sorting_desc_disabled {
   background-position: center center;
   background-size: 80%;
 }
+.bk-btn-actions__link--cancel {
+  background-image: url("/icons/cancel.svg");
+}
+.bk-btn-actions__link--diskette {
+  background-image: url("/icons/diskette.svg");
+}
 .bk-btn-actions__link--color {
   background-image: url("/icons/color.svg");
 }
@@ -11464,4 +11470,34 @@ table.dataTable thead .sorting_desc_disabled {
   -o-object-fit: cover;
      object-fit: cover;
   cursor: pointer;
+}
+
+.bk-purchases-color {
+  width: 100%;
+  height: 25px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  cursor: pointer;
+}
+.bk-purchases-form {
+  display: flex;
+  align-items: center;
+  grid-gap: 5px;
+}
+.bk-purchases-form__field {
+  display: flex;
+  width: 50px;
+  height: 25px;
+  overflow: hidden;
+}
+.bk-purchases-form__input {
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  outline: 0;
+}
+.bk-purchases-form__input:focus {
+  border-color: #80bdff;
 }

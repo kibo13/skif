@@ -41,7 +41,7 @@
       </a>
     </li>
     <li @sbactive('purch*')>
-      <a class="sidebar-link" href="">
+      <a class="sidebar-link" href="{{ route('purchases.index') }}">
         @include('assets.icons.shop') Закупки
       </a>
     </li>

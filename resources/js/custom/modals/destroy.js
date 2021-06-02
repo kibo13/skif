@@ -65,6 +65,17 @@ $(document).ready(function () {
           `/movements/${data_pr}/materials/${data_id}`
         )
         break
+
+      case 'purchase':
+        $('#bk-delete-form').attr('action', '/purchases/' + data_id)
+        break
+
+      case 'pom':
+        $('#bk-delete-form').attr(
+          'action',
+          `/purchases/${data_pr}/materials/${data_id}`
+        )
+        break
     }
   })
 })
