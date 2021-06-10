@@ -37,11 +37,11 @@
           <div class="bk-btn-actions">
             <a
               class="bk-btn-actions__link bk-btn-actions__link--agree btn btn-primary"
-              href=""
+              href="{{ route('purchases.list', $purchase) }}"
               data-tip="Ведомость" ></a>
             <a
               class="bk-btn-actions__link bk-btn-actions__link--info btn btn-info"
-              href=""
+              href="{{ route('purchases.show', $purchase) }}"
               data-tip="Информация" ></a>
             <a
               class="bk-btn-actions__link bk-btn-actions__link--edit btn btn-warning"

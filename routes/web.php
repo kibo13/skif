@@ -83,15 +83,11 @@ Route::middleware(['auth'])->group(function () {
   Route::get('movements/bill/{movement}', [ReportController::class, 'bill'])->name('movements.bill');
 
   // PURCHASES
-  Route::resource('purchases', PurchaseController::class)->except(['show']);
+  Route::resource('purchases', PurchaseController::class);
+  Route::get('purchases/{purchase}/complete', [PurchaseController::class, 'complete'])->name('purchases.complete');
   Route::get('purchases/materials/create', [PomController::class, 'create'])->name('purchases.poms.create');
-  // Route::get('purchases/{purchase}/materials', [PomController::class, 'index'])->name('purchases.poms');
-  // Route::get('purchases/{purchase}/materials/create', [PomController::class, 'create'])->name('purchases.poms.create');
-  // Route::post('purchases/{purchase}/materials', [PomController::class, 'store'])->name('purchases.poms.store');
-  // Route::get('purchases/{purchase}/materials/{pom}/edit', [PomController::class, 'edit'])->name('purchases.poms.edit');
-  // Route::put('purchases/{purchase}/materials/{pom}', [PomController::class, 'update'])->name('purchases.poms.update');
-  // Route::delete('purchases/{purchase}/materials/{pom}', [PomController::class, 'destroy'])->name('purchases.poms.destroy');
-  // Route::get('purchases/sheet/{purchase}', [ReportController::class, 'sheet'])->name('purchases.sheet');
+  Route::get('purchases/materials/clear/{pom}', [PomController::class, 'clear'])->name('purchases.poms.del');
+  Route::get('purchases/list/{purchase}', [ReportController::class, 'list'])->name('purchases.list');
 
   // ORDERS
   Route::get('orders', [OrderController::class, 'index'])->name('orders.index');

@@ -10,6 +10,18 @@
     @endif
   </h2>
 
+  <div class="bk-btn-group">
+    @if($purchase->state == 0)
+    <a class="btn btn-outline-success" href="{{ route('purchases.complete', $purchase) }}" >
+      Сохранить 
+    </a>
+    @else 
+    <a class="btn btn-outline-secondary" href="{{ route('purchases.index') }}" >
+      Назад 
+    </a>
+    @endif 
+  </div>
+
   <table
     id="purchase-table"
     class="bk-table table table-bordered table-responsive">
@@ -80,8 +92,11 @@
                   class="bk-purchases-form__input"
                   type="text"
                   name="count"
-                  value=""
-
+                  @foreach($purchase->poms as $pom)
+                  @if($pom->material_id == $mat->material_id && $pom->color_id == $mat->color_id)
+                  value="{{ $pom->count }}"
+                  @endif 
+                  @endforeach 
                   maxlength="4"
                   required>
               </div>
@@ -93,7 +108,11 @@
                   data-tip="Сохранить"></button>
                 <a
                   class="bk-btn-actions__link bk-btn-actions__link--cancel btn btn-danger"
-                  href=""
+                  @foreach($purchase->poms as $pom)
+                  @if($pom->material_id == $mat->material_id && $pom->color_id == $mat->color_id)
+                  href="{{ route('purchases.poms.del', $pom) }}"
+                  @endif 
+                  @endforeach 
                   data-tip="Отмена"></a>
               </div>
             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Movement;
+use App\Models\Purchase;
 use App\Models\Customer;
 use Illuminate\Support\Facades\DB;
 
@@ -269,6 +270,47 @@ class ReportController extends Controller
     }
 
     $tmp->setComplexBlock('t_bill', $table);
+    $tmp->saveAs($fn . '.docx');
+
+    return response()->download($fn . '.docx')->deleteFileAfterSend(true);
+  }
+
+  // report for purchase of materials 
+  public function list(Purchase $purchase)
+  {
+    // template
+    $tmp = new TemplateProcessor('reports/list.docx');
+
+    // filename
+    $fn = 'Ведомость на закупку материалов №' . $purchase->code . ' от ' . getDMY($purchase->date_p);
+
+    $tmp->setValue('code', $purchase->code);
+    $tmp->setValue('author', $purchase->user->worker->fio);
+    $tmp->setValue('date', getDMY($purchase->date_p));
+
+    // table
+    $table = new Table(array('borderSize' => 8));
+    $table->addRow();
+    $table->addCell(1000)->addText('№', array('bold' => true));
+    $table->addCell(3000)->addText('Наименование', array('bold' => true));
+    $table->addCell(1000)->addText('Длина', array('bold' => true));
+    $table->addCell(1000)->addText('Ширина', array('bold' => true));
+    $table->addCell(1000)->addText('Толщина', array('bold' => true));
+    $table->addCell(1500)->addText('Кол-во', array('bold' => true));
+    $table->addCell(1000)->addText('Ед.изм.', array('bold' => true));
+
+    foreach ($purchase->poms as $n => $pom) {
+      $table->addRow();
+      $table->addCell(1000)->addText($n + 1);
+      $table->addCell(3000)->addText($pom->material->name, array('size' => '8'));
+      $table->addCell(1500)->addText($pom->material->L, array('size' => '8'));
+      $table->addCell(1500)->addText($pom->material->B, array('size' => '8'));
+      $table->addCell(1500)->addText($pom->material->H, array('size' => '8'));
+      $table->addCell(1500)->addText($pom->count, array('size' => '8'));
+      $table->addCell(1000)->addText($pom->material->measure, array('size' => '8'));
+    }
+
+    $tmp->setComplexBlock('t_list', $table);
     $tmp->saveAs($fn . '.docx');
 
     return response()->download($fn . '.docx')->deleteFileAfterSend(true);

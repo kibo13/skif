@@ -37,33 +37,23 @@ class PurchaseController extends Controller
     return view('pages.purchases.form', compact('purchase'));
   }
 
-  // purchases.store
-  public function store(Request $request)
+  // purchases.complete
+  public function complete(Purchase $purchase)
   {
-    // // session
-    // $purchase_id = session('purchase_id');
+    // purchase 
+    $purchase->state = 1;
+    $purchase->save();
 
-    // // purchase
-    // $purchase = Purchase::find($purchase_id);
+    // clear session
+    session()->forget('purchase_id');
 
-    // // purchase doesn't exist
-    // if (is_null($purchase)) {
-    //   $purchase = Purchase::create();
-    //   session(['purchase_id' => $purchase->id]);
-    // }
+    return redirect()->route('purchases.index');
+  }
 
-    // purchase exists
-    // if ($purchase->tops->contains($top_id)) {
-    //   $top = $order->tops()->where('top_id', $top_id)->first();
-    //   $top->pivot->count = $request['count'];
-    //   $top->pivot->update();
-    // }
-    // // order doesn't exists with type_id
-    // else {
-    //   $order->tops()->attach($top_id, ['count' => $request['count']]);
-    // }
-
-    // return redirect()->route('purchases.create');
+  // purchases.show
+  public function show(Purchase $purchase)
+  {
+    return view('pages.purchases.show', compact('purchase'));
   }
 
   // purchases.edit
