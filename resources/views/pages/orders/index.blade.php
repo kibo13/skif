@@ -63,7 +63,9 @@
         <th scope="col" class="w-25" style="min-width: 150px;">Заказчик</th>
         <th scope="col" class="w-25" style="min-width: 150px;">Исполнитель</th>
         <th scope="col" class="w-25" style="min-width: 150px;">Статус</th>
+        @if(Auth::user()->permissions()->pluck('slug')->contains('order_full'))
         <th scope="col" class="no-sort">Действие</th>
+        @endif
       </tr>
     </thead>
     <tbody>
@@ -138,6 +140,7 @@
           </span>
           @endif
         </td>
+        @if(Auth::user()->permissions()->pluck('slug')->contains('order_full'))
         <td>
           <div class="bk-btn-actions">
             <a
@@ -166,6 +169,7 @@
               data-tip="Удалить" ></a>
           </div>
         </td>
+        @endif
       </tr>
       @endforeach
     </tbody>

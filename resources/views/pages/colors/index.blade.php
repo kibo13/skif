@@ -5,9 +5,11 @@
   <h2>Каталог цветов</h2>
 
   <div class="bk-btn-group">
+    @if(Auth::user()->permissions()->pluck('slug')->contains('mat_full'))
     <a class="btn btn-outline-primary" href="{{ route('colors.create') }}">
       Новая запись
     </a>
+    @endif
     <a class="btn btn-outline-secondary" href="{{ route('materials.index') }}" >
       Материалы
     </a>
@@ -21,11 +23,12 @@
         src="{{asset('images/' . $color->image)}}"
         alt="{{ $color->name }}" >
       <p class="bk-colors__info">{{ $color->name }}</p>
+      @if(Auth::user()->permissions()->pluck('slug')->contains('mat_full'))
       <div class="bk-colors__crud bk-btn-actions">
         <a
-            class="bk-btn-actions__link bk-btn-actions__link--edit btn btn-warning"
-            href="{{ route('colors.edit', $color) }}"
-            data-tip="Редактировать" ></a>
+          class="bk-btn-actions__link bk-btn-actions__link--edit btn btn-warning"
+          href="{{ route('colors.edit', $color) }}"
+          data-tip="Редактировать" ></a>
         <a
           class="bk-btn-actions__link bk-btn-actions__link--delete btn btn-danger"
           href="javascript:void(0)"
@@ -35,6 +38,7 @@
           data-target="#bk-delete-modal"
           data-tip="Удалить" ></a>
       </div>
+      @endif
     </li>
     @endforeach
   </ul>

@@ -7,9 +7,11 @@
   </h2>
 
   <div class="bk-btn-group">
+    @if(Auth::user()->permissions()->pluck('slug')->contains('store_full'))
     <a class="btn btn-outline-primary" href="{{ route('movements.create') }}">
       Новая запись
     </a>
+    @endif
     <a class="btn btn-outline-secondary" href="{{ route('movements.rests') }}">
       Остатки
     </a>
@@ -56,6 +58,7 @@
               class="bk-btn-actions__link bk-btn-actions__link--info btn btn-info"
               href="{{ route('movements.moms', $movement) }}" 
               data-tip="Информация" ></a>
+            @if(Auth::user()->permissions()->pluck('slug')->contains('store_full'))
             <a
               class="bk-btn-actions__link bk-btn-actions__link--edit btn btn-warning"
               href="{{ route('movements.edit', $movement) }}"
@@ -68,6 +71,7 @@
               data-toggle="modal"
               data-target="#bk-delete-modal"
               data-tip="Удалить" ></a>
+            @endif
           </div>
         </td>
       </tr>

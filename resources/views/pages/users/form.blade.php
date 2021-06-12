@@ -81,6 +81,7 @@
           <div class="bk-form__field-250 mb-2 bk-access" id="access-field" >
             <input
               class="form-control bk-form__input @error('name') is-invalid @enderror"
+              id="user-login"
               type="text"
               name="name"
               value="{{ isset($user) ? $user->name : null }}"
@@ -141,14 +142,10 @@
 
           <!-- /.role -->
           <h6 class="bk-form__title">Роль</h6>
-          <div class="bk-form__field-250">
+          <div class="bk-form__field-250 mb-2">
             <select
               class="form-control bk-form__input @error('role_id') is-invalid @enderror"
-              id="role-select"
-              @isset($user)
-                disabled
-                tabindex="-1"
-              @endisset >
+              id="role-select" >
               <option disabled selected>Выберите роль</option>
               @foreach($roles as $role)
               <option
@@ -177,11 +174,76 @@
             @enderror
           </div>
 
+          <!-- /.permissions -->
+          <h6 class="bk-form__title">Доступ</h6>
+          <div class="bk-users">
+            <table class="bk-table table table-bordered table-hover table-responsive">
+              <thead class="thead-light">
+								<tr>
+									<th>#</th>
+									<th class="w-50" style="min-width: 300px;">Разделы</th>
+									<th class="w-25 text-center" style="min-width: 150px;">Просмотр</th>
+									<th class="w-25 text-center" style="min-width: 150px;">Редактирование</th>
+								</tr>
+							</thead>
+              <tbody>
+                @foreach($sections as $id => $section)
+                <tr>
+                  <td>{{ $id+=1 }}</td>
+                  <td>{{ $section }}</td>
+                  @if($permissions->where('name', $section)->count() == 2)
+									@foreach($permissions as $perm)
+									@if($perm->name == $section)
+                  <td class="text-center">
+										<input 
+                      class="bk-checkbox {{$perm->slug}}" 
+                      style="cursor: pointer;" 
+                      name="permissions[]" 
+                      type="checkbox" 
+                      value="{{ $perm->id }}" 
+                      @isset($user) 
+                      @if($user->permissions->where('id', $perm->id)->count())
+                      checked="checked"
+										  @endif
+										  @endisset >
+									</td>
+                  @endif
+									@endforeach
+									@else
+									@foreach($permissions as $perm)
+									@if($perm->name == $section)
+                  <td class="text-center">
+										<input 
+                      class="bk-checkbox {{$perm->slug}}"
+                      style="cursor: pointer;" 
+                      name="permissions[]" 
+                      type="checkbox" 
+                      value="{{ $perm->id }}" 
+                      @isset($user) 
+                      @if($user->permissions->where('id', $perm->id)->count())
+										  checked="checked"
+										  @endif
+										  @endisset >
+									</td>
+									<td class="text-center font-weight-bold">-</td>
+									@endif
+									@endforeach
+									@endif
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+
+
         </div>
       </div>
 
       <div class="form-group">
-        <button class="btn btn-outline-success" type="submit">Сохранить</button>
+        <button 
+          class="btn btn-outline-success" 
+          id="user-save" 
+          type="submit">Сохранить</button>
         <a class="btn btn-outline-secondary" href="{{ route('users.index') }}">
           Назад
         </a>

@@ -5,11 +5,13 @@
   <h2 class="mb-3">Перечень материалов</h2>
 
   <div class="bk-btn-group">
+    @if(Auth::user()->permissions()->pluck('slug')->contains('store_full'))
     <a 
       class="btn btn-outline-primary" 
       href="{{ route('movements.moms.create', $movement) }}" >
       Новая запись
     </a>
+    @endif
     <a class="btn btn-outline-secondary" href="{{ route('movements.index') }}" >
       Назад
     </a>
@@ -31,7 +33,9 @@
         <th scope="col" class="w-25">Кол-во</th>
         <th scope="col" class="w-25">Цена</th>
         <th scope="col" class="w-25">Сумма</th>
+        @if(Auth::user()->permissions()->pluck('slug')->contains('store_full'))
         <th scope="col" class="no-sort">Действие</th>
+        @endif
       </tr>
     </thead>
     <tbody>
@@ -69,6 +73,7 @@
         <td scope="row">
           {{ calcTotal($mom->getPriceForCount()) }}
         </td>
+        @if(Auth::user()->permissions()->pluck('slug')->contains('store_full'))
         <td>
           <div class="bk-btn-actions">
             <a 
@@ -86,6 +91,7 @@
               data-tip="Удалить" ></a>
           </div>
         </td>
+        @endif
       </tr>
       @endforeach
     </tbody>

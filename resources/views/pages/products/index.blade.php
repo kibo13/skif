@@ -4,11 +4,13 @@
 <section id="product-index" class="bk-page section">
   <h2 class="mb-3">Мебельная продукция</h2>
 
+  @if(Auth::user()->permissions()->pluck('slug')->contains('furn_full'))
   <div class="bk-btn-group">
     <a class="btn btn-outline-primary" href="{{ route('products.create') }}">
       Новая запись
     </a>
   </div>
+  @endif
 
   <table 
       id="product-table" 
@@ -88,6 +90,7 @@
               class="bk-btn-actions__link bk-btn-actions__link--color btn btn-info" 
               href="{{ route('products.tops', $product) }}" 
               data-tip="Цвета" ></a>
+            @if(Auth::user()->permissions()->pluck('slug')->contains('furn_full'))
             <a 
               class="bk-btn-actions__link bk-btn-actions__link--edit btn btn-warning" 
               href="{{ route('products.edit', $product) }}"
@@ -100,6 +103,7 @@
               data-toggle="modal"
               data-target="#bk-delete-modal"
               data-tip="Удалить" ></a>
+            @endif
           </div>
         </td>
       </tr>

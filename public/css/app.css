@@ -10975,6 +10975,16 @@ table.dataTable thead .sorting_desc_disabled {
     left: 0;
   }
 }
+.bk-users {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.bk-users .bk-table {
+  margin-bottom: 0;
+}
+
 .bk-colors {
   padding: 0;
   display: grid;

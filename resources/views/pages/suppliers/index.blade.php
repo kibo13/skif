@@ -4,11 +4,13 @@
 <section id="supplier-index" class="bk-page info-form section">
   <h2 class="mb-3">Поставщики</h2>
 
+  @if(Auth::user()->permissions()->pluck('slug')->contains('sup_full'))
   <div class="bk-btn-group">
     <a class="btn btn-outline-primary" href="{{ route('suppliers.create') }}" >
       Новая запись
     </a>
   </div>
+  @endif
 
   <table
       id="supplier-table"
@@ -21,7 +23,9 @@
         <th scope="col" class="w-25" style="min-width: 120px;">БИН</th>
         <th scope="col" class="w-25" style="min-width: 150px;">Директор</th>
         <th scope="col" class="w-25 no-sort" style="min-width: 300px;">Адрес</th>
+        @if(Auth::user()->permissions()->pluck('slug')->contains('sup_full'))
         <th scope="col" class="no-sort">Действие</th>
+        @endif
       </tr>
     </thead>
     <tbody>
@@ -51,6 +55,7 @@
             </button>
           </div>
         </td>
+        @if(Auth::user()->permissions()->pluck('slug')->contains('sup_full'))
         <td>
           <div class="bk-btn-actions">
             <a
@@ -67,6 +72,7 @@
               data-tip="Удалить" ></a>
           </div>
         </td>
+        @endif
       </tr>
       @endforeach
     </tbody>

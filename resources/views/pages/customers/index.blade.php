@@ -4,11 +4,13 @@
 <section id="customer-index" class="bk-page info-form section">
   <h2 class="mb-3">Клиенты</h2>
 
+  @if(Auth::user()->permissions()->pluck('slug')->contains('cust_full'))
   <div class="bk-btn-group">
     <a class="btn btn-outline-primary" href="{{ route('customers.create') }}">
       Новая запись
     </a>
   </div>
+  @endif
 
   <table 
       id="customer-table" 
@@ -21,7 +23,9 @@
         <th scope="col" class="w-25">Тип</th>
         <th scope="col" class="w-25" style="min-width: 200px">ИИН/БИН</th>
         <th scope="col" class="w-25 no-sort" style="min-width: 300px">Контакты</th>
+        @if(Auth::user()->permissions()->pluck('slug')->contains('cust_full'))
         <th scope="col" class="no-sort">Действие</th>
+        @endif
       </tr>
     </thead>
     <tbody>
@@ -71,6 +75,7 @@
             </button>
           </div>
         </td>
+        @if(Auth::user()->permissions()->pluck('slug')->contains('cust_full'))
         <td>
           <div class="bk-btn-actions">
             <a 
@@ -87,6 +92,7 @@
               data-tip="Удалить" ></a>
           </div>
         </td>
+        @endif
       </tr>
       @endforeach
     </tbody>

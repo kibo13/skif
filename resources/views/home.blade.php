@@ -29,6 +29,7 @@
           title="Фильтр"></button>
       </form>
     </div>
+    @if(Auth::user()->permissions()->pluck('slug')->contains('order_full'))
     <a
       class="btn btn-outline-primary bk-home__tools-basket"
       href="{{ route('home.basket.index') }}" >
@@ -42,6 +43,7 @@
       </span>
       @endif
     </a>
+    @endif
   </div>
 
   <ul class="bk-home">
@@ -98,6 +100,7 @@
           @endforeach
         </ul>
 
+        @if(Auth::user()->permissions()->pluck('slug')->contains('order_full'))
         <div class="bk-home__control">
           <input
             class="bk-home__input form-control bk-form__input"
@@ -111,6 +114,7 @@
             id="{{ $product->id }}"
             type="submit" >В корзину</button>
         </div>
+        @endif
 
       </form>
     </li>

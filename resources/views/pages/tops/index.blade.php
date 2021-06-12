@@ -5,11 +5,13 @@
   <h2 class="mb-3">Расцветка мебели</h2>
 
   <div class="bk-btn-group">
+    @if(Auth::user()->permissions()->pluck('slug')->contains('furn_full'))
     <a 
       class="btn btn-outline-primary" 
       href="{{ route('products.tops.create', $product) }}" >
       Новая запись
     </a>
+    @endif
     <a class="btn btn-outline-secondary" href="{{ route('products.index') }}" >
       Назад
     </a>
@@ -26,7 +28,9 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col" class="w-100 no-sort" style="min-width: 400px;">Описание</th>
+        @if(Auth::user()->permissions()->pluck('slug')->contains('furn_full'))
         <th scope="col" class="no-sort">Действие</th>
+        @endif
       </tr>
     </thead>
     <tbody>
@@ -64,6 +68,7 @@
             </div>
           </div>      
         </td>
+        @if(Auth::user()->permissions()->pluck('slug')->contains('furn_full'))
         <td>
           <div class="bk-btn-actions">
             <a 
@@ -81,6 +86,7 @@
               data-tip="Удалить" ></a>
           </div>
         </td>
+        @endif
       </tr>
       @endforeach
     </tbody>

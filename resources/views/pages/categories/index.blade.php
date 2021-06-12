@@ -4,22 +4,25 @@
 <section id="category-index" class="bk-page info-form section">
   <h2 class="mb-3">Категории</h2>
 
+  @if(Auth::user()->permissions()->pluck('slug')->contains('cat_full'))
   <div class="bk-btn-group">
     <a class="btn btn-outline-primary" href="{{ route('categories.create') }}" >
       Новая запись
     </a>
   </div>
+  @endif
 
   <table
-      id="category-table"
-      class="bk-table table table-bordered table-hover table-responsive"
-    >
+    id="category-table"
+    class="bk-table table table-bordered table-hover table-responsive">
     <thead class="thead-light">
       <tr>
         <th scope="col">#</th>
         <th scope="col" class="w-25">Категория</th>
         <th scope="col" class="w-75 no-sort">Описание</th>
+        @if(Auth::user()->permissions()->pluck('slug')->contains('cat_full'))
         <th scope="col" class="no-sort">Действие</th>
+        @endif
       </tr>
     </thead>
     <tbody>
@@ -36,6 +39,7 @@
             </button>
           </div>
         </td>
+        @if(Auth::user()->permissions()->pluck('slug')->contains('cat_full'))
         <td>
           <div class="bk-btn-actions">
             <a
@@ -52,6 +56,7 @@
               data-tip="Удалить" ></a>
           </div>
         </td>
+        @endif
       </tr>
       @endforeach
     </tbody>

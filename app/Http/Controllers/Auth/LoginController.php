@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 class LoginController extends Controller
 {
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Login Controller
     |--------------------------------------------------------------------------
@@ -19,57 +22,47 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+  use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
+  /**
+   * Where to redirect users after login.
+   *
+   * @var string
+   */
+  protected $redirectTo = RouteServiceProvider::HOME;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+    $this->middleware('guest')->except('logout');
+  }
+
+  public function username()
+  {
+    return 'name';
+  }
+
+  /**
+   * The user has been authenticated.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  mixed  $user
+   * @return mixed
+   */
+  protected function authenticated(Request $request, $user)
+  {
+    // storeman 
+    if ($user->role->slug == 'storeman') {
+      return redirect()->route('movements.index');
     }
 
-    public function username()
-    {
-        return 'name';
+    // other users 
+    else {
+      return redirect()->route('home');
     }
-
-    /**
-     * The user has been authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
-     * @return mixed
-     */
-    // protected function authenticated(Request $request, $user)
-    // {
-    //     // pts 
-    //     if ($user->role->slug == 'pts') {
-    //         return redirect()->route('report.index');
-    //     } 
-        
-    //     // hh 
-    //     elseif ($user->role->slug == 'hh') {
-    //         return redirect()->route('workers.index');
-    //     }
-
-    //     // hh 
-    //     elseif ($user->role->slug == 'audit') {
-    //         return redirect()->route('promisers.index'); 
-    //     }
-
-    //     // other users 
-    //     else {
-    //         return redirect()->route('home');
-    //     }
-    // }
+  }
 }

@@ -5,9 +5,11 @@
   <h2 class="mb-3">Материалы</h2>
 
   <div class="bk-btn-group">
+    @if(Auth::user()->permissions()->pluck('slug')->contains('mat_full'))
     <a class="btn btn-outline-primary" href="{{ route('materials.create') }}" >
       Новая запись
     </a>
+    @endif
     <a class="btn btn-outline-secondary" href="{{ route('colors.index') }}" >
       Каталог цветов
     </a>
@@ -22,7 +24,9 @@
         <th scope="col">#</th>
         <th scope="col" class="w-50">Наименование</th>
         <th scope="col" class="w-50 no-sort">Цвета</th>
+        @if(Auth::user()->permissions()->pluck('slug')->contains('mat_full'))
         <th scope="col" class="no-sort">Действие</th>
+        @endif
       </tr>
     </thead>
     <tbody>
@@ -55,6 +59,7 @@
           </div>
           @endif
         </td>
+        @if(Auth::user()->permissions()->pluck('slug')->contains('mat_full'))
         <td>
           <div class="bk-btn-actions">
             <a
@@ -71,6 +76,7 @@
               data-tip="Удалить" ></a>
           </div>
         </td>
+        @endif
       </tr>
       @endforeach
     </tbody>

@@ -51,4 +51,19 @@ class User extends Authenticatable
   {
     return $this->belongsTo('App\Models\Worker');
   }
+
+  public function permissions()
+  {
+    return $this->belongsToMany('App\Models\Permission');
+  }
+
+  public function hasPermission(...$permissions)
+  {
+    foreach ($permissions as $permission) {
+      if ($this->permissions->contains('slug', $permission)) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

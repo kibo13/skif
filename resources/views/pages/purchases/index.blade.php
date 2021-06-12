@@ -6,11 +6,13 @@
     Закупочные ведомости
   </h2>
 
+  @if(Auth::user()->permissions()->pluck('slug')->contains('buy_full'))
   <div class="bk-btn-group">
     <a class="btn btn-outline-primary" href="{{ route('purchases.create') }}">
       Новая запись
     </a>
   </div>
+  @endif
 
   <table
     id="purchase-table"
@@ -43,6 +45,7 @@
               class="bk-btn-actions__link bk-btn-actions__link--info btn btn-info"
               href="{{ route('purchases.show', $purchase) }}"
               data-tip="Информация" ></a>
+            @if(Auth::user()->permissions()->pluck('slug')->contains('buy_full'))
             <a
               class="bk-btn-actions__link bk-btn-actions__link--edit btn btn-warning"
               href="{{ route('purchases.edit', $purchase) }}"
@@ -55,6 +58,7 @@
               data-toggle="modal"
               data-target="#bk-delete-modal"
               data-tip="Удалить" ></a>
+            @endif
           </div>
         </td>
       </tr>
