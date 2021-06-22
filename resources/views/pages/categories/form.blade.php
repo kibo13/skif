@@ -37,8 +37,7 @@
               name="name"
               value="@isset($category) {{ $category->name }} @endisset"
               placeholder="Новая категория"
-              required
-            />
+              required />
           </div>
 
           <!-- /.description -->

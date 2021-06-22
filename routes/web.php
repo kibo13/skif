@@ -229,6 +229,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
   });
 
+  // REPO 
+  Route::group([
+    'middleware' => 'permission:repo'
+  ], function () {
+    Route::get('repo', [ReportController::class, 'index'])->name('repo.index');
+    Route::get('repo/sales', [ReportController::class, 'sales'])->name('repo.sales');
+    Route::get('repo/budget', [ReportController::class, 'budget'])->name('repo.budget');
+  });
+
   // JSON
   Route::get('data/materials', [DataController::class, 'materials']);
 });

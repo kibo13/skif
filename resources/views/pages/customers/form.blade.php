@@ -16,8 +16,7 @@
       action="{{ route('customers.update', $customer) }}"
     @else
       action="{{ route('customers.store') }}"
-    @endisset
-  >
+    @endisset >
     @csrf
 
     <div>
@@ -186,18 +185,15 @@
       </div>
 
       <div class="form-group">
-        
         <button 
           class="btn btn-outline-success" 
           id="customer-save"
-          type="submit"
-        >
+          type="submit">
           Сохранить
         </button>
         <a 
           class="btn btn-outline-secondary" 
-          href="{{ route('customers.index') }}"
-        >
+          href="{{ route('customers.index') }}">
           Назад
         </a>
       </div>

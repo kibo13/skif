@@ -64,6 +64,13 @@
       </a>
     </li>
     @endif
+    @if(Auth::user()->permissions()->pluck('slug')->contains('repo')) 
+    <li @sbactive('repo*')>
+      <a class="sidebar-link" href="{{ route('repo.index') }}">
+        @include('assets.icons.doc') Отчеты
+      </a>
+    </li>
+    @endif
   </ul>
   <!-- END Links -->
 </nav>

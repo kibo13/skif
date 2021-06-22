@@ -16,6 +16,114 @@ use PhpOffice\PhpWord\TemplateProcessor;
 
 class ReportController extends Controller
 {
+  // repo.index 
+  public function index()
+  {
+    // reports 
+    $reports = config('constants.reports');
+
+    return view('pages.reports.index', compact('reports'));
+  }
+
+  // repo.sales 
+  public function sales(Request $request)
+  {
+    // dates 
+    $from = $request->date_from;
+    $to   = $request->date_to;
+
+    // products 
+    $products = DB::table('orders')
+      ->join(
+        'order_top',
+        'order_top.order_id',
+        '=',
+        'orders.id'
+      )
+      ->join(
+        'tops',
+        'tops.id',
+        '=',
+        'order_top.top_id'
+      )
+      ->join(
+        'products',
+        'tops.product_id',
+        '=',
+        'products.id'
+      )
+      ->join(
+        'colors',
+        'colors.id',
+        '=',
+        'tops.color_id'
+      )
+      ->select(
+        'orders.date_on',
+        'order_top.top_id',
+        'products.name as product',
+        'colors.name as color',
+        'products.price',
+        'order_top.count',
+        DB::raw('price * count as total')
+      )
+      ->whereBetween('date_on', [$from, $to])
+      ->get();
+
+    // template
+    $tmp = new TemplateProcessor('reports/sales.docx');
+
+    // filename
+    $fn = 'Отчет по продажам за период с ' . getDMY($from) . ' по ' . getDMY($to);
+
+    // table 
+    $table = new Table(array('borderSize' => 10));
+    $table->addRow();
+    $table->addCell(1000)->addText('№', array('bold' => true));
+    $table->addCell(4000)->addText('Товар', array('bold' => true));
+    $table->addCell(1500)->addText('Цена', array('bold' => true));
+    $table->addCell(1500)->addText('Кол-во', array('bold' => true));
+    $table->addCell(2000)->addText('Сумма', array('bold' => true));
+
+    // amount 
+    $amount = 0;
+
+    foreach ($products as $n => $product) {
+      $item = $product->product . ', ' . $product->color;
+      $price = number_format($product->price) . ' руб.';
+      $sum = number_format($product->total) . ' руб.';
+      $amount = $amount + $product->total;
+
+      $table->addRow();
+      $table->addCell(1000)->addText($n + 1);
+      $table->addCell(4000)->addText($item, array('size' => '11'));
+      $table->addCell(1500)->addText($price, array('size' => '11'));
+      $table->addCell(1500)->addText($product->count, array('size' => '11'));
+      $table->addCell(2000)->addText($sum, array('size' => '11'));
+    }
+
+    $tmp->setComplexBlock('t_sales', $table);
+    $tmp->setValue('date_from', getDMY($from) . 'г.');
+    $tmp->setValue('date_to', getDMY($to) . 'г.');
+    $tmp->setValue('total', number_format($amount));
+    $tmp->setValue('boss', getShortBoss());
+    $tmp->saveAs($fn . '.docx');
+
+    return response()->download($fn . '.docx')->deleteFileAfterSend(true);
+  }
+
+  // repo.budget 
+  public function budget(Request $request)
+  {
+    // dates 
+    $from = $request->date_from;
+    $to   = $request->date_to;
+
+    dd($from, $to);
+
+    return 'budget';
+  }
+
   // report for customer bill-depo
   public function depo(Order $order)
   {

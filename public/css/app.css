@@ -10480,6 +10480,11 @@ table.dataTable thead .sorting_desc_disabled {
   height: 100px;
   resize: vertical;
 }
+.bk-form__duration {
+  display: grid;
+  grid-template-columns: repeat(2, 147px);
+  grid-gap: 5px;
+}
 .bk-form__file {
   position: relative;
 }
@@ -10601,9 +10606,13 @@ table.dataTable thead .sorting_desc_disabled {
   border-radius: 0.25rem;
 }
 
-@media screen and (max-width: 640px) {
+@media (max-width: 640px) {
   .bk-form__field-50, .bk-form__field-100, .bk-form__field-200, .bk-form__field-250, .bk-form__field-300 {
     width: 100%;
+  }
+  .bk-form__duration {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 }
 .bk-btn-actions {

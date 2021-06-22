@@ -2,6 +2,18 @@
 
 return [
 
+  // reports 
+  'reports' => [
+    [
+      'id' => '1',
+      'name' => 'Отчет по продажам'
+    ],
+    [
+      'id' => '2',
+      'name' => 'Отчет по доходам и расходам'
+    ]
+  ],
+
   // type of customers
   'type_customer' => [
     [

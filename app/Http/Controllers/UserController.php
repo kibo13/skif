@@ -70,6 +70,7 @@ class UserController extends Controller
 
     // roles 
     $roles = Role::where('slug', '!=', 'admin')->get();
+    // $roles = Role::get();
 
     // permissions
     $permissions = Permission::get();
