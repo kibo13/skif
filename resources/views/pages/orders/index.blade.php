@@ -86,6 +86,10 @@
             <span class="bk-orders__info-subtitle">Сумма заказа:</span>
             {{ calcTotal($order->total) }}
           </p>
+          {{-- <p class="bk-orders__info-item">
+            <span class="bk-orders__info-subtitle">Срок исполнения:</span>
+            2 недели
+          </p> --}}
           <hr class="bk-orders__line">
           <p class="bk-orders__info-item">
           @if($order->pay == 1) 

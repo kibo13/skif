@@ -46,6 +46,8 @@ $(document).ready(function () {
           $('.sup_read').prop('checked', true);
           $('.sup_full').prop('checked', true);
           $('.furn_read').prop('checked', true);
+          $('.buy_full').prop('checked', true);
+          $('.buy_read').prop('checked', true);
           break;
 
         case 'vendor':
@@ -67,8 +69,8 @@ $(document).ready(function () {
           $('.mat_full').prop('checked', true);
           $('.store_read').prop('checked', true);
           $('.store_full').prop('checked', true);
-          $('.buy_read').prop('checked', true);
-          $('.buy_full').prop('checked', true);
+          $('.statement_read').prop('checked', true);
+          $('.statement_full').prop('checked', true);
           break;
 
         default:

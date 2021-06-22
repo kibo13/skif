@@ -21,6 +21,7 @@ class UserController extends Controller
 
     // users 
     $users = User::where('role_id', '!=', 1)->get();
+    // $users = User::get();
 
     return view('pages.users.index', compact('sections', 'users'));
   }

@@ -50,9 +50,16 @@
       </a>
     </li>
     @endif 
-    @if(Auth::user()->permissions()->pluck('slug')->contains('buy_read'))
+    @if(Auth::user()->permissions()->pluck('slug')->contains('statement_read'))
     <li @sbactive('purch*')>
       <a class="sidebar-link" href="{{ route('purchases.index') }}">
+        @include('assets.icons.list') Ведомости
+      </a>
+    </li>
+    @endif
+    @if(Auth::user()->permissions()->pluck('slug')->contains('buy_read')) 
+    <li @sbactive('deal*')>
+      <a class="sidebar-link" href="{{ route('deals.index') }}">
         @include('assets.icons.shop') Закупки
       </a>
     </li>

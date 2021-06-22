@@ -287,9 +287,10 @@ class ReportController extends Controller
     $tmp->setValue('code', $purchase->code);
     $tmp->setValue('author', $purchase->user->worker->fio);
     $tmp->setValue('date', getDMY($purchase->date_p));
+    $tmp->setValue('boss', getShortBoss());
 
     // table
-    $table = new Table(array('borderSize' => 8));
+    $table = new Table(array('borderSize' => 10));
     $table->addRow();
     $table->addCell(1000)->addText('№', array('bold' => true));
     $table->addCell(3000)->addText('Наименование', array('bold' => true));
@@ -302,15 +303,212 @@ class ReportController extends Controller
     foreach ($purchase->poms as $n => $pom) {
       $table->addRow();
       $table->addCell(1000)->addText($n + 1);
-      $table->addCell(3000)->addText($pom->material->name, array('size' => '8'));
-      $table->addCell(1500)->addText($pom->material->L, array('size' => '8'));
-      $table->addCell(1500)->addText($pom->material->B, array('size' => '8'));
-      $table->addCell(1500)->addText($pom->material->H, array('size' => '8'));
-      $table->addCell(1500)->addText($pom->count, array('size' => '8'));
-      $table->addCell(1000)->addText($pom->material->measure, array('size' => '8'));
+      $table->addCell(3000)->addText($pom->material->name, array('size' => '11'));
+      $table->addCell(1500)->addText($pom->material->L, array('size' => '11'));
+      $table->addCell(1500)->addText($pom->material->B, array('size' => '11'));
+      $table->addCell(1500)->addText($pom->material->H, array('size' => '11'));
+      $table->addCell(1500)->addText($pom->count, array('size' => '11'));
+      $table->addCell(1000)->addText($pom->material->measure, array('size' => '11'));
     }
 
     $tmp->setComplexBlock('t_list', $table);
+    $tmp->saveAs($fn . '.docx');
+
+    return response()->download($fn . '.docx')->deleteFileAfterSend(true);
+  }
+
+  // report for supplier bill-depo
+  public function supDepo(Purchase $purchase)
+  {
+    // template
+    $tmp = new TemplateProcessor('reports/sup-depo.docx');
+
+    // prepayment
+    if ($purchase->pay == 1) {
+      $tmp->setValue('code', $purchase->code . '/1');
+      $tmp->setValue('payment', 'Предоплата');
+    }
+
+    // payment
+    else {
+      $tmp->setValue('code', $purchase->code);
+      $tmp->setValue('payment', 'Оплата');
+    }
+
+    $tmp->setValue('date', getDMY($purchase->date_off));
+    $tmp->setValue('name', $purchase->supplier->name);
+    $tmp->setValue('id', 'БИН ' . $purchase->supplier->code);
+
+    // full address
+    $country = $purchase->supplier->country;
+    $index = $purchase->supplier->index;
+    $city = $purchase->supplier->city;
+    $st = $purchase->supplier->address;
+    $address_full = $country . ', ' . $index . ', ' .  $city . ', ' .   $st;
+
+    $tmp->setValue('address', $address_full);
+
+    // table
+    $table = new Table(array('borderSize' => 10));
+    $table->addRow();
+    $table->addCell(1000)->addText('№', array('bold' => true));
+    $table->addCell(3000)->addText('Наименование', array('bold' => true));
+    $table->addCell(1000)->addText('Длина', array('bold' => true));
+    $table->addCell(1000)->addText('Ширина', array('bold' => true));
+    $table->addCell(1000)->addText('Толщина', array('bold' => true));
+    $table->addCell(1500)->addText('Кол-во', array('bold' => true));
+    $table->addCell(1000)->addText('Ед.изм.', array('bold' => true));
+
+    foreach ($purchase->poms as $n => $pom) {
+      $table->addRow();
+      $table->addCell(1000)->addText($n + 1);
+      $table->addCell(3000)->addText($pom->material->name, array('size' => '11'));
+      $table->addCell(1500)->addText($pom->material->L, array('size' => '11'));
+      $table->addCell(1500)->addText($pom->material->B, array('size' => '11'));
+      $table->addCell(1500)->addText($pom->material->H, array('size' => '11'));
+      $table->addCell(1500)->addText($pom->count, array('size' => '11'));
+      $table->addCell(1000)->addText($pom->material->measure, array('size' => '11'));
+    }
+
+    $tmp->setComplexBlock('t_depo', $table);
+
+    // cost
+    $tmp->setValue('total', calcTotal($purchase->total));
+    $tmp->setValue('depo', calcDepo($purchase->total));
+
+    // signature
+    $tmp->setValue('boss', getShortBoss());
+
+    // filename
+    $fn = 'Счет на оплату заказа №' . $purchase->code . ' от ' . getDMY($purchase->date_off);
+    $tmp->saveAs($fn . '.docx');
+
+    return response()->download($fn . '.docx')->deleteFileAfterSend(true);
+  }
+
+  // report for supplier bill-debt
+  public function supDebt(Purchase $purchase)
+  {
+    // template
+    $tmp = new TemplateProcessor('reports/sup-debt.docx');
+
+    // debt
+    $tmp->setValue('code', $purchase->code . '/2');
+    $tmp->setValue('date', getToday());
+    $tmp->setValue('payment', 'Предоплата');
+
+    $tmp->setValue('date', getDMY($purchase->date_off));
+    $tmp->setValue('name', $purchase->supplier->name);
+    $tmp->setValue('id', 'БИН ' . $purchase->supplier->code);
+
+    // full address
+    $country = $purchase->supplier->country;
+    $index = $purchase->supplier->index;
+    $city = $purchase->supplier->city;
+    $st = $purchase->supplier->address;
+    $address_full = $country . ', ' . $index . ', ' .  $city . ', ' .   $st;
+
+    // address
+    $tmp->setValue('address', $address_full);
+
+    // table
+    $table = new Table(array('borderSize' => 10));
+    $table->addRow();
+    $table->addCell(1000)->addText('№', array('bold' => true));
+    $table->addCell(3000)->addText('Наименование', array('bold' => true));
+    $table->addCell(1000)->addText('Длина', array('bold' => true));
+    $table->addCell(1000)->addText('Ширина', array('bold' => true));
+    $table->addCell(1000)->addText('Толщина', array('bold' => true));
+    $table->addCell(1500)->addText('Кол-во', array('bold' => true));
+    $table->addCell(1000)->addText('Ед.изм.', array('bold' => true));
+
+    foreach ($purchase->poms as $n => $pom) {
+      $table->addRow();
+      $table->addCell(1000)->addText($n + 1);
+      $table->addCell(3000)->addText($pom->material->name, array('size' => '11'));
+      $table->addCell(1500)->addText($pom->material->L, array('size' => '11'));
+      $table->addCell(1500)->addText($pom->material->B, array('size' => '11'));
+      $table->addCell(1500)->addText($pom->material->H, array('size' => '11'));
+      $table->addCell(1500)->addText($pom->count, array('size' => '11'));
+      $table->addCell(1000)->addText($pom->material->measure, array('size' => '11'));
+    }
+
+    $tmp->setComplexBlock('t_debt', $table);
+
+    // cost
+    $tmp->setValue('total', calcTotal($purchase->total));
+    $tmp->setValue('debt', calcDebt($purchase->total));
+
+    // signature
+    $tmp->setValue('boss', getShortBoss());
+
+    // filename
+    $fn = 'Счет на оплату заказа №' . $purchase->code . '-2 от ' . getToday();
+    $tmp->saveAs($fn . '.docx');
+
+    return response()->download($fn . '.docx')->deleteFileAfterSend(true);
+  }
+
+  // report for supplier contract 
+  public function agree(Purchase $purchase)
+  {
+    // template
+    $tmp = new TemplateProcessor('reports/sup-term.docx');
+
+    // filename
+    $fn = 'Договор №' . $purchase->code . '-' . $purchase->id . ' от ' . getDMY($purchase->date_off);
+
+    // supplier 
+    $lastname = $purchase->supplier->lastname;
+    $firstname = $purchase->supplier->firstname;
+    $surname = $purchase->supplier->surname;
+
+    $supplier_full = $lastname . ' ' . $firstname . ' ' . $surname;
+    $supplier_short = getFIO($lastname, $firstname, $surname);
+    $company = $purchase->supplier->name;
+
+    // full address
+    $country = $purchase->supplier->country;
+    $index = $purchase->supplier->index;
+    $city = $purchase->supplier->city;
+    $st = $purchase->supplier->address;
+    $address_full = $country . ', ' . $index . ', ' .  $city . ', ' .   $st;
+
+    // filling in the fields
+    $tmp->setValue('id', $purchase->code . '/' . $purchase->id);
+    $tmp->setValue('date_on', getDMY($purchase->date_off) . 'г.');
+    $tmp->setValue('boss_full', getFullBoss());
+    $tmp->setValue('supplier_company', $company);
+    $tmp->setValue('supplier_boss', $supplier_full);
+    $tmp->setValue('total', number_format($purchase->total) . ' руб.');
+    $tmp->setValue('boss_short', getShortBoss());
+    $tmp->setValue('supplier_short', $supplier_short);
+    $tmp->setValue('supplier_id', $purchase->supplier->code);
+    $tmp->setValue('supplier_address', $address_full);
+
+    // table
+    $table = new Table(array('borderSize' => 10));
+    $table->addRow();
+    $table->addCell(1000)->addText('№', array('bold' => true));
+    $table->addCell(3000)->addText('Наименование', array('bold' => true));
+    $table->addCell(1000)->addText('Длина', array('bold' => true));
+    $table->addCell(1000)->addText('Ширина', array('bold' => true));
+    $table->addCell(1000)->addText('Толщина', array('bold' => true));
+    $table->addCell(1500)->addText('Кол-во', array('bold' => true));
+    $table->addCell(1000)->addText('Ед.изм.', array('bold' => true));
+
+    foreach ($purchase->poms as $n => $pom) {
+      $table->addRow();
+      $table->addCell(1000)->addText($n + 1);
+      $table->addCell(3000)->addText($pom->material->name, array('size' => '11'));
+      $table->addCell(1500)->addText($pom->material->L, array('size' => '11'));
+      $table->addCell(1500)->addText($pom->material->B, array('size' => '11'));
+      $table->addCell(1500)->addText($pom->material->H, array('size' => '11'));
+      $table->addCell(1500)->addText($pom->count, array('size' => '11'));
+      $table->addCell(1000)->addText($pom->material->measure, array('size' => '11'));
+    }
+
+    $tmp->setComplexBlock('t_materials', $table);
     $tmp->saveAs($fn . '.docx');
 
     return response()->download($fn . '.docx')->deleteFileAfterSend(true);

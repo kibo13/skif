@@ -11511,3 +11511,52 @@ table.dataTable thead .sorting_desc_disabled {
 .bk-purchases-form__input:focus {
   border-color: #80bdff;
 }
+
+.bk-deals__text {
+  margin-bottom: 0;
+  padding: 0 2px;
+  font-size: 14px;
+  color: rgba(66, 66, 66, 0.65);
+}
+.bk-deals__color {
+  width: 100%;
+  height: 25px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  cursor: pointer;
+}
+.bk-deals__control {
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.bk-deals__bill {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.bk-deals__bill-icon {
+  width: 25px;
+  height: 25px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.bk-deals__bill-link {
+  font-size: 14px;
+}
+.bk-deals__info-item {
+  margin-bottom: 0;
+  font-size: 12px;
+}
+.bk-deals__info-subtitle {
+  margin-right: 2px;
+  font-weight: bold;
+}
+.bk-deals__line {
+  margin: 5px 0;
+  width: 70%;
+}

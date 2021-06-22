@@ -3,10 +3,10 @@
 @section('content')
 <section id="purchase-index" class="bk-page section">
   <h2 class="mb-3">
-    Закупочные ведомости
+    Ведомости на закупку материалов
   </h2>
 
-  @if(Auth::user()->permissions()->pluck('slug')->contains('buy_full'))
+  @if(Auth::user()->permissions()->pluck('slug')->contains('statement_full'))
   <div class="bk-btn-group">
     <a class="btn btn-outline-primary" href="{{ route('purchases.create') }}">
       Новая запись
@@ -45,7 +45,7 @@
               class="bk-btn-actions__link bk-btn-actions__link--info btn btn-info"
               href="{{ route('purchases.show', $purchase) }}"
               data-tip="Информация" ></a>
-            @if(Auth::user()->permissions()->pluck('slug')->contains('buy_full'))
+            @if(Auth::user()->permissions()->pluck('slug')->contains('statement_full'))
             <a
               class="bk-btn-actions__link bk-btn-actions__link--edit btn btn-warning"
               href="{{ route('purchases.edit', $purchase) }}"

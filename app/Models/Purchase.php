@@ -13,12 +13,24 @@ class Purchase extends Model
     'code',
     'date_p',
     'user_id',
+    'supplier_id',
+    'pay',
+    'depo',
+    'debt',
+    'total',
+    'date_off',
+    'state',
     'note'
   ];
 
   public function user()
   {
     return $this->belongsTo('App\Models\User');
+  }
+
+  public function supplier()
+  {
+    return $this->belongsTo('App\Models\Supplier');
   }
 
   public function poms()

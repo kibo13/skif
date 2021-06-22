@@ -18,6 +18,7 @@ use App\Http\Controllers\MomController;
 use App\Http\Controllers\RestController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PomController;
+use App\Http\Controllers\DealController;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BasketController;
@@ -160,9 +161,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('movements/bill/{movement}', [ReportController::class, 'bill'])->name('movements.bill');
   });
 
-  // PURCHASES
+  // STATEMENTS
   Route::group([
-    'middleware' => 'permission:buy_full'
+    'middleware' => 'permission:statement_full'
   ], function () {
     Route::resource('purchases', PurchaseController::class);
     Route::get('purchases/{purchase}/complete', [PurchaseController::class, 'complete'])->name('purchases.complete');
@@ -171,11 +172,28 @@ Route::middleware(['auth'])->group(function () {
   });
 
   Route::group([
-    'middleware' => 'permission:buy_read'
+    'middleware' => 'permission:statement_read'
   ], function () {
     Route::get('purchases', [PurchaseController::class, 'index'])->name('purchases.index');
     Route::get('purchases/{purchase}', [PurchaseController::class, 'show'])->name('purchases.show');
     Route::get('purchases/list/{purchase}', [ReportController::class, 'list'])->name('purchases.list');
+  });
+
+  // DEALS 
+  Route::group([
+    'middleware' => 'permission:buy_full'
+  ], function () {
+    Route::get('deals/{purchase}/edit', [DealController::class, 'edit'])->name('deals.edit');
+    Route::put('deals/{purchase}', [DealController::class, 'update'])->name('deals.update');
+    Route::get('deals/agree/{purchase}', [ReportController::class, 'agree'])->name('deals.agree');
+    Route::get('deals/depo/{purchase}', [ReportController::class, 'supDepo'])->name('deals.depo');
+    Route::get('deals/debt/{purchase}', [ReportController::class, 'supDebt'])->name('deals.debt');
+  });
+
+  Route::group([
+    'middleware' => 'permission:buy_read'
+  ], function () {
+    Route::get('deals', [DealController::class, 'index'])->name('deals.index');
   });
 
   // ORDERS and BASKET 

@@ -24,8 +24,8 @@ class Supplier extends Model
     'email'
   ];
 
-  // public function orders()
-  // {
-  //   return $this->hasMany('App\Models\Order');
-  // }
+  public function purchases()
+  {
+    return $this->hasMany('App\Models\Purchase');
+  }
 }
