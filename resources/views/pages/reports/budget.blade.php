@@ -1,4 +1,4 @@
-<div id="repo-budget" class="mb-2" style="border: 1px dashed blue">
+<div id="repo-budget" class="d-none">
   <form action="{{ route('repo.budget') }}" method="GET">
     <!-- /.duration -->
     <h6 class="bk-form__title">Период</h6>

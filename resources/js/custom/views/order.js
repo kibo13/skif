@@ -112,17 +112,21 @@ $(document).ready(function () {
   }
   // orders.form is active
   else if (order_form) {
-    /* Field 'date_off' fillable */
-    const date_off = document.getElementById('date_off')
 
-    $('#state').on('change', (e) => {
-      let option = $('#state option:selected').val()
-      let currentDate = new Date()
+    /* Change state */
+    $('#order-save').on('click', e => {
+      let date_on = new Date($('#date_on').val())
+      let date_off = new Date($('#date_off').val())
+      let date_diff = new Date(date_off - date_on) / 1000 / 60 / 60 / 24;
+      let state = document.getElementById('state')
 
-      // order complete
-      option == 2
-        ? (date_off.valueAsDate = currentDate)
-        : (date_off.valueAsDate = null)
+      if (date_diff < 14) {
+        e.preventDefault()
+        alert('Срок готовности заказа должен составлять мин 14 дней')
+        return false;
+      } else {
+        state.value = 2
+      }
     })
 
     /* Show/Hide debt */

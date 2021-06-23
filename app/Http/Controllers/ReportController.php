@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpWord\Element\AbstractContainer;
 use PhpOffice\PhpWord\Element\Row;
 use PhpOffice\PhpWord\Element\Table;
+use PhpOffice\PhpWord\Style\Tab;
 use PhpOffice\PhpWord\TemplateProcessor;
 
 class ReportController extends Controller
@@ -119,9 +120,61 @@ class ReportController extends Controller
     $from = $request->date_from;
     $to   = $request->date_to;
 
-    dd($from, $to);
+    // template
+    $tmp = new TemplateProcessor('reports/budget.docx');
 
-    return 'budget';
+    // filename
+    $fn = 'Отчет по доходам и расходам за период с ' . getDMY($from) . ' по ' . getDMY($to);
+
+    // orders
+    $orders = Order::whereBetween('date_on', [$from, $to])->get();
+
+    // purchases 
+    $purchases = Purchase::whereBetween('date_off', [$from, $to])->get();
+
+    // income and rate 
+    $income = '';
+    $rate = '';
+
+    // totals
+    $total_a = 0;
+    $total_b = 0;
+    $total_c = 0;
+
+    // output 
+    $output = '';
+
+    foreach ($orders as $order) {
+      $total_a += $order->total;
+
+      $income = $income . '+' . number_format($order->total) . ' руб. / заказ №' . $order->code . '<w:br />';
+    }
+
+    foreach ($purchases as $purchase) {
+      $total_b += $purchase->total;
+
+      $rate = $rate . '-' . number_format($purchase->total) . ' руб. / ведом. №' . $purchase->code . '<w:br />';
+    }
+
+    if ($total_a > $total_b) {
+      $total_c = $total_a - $total_b;
+      $output = 'Прибыль за заданный период c ' . getDMY($from) . 'г. по ' . getDMY($to) . 'г. составила +' . number_format($total_c) . ' руб.';
+    } else {
+      $total_c = $total_b - $total_a;
+      $output = 'Убыток за заданный период c ' . getDMY($from) . 'г. по ' . getDMY($to) . 'г. составил -' . number_format($total_c) . ' руб.';
+    }
+
+    $tmp->setValue('from', getDMY($from) . 'г.');
+    $tmp->setValue('to', getDMY($to) . 'г.');
+    $tmp->setValue('income', $income);
+    $tmp->setValue('rate', $rate);
+    $tmp->setValue('total_a', '+' . number_format($total_a) . ' руб.');
+    $tmp->setValue('total_b', '-' . number_format($total_b) . ' руб.');
+    $tmp->setValue('output', $output);
+    $tmp->setValue('boss', getShortBoss());
+    $tmp->saveAs($fn . '.docx');
+
+    return response()->download($fn . '.docx')->deleteFileAfterSend(true);
   }
 
   // report for customer bill-depo

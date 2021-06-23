@@ -191,35 +191,34 @@
         </div>
         @endif
 
-        <!-- /.date_off -->
+        <!-- /.date_on -->
         <input
-          class="form-control bk-form__input mb-2 d-none"
-          id="date_off"
+          class="form-control bk-form__input d-none"
+          id="date_on"
           type="date"
-          name="date_off"
-          value="{{ $order->date_off }}"
+          name="date_on"
+          value="{{ $order->date_on }}"
         >
 
-        <!-- /.state -->
-        <h6 class="bk-form__title">Статус заказа</h6>
-        <div class="bk-form__field-250 mb-2">
-          <select class="form-control bk-form__input" id="state" name="state" >
-            <option
-              value="1"
-              @if($order->state == 1)
-                selected
-              @endif >
-              В обработке
-            </option>
-            <option
-              value="2"
-              @if($order->state == 2)
-                selected
-              @endif >
-              Готов
-            </option>
-          </select>
+        <!-- /.date_off -->
+        <h6 class="bk-form__title">Дата готовности заказа</h6>
+        <div class="bk-form__field-200 mb-2">
+          <input
+            class="form-control bk-form__input"
+            id="date_off"
+            type="date"
+            name="date_off"
+            value="{{ $order->date_off }}">
         </div>
+
+        <!-- /.state -->
+        <input
+          class="form-control bk-form__input"
+          id="state"
+          type="hidden"
+          name="state"
+          value="{{ $order->state }}"
+        >
 
         <!-- /.note -->
         <h6 class="bk-form__title">Примечание к заказу</h6>
