@@ -42,5 +42,7 @@
     <!-- START modal-alert -->
     @include('assets.modals.alert')
     <!-- END modal-alert -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </body>
 </html>

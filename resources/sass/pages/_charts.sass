@@ -1,0 +1,37 @@
+.bk-charts
+  &__group
+    margin: 10px 0
+    display: flex
+    grid-gap: 5px
+  &__field
+    position: relative
+    padding: 5px 10px
+    font-size: $text-base
+    background: transparent
+    border: 1px solid $gray
+    &::before
+      content: attr(data-info)
+      position: absolute
+      top: -10px
+      left: 10px
+      font-size: $text-sm
+      font-weight: bold
+      background: $light
+  &__btn
+    width: 36px
+    height: 35px
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: 80%
+    border-radius: 0
+    &--filter
+      background-image: url('/icons/filter.svg')
+    &--reset
+      background-image: url('/icons/cancel.svg')
+
+@media (max-width: $width-sm)
+  .bk-charts
+    &__group
+      display: grid
+      grid-template-columns: 1fr
+      grid-gap: 10px

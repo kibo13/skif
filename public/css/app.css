@@ -11569,3 +11569,47 @@ table.dataTable thead .sorting_desc_disabled {
   margin: 5px 0;
   width: 70%;
 }
+
+.bk-charts__group {
+  margin: 10px 0;
+  display: flex;
+  grid-gap: 5px;
+}
+.bk-charts__field {
+  position: relative;
+  padding: 5px 10px;
+  font-size: 14px;
+  background: transparent;
+  border: 1px solid #ced4da;
+}
+.bk-charts__field::before {
+  content: attr(data-info);
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  background: #f8fafc;
+}
+.bk-charts__btn {
+  width: 36px;
+  height: 35px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 80%;
+  border-radius: 0;
+}
+.bk-charts__btn--filter {
+  background-image: url("/icons/filter.svg");
+}
+.bk-charts__btn--reset {
+  background-image: url("/icons/cancel.svg");
+}
+
+@media (max-width: 640px) {
+  .bk-charts__group {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+  }
+}

@@ -49,6 +49,7 @@ $(document).ready(function () {
           $('.buy_full').prop('checked', true);
           $('.buy_read').prop('checked', true);
           $('.repo').prop('checked', true);
+          $('.graph').prop('checked', true);
           break;
 
         case 'vendor':

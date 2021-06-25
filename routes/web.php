@@ -27,7 +27,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ReportController;
-
+use App\Http\Controllers\GraphController;
 
 Auth::routes([
   'login' => true,
@@ -236,6 +236,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('repo', [ReportController::class, 'index'])->name('repo.index');
     Route::get('repo/sales', [ReportController::class, 'sales'])->name('repo.sales');
     Route::get('repo/budget', [ReportController::class, 'budget'])->name('repo.budget');
+  });
+
+  // GRAPH
+  Route::group([
+    'middleware' => 'permission:graph'
+  ], function () {
+    Route::get('graph', [GraphController::class, 'index'])->name('graph.index');
   });
 
   // JSON

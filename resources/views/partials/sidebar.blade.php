@@ -71,6 +71,13 @@
       </a>
     </li>
     @endif
+    @if(Auth::user()->permissions()->pluck('slug')->contains('graph')) 
+    <li @sbactive('graph*')>
+      <a class="sidebar-link" href="{{ route('graph.index') }}">
+        @include('assets.icons.graph') Графики
+      </a>
+    </li>
+    @endif
   </ul>
   <!-- END Links -->
 </nav>
