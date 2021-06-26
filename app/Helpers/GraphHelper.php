@@ -7,6 +7,18 @@ function getColor()
   return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
 }
 
+function getForecast()
+{
+  return DB::table('orders')
+    ->select(
+      DB::raw('DATE_FORMAT(orders.date_on,"%m.%y") as date'),
+      DB::raw('SUM(orders.total) as total')
+    )
+    ->groupBy('date')
+    ->orderBy('date')
+    ->get();
+}
+
 function getSales()
 {
   return DB::table('orders')
@@ -29,9 +41,10 @@ function getSales()
     ->get();
 }
 
-function getIncome()
+function getBudgets()
 {
-  return DB::table('orders')
+  // profit 
+  $profit = DB::table('orders')
     ->select(
       'orders.date_on as date',
       DB::raw('"Приход" as name'),
@@ -40,11 +53,9 @@ function getIncome()
     )
     ->groupBy('orders.date_on', 'name', 'type')
     ->get();
-}
 
-function getOutcome()
-{
-  return DB::table('purchases')
+  // expense 
+  $expense = DB::table('purchases')
     ->select(
       'purchases.date_off as date',
       DB::raw('"Расход" as name'),
@@ -54,4 +65,9 @@ function getOutcome()
     ->where('purchases.date_off', '!=', null)
     ->groupBy('purchases.date_off', 'name', 'type')
     ->get();
+
+  // budgets 
+  $budgets = $profit->merge($expense);
+
+  return $budgets->sortBy('date');
 }

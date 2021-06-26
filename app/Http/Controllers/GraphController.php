@@ -10,27 +10,48 @@ class GraphController extends Controller
   // graph.index
   public function index(Request $request)
   {
-    // duration  
-    $from = $request->date_from;
-    $to   = $request->date_to;
+    // charts 
+    $charts = config('constants.charts');
 
-    // checking fields for nullable
-    if (is_null($from) || is_null($to)) {
-      $sales = getSales();
-      $income = getIncome();
-      $outcome = getOutcome();
-    } else {
-      $sales = getSales()->whereBetween('date_on', [$from, $to]);
-      $income = getIncome()->whereBetween('date', [$from, $to]);
-      $outcome = getOutcome()->whereBetween('date', [$from, $to]);
-    }
+    // chart is active 
+    $chart_id = $request->chart;
 
     // charts 
+    $chart_f = new SimpleChart; // chart of forecast 
     $chart_s = new SimpleChart; // chart of sales 
     $chart_b = new SimpleChart; // chart of budget 
-    $chart_f = new SimpleChart; // chart of forecast 
+
+    // parametrs for chart of forecast
+    $forecast_from = $request->forecast_from;
+    $forecast_to   = $request->forecast_to;
+
+    if (is_null($forecast_from) || is_null($forecast_to)) {
+      $forecast = getForecast();
+    } else {
+      // method calculation forecast 
+      $forecast = getForecast();
+    }
+
+    $chart_f->labels($forecast->pluck('total', 'date')->keys());
+    $chart_f
+      ->dataset('Прогноз', 'bar', $forecast->pluck('total', 'date')->values())
+      ->options(['backgroundColor' => '#00C851']);
+
 
     // parametrs for chart of sales  
+    $sales_from = $request->sales_from;
+    $sales_to   = $request->sales_to;
+
+    if (is_null($sales_from) || is_null($sales_to)) {
+      $sales = getSales();
+    } else {
+      $sales = getSales()->whereBetween('date_on', [$sales_from, $sales_to]);
+    }
+
+    // if (count($sales) == 0) {
+    //   $sales = getSales();
+    // }
+
     $products = $sales->pluck('name', 'id');
     $dates_s = $sales->pluck('', 'date_on')->keys();
     $keys_s = [];
@@ -60,7 +81,19 @@ class GraphController extends Controller
     }
 
     // parametrs for chart of budget 
-    $budgets = $income->merge($outcome);
+    $budget_from = $request->budget_from;
+    $budget_to   = $request->budget_to;
+
+    if (is_null($budget_from) || is_null($budget_to)) {
+      $budgets = getBudgets();
+    } else {
+      $budgets = getBudgets()->whereBetween('date', [$budget_from, $budget_to]);
+    }
+
+    // if (count($budgets) == 0) {
+    //   $budgets = getBudgets();
+    // }
+
     $dates_b = $budgets->pluck('type', 'date')->keys();
     $keys_b = [];
 
@@ -95,8 +128,14 @@ class GraphController extends Controller
     return view(
       'pages.charts.index',
       compact(
-        'from',
-        'to',
+        'charts',
+        'chart_id',
+        'forecast_from',
+        'forecast_to',
+        'sales_from',
+        'sales_to',
+        'budget_from',
+        'budget_to',
         'chart_s',
         'chart_b',
         'chart_f'

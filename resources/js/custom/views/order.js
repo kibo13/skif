@@ -124,9 +124,12 @@ $(document).ready(function () {
         e.preventDefault()
         alert('Срок готовности заказа должен составлять мин 14 дней')
         return false;
-      } else {
+      }
+
+      if ($('#date_off').val() != '') {
         state.value = 2
       }
+
     })
 
     /* Show/Hide debt */

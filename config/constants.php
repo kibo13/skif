@@ -2,6 +2,25 @@
 
 return [
 
+  // charts 
+  'charts' => [
+    [
+      'id' => '1',
+      'name' => 'Прогноз продаж',
+      'slug' => 'forecast-block'
+    ],
+    [
+      'id' => '2',
+      'name' => 'Статистика по продажам мебели',
+      'slug' => 'sales-block'
+    ],
+    [
+      'id' => '3',
+      'name' => 'Статистика по доходам и расходам',
+      'slug' => 'budget-block'
+    ]
+  ],
+
   // reports 
   'reports' => [
     [

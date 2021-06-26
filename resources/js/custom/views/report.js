@@ -41,7 +41,7 @@ $(document).ready(function () {
       let from = new Date(d1.value);
       let to = new Date(d2.value);
 
-      if (from > to) {
+      if (from >= to) {
         link.preventDefault()
         alert('Дата окончания не должна предшествовать дате начала')
         return false;
