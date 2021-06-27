@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Charts\SimpleChart;
+use DateTime;
 
 class GraphController extends Controller
 {
@@ -22,21 +23,88 @@ class GraphController extends Controller
     $chart_b = new SimpleChart; // chart of budget 
 
     // parametrs for chart of forecast
+    $values = getInitDataOfSales();
     $forecast_from = $request->forecast_from;
     $forecast_to   = $request->forecast_to;
 
-    if (is_null($forecast_from) || is_null($forecast_to)) {
-      $forecast = getForecast();
-    } else {
-      // method calculation forecast 
-      $forecast = getForecast();
+    $calc = [
+      'n' => 0,
+      'Y' => 0,
+      'X' => 0,
+      'YX' => 0,
+      'XX' => 0,
+      'a' => 0,
+      'b' => 0,
+    ];
+
+    // calculation variables
+    foreach ($values as $id => $value) {
+      $calc['n'] += 1;
+      $calc['Y'] += $value->total;
+      $calc['X'] += $id + 1;
+      $calc['YX'] += ($id + 1) * $value->total;
+      $calc['XX'] += pow($id + 1, 2);
     }
 
-    $chart_f->labels($forecast->pluck('total', 'date')->keys());
-    $chart_f
-      ->dataset('Прогноз', 'bar', $forecast->pluck('total', 'date')->values())
-      ->options(['backgroundColor' => '#00C851']);
+    // calculation 'a'
+    $calc['a'] = round(($calc['YX'] - $calc['X'] * $calc['Y'] / $calc['n']) / ($calc['XX'] - ($calc['X'] * $calc['X']) / $calc['n']), 2);
 
+    // calculation 'b'
+    $calc['b'] = round(($calc['Y'] / $calc['n']) - ($calc['a'] * $calc['X'] / $calc['n']), 2);
+
+    if (is_null($forecast_from) || is_null($forecast_to)) {
+
+      $forecast = getInitDataOfSales();
+
+      $chart_f->labels($forecast->pluck('total', 'date')->keys());
+      $chart_f
+        ->dataset('Прогноз', 'bar', $forecast->pluck('total', 'date')->values())
+        ->options(['backgroundColor' => '#00C851']);
+    } else {
+
+      $forecast = [];
+      $forecast_i = []; // initial data 
+      $forecast_p = []; // prediction data 
+      $init_dates = getInitDataOfSales()->pluck('', 'date')->keys();
+      $pred_dates = getMonths($forecast_from, $forecast_to);
+      $dates_f = $init_dates->merge($pred_dates);
+
+      foreach ($dates_f as $id => $date_f) {
+        $forecast[$id]['date'] = $date_f;
+        $forecast[$id]['total'] = round($calc['a'] * ($id + 1) + $calc['b']);
+        $forecast[$id]['type'] = 2;
+
+        foreach ($values as $value) {
+          if ($date_f == $value->date) {
+            $forecast[$id]['total'] = $value->total;
+            $forecast[$id]['type'] = 1;
+          }
+        }
+      }
+
+      foreach ($forecast as $id => $fore) {
+        $forecast_i[$fore['date']] = null;
+        $forecast_p[$fore['date']] = null;
+
+        if ($fore['type'] == 1) {
+          $forecast_i[$fore['date']] = $fore['total'];
+        }
+
+        if ($fore['type'] == 2) {
+          $forecast_p[$fore['date']] = $fore['total'];
+        }
+      }
+
+      $chart_f->labels($dates_f);
+      $chart_f
+        ->dataset('Исходные данные', 'bar', array_values($forecast_i))
+        ->options(['backgroundColor' => '#00C851']);
+      $chart_f
+        ->dataset('Прогноз', 'bar', array_values($forecast_p))
+        ->options(['backgroundColor' => '#ffbb33']);
+    }
+
+    // ================================================================
 
     // parametrs for chart of sales  
     $sales_from = $request->sales_from;
@@ -50,6 +118,9 @@ class GraphController extends Controller
 
     // if (count($sales) == 0) {
     //   $sales = getSales();
+    //   session()->flash('warning', 'В БД отсутствуют записи за выбранный период');
+    // } else {
+    //   session()->flash('success', 'Запрос успешно выполнен');
     // }
 
     $products = $sales->pluck('name', 'id');
@@ -79,6 +150,8 @@ class GraphController extends Controller
         ->dataset($sales->where('id', $id)->first()->name, 'bar', $t)
         ->options(['backgroundColor' => getColor()]);
     }
+
+    // ================================================================
 
     // parametrs for chart of budget 
     $budget_from = $request->budget_from;
@@ -124,6 +197,8 @@ class GraphController extends Controller
     $chart_b
       ->dataset('Расход', 'bar', $budget_m)
       ->options(['backgroundColor' => '#ff4444']);
+
+    // ================================================================
 
     return view(
       'pages.charts.index',

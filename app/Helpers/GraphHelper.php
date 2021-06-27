@@ -7,12 +7,30 @@ function getColor()
   return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
 }
 
-function getForecast()
+function getMonths($from, $to)
+{
+  $start = new DateTime($from);
+  $end = new DateTime($to);
+
+  $interval = DateInterval::createFromDateString('1 month');
+  $period = new DatePeriod($start, $interval, $end);
+
+  $months = [];
+
+  foreach ($period as $dt) {
+    array_push($months, $dt->format('m.y'));
+  }
+
+  return $months;
+}
+
+function getInitDataOfSales()
 {
   return DB::table('orders')
     ->select(
       DB::raw('DATE_FORMAT(orders.date_on,"%m.%y") as date'),
-      DB::raw('SUM(orders.total) as total')
+      DB::raw('SUM(orders.total) as total'),
+      DB::raw('1 as type')
     )
     ->groupBy('date')
     ->orderBy('date')

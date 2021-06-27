@@ -4,8 +4,30 @@
 <section id="graph-index" class="bk-page section">
   <h2 class="mb-4">Графики</h2>
 
+  <input 
+    class="form-control bk-from__input mb-4 d-none" 
+    id="graph-today" 
+    type="date" 
+    value="{{ getCurrentDay() }}"
+  >
+
   <!-- graph-control -->
   @include('pages.charts.toolbar')
+
+  <!-- alert -->
+  @if(session()->has('warning'))
+  <div class="alert alert-warning mt-2 mb-0" role="alert">
+    {{ session()->get('warning') }}
+  </div>
+  @elseif(session()->has('success'))
+  <div class="alert alert-success mt-2 mb-0" role="alert">
+    {{ session()->get('success') }}
+  </div>
+  @endif
+  
+  {{-- <div class="my-4">
+    Length array {{ $len }}
+  </div> --}}
 
   <!-- forecast -->
   <div id="graph-forecast" class="bk-chart d-none" data-id="1">
