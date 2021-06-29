@@ -28,8 +28,6 @@ $(document).ready(function () {
         }
       }
 
-      // clear date fields 
-      // $('input[type="date"]').val('')
     })
 
     /* Which chart is active */
@@ -60,7 +58,6 @@ $(document).ready(function () {
       checkingNull(forecast_from, forecast_to, e)
       compareDates(forecast_from, forecast_to, e)
       differenceDates(forecast_from, forecast_to, e)
-      // minDuration(forecast_from, forecast_to, e)
     })
 
     /* Sales run */
@@ -115,28 +112,6 @@ $(document).ready(function () {
       if (!from || !to) {
         link.preventDefault()
         alert('Необходимо указать период')
-        return false;
-      }
-    }
-
-    /* Calculate min duration */
-    function minDuration(d1, d2, link) {
-      let from = new Date(d1.value)
-      let to = new Date(d2.value)
-
-      // differences 
-      let now_from = new Date(from - now) / 1000 / 60 / 60 / 24
-      let from_to = new Date(to - from) / 1000 / 60 / 60 / 24
-
-      // if (now_from < 30) {
-      //   link.preventDefault()
-      //   alert('Мин.период между текущей датой и датой начала должен составлять 30 дней')
-      //   return false;
-      // }
-
-      if (from_to < 30) {
-        link.preventDefault()
-        alert('Мин.период для расчёта прогноза должен составлять 30 дней')
         return false;
       }
     }

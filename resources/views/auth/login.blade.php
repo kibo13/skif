@@ -62,4 +62,5 @@
     </form>
   </div>
 </div>
+<button id="auth-btn" class="auth-btn">Войти</button>
 @endsection

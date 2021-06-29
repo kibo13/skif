@@ -3,7 +3,7 @@
 @section('content')
 <section id="order-form" class="info-form section">
   <h5 class="bk-orders__title">
-    Заказ №{{ $order->code }}
+    Заказ №{{ $order->id }}
     <span class="bk-orders__title--date">
     от {{ getDMY($order->date_on) }}
     </span>

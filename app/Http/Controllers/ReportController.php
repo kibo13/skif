@@ -185,13 +185,13 @@ class ReportController extends Controller
 
     // prepayment
     if ($order->pay == 1) {
-      $tmp->setValue('code', $order->code . '/1');
+      $tmp->setValue('code', $order->id . '/1');
       $tmp->setValue('payment', 'Предоплата');
     }
 
     // payment
     else {
-      $tmp->setValue('code', $order->code);
+      $tmp->setValue('code', $order->id);
       $tmp->setValue('payment', 'Оплата');
     }
 
@@ -248,7 +248,7 @@ class ReportController extends Controller
     $tmp->setValue('worker', $order->worker->fio);
 
     // filename
-    $fn = 'Счет на оплату заказа №' . $order->code . ' от ' . getDMY($order->date_on);
+    $fn = 'Счет на оплату заказа №' . $order->id . ' от ' . getDMY($order->date_on);
     $tmp->saveAs($fn . '.docx');
 
     return response()->download($fn . '.docx')->deleteFileAfterSend(true);
@@ -261,7 +261,7 @@ class ReportController extends Controller
     $tmp = new TemplateProcessor('reports/client-debt.docx');
 
     // debt
-    $tmp->setValue('code', $order->code . '/2');
+    $tmp->setValue('code', $order->id . '/2');
     $tmp->setValue('date', getDMY($order->date_on));
     $tmp->setValue('payment', 'Предоплата');
 
@@ -316,7 +316,7 @@ class ReportController extends Controller
     $tmp->setValue('worker', $order->worker->fio);
 
     // filename
-    $fn = 'Счет на оплату заказа №' . $order->code . '-2 от ' . getDMY($order->date_on);
+    $fn = 'Счет на оплату заказа №' . $order->id . '-2 от ' . getDMY($order->date_on);
     $tmp->saveAs($fn . '.docx');
 
     return response()->download($fn . '.docx')->deleteFileAfterSend(true);
@@ -332,7 +332,7 @@ class ReportController extends Controller
     if ($order->customer->type_id == 1) {
 
       // filename
-      $fn = 'Договор №' . $order->code . '-' . $order->id . ' от ' . getDMY($order->date_on) . ' [ФЛ]';
+      $fn = 'Договор №' . $order->id . ' от ' . getDMY($order->date_on) . ' [ФЛ]';
 
       // customer
       $lastname = $order->customer->lastname;
@@ -346,7 +346,7 @@ class ReportController extends Controller
     else {
 
       // filename
-      $fn = 'Договор №' . $order->code . '-' . $order->id . ' от ' . getDMY($order->date_on) . ' [ЮЛ]';
+      $fn = 'Договор №' . $order->id . ' от ' . getDMY($order->date_on) . ' [ЮЛ]';
 
       // customer
       $customer_full = $order->customer->name;
@@ -354,7 +354,7 @@ class ReportController extends Controller
     }
 
     // filling in the fields
-    $tmp->setValue('id', $order->code . '/' . $order->id);
+    $tmp->setValue('id', $order->id);
     $tmp->setValue('date_on', getDMY($order->date_on) . 'г.');
     $tmp->setValue('boss_full', getFullBoss());
     $tmp->setValue('customer_full', $customer_full);

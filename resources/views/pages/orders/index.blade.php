@@ -74,7 +74,7 @@
         <td>{{ $key+=1 }}</td>
         <td>
           <h6 class="my-1">
-            Заказ №{{ $order->code }}
+            Заказ №{{ $order->id }}
             <span class="bk-small">{{ getDMY($order->date_on) }}</span>
           </h6>
           <p class="bk-orders__info-item">

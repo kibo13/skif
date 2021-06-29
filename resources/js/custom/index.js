@@ -2,7 +2,6 @@
 require('./vendors/datatable')
 
 // components
-require('./components/loader')
 require('./components/navbar')
 require('./components/validation')
 require('./components/access')
@@ -14,6 +13,7 @@ require('./modals/destroy')
 require('./modals/alert')
 
 // views
+require('./views/author')
 require('./views/home')
 require('./views/worker')
 require('./views/user')

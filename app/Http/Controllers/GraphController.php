@@ -58,7 +58,7 @@ class GraphController extends Controller
 
       $chart_f->labels($forecast->pluck('total', 'date')->keys());
       $chart_f
-        ->dataset('Прогноз', 'bar', $forecast->pluck('total', 'date')->values())
+        ->dataset('Продажи', 'bar', $forecast->pluck('total', 'date')->values())
         ->options(['backgroundColor' => '#00C851']);
     } else {
 
@@ -104,27 +104,18 @@ class GraphController extends Controller
         ->options(['backgroundColor' => '#ffbb33']);
     }
 
-    // ================================================================
-
     // parametrs for chart of sales  
     $sales_from = $request->sales_from;
     $sales_to   = $request->sales_to;
 
     if (is_null($sales_from) || is_null($sales_to)) {
-      $sales = getSales();
+      $sales = getSalesByMonth();
     } else {
-      $sales = getSales()->whereBetween('date_on', [$sales_from, $sales_to]);
+      $sales = getSales()->whereBetween('date', [$sales_from, $sales_to]);
     }
 
-    // if (count($sales) == 0) {
-    //   $sales = getSales();
-    //   session()->flash('warning', 'В БД отсутствуют записи за выбранный период');
-    // } else {
-    //   session()->flash('success', 'Запрос успешно выполнен');
-    // }
-
-    $products = $sales->pluck('name', 'id');
-    $dates_s = $sales->pluck('', 'date_on')->keys();
+    $products = $sales->pluck('product', 'id');
+    $dates_s = $sales->pluck('', 'date')->keys();
     $keys_s = [];
     $temp = [];
 
@@ -138,7 +129,7 @@ class GraphController extends Controller
 
     foreach ($dates_s as $date_s) {
       foreach ($sales as $sale) {
-        if ($temp[$sale->id] && $date_s == $sale->date_on) {
+        if ($temp[$sale->id] && $date_s == $sale->date) {
           $temp[$sale->id][$date_s] = $sale->count;
         }
       }
@@ -147,28 +138,22 @@ class GraphController extends Controller
     foreach ($temp as $id => $t) {
       $chart_s->labels($dates_s);
       $chart_s
-        ->dataset($sales->where('id', $id)->first()->name, 'bar', $t)
+        ->dataset($sales->where('id', $id)->first()->product, 'bar', $t)
         ->options(['backgroundColor' => getColor()]);
     }
-
-    // ================================================================
 
     // parametrs for chart of budget 
     $budget_from = $request->budget_from;
     $budget_to   = $request->budget_to;
+    $keys_b = [];
 
     if (is_null($budget_from) || is_null($budget_to)) {
-      $budgets = getBudgets();
+      $budgets = getBudgetsByMonth();
+      $dates_b = getBudgetsByMonth()->pluck('', 'date')->keys();
     } else {
       $budgets = getBudgets()->whereBetween('date', [$budget_from, $budget_to]);
+      $dates_b = $budgets->pluck('type', 'date')->keys();
     }
-
-    // if (count($budgets) == 0) {
-    //   $budgets = getBudgets();
-    // }
-
-    $dates_b = $budgets->pluck('type', 'date')->keys();
-    $keys_b = [];
 
     foreach ($dates_b as $date_b) {
       array_push($keys_b, $date_b);
@@ -179,11 +164,9 @@ class GraphController extends Controller
 
     foreach ($dates_b as $date_b) {
       foreach ($budgets as $budget) {
-        // plus 
         if ($budget->type == 1 && $budget->date == $date_b) {
           $budget_p[$date_b] = $budget->total;
         }
-        // minus 
         if ($budget->type == 2 && $budget->date == $date_b) {
           $budget_m[$date_b] = $budget->total;
         }
@@ -197,8 +180,6 @@ class GraphController extends Controller
     $chart_b
       ->dataset('Расход', 'bar', $budget_m)
       ->options(['backgroundColor' => '#ff4444']);
-
-    // ================================================================
 
     return view(
       'pages.charts.index',
