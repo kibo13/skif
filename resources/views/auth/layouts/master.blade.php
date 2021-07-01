@@ -22,7 +22,6 @@
   </head>
   <body>
     <div id="app" class="auth">
-      @include('author')
       <main>@yield('content')</main>
       @include('partials.footer')
     </div>

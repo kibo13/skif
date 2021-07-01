@@ -13,7 +13,6 @@ require('./modals/destroy')
 require('./modals/alert')
 
 // views
-require('./views/author')
 require('./views/home')
 require('./views/worker')
 require('./views/user')
